@@ -341,7 +341,7 @@ h2 { font-weight: 600; }
 .herb-mint { right: 0; --img: url(mint.png); }
 @media (max-width: 1360px) { .herb { display: none; } }
 @media (max-width: 700px) {
-  .herb { display: block; width: 42vw; height: 38vh; bottom: calc(4.2rem + env(safe-area-inset-bottom)); opacity: .08; }
+  .herb { display: block; width: 42vw; height: 38vh; bottom: calc(4.2rem + env(safe-area-inset-bottom)); opacity: .06; }
   .herb-rosemary { left: -6vw; -webkit-mask-position: bottom left; mask-position: bottom left; }
   .herb-mint { right: -6vw; -webkit-mask-position: bottom right; mask-position: bottom right; }
 }

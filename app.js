@@ -358,13 +358,13 @@ function main() {
     return `
       <h1 class="big">${kr(balance(data, now))}</h1>
       <p class="lead">på madkontoen i dag</p>
-      <p class="muted explain">Bankens saldo var ${kr(cp.balance)} den ${dato(cp.date)}. Siden er der kommet ${kr(monthly)} ind om måneden, og middagene er trukket fra.</p>
-      ${f ? `<dl class="figures">
-        <div><dt>Næste middag omkring</dt><dd>${dato(f.next)}</dd></div>
-        <div><dt>På madkontoen til den tid</dt><dd>${kr(f.savings)}</dd></div>
-        <div><dt>Budget pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
-        <div><dt>Mellem middagene i snit</dt><dd>${f.avgDays} dage</dd></div>
-      </dl>` : ''}
+      <p class="muted explain">Bank ${dato(cp.date)}: ${kr(cp.balance)} Indbetaling ${kr(monthly)}/md.</p>
+      ${f ? `<section class="forecast"><h2>Forventet ved næste middag</h2><dl class="figures">
+        <div><dt>Dato</dt><dd>${dato(f.next)}</dd></div>
+        <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>
+        <div><dt>Pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
+        <div><dt>Gns. interval</dt><dd>${f.avgDays} dage</dd></div>
+      </dl></section>` : ''}
       <div class="columns">
         <section>
           <h2>Indbetaling pr. person</h2>

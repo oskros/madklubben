@@ -290,7 +290,8 @@ dialog .bar .i { width: 1.4rem; height: 1.4rem; }
 .strip img { width: 100%; height: 100%; object-fit: cover; }
 .strip span { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.5rem .5rem .4rem; color: #fff; font-size: .8rem; font-weight: 700; background: linear-gradient(transparent, rgb(0 0 0 / .6)); }
 @media (max-width: 640px) { .strip { grid-auto-columns: 38%; margin-left: -16px; margin-right: -16px; padding: 0 16px; scroll-padding: 0 16px; } }
-.timeline { margin: 2rem 0 2.25rem; }
+.timeline { margin: 1.75rem 0 2.25rem; }
+.timeline h2 { margin-bottom: 1.1rem; }
 .track { position: relative; height: 2.6rem; margin: 0 .5rem; border-top: 2px solid var(--line); }
 .year { position: absolute; top: .45rem; font-size: .75rem; color: var(--muted); padding-left: .3rem; border-left: 1px solid var(--line); line-height: 1.4; }
 .dot { position: absolute; top: -8px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg); }

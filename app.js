@@ -367,6 +367,7 @@ function main() {
     const years = Array.from({ length: last - first + 1 }, (_, i) => first + i);
     return `
       <section class="timeline">
+        <h2>Tidslinje</h2>
         <div class="track">
           ${years.map(y => `<span class="year" style="left:${pos(`${y}-01-01`)}%">${y < last ? y : ''}</span>`).join('')}
           ${[...data.dinners].sort((a, b) => a.date.localeCompare(b.date)).map(d => `<a class="dot" href="#/d/${esc(d.id)}" style="left:${pos(d.date)}%" title="${esc(d.restaurant)}, ${dato(d.date)}" aria-label="${esc(d.restaurant)}"></a>`).join('')}

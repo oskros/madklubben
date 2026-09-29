@@ -426,9 +426,8 @@
   {
    "id": "2026-testmiddag-uvk",
    "photos": [
-    "mun3wuvl-0.jpg",
     "mun3wuvl-1.jpg",
-    "mun3wuvl-2.jpg"
+    "mun3wuvl-0.jpg"
    ],
    "restaurant": "Testmiddag",
    "date": "2026-09-29",
@@ -441,7 +440,7 @@
     "daikon & yuzu kosho – HAMACHI",
     "Østers & pære"
    ],
-   "note": "Automatisk test, slettes igen"
+   "note": "Automatisk test, redigeret"
   }
  ],
  "ideas": [

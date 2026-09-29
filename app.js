@@ -65,6 +65,7 @@ function main() {
   let token = store.get('gh-token');
   let data;
   let editingIdea = null;
+  let visited = 0;
   const localUrls = {};
 
   // ---------- GitHub as storage ----------
@@ -199,12 +200,13 @@ function main() {
     const d = data.dinners.find(x => x.id === id);
     if (!d) return null;
     const links = [
-      safeUrl(d.website) && `<a href="${safeUrl(d.website)}" target="_blank" rel="noopener">Restaurantens side</a>`,
+      safeUrl(d.website) && `<a href="${safeUrl(d.website)}" target="_blank" rel="noopener">Restaurant website</a>`,
       d.closed && '<span class="muted">Eksisterer ikke mere</span>',
       safeUrl(d.album) && `<a href="${safeUrl(d.album)}" target="_blank" rel="noopener">Album i Google Photos</a>`,
     ].filter(Boolean).join(' · ');
     return `
       <article class="dinner">
+        <p><a href="#/" data-action="back">← Tilbage</a></p>
         <p class="kicker">${dato(d.date)}</p>
         <h1>${esc(d.restaurant)}</h1>
         ${links ? `<p>${links}</p>` : ''}
@@ -314,7 +316,7 @@ function main() {
           <h2><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></h2>
           <p class="muted">${esc(d.date.slice(0, 4))}${d.menu.length ? ` · ${d.menu.length} retter` : ''}${d.price ? ` · ${kr(d.price / data.members)} pr. person` : ''}</p>
           ${chips(d.themes)}
-          ${d.menu.length ? `<ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>` : `<p class="muted small">Ingen menu endnu.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj</a>` : ''}</p>`}
+          ${d.menu.length ? `<ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>` : `<p class="muted small">Menu mangler.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj</a>` : ''}</p>`}
         </section>`).join('')}</div>`;
   }
 
@@ -505,6 +507,10 @@ function main() {
     if (photo) return openViewer(+photo.dataset.photo);
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
+    if (btn.dataset.action === 'back' && visited > 0) {
+      e.preventDefault();
+      history.back();
+    }
     if (btn.dataset.action === 'edit-idea' || btn.dataset.action === 'cancel-idea') {
       editingIdea = btn.dataset.action === 'edit-idea' ? +btn.dataset.i : null;
       render();
@@ -568,6 +574,7 @@ function main() {
       return;
     }
     editingIdea = null;
+    visited++;
     render();
     window.scrollTo(0, 0);
   });

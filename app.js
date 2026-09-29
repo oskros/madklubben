@@ -183,7 +183,7 @@ function main() {
   const editOnly = html => token ? html : '';
 
   function cover(d) {
-    const src = d.photos[0] ? photoUrl(d, d.photos[0], true) : d.image;
+    const src = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], true));
     return src
       ? `<img src="${esc(src)}" alt="" loading="lazy">`
       : `<span class="initial">${esc(d.restaurant[0])}</span>`;
@@ -237,7 +237,7 @@ function main() {
         <label>Note <textarea name="note" rows="3">${esc(v.note)}</textarea></label>
         <label>Tilføj billeder <input name="photos" type="file" accept="image/*" multiple></label>
         <p class="muted small">Tip: I Google Photos-albummet vælg "Download alle", pak zip-filen ud, og vælg billederne her. De formindskes før upload.</p>
-        ${v.photos.length ? `<fieldset><legend>Billeder (markér for at slette, første er forsidebillede)</legend><div class="grid pick">${v.photos.map(p => `
+        ${v.photos.length ? `<fieldset><legend>Billeder (markér for at slette)</legend><div class="grid pick">${v.photos.map(p => `
           <label><input type="checkbox" name="delete" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></label>`).join('')}</div></fieldset>` : ''}
         <p class="row"><button class="btn">Gem</button> <span class="status"></span>
           ${d ? '<button type="button" class="btn danger" data-action="delete-dinner">Slet middag</button>' : ''}</p>

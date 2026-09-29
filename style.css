@@ -50,15 +50,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 16px 4rem; }
 .hero { margin-bottom: 2rem; }
 .note { font-family: Fraunces, Georgia, serif; font-size: 1.15rem; font-style: italic; }
 
-.cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
-.cards a { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; height: 100%; }
-.cards a:hover { border-color: var(--accent); }
-.cover { aspect-ratio: 4 / 3; background: var(--line); display: grid; place-items: center; overflow: hidden; }
-.cover img { width: 100%; height: 100%; object-fit: cover; }
-.initial { font-family: Fraunces, Georgia, serif; font-size: 4rem; color: var(--muted); }
-.cards .body { padding: .75rem 1rem 1rem; }
-.cards h2 { margin: 0; font-size: 1.2rem; }
-.cards p { margin: .2rem 0 0; }
+.place { display: flex; align-items: center; gap: .75rem; }
+.thumb { flex: none; width: 64px; height: 48px; border-radius: 6px; overflow: hidden; background: var(--line); display: grid; place-items: center; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.initial { font-family: Fraunces, Georgia, serif; font-size: 1.4rem; color: var(--muted); }
 
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
 .chips span, .chips a { font-size: .8rem; padding: .15rem .6rem; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); text-decoration: none; }
@@ -85,6 +80,18 @@ main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 16px 4rem; }
 table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
 th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
 .num { text-align: right; }
+.narrow { display: none; }
+@media (max-width: 640px) {
+  .wide { display: none; }
+  .narrow { display: inline; }
+  td:has(.place) { white-space: normal; }
+  th, td { padding: .45rem .3rem; }
+  thead th { white-space: normal; }
+  tr > :first-child { padding-left: 0; }
+  tr > :last-child { padding-right: 0; }
+  .place { gap: .5rem; }
+  .thumb { width: 44px; height: 33px; }
+}
 tfoot th { border-bottom: 0; }
 
 .stack { display: grid; gap: 1rem; max-width: 560px; }
@@ -92,6 +99,7 @@ tfoot th { border-bottom: 0; }
 .stack label:has(input[type=checkbox]) { display: flex; gap: .5rem; align-items: center; }
 .row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; }
 .row label { display: grid; gap: .3rem; }
+.row.between { justify-content: space-between; align-items: baseline; }
 input, textarea { font: inherit; color: inherit; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: .5rem .6rem; max-width: 100%; }
 fieldset { border: 1px solid var(--line); border-radius: 10px; }
 .btn { display: inline-block; font: inherit; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 6px; padding: .55rem 1rem; text-decoration: none; cursor: pointer; }

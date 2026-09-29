@@ -25,6 +25,25 @@ export function depositsBetween(data, after, until) {
   }
 }
 
+// Bank CSV export (Danish): semicolon separated, header row with "Dato" and "Saldo", dates dd.mm.yyyy,
+// amounts like "9.700,00", newest transaction first.
+export function latestBalance(csv) {
+  const rows = csv.replace(/^\uFEFF/, '').split(/\r?\n/).filter(r => r.trim()).map(r => r.split(';').map(c => c.trim().replace(/^"|"$/g, '')));
+  const head = rows[0].map(h => h.toLowerCase());
+  const di = head.indexOf('dato'), si = head.indexOf('saldo');
+  if (di < 0 || si < 0) throw new Error('Filen har ikke kolonnerne Dato og Saldo.');
+  let best = null;
+  for (const r of rows.slice(1)) {
+    const m = r[di]?.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+    const balance = Number(r[si]?.replace(/\./g, '').replace(',', '.'));
+    if (!m || !Number.isFinite(balance)) continue;
+    const date = `${m[3]}-${m[2]}-${m[1]}`;
+    if (!best || date > best.date) best = { date, balance };
+  }
+  if (!best) throw new Error('Fandt ingen posteringer i filen.');
+  return best;
+}
+
 export const fromFund = d => (d.price ?? 0) - (d.outOfPocket ?? 0);
 
 // A checkpoint is the bank balance at the end of its date, so dinners that day are already paid.
@@ -253,7 +272,7 @@ function main() {
             <div><dt>Regning</dt><dd>${kr(d.price)}</dd></div>
             <div><dt>Pr. person</dt><dd>${perPerson(d)}</dd></div>
             <div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
-            <div><dt>Eget indskud</dt><dd>${kr(d.outOfPocket)}</dd></div>
+            <div><dt>Eget indskud pr. person</dt><dd>${d.outOfPocket == null ? '–' : kr(d.outOfPocket / data.members)}</dd></div>
           </dl>
         </div>
       </header>
@@ -271,7 +290,7 @@ function main() {
   const courseRow = (c = '') => `<li><span class="grip" title="Træk for at flytte">${icon('grip')}</span><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
 
   function billPreview(form) {
-    const price = +form.price.value || 0, own = +form.outOfPocket.value || 0;
+    const price = +form.price.value || 0, own = (+form.outOfPocket.value || 0) * data.members;
     form.querySelector('.bill').textContent = price
       ? `${kr(price - own)} fra madkontoen, ${kr(price / data.members)} pr. person`
       : '';
@@ -298,7 +317,7 @@ function main() {
           <h2>Regning</h2>
           <div class="pair">
             <label>I alt, kr. <input name="price" type="number" min="0" inputmode="numeric" value="${esc(v.price)}"></label>
-            <label>Eget indskud, kr. <input name="outOfPocket" type="number" min="0" inputmode="numeric" value="${esc(v.outOfPocket)}"></label>
+            <label>Eget indskud pr. person, kr. <input name="outOfPocket" type="number" min="0" step="any" inputmode="decimal" value="${v.outOfPocket == null ? '' : Math.round(v.outOfPocket / data.members * 100) / 100}"></label>
           </div>
           <p class="bill muted"></p>
         </section>
@@ -372,13 +391,10 @@ function main() {
             <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>`)}
         </section>
         <section>
-          <h2>Saldo ifølge banken</h2>
+          <h2>Bankudtog</h2>
           <table class="plain">${[...data.checkpoints].sort(byDate).map(c => `<tr><td>${dato(c.date)}${c.note ? `<br><span class="muted small">${esc(c.note)}</span>` : ''}</td><td class="num">${kr(c.balance)}</td></tr>`).join('')}</table>
-          ${editOnly(`<details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
-            <label>Dato <input name="date" type="date" required value="${now}"></label>
-            <label>Saldo, kr. <input name="balance" type="number" inputmode="numeric" required></label>
-            <label class="span2">Note <input name="note"></label>
-            <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>`)}
+          ${editOnly(`<label class="upload">${icon('plus')}<span>Upload bankudtog (CSV)</span><input name="bankcsv" type="file" accept=".csv,text/csv"></label>
+          <p class="muted small bank-status">Kun den seneste saldo og dens dato gemmes.</p>`)}
         </section>
       </div>`;
   }
@@ -518,7 +534,7 @@ function main() {
         restaurant: fd.get('restaurant').trim(),
         date: fd.get('date'),
         price: num(fd.get('price')),
-        outOfPocket: num(fd.get('outOfPocket')),
+        outOfPocket: fd.get('outOfPocket') === '' ? null : Math.round(Number(fd.get('outOfPocket')) * data.members),
         website: orNull(fd.get('website')),
         closed: fd.get('closed') === 'on',
         themes: fd.get('themes').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
@@ -548,12 +564,6 @@ function main() {
       });
     },
 
-    async checkpoint(fd) {
-      await save('Ny saldo fra banken', fresh => {
-        fresh.checkpoints = fresh.checkpoints.filter(c => c.date !== fd.get('date'));
-        fresh.checkpoints.push({ date: fd.get('date'), balance: Number(fd.get('balance')), note: orNull(fd.get('note')) });
-      });
-    },
 
     async idea(fd) {
       await save(`Nyt forslag: ${fd.get('name')}`, fresh => {
@@ -668,6 +678,23 @@ function main() {
   document.addEventListener('input', e => {
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);
+  });
+  document.addEventListener('change', async e => {
+    if (e.target.name !== 'bankcsv' || !e.target.files.length) return;
+    const status = $('.bank-status');
+    try {
+      const { date, balance: amount } = latestBalance(await e.target.files[0].text());
+      status.textContent = 'Gemmer…';
+      await save(`Bankudtog ${date}`, fresh => {
+        const same = fresh.checkpoints.find(c => c.date === date);
+        fresh.checkpoints = fresh.checkpoints.filter(c => c.date !== date);
+        fresh.checkpoints.push({ date, balance: amount, note: same?.note ?? 'Bankudtog' });
+      });
+      render();
+    } catch (err) {
+      status.textContent = err.message;
+      e.target.value = '';
+    }
   });
   document.addEventListener('change', e => {
     if (e.target.name !== 'photos') return;

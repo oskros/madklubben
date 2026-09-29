@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { balance, depositsBetween, forecast, rateFor } from './app.js';
+import { balance, depositsBetween, forecast, latestBalance, rateFor } from './app.js';
 
 const data = {
   members: 3,
@@ -28,5 +28,13 @@ const f = forecast(data, '2024-05-01');
 assert.equal(f.avgDays, 55);
 assert.equal(f.next, '2024-06-04');
 assert.equal(f.savings, 50 + 900 + 900);
+
+const csv = '\uFEFFDato;Tekst;Beløb;Saldo;Afstemt;Kontonummer\n'
+  + '25.09.2026;Lønkonto;-9.700,00;0,00;;0000 000000\n'
+  + '07.09.2026;Lønkonto;300,00;9.700,00;;0000 000000\n'
+  + '30.06.2026;Oskar;300,00;10.287,39;;0000 000000\n';
+assert.deepEqual(latestBalance(csv), { date: '2026-09-25', balance: 0 });
+assert.deepEqual(latestBalance(csv.split('\n').filter((_, i) => i !== 1).join('\r\n')), { date: '2026-09-07', balance: 9700 });
+assert.throws(() => latestBalance('a;b\n1;2'), /Dato og Saldo/);
 
 console.log('ok');

@@ -146,7 +146,7 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 .links { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 .links a { display: inline-flex; align-items: center; gap: .35rem; }
 .note { max-width: 60ch; }
-.figures { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin: 1.25rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); }
+.figures { display: flex; flex-wrap: wrap; gap: 1rem 2.75rem; margin: 1.25rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); }
 .figures dt { font-size: .8rem; color: var(--muted); }
 .figures dd { margin: 0; font-size: 1.2rem; font-weight: 700; }
 .dinner-body { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 2rem; }
@@ -179,10 +179,20 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 
 /* saldo */
 .big { font-size: clamp(2.8rem, 10vw, 5rem); letter-spacing: -.04em; color: var(--accent); }
-.lead { font-size: 1.1rem; max-width: 60ch; margin-top: .5rem; }
-.columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem 3rem; margin-top: 2.5rem; }
-.plain td { padding: .5rem 0; border-top: 1px solid var(--line); white-space: normal; }
+.lead { font-size: 1.25rem; font-weight: 700; margin: .25rem 0 .5rem; }
+.explain { max-width: 52ch; margin-bottom: 2rem; }
+.big + .lead + .explain + .figures { margin-top: 0; }
+.columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem 4rem; margin-top: 3rem; }
+.columns h2 { margin-bottom: 1rem; }
+.plain td { padding: .7rem 0; border-top: 1px solid var(--line); white-space: normal; vertical-align: top; }
 .plain { margin-bottom: 1rem; }
+.add summary { display: inline-flex; align-items: center; gap: .4rem; list-style: none; cursor: pointer; font-weight: 700; color: var(--accent); padding: .4rem 0; margin: 0; }
+.add summary::-webkit-details-marker { display: none; }
+.add[open] summary .i { transform: rotate(45deg); }
+.add-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .75rem; padding: 1rem; background: var(--surface); border-radius: var(--radius); }
+.add-form input { width: 100%; }
+.add-form .span2, .add-actions { grid-column: span 2; }
+.add-actions { display: flex; align-items: center; gap: .75rem; }
 
 /* ideas */
 .ideas { list-style: none; padding: 0; margin: 1rem 0 1.5rem; max-width: 720px; }
@@ -238,3 +248,4 @@ dialog .bar .i { width: 1.4rem; height: 1.4rem; }
 #update[hidden] { display: none; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.add { margin-top: 0; }

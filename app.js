@@ -52,7 +52,8 @@ function main() {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const safeUrl = u => /^https?:\/\//i.test(u ?? '') ? esc(u) : '';
   const kr = n => n == null ? '–' : new Intl.NumberFormat('da-DK', { style: 'currency', currency: 'DKK', maximumFractionDigits: 0 }).format(n);
-  const dato = iso => new Date(toMs(iso)).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const dato = iso => new Date(toMs(iso)).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).replace(/ /g, '\u00a0');
+  const maaned = ym => new Date(toMs(`${ym}-01`)).toLocaleDateString('da-DK', { month: 'long', year: 'numeric', timeZone: 'UTC' }).replace(/ /g, '\u00a0');
   const today = () => new Date().toLocaleDateString('sv-SE');
   const slug = s => s.toLowerCase().replace(/æ/g, 'ae').replace(/ø/g, 'oe').replace(/å/g, 'aa').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const lines = s => s.split('\n').map(x => x.trim()).filter(Boolean);
@@ -328,7 +329,8 @@ function main() {
     const monthly = rateFor(data.rates, now.slice(0, 7)) * data.members;
     return `
       <h1 class="big">${kr(balance(data, now))}</h1>
-      <p class="lead">på madkontoen i dag. Beregnet ud fra bankens saldo på ${kr(cp.balance)} den ${dato(cp.date)}, plus ${kr(monthly)} i indbetalinger hver måned, minus middagene siden.</p>
+      <p class="lead">på madkontoen i dag</p>
+      <p class="muted explain">Bankens saldo var ${kr(cp.balance)} den ${dato(cp.date)}. Siden er der kommet ${kr(monthly)} ind om måneden, og middagene er trukket fra.</p>
       ${f ? `<dl class="figures">
         <div><dt>Næste middag omkring</dt><dd>${dato(f.next)}</dd></div>
         <div><dt>På madkontoen til den tid</dt><dd>${kr(f.savings)}</dd></div>
@@ -338,20 +340,20 @@ function main() {
       <div class="columns">
         <section>
           <h2>Indbetaling pr. person</h2>
-          <table class="plain">${[...data.rates].sort((a, b) => b.from.localeCompare(a.from)).map(r => `<tr><td>Fra ${esc(r.from)}</td><td class="num">${kr(r.perPerson)} / md.</td></tr>`).join('')}</table>
-          ${editOnly(`<form data-form="rate" class="inline">
+          <table class="plain">${[...data.rates].sort((a, b) => b.from.localeCompare(a.from)).map(r => `<tr><td>Fra ${maaned(r.from)}</td><td class="num">${kr(r.perPerson)} / md.</td></tr>`).join('')}</table>
+          ${editOnly(`<details class="add"><summary>${icon('plus')}Ny sats</summary><form data-form="rate" class="add-form">
             <label>Fra måned <input name="from" type="month" required value="${now.slice(0, 7)}"></label>
             <label>Kr. pr. person <input name="perPerson" type="number" min="0" inputmode="numeric" required></label>
-            ${`<button class="icon-btn solid" aria-label="Tilføj sats" title="Tilføj sats">${icon('plus')}</button>`} <span class="status"></span></form>`)}
+            <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>`)}
         </section>
         <section>
           <h2>Saldo ifølge banken</h2>
           <table class="plain">${[...data.checkpoints].sort(byDate).map(c => `<tr><td>${dato(c.date)}${c.note ? `<br><span class="muted small">${esc(c.note)}</span>` : ''}</td><td class="num">${kr(c.balance)}</td></tr>`).join('')}</table>
-          ${editOnly(`<form data-form="checkpoint" class="inline">
+          ${editOnly(`<details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
             <label>Dato <input name="date" type="date" required value="${now}"></label>
             <label>Saldo, kr. <input name="balance" type="number" inputmode="numeric" required></label>
-            <label>Note <input name="note"></label>
-            <button class="icon-btn solid" aria-label="Tilføj saldo" title="Tilføj saldo">${icon('plus')}</button> <span class="status"></span></form>`)}
+            <label class="span2">Note <input name="note"></label>
+            <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>`)}
         </section>
       </div>`;
   }

@@ -364,11 +364,9 @@ function main() {
     const first = +dates[0].slice(0, 4), last = +today().slice(0, 4) + 1;
     const start = toMs(`${first}-01-01`), span = toMs(`${last}-01-01`) - start;
     const pos = iso => ((toMs(iso) - start) / span * 100).toFixed(2);
-    const spent = data.dinners.reduce((sum, d) => sum + (d.price ?? 0), 0);
     const years = Array.from({ length: last - first + 1 }, (_, i) => first + i);
     return `
       <section class="timeline">
-        <p>Siden ${new Date(toMs(dates[0])).toLocaleDateString('da-DK', { month: 'long', year: 'numeric', timeZone: 'UTC' })} har vi spist ${dates.length} middage for ${kr(spent)}</p>
         <div class="track">
           ${years.map(y => `<span class="year" style="left:${pos(`${y}-01-01`)}%">${y < last ? y : ''}</span>`).join('')}
           ${[...data.dinners].sort((a, b) => a.date.localeCompare(b.date)).map(d => `<a class="dot" href="#/d/${esc(d.id)}" style="left:${pos(d.date)}%" title="${esc(d.restaurant)}, ${dato(d.date)}" aria-label="${esc(d.restaurant)}"></a>`).join('')}

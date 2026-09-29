@@ -152,8 +152,8 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 .dinner-body { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 2rem; }
 .dinner-body.no-menu { grid-template-columns: 1fr; }
 .menu { margin: 0; padding: 0; list-style: none; counter-reset: course; }
-.menu li { display: flex; gap: .6rem; padding: .2rem 0; counter-increment: course; }
-.menu li::before { content: counter(course); flex: none; width: 1.4em; text-align: right; color: var(--muted); }
+.menu li { display: flex; gap: .6rem; padding: .4rem 0; line-height: 1.45; counter-increment: course; font-family: Newsreader, Georgia, serif; font-size: 1.08rem; }
+.menu li::before { content: counter(course); flex: none; width: 1.4em; padding-top: .1rem; text-align: right; color: var(--muted); font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: .9rem; }
 @media (max-width: 760px) {
   .dinner-head, .dinner-body { grid-template-columns: 1fr; }
   .figures { display: grid; grid-template-columns: 1fr 1fr; }

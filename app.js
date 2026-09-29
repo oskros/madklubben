@@ -203,6 +203,8 @@ function main() {
     camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    eye: '<path d="M2.1 12.3a1 1 0 0 1 0-.6 10.8 10.8 0 0 1 19.8 0 1 1 0 0 1 0 .6 10.8 10.8 0 0 1-19.8 0"/><circle cx="12" cy="12" r="3"/>',
+    eyeOff: '<path d="M10.7 5.1A10.7 10.7 0 0 1 21.9 11.7a1 1 0 0 1 0 .7 10.8 10.8 0 0 1-1.4 2.4"/><path d="M14.1 14.2a3 3 0 0 1-4.2-4.2"/><path d="M17.5 17.5a10.8 10.8 0 0 1-15.4-5.1 1 1 0 0 1 0-.7 10.8 10.8 0 0 1 4.4-5.2"/><path d="m2 2 20 20"/>',
     grip: '<circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/>',
     next: '<path d="m9 18 6-6-6-6"/>',
     prev: '<path d="m15 18-6-6 6-6"/>',
@@ -425,20 +427,22 @@ function main() {
       ${data.ideas.length ? '' : `<p class="muted">Ingen forslag endnu.${token ? '' : ' Log ind for at tilføje et.'}</p>`}`;
   }
 
+  const secret = (name, autocomplete) => `<span class="secret"><input name="${name}" type="password" required autocomplete="${autocomplete}">${iconButton('eye', 'Vis kodeord', 'data-action="reveal" aria-pressed="false"')}</span>`;
+
   function loginPage() {
     return `
       <h1>Log ind</h1>
       <p class="lead">Alle kan se siden. For at redigere skal du bruge madklubbens kodeord.</p>
       <form data-form="login" class="inline">
-        <label>Kodeord <input name="password" type="password" required autocomplete="current-password"></label>
+        <label>Kodeord ${secret('password', 'current-password')}</label>
         <button class="btn">${icon('login')}Log ind</button> <span class="status"></span>
       </form>
       <details>
         <summary class="muted">Ny GitHub-nøgle eller nyt kodeord</summary>
         <p class="muted small">Indsæt en GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes i repoet.</p>
         <form data-form="setup" class="inline">
-          <label>GitHub-token <input name="token" type="password" required autocomplete="off"></label>
-          <label>Kodeord <input name="password" type="password" required autocomplete="new-password"></label>
+          <label>GitHub-token ${secret('token', 'off')}</label>
+          <label>Kodeord ${secret('password', 'new-password')}</label>
           <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
         </form>
       </details>`;
@@ -595,6 +599,15 @@ function main() {
     if (btn.dataset.action === 'back' && visited > 0) {
       e.preventDefault();
       history.back();
+    }
+    if (btn.dataset.action === 'reveal') {
+      const input = btn.previousElementSibling, show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.innerHTML = icon(show ? 'eyeOff' : 'eye');
+      btn.setAttribute('aria-pressed', show);
+      btn.setAttribute('aria-label', show ? 'Skjul kodeord' : 'Vis kodeord');
+      btn.title = btn.getAttribute('aria-label');
+      input.focus();
     }
     if (btn.dataset.action === 'add-course') {
       $('.menu-edit').insertAdjacentHTML('beforeend', courseRow());

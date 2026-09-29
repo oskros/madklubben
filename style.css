@@ -267,3 +267,7 @@ dialog .bar .i { width: 1.4rem; height: 1.4rem; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 .add { margin-top: 0; }
+
+.secret { position: relative; display: block; }
+.secret input { width: 100%; padding-right: 2.75rem; }
+.secret .icon-btn { position: absolute; right: .15rem; top: 50%; transform: translateY(-50%); color: var(--muted); }

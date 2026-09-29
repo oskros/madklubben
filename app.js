@@ -170,6 +170,7 @@ function main() {
     budget: dinnersPage,
     saldo: balancePage,
     menuer: menusPage,
+    forslag: ideasPage,
     ideer: ideasPage,
     login: loginPage,
   };
@@ -180,7 +181,7 @@ function main() {
     $('main').innerHTML = html ?? '<p>Ikke fundet.</p>';
     $('#auth').innerHTML = `${icon(token ? 'logout' : 'login')}<span>${token ? 'Log ud' : 'Log ind'}</span>`;
     $('#auth').href = token ? '#/logud' : '#/login';
-    const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view;
+    const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view;
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const pick = $('.pick');
     if (pick) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) =>
@@ -376,26 +377,28 @@ function main() {
   }
 
   function ideasPage() {
+    const fields = (x = {}) => `
+      <label>Restaurant <input name="name" required value="${esc(x.name)}"></label>
+      <label>Link <input name="url" type="url" value="${esc(x.url)}"></label>
+      <label>Note <input name="note" value="${esc(x.note)}"></label>`;
     return `
-      <h1>Idéer til næste gang</h1>
-      <ul class="ideas">${data.ideas.map((x, i) => token && i === editingIdea ? `<li>
-        <form data-form="editIdea" data-i="${i}" class="inline">
-          <label>Restaurant <input name="name" required value="${esc(x.name)}"></label>
-          <label>Link <input name="url" type="url" value="${esc(x.url)}"></label>
-          <label>Note <input name="note" value="${esc(x.note)}"></label>
-          <button class="icon-btn solid" aria-label="Gem" title="Gem">${icon('check')}</button>
-          ${iconButton('x', 'Annuller', 'data-action="cancel-idea"')} <span class="status"></span>
-        </form></li>` : `<li>
-        <div>
-          ${safeUrl(x.url) ? `<a href="${safeUrl(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : `<strong>${esc(x.name)}</strong>`}
-          ${x.note ? `<span class="muted">${esc(x.note)}</span>` : ''}
-        </div>
-        ${editOnly(`<span class="tools">${iconButton('edit', 'Ret idé', `data-action="edit-idea" data-i="${i}"`)}${iconButton('trash', 'Fjern idé', `data-action="delete-idea" data-i="${i}"`)}</span>`)}</li>`).join('')}</ul>
-      ${editOnly(`<form data-form="idea" class="inline">
-        <label>Restaurant <input name="name" required></label>
-        <label>Link <input name="url" type="url"></label>
-        <label>Note <input name="note"></label>
-        <button class="icon-btn solid" aria-label="Tilføj idé" title="Tilføj idé">${icon('plus')}</button> <span class="status"></span></form>`)}`;
+      <div class="section-head"><h1>Forslag <span class="count">${data.ideas.length || ''}</span></h1></div>
+      <ul class="ideas">${data.ideas.map((x, i) => token && i === editingIdea ? `
+        <li class="idea">
+          <form data-form="editIdea" data-i="${i}" class="card-form">${fields(x)}
+            <div class="add-actions"><button class="btn">${icon('check')}Gem</button>${iconButton('x', 'Annuller', 'data-action="cancel-idea"')} <span class="status"></span></div>
+          </form></li>` : `
+        <li class="idea">
+          <strong>${esc(x.name)}</strong>
+          ${safeUrl(x.url) ? `<a class="host" href="${safeUrl(x.url)}" target="_blank" rel="noopener">${icon('external')}${esc(host(x.url))}</a>` : ''}
+          ${x.note ? `<p class="muted">${esc(x.note)}</p>` : ''}
+          ${editOnly(`<span class="tools">${iconButton('edit', 'Ret forslag', `data-action="edit-idea" data-i="${i}"`)}${iconButton('trash', 'Fjern forslag', `data-action="delete-idea" data-i="${i}"`)}</span>`)}
+        </li>`).join('')}
+        ${editOnly(`<li class="idea add-card"><details class="add"><summary>${icon('plus')}Nyt forslag</summary>
+          <form data-form="idea" class="card-form">${fields()}
+            <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details></li>`)}
+      </ul>
+      ${data.ideas.length ? '' : `<p class="muted">Ingen forslag endnu.${token ? '' : ' Log ind for at tilføje et.'}</p>`}`;
   }
 
   function loginPage() {
@@ -525,16 +528,16 @@ function main() {
     },
 
     async idea(fd) {
-      await save(`Ny idé: ${fd.get('name')}`, fresh => {
+      await save(`Nyt forslag: ${fd.get('name')}`, fresh => {
         fresh.ideas.push({ name: fd.get('name').trim(), url: orNull(fd.get('url')), note: orNull(fd.get('note')) });
       });
     },
 
     async editIdea(fd, form) {
       const before = JSON.stringify(data.ideas[+form.dataset.i]);
-      await save(`Ret idé: ${fd.get('name')}`, fresh => {
+      await save(`Ret forslag: ${fd.get('name')}`, fresh => {
         const i = fresh.ideas.findIndex(x => JSON.stringify(x) === before);
-        if (i < 0) throw new Error('Idéen er lige blevet ændret af en anden. Genindlæs siden.');
+        if (i < 0) throw new Error('Forslaget er lige blevet ændret af en anden. Genindlæs siden.');
         fresh.ideas[i] = { name: fd.get('name').trim(), url: orNull(fd.get('url')), note: orNull(fd.get('note')) };
       });
       editingIdea = null;
@@ -578,7 +581,7 @@ function main() {
     if (btn.dataset.action === 'delete-idea') {
       const idea = JSON.stringify(data.ideas[+btn.dataset.i]);
       btn.disabled = true;
-      await save(`Fjern idé: ${JSON.parse(idea).name}`, fresh => {
+      await save(`Fjern forslag: ${JSON.parse(idea).name}`, fresh => {
         const i = fresh.ideas.findIndex(x => JSON.stringify(x) === idea);
         if (i >= 0) fresh.ideas.splice(i, 1);
       }).catch(err => alert(err.message));

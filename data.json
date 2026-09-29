@@ -431,25 +431,6 @@
     "1a0ee2c85d6-2.jpg"
    ],
    "image": "restaurants/2026-aoc.jpg"
-  },
-  {
-   "id": "2026-testmiddag-uvk",
-   "photos": [
-    "mun3wuvl-1.jpg",
-    "mun3wuvl-0.jpg"
-   ],
-   "restaurant": "Testmiddag",
-   "date": "2026-09-29",
-   "price": 1000,
-   "outOfPocket": 100,
-   "website": null,
-   "closed": false,
-   "themes": [],
-   "menu": [
-    "daikon & yuzu kosho – HAMACHI",
-    "Østers & pære"
-   ],
-   "note": "Automatisk test, redigeret"
   }
  ],
  "ideas": [

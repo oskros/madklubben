@@ -186,7 +186,7 @@ function main() {
       <section class="hero">
         <p class="kicker">${data.dinners.length} middage siden ${data.dinners.map(d => d.date).sort()[0].slice(0, 4)}</p>
         <h1>Madklubben</h1>
-        <p>I kassen nu <strong>${kr(balance(data, today()))}</strong>${f ? ` · næste middag omkring ${dato(f.next)}` : ''}</p>
+        <p>På madkontoen nu <strong>${kr(balance(data, today()))}</strong>${f ? ` · næste middag omkring ${dato(f.next)}` : ''}</p>
         ${editOnly('<a class="btn" href="#/ny">+ Ny middag</a>')}
       </section>
       <ol class="cards">
@@ -241,7 +241,7 @@ function main() {
         <label>Restaurant <input name="restaurant" required value="${esc(v.restaurant)}"></label>
         <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
         <label>Regning i alt (kr.) <input name="price" type="number" min="0" value="${esc(v.price)}"></label>
-        <label>Eget indskud (kr., betalt ud over kassen) <input name="outOfPocket" type="number" min="0" value="${esc(v.outOfPocket)}"></label>
+        <label>Eget indskud (kr., betalt ud over madkontoen) <input name="outOfPocket" type="number" min="0" value="${esc(v.outOfPocket)}"></label>
         <label>Restaurantens hjemmeside <input name="website" type="url" value="${esc(v.website)}"></label>
         <label><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten eksisterer ikke mere</label>
         <label>Link til album i Google Photos <input name="album" type="url" value="${esc(v.album)}"></label>
@@ -266,14 +266,14 @@ function main() {
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
     return `
       <section class="hero">
-        <p class="kicker">Kassen</p>
+        <p class="kicker">Madkontoen</p>
         <h1>${kr(balance(data, now))}</h1>
         <p class="muted">Beregnet ud fra bankens saldo ${kr(cp.balance)} d. ${dato(cp.date)} + indbetalinger ${kr(monthly)}/md. − middage siden.</p>
       </section>
       ${f ? `<dl class="facts">
         <div><dt>Gns. tid mellem middage</dt><dd>${f.avgDays} dage</dd></div>
         <div><dt>Forventet næste middag</dt><dd>${dato(f.next)}</dd></div>
-        <div><dt>I kassen til den tid</dt><dd>${kr(f.savings)}</dd></div>
+        <div><dt>På madkontoen til den tid</dt><dd>${kr(f.savings)}</dd></div>
         <div><dt>Budget pr. person til den tid</dt><dd>${kr(f.savings / data.members)}</dd></div>
       </dl>` : ''}
       <h2>Middage</h2>

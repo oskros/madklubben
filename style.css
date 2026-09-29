@@ -336,12 +336,12 @@ h2 { font-weight: 600; }
 
 /* herbs from A Curious Herbal in the margins */
 .herb { position: fixed; bottom: 0; z-index: -1; pointer-events: none; width: calc((100vw - 1120px) / 2 - 12px); height: min(78vh, 720px);
-  background: var(--accent); opacity: .22; -webkit-mask: var(--img) no-repeat bottom / contain; mask: var(--img) no-repeat bottom / contain; }
+  background: var(--accent); opacity: .14; -webkit-mask: var(--img) no-repeat bottom / contain; mask: var(--img) no-repeat bottom / contain; }
 .herb-rosemary { left: 0; --img: url(rosemary.png); }
 .herb-mint { right: 0; --img: url(mint.png); }
 @media (max-width: 1360px) { .herb { display: none; } }
 @media (max-width: 700px) {
-  .herb { display: block; width: 42vw; height: 38vh; bottom: calc(4.2rem + env(safe-area-inset-bottom)); opacity: .13; }
+  .herb { display: block; width: 42vw; height: 38vh; bottom: calc(4.2rem + env(safe-area-inset-bottom)); opacity: .08; }
   .herb-rosemary { left: -6vw; -webkit-mask-position: bottom left; mask-position: bottom left; }
   .herb-mint { right: -6vw; -webkit-mask-position: bottom right; mask-position: bottom right; }
 }

@@ -204,7 +204,7 @@ function main() {
             <div class="cover">${cover(d)}</div>
             <div class="body">
               <h2>${esc(d.restaurant)}</h2>
-              <p class="muted">${dato(d.date)}${d.price ? ` · ${kr(d.price / data.members)} pr. person` : ''}</p>
+              <p class="muted">${dato(d.date)}${d.price ? `<br>${kr(d.price / data.members)} pr. person` : ''}</p>
               ${chips(d.themes)}
             </div>
           </a></li>`).join('')}

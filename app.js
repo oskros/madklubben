@@ -377,9 +377,9 @@ function main() {
       <p class="lead">på madkontoen i dag</p>
       ${f ? `<section class="forecast"><h2>Forventet ved næste middag</h2><dl class="figures">
         <div><dt>Dato</dt><dd>${dato(f.next)}</dd></div>
+        <div><dt>Gns. interval</dt><dd>${f.avgDays} dage</dd></div>
         <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>
         <div><dt>Pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
-        <div><dt>Gns. interval</dt><dd>${f.avgDays} dage</dd></div>
       </dl></section>` : ''}
       <div class="columns">
         <section>

@@ -19,7 +19,7 @@ To change the password or replace an expired token, run "Opsætning" again.
 ## Using it
 
 - **New dinner:** Middage → "+ Ny middag". Enter the bill and "eget indskud" (paid on top of the account); the site works out the rest.
-- **Photos:** in the Google Photos album choose "Download alle", unzip, and select the photos in the dinner's edit form. They're shrunk to 1600 px before upload. HEIC only works in Safari; in other browsers export as JPEG first. Paste the album link as well so the originals are one click away.
+- **Photos:** in the dinner's edit form, choose the photos or drag them onto the Billeder section, then drag them into order. They're shrunk to 1600 px before upload. HEIC only works in Safari; in other browsers export as JPEG first.
 - **Budget:** the balance is calculated as the latest bank balance plus monthly deposits (the rate × 3, on the 1st of each month) minus what dinners since then took from the account. Add the actual bank balance under Budget now and then to keep it honest.
 
 ## Checking the budget math

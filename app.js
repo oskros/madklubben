@@ -56,7 +56,6 @@ function main() {
   const maaned = ym => new Date(toMs(`${ym}-01`)).toLocaleDateString('da-DK', { month: 'long', year: 'numeric', timeZone: 'UTC' }).replace(/ /g, '\u00a0');
   const today = () => new Date().toLocaleDateString('sv-SE');
   const slug = s => s.toLowerCase().replace(/æ/g, 'ae').replace(/ø/g, 'oe').replace(/å/g, 'aa').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  const lines = s => s.split('\n').map(x => x.trim()).filter(Boolean);
   const byDate = (a, b) => b.date.localeCompare(a.date);
 
   const store = {
@@ -183,6 +182,8 @@ function main() {
     $('#auth').href = token ? '#/logud' : '#/login';
     const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view;
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
+    const dinner = $('form[data-form=dinner]');
+    if (dinner) billPreview(dinner);
     const pick = $('.pick');
     if (pick) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) =>
       Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false }));
@@ -261,33 +262,53 @@ function main() {
       </div>`;
   }
 
+  const courseRow = (c = '') => `<li><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
+
+  function billPreview(form) {
+    const price = +form.price.value || 0, own = +form.outOfPocket.value || 0;
+    form.querySelector('.bill').textContent = price
+      ? `${kr(price - own)} fra madkontoen, ${kr(price / data.members)} pr. person`
+      : '';
+  }
+
   function dinnerForm(d) {
     if (!token) return loginPage();
-    const v = d ?? { date: today(), restaurant: '', website: '', album: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false };
+    const v = d ?? { date: today(), restaurant: '', website: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false };
     return `
       <div class="toolbar">${iconLink(d ? `#/d/${esc(d.id)}` : '#/', 'back', 'Tilbage', 'data-action="back"')}</div>
       <h1>${d ? esc(d.restaurant) : 'Ny middag'}</h1>
-      <form data-form="dinner" data-id="${esc(d?.id ?? '')}" class="stack">
-        <div class="fields">
-          <label class="span2">Restaurant <input name="restaurant" required value="${esc(v.restaurant)}"></label>
-          <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
-          <label>Regning i alt, kr. <input name="price" type="number" min="0" inputmode="numeric" value="${esc(v.price)}"></label>
-          <label>Eget indskud, kr. <input name="outOfPocket" type="number" min="0" inputmode="numeric" value="${esc(v.outOfPocket)}"></label>
-          <label class="check"><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten er lukket</label>
-          <label>Hjemmeside <input name="website" type="url" value="${esc(v.website)}"></label>
-          <label>Album i Google Photos <input name="album" type="url" value="${esc(v.album)}"></label>
-          <label class="span2">Temaer, adskilt af komma <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="nordisk, vinmenu"></label>
-          <label>Menu, én ret pr. linje <textarea name="menu" rows="8">${esc(v.menu.join('\n'))}</textarea></label>
-          <label>Note <textarea name="note" rows="8">${esc(v.note)}</textarea></label>
-        </div>
-        <fieldset>
-          <legend>Billeder</legend>
-          <label class="upload">${icon('plus')}Tilføj billeder<input name="photos" type="file" accept="image/*" multiple></label>
-          <p class="muted small">Download albummet fra Google Photos, pak zip-filen ud og vælg billederne. De formindskes før upload.${v.photos.length ? ' Træk billederne for at ændre rækkefølgen.' : ''}</p>
+      <form data-form="dinner" data-id="${esc(d?.id ?? '')}" class="dinner-form">
+        <section>
+          <label>Restaurant <input name="restaurant" required value="${esc(v.restaurant)}" autocomplete="off"></label>
+          <div class="pair">
+            <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
+            <label>Hjemmeside <input name="website" type="url" value="${esc(v.website)}" placeholder="https://"></label>
+          </div>
+          <label>Temaer <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="fx nordisk, vinmenu"></label>
+          <label>Note <input name="note" value="${esc(v.note)}"></label>
+          ${d ? `<label class="check"><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten er lukket</label>` : ''}
+        </section>
+        <section>
+          <h2>Regning</h2>
+          <div class="pair">
+            <label>I alt, kr. <input name="price" type="number" min="0" inputmode="numeric" value="${esc(v.price)}"></label>
+            <label>Eget indskud, kr. <input name="outOfPocket" type="number" min="0" inputmode="numeric" value="${esc(v.outOfPocket)}"></label>
+          </div>
+          <p class="bill muted"></p>
+        </section>
+        <section>
+          <h2>Menu</h2>
+          <ol class="menu-edit">${(v.menu.length ? v.menu : ['']).map(courseRow).join('')}</ol>
+          <button type="button" class="add-row" data-action="add-course">${icon('plus')}Tilføj ret</button>
+        </section>
+        <section class="drop">
+          <h2>Billeder <span class="count">${v.photos.length || ''}</span></h2>
+          <label class="upload">${icon('plus')}<span>Vælg billeder</span><input name="photos" type="file" accept="image/*" multiple></label>
+          <p class="muted small">Eller træk dem herind. De formindskes før upload.${v.photos.length ? ' Træk billederne nedenfor for at ændre rækkefølgen.' : ''}</p>
           ${v.photos.length ? `<div class="grid pick">${v.photos.map(p => `
             <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
               <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label></div>`).join('')}</div>` : ''}
-        </fieldset>
+        </section>
         <div class="actions">
           <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
           ${d ? `<button type="button" class="btn danger" data-action="delete-dinner">${icon('trash')}Slet middag</button>` : ''}
@@ -492,9 +513,8 @@ function main() {
         outOfPocket: num(fd.get('outOfPocket')),
         website: orNull(fd.get('website')),
         closed: fd.get('closed') === 'on',
-        album: orNull(fd.get('album')),
         themes: fd.get('themes').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
-        menu: lines(fd.get('menu')),
+        menu: fd.getAll('menu').map(c => c.trim()).filter(Boolean),
         note: orNull(fd.get('note')),
       };
       const id = oldId || `${fields.date.slice(0, 4)}-${slug(fields.restaurant)}-${Date.now().toString(36).slice(-3)}`;
@@ -573,6 +593,14 @@ function main() {
       e.preventDefault();
       history.back();
     }
+    if (btn.dataset.action === 'add-course') {
+      $('.menu-edit').insertAdjacentHTML('beforeend', courseRow());
+      $('.menu-edit li:last-child input').focus();
+    }
+    if (btn.dataset.action === 'remove-course') {
+      const li = btn.closest('li');
+      if (li.parentElement.children.length > 1) li.remove(); else li.querySelector('input').value = '';
+    }
     if (btn.dataset.action === 'edit-idea' || btn.dataset.action === 'cancel-idea') {
       editingIdea = btn.dataset.action === 'edit-idea' ? +btn.dataset.i : null;
       render();
@@ -619,6 +647,45 @@ function main() {
     const s = e.target.closest('[data-step]')?.dataset.step;
     if (s) showPhoto(+s);
     else if (e.target.matches('dialog') || e.target.closest('[data-close]')) $('#viewer').close();
+  });
+  document.addEventListener('input', e => {
+    const form = e.target.closest('form[data-form=dinner]');
+    if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);
+  });
+  document.addEventListener('change', e => {
+    if (e.target.name !== 'photos') return;
+    const n = e.target.files.length;
+    e.target.closest('.upload').querySelector('span').textContent = n ? `${n} ${n === 1 ? 'billede' : 'billeder'} valgt` : 'Vælg billeder';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.name === 'menu') {
+      e.preventDefault();
+      e.target.closest('li').insertAdjacentHTML('afterend', courseRow());
+      e.target.closest('li').nextElementSibling.querySelector('input').focus();
+    }
+  });
+  document.addEventListener('paste', e => {
+    if (e.target.name !== 'menu') return;
+    const courses = e.clipboardData.getData('text').split(/\r?\n/).map(c => c.trim()).filter(Boolean);
+    if (courses.length < 2) return;
+    e.preventDefault();
+    const li = e.target.closest('li');
+    e.target.value = courses[0];
+    li.insertAdjacentHTML('afterend', courses.slice(1).map(courseRow).join(''));
+  });
+  document.addEventListener('dragover', e => {
+    const drop = e.target.closest('.drop');
+    if (drop && e.dataTransfer.types.includes('Files')) { e.preventDefault(); drop.classList.add('over'); }
+  });
+  document.addEventListener('dragleave', e => e.target.closest?.('.drop')?.classList.remove('over'));
+  document.addEventListener('drop', e => {
+    const drop = e.target.closest('.drop');
+    if (!drop || !e.dataTransfer.files.length) return;
+    e.preventDefault();
+    drop.classList.remove('over');
+    const input = drop.querySelector('input[type=file]');
+    input.files = e.dataTransfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
   });
   document.addEventListener('keydown', e => {
     if (!$('#viewer').open) return;

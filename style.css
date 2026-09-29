@@ -215,21 +215,29 @@ label { display: grid; gap: .3rem; font-size: .875rem; color: var(--muted); }
 label input, label textarea { color: var(--ink); font-size: 1rem; }
 .inline { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; }
 .inline .status { align-self: center; }
-.stack { display: grid; gap: 1.5rem; margin-top: 1rem; }
-.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.25rem; max-width: 760px; }
-.fields input:not([type=checkbox]), .fields textarea { width: 100%; }
-.fields .span2 { grid-column: span 2; }
-.fields .check { display: flex; align-items: center; gap: .5rem; align-self: end; padding-bottom: .6rem; color: var(--ink); font-size: 1rem; }
-@media (max-width: 560px) {
-  .fields { grid-template-columns: 1fr; }
-  .fields .span2 { grid-column: auto; }
-}
-fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
-legend { font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em; margin-bottom: .75rem; padding: 0; }
+.dinner-form { display: grid; gap: 2.25rem; margin-top: 1.25rem; }
+.dinner-form > section { display: grid; gap: 1rem; align-content: start; }
+.dinner-form > section:not(.drop), .dinner-form .actions { max-width: 720px; }
+.dinner-form h2 { margin: 0; }
+.dinner-form input:not([type=checkbox]):not([type=file]) { width: 100%; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+@media (max-width: 560px) { .pair { grid-template-columns: 1fr; } }
+.check { display: flex; align-items: center; gap: .5rem; color: var(--ink); font-size: 1rem; }
+.bill { margin: -.25rem 0 0; min-height: 1.5em; }
+.menu-edit { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; counter-reset: course; }
+.menu-edit li { display: flex; align-items: center; gap: .5rem; counter-increment: course; }
+.menu-edit li::before { content: counter(course); width: 1.6em; flex: none; text-align: right; color: var(--muted); }
+.menu-edit input { font-family: Newsreader, Georgia, serif; font-size: 1.08rem; }
+.menu-edit .icon-btn { color: var(--muted); }
+.add-row { justify-self: start; display: inline-flex; align-items: center; gap: .4rem; margin-left: 2.1em; padding: .35rem 0; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
+.drop { border-radius: var(--radius); outline: 2px dashed transparent; outline-offset: 8px; }
+.drop.over { outline-color: var(--accent); }
+.drop p { margin: -.5rem 0 0; }
+.upload { justify-self: start; }
 .upload { display: inline-flex; flex-direction: row; align-items: center; gap: .45rem; padding: .6rem 1rem; border-radius: 99px; background: var(--surface); color: var(--ink); font-weight: 700; font-size: 1rem; cursor: pointer; margin-bottom: .5rem; }
 .upload input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .upload:has(input:focus-visible) { outline: 2px solid var(--accent); }
-.pick { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); margin-top: .75rem; }
+.pick { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
 .pick .tile { cursor: grab; touch-action: pan-y; user-select: none; }
 .pick .sortable-ghost { opacity: .3; }
 .del { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 99px; background: rgb(0 0 0 / .55); color: #fff; cursor: pointer; }

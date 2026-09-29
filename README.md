@@ -12,9 +12,9 @@ Plain static files served by GitHub Pages. Everything the site knows lives in `d
    - Repository access: only this repo
    - Permissions: Contents → Read and write
    - Expiration: the longest available, with a calendar reminder to renew it
-4. On the site: "Log ind" → "Opsætning". Paste the token and choose the club password. The browser encrypts the token with the password and commits only the encrypted version as `key.json`. After that, everyone logs in with just the password.
+4. On the site, open `#/opsaetning` (not linked anywhere). Paste the token and choose the club password. The browser encrypts the token with the password and commits only the encrypted version as `key.json`. After that, everyone logs in with just the password.
 
-To change the password or replace an expired token, run "Opsætning" again.
+To change the password or replace a token GitHub has removed (after a year without use), open `#/opsaetning` again.
 
 ## Using it
 

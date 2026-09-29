@@ -172,6 +172,7 @@ function main() {
     forslag: ideasPage,
     ideer: ideasPage,
     login: loginPage,
+    opsaetning: setupPage,
   };
 
   function render() {
@@ -436,16 +437,19 @@ function main() {
       <form data-form="login" class="inline">
         <label>Kodeord ${secret('password', 'current-password')}</label>
         <button class="btn">${icon('login')}Log ind</button> <span class="status"></span>
-      </form>
-      <details>
-        <summary class="muted">Ny GitHub-nøgle eller nyt kodeord</summary>
-        <p class="muted small">Indsæt en GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes i repoet.</p>
-        <form data-form="setup" class="inline">
-          <label>GitHub-token ${secret('token', 'off')}</label>
-          <label>Kodeord ${secret('password', 'new-password')}</label>
-          <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
-        </form>
-      </details>`;
+      </form>`;
+  }
+
+  function setupPage() {
+    return `
+      <h1>Ny nøgle</h1>
+      <p class="lead">Kun hvis login holder op med at virke.</p>
+      <p class="muted explain">Lav en ny GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes.</p>
+      <form data-form="setup" class="inline">
+        <label>GitHub-token ${secret('token', 'off')}</label>
+        <label>Kodeord ${secret('password', 'new-password')}</label>
+        <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
+      </form>`;
   }
 
   // ---------- the GitHub token, locked with the club password ----------
@@ -467,7 +471,7 @@ function main() {
 
   async function unlockToken(password) {
     const r = await fetch('key.json', { cache: 'no-cache' });
-    if (!r.ok) throw new Error('Login er ikke sat op endnu - se Opsætning nedenfor.');
+    if (!r.ok) throw new Error('Login er ikke sat op endnu.');
     const k = await r.json();
     try {
       const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unbytes64(k.iv) }, await passwordKey(password, unbytes64(k.salt)), unbytes64(k.token));

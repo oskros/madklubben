@@ -331,6 +331,7 @@ h2 { font-weight: 600; }
 .place a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .2em; }
 .idea > strong { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; }
 @media (max-width: 700px) {
+  body { background: var(--bg); }
   main { margin: 0; border: 0; box-shadow: none; padding: 1rem 16px 6rem; }
 }
 @media (max-width: 760px) {

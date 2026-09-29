@@ -133,7 +133,7 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
   .narrow { display: inline; }
   td.place { white-space: normal; }
   .photos { display: flex; margin: .1rem 0 0; }
-  th, td { padding: .45rem .3rem; }
+  th, td { padding: .45rem .22rem; }
   tr > :first-child { padding-left: 0; }
   tr > :last-child { padding-right: 0; }
   .thumb { width: 44px; height: 34px; border-radius: 6px; }

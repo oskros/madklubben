@@ -393,16 +393,16 @@ function main() {
         ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}
       </div>
       <div class="scroll"><table class="dinners">
-        <thead><tr><th></th><th>Dato</th><th>Restaurant</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
+        <thead><tr><th></th><th>Dato</th><th>Restaurant</th><th class="num">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num wide">Pr. person</th></tr></thead>
         <tbody>${[...data.dinners].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}">
           <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
           <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
           <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
             <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span></td>
-          <td class="num wide">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
-          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${perPerson(d)}</td></tr>`).join('')}</tbody>
-        <tfoot><tr><th colspan="3">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th class="num">${kr(total(priced, d => d.price) / data.members)}</th></tr></tfoot>
+          <td class="num">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
+          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
+        <tfoot><tr><th colspan="3">I alt</th><th class="num">${kr(total(priced, d => d.price))}</th>
+          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th class="num wide">${kr(total(priced, d => d.price) / data.members)}</th></tr></tfoot>
       </table></div>`;
   }
 

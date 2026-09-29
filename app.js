@@ -333,11 +333,49 @@ function main() {
   function loginPage() {
     return `
       <h1>Log ind</h1>
-      <p>Alle kan se siden. For at redigere skal du bruge madklubbens nøgle (en GitHub-token). Den gemmes kun i denne browser.</p>
+      <p>Alle kan se siden. For at redigere skal du bruge madklubbens kodeord.</p>
       <form data-form="login" class="row">
-        <label>Nøgle <input name="token" type="password" required autocomplete="off"></label>
+        <label>Kodeord <input name="password" type="password" required autocomplete="current-password"></label>
         <button class="btn">Log ind</button> <span class="status"></span>
-      </form>`;
+      </form>
+      <details>
+        <summary class="muted">Opsætning: ny GitHub-nøgle eller nyt kodeord</summary>
+        <p class="muted small">Indsæt en GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes i repoet.</p>
+        <form data-form="setup" class="row">
+          <label>GitHub-token <input name="token" type="password" required autocomplete="off"></label>
+          <label>Kodeord <input name="password" type="password" required autocomplete="new-password"></label>
+          <button class="btn">Gem</button> <span class="status"></span>
+        </form>
+      </details>`;
+  }
+
+  // ---------- the GitHub token, locked with the club password ----------
+
+  const bytes64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+  const unbytes64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+  async function passwordKey(password, salt) {
+    const raw = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: 600000, hash: 'SHA-256' }, raw, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+  }
+
+  async function lockToken(tok, password) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await passwordKey(password, salt), new TextEncoder().encode(tok));
+    return { salt: bytes64(salt), iv: bytes64(iv), token: bytes64(ct) };
+  }
+
+  async function unlockToken(password) {
+    const r = await fetch('key.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error('Login er ikke sat op endnu - se Opsætning nedenfor.');
+    const k = await r.json();
+    try {
+      const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unbytes64(k.iv) }, await passwordKey(password, unbytes64(k.salt)), unbytes64(k.token));
+      return new TextDecoder().decode(pt);
+    } catch {
+      throw new Error('Forkert kodeord.');
+    }
   }
 
   // ---------- actions ----------
@@ -345,17 +383,31 @@ function main() {
   const num = v => v === '' ? null : Number(v);
   const orNull = v => v.trim() || null;
 
+  async function useToken(tok) {
+    token = tok;
+    try {
+      const repo = await gh(base);
+      if (!repo.permissions?.push) throw new Error('Nøglen må ikke skrive til madklubben.');
+    } catch (e) {
+      token = null;
+      throw e;
+    }
+    store.set('gh-token', token);
+  }
+
   const forms = {
-    async login(fd) {
-      token = fd.get('token').trim();
-      try {
-        const repo = await gh(base);
-        if (!repo.permissions?.push) throw new Error('Nøglen må ikke skrive til madklubben.');
-      } catch (e) {
-        token = null;
-        throw e;
-      }
-      store.set('gh-token', token);
+    async login(fd, form, progress) {
+      progress('Låser op…');
+      await useToken(await unlockToken(fd.get('password')));
+      await load();
+      location.hash = '#/';
+    },
+
+    async setup(fd, form, progress) {
+      await useToken(fd.get('token').trim());
+      progress('Krypterer…');
+      const locked = await lockToken(token, fd.get('password'));
+      await save('Ny krypteret nøgle', () => {}, { 'key.json': new Blob([JSON.stringify(locked, null, 1) + '\n']) });
       await load();
       location.hash = '#/';
     },

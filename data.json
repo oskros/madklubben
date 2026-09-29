@@ -28,6 +28,11 @@
    "date": "2026-09-25",
    "balance": 0,
    "note": "Efter AOC"
+  },
+  {
+   "date": "2020-01-01",
+   "balance": 12345,
+   "note": "Automatisk test"
   }
  ],
  "dinners": [

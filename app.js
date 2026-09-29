@@ -353,12 +353,9 @@ function main() {
   function balancePage() {
     const now = today();
     const f = forecast(data, now);
-    const cp = [...data.checkpoints].sort(byDate)[0];
-    const monthly = rateFor(data.rates, now.slice(0, 7)) * data.members;
     return `
       <h1 class="big">${kr(balance(data, now))}</h1>
       <p class="lead">på madkontoen i dag</p>
-      <p class="muted explain">Bank ${dato(cp.date)}: ${kr(cp.balance)} Indbetaling ${kr(monthly)}/md.</p>
       ${f ? `<section class="forecast"><h2>Forventet ved næste middag</h2><dl class="figures">
         <div><dt>Dato</dt><dd>${dato(f.next)}</dd></div>
         <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>

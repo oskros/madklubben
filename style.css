@@ -180,7 +180,7 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 /* saldo */
 .big { font-size: clamp(2.8rem, 10vw, 5rem); letter-spacing: -.04em; color: var(--accent); }
 .lead { font-size: 1.25rem; font-weight: 700; margin: .25rem 0 .5rem; }
-.explain { max-width: 52ch; margin-bottom: 2rem; }
+.big + .lead { margin-bottom: 2rem; }
 .forecast { padding-top: 1.25rem; border-top: 1px solid var(--line); }
 .forecast h2 { font-size: .95rem; margin-bottom: .75rem; }
 .forecast .figures { margin: 0; padding: 0; border: 0; }

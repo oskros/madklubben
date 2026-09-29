@@ -393,8 +393,13 @@ function main() {
         <section>
           <h2>Bankudtog</h2>
           <table class="plain">${[...data.checkpoints].sort(byDate).map(c => `<tr><td>${dato(c.date)}${c.note ? `<br><span class="muted small">${esc(c.note)}</span>` : ''}</td><td class="num">${kr(c.balance)}</td></tr>`).join('')}</table>
-          ${editOnly(`<label class="upload">${icon('plus')}<span>Upload bankudtog (CSV)</span><input name="bankcsv" type="file" accept=".csv,text/csv"></label>
-          <p class="muted small bank-status">Kun den seneste saldo og dens dato gemmes.</p>`)}
+          ${editOnly(`<div class="bank-add"><details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
+            <label>Dato <input name="date" type="date" required value="${now}"></label>
+            <label>Saldo, kr. <input name="balance" type="number" step="any" inputmode="decimal" required></label>
+            <label class="span2">Note <input name="note"></label>
+            <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>
+          <label class="csv-link">eller upload CSV fra banken<input name="bankcsv" type="file" accept=".csv,text/csv"></label></div>
+          <p class="muted small bank-status"></p>`)}
         </section>
       </div>`;
   }
@@ -564,6 +569,13 @@ function main() {
       });
     },
 
+
+    async checkpoint(fd) {
+      await save('Ny saldo', fresh => {
+        fresh.checkpoints = fresh.checkpoints.filter(c => c.date !== fd.get('date'));
+        fresh.checkpoints.push({ date: fd.get('date'), balance: Number(fd.get('balance')), note: orNull(fd.get('note')) });
+      });
+    },
 
     async idea(fd) {
       await save(`Nyt forslag: ${fd.get('name')}`, fresh => {

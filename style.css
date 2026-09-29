@@ -273,3 +273,9 @@ dialog .bar .i { width: 1.4rem; height: 1.4rem; }
 .secret { position: relative; display: block; }
 .secret input { width: 100%; padding-right: 2.75rem; }
 .secret .icon-btn { position: absolute; right: .15rem; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.bank-add { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.25rem; }
+.bank-add details { flex: 1 1 100%; }
+.bank-add details:not([open]) { flex: 0 0 auto; }
+.csv-link { display: inline; color: var(--muted); font-size: .875rem; text-decoration: underline; text-underline-offset: .15em; cursor: pointer; }
+.csv-link input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.csv-link:has(input:focus-visible) { outline: 2px solid var(--accent); }

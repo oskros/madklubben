@@ -345,12 +345,3 @@ h2 { font-weight: 600; }
   .herb-rosemary { left: -6vw; -webkit-mask-position: bottom left; mask-position: bottom left; }
   .herb-mint { right: -6vw; -webkit-mask-position: bottom right; mask-position: bottom right; }
 }
-.credit { max-width: 1120px; margin: 0 auto; padding: 1rem 16px 2rem; font-size: .75rem; color: var(--muted); }
-.credit a { color: inherit; }
-@media (max-width: 700px) {
-  main { padding-bottom: 1.5rem; }
-  .credit { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
-}
-body { min-height: 100dvh; display: flex; flex-direction: column; }
-body > main { flex: 1; width: 100%; }
-.credit { width: 100%; }

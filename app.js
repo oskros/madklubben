@@ -222,7 +222,7 @@ function main() {
         <dl class="facts">
           <div><dt>Regning</dt><dd>${kr(d.price)}</dd></div>
           <div><dt>Pr. person</dt><dd>${d.price ? kr(d.price / data.members) : '–'}</dd></div>
-          <div><dt>Fra kassen</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
+          <div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
           <div><dt>Eget indskud</dt><dd>${kr(d.outOfPocket)}</dd></div>
         </dl>
         ${d.menu.length ? `<h2>Menu</h2><ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>` : ''}
@@ -278,7 +278,7 @@ function main() {
       </dl>` : ''}
       <h2>Middage</h2>
       <div class="scroll"><table>
-        <thead><tr><th>Dato</th><th>Sted</th><th class="num">Regning</th><th class="num">Fra kassen</th><th class="num">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
+        <thead><tr><th>Dato</th><th>Sted</th><th class="num">Regning</th><th class="num">Fra madkonto</th><th class="num">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
         <tbody>${[...data.dinners].sort(byDate).map(d => `<tr>
           <td>${esc(d.date)}</td><td><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></td>
           <td class="num">${kr(d.price)}</td><td class="num">${d.price ? kr(fromFund(d)) : '–'}</td>

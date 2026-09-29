@@ -178,6 +178,9 @@ function main() {
     $('#auth').textContent = token ? 'Log ud' : 'Log ind';
     $('#auth').href = token ? '#/logud' : '#/login';
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${view}`));
+    const pick = $('.pick');
+    if (pick) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) =>
+      Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false }));
   }
 
   const editOnly = html => token ? html : '';
@@ -237,8 +240,10 @@ function main() {
         <label>Note <textarea name="note" rows="3">${esc(v.note)}</textarea></label>
         <label>Tilføj billeder <input name="photos" type="file" accept="image/*" multiple></label>
         <p class="muted small">Tip: I Google Photos-albummet vælg "Download alle", pak zip-filen ud, og vælg billederne her. De formindskes før upload.</p>
-        ${v.photos.length ? `<fieldset><legend>Billeder (markér for at slette)</legend><div class="grid pick">${v.photos.map(p => `
-          <label><input type="checkbox" name="delete" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></label>`).join('')}</div></fieldset>` : ''}
+        ${v.photos.length ? `<fieldset><legend>Billeder: træk for at ændre rækkefølgen</legend><div class="grid pick">${v.photos.map(p => `
+          <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
+            <label class="del"><input type="checkbox" name="delete" value="${esc(p)}"> Slet</label></div>`).join('')}</div>
+          <p class="muted small">Ændringer gemmes, når du trykker Gem.</p></fieldset>` : ''}
         <p class="row"><button class="btn">Gem</button> <span class="status"></span>
           ${d ? '<button type="button" class="btn danger" data-action="delete-dinner">Slet middag</button>' : ''}</p>
       </form>`;
@@ -422,13 +427,15 @@ function main() {
       };
       const id = oldId || `${fields.date.slice(0, 4)}-${slug(fields.restaurant)}-${Date.now().toString(36).slice(-3)}`;
       const del = fd.getAll('delete');
+      const order = fd.getAll('order');
       const { files, names, failed } = await preparePhotos({ id }, fd.getAll('photos').filter(f => f.size), progress);
       for (const p of del) for (const thumb of [false, true]) files[photoPath({ id }, p, thumb)] = null;
       await save(`${oldId ? 'Ret' : 'Ny middag:'} ${fields.restaurant}`, fresh => {
         let d = fresh.dinners.find(x => x.id === id);
         if (!d) fresh.dinners.push(d = { id, photos: [] });
         Object.assign(d, fields);
-        d.photos = d.photos.filter(p => !del.includes(p)).concat(names);
+        const kept = order.filter(p => d.photos.includes(p)).concat(d.photos.filter(p => !order.includes(p)));
+        d.photos = kept.filter(p => !del.includes(p)).concat(names);
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
       location.hash = `#/d/${id}`;

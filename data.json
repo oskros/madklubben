@@ -119,7 +119,11 @@
    "note": "Ændring til 200/måned",
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0ee3a302f-0.jpg",
+    "1a0ee3a302f-1.jpg",
+    "1a0ee3a302f-2.jpg"
+   ],
    "image": "restaurants/2019-hoest.jpg"
   },
   {
@@ -234,9 +238,28 @@
    "outOfPocket": 3945,
    "note": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "daikon & yuzu kosho – HAMACHI",
+    "fjordrejer & peberrod – TÆRTE",
+    "glaskål & tomat – HUMMER",
+    "hybenrose & jomfruhummer – ÆBLE",
+    "løvstikke & havesyre – ØRRED",
+    "sesam & shiso – BLÆKSPRUTTE",
+    "koriander & skinke – NAAN",
+    "caviar & miso – JORDSKOK",
+    "hindbær & pistacie – SANDART",
+    "andelever & figner – VAGTEL",
+    "gremolata – VAGTELLÅR",
+    "choux & kaffe – VALNØDDER",
+    "sesam & yuzu – JORDBÆR",
+    "marcipan & æble – FIGNER",
+    "timut peber – KVÆDE"
+   ],
    "photos": [
-    "1a0ee2c85d6-0.jpg"
+    "1a0ee3a302f-0.jpg",
+    "1a0ee3a302f-1.jpg",
+    "1a0ee2c85d6-0.jpg",
+    "1a0ee3a302f-2.jpg"
    ],
    "image": "restaurants/2023-mielcke-og-hurtigkarl.jpg"
   },
@@ -251,8 +274,23 @@
    "outOfPocket": 0,
    "note": "Ændring til 300/måned",
    "themes": [],
-   "menu": [],
-   "photos": [],
+   "menu": [
+    "Green Tomato – Potato and Mustard",
+    "Sea bass – Green Citrus and Serrano",
+    "Candy Roaster Pumpkin – Habanada and Coriander Seed",
+    "Funga Farm Mushrooms – Mashi Noodles and Szechuan",
+    "Monkfish – Rose and Leeks",
+    "Varde Ådal Duck – Pak Choi and Lemongrass",
+    "Filippa Apple – Sorrel and Apple Glaze",
+    "Cake Roll – Sesame and Persimmon"
+   ],
+   "photos": [
+    "1a0ee3a302f-0.jpg",
+    "1a0ee3a302f-1.jpg",
+    "1a0ee3a302f-2.jpg",
+    "1a0ee3a302f-3.jpg",
+    "1a0ee3a302f-4.jpg"
+   ],
    "image": "restaurants/2024-jatak.jpg"
   },
   {
@@ -267,7 +305,15 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0ee3a302f-0.jpg",
+    "1a0ee3a302f-1.jpg",
+    "1a0ee3a302f-2.jpg",
+    "1a0ee3a302f-3.jpg",
+    "1a0ee3a302f-4.jpg",
+    "1a0ee3a302f-5.jpg",
+    "1a0ee3a302f-6.jpg"
+   ],
    "image": "restaurants/2025-donna.jpg"
   },
   {
@@ -282,7 +328,36 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0ee3a302f-0.jpg",
+    "1a0ee3a302f-1.jpg",
+    "1a0ee3a302f-2.jpg",
+    "1a0ee3a302f-3.jpg",
+    "1a0ee3a302f-4.jpg",
+    "1a0ee3a302f-5.jpg",
+    "1a0ee3a302f-6.jpg",
+    "1a0ee3a302f-7.jpg",
+    "1a0ee3a302f-8.jpg",
+    "1a0ee3a302f-9.jpg",
+    "1a0ee3a302f-10.jpg",
+    "1a0ee3a302f-11.jpg",
+    "1a0ee3a302f-12.jpg",
+    "1a0ee3a302f-13.jpg",
+    "1a0ee3a302f-14.jpg",
+    "1a0ee3a302f-15.jpg",
+    "1a0ee3a302f-16.jpg",
+    "1a0ee3a302f-17.jpg",
+    "1a0ee3a302f-18.jpg",
+    "1a0ee3a302f-19.jpg",
+    "1a0ee3a302f-20.jpg",
+    "1a0ee3a302f-21.jpg",
+    "1a0ee3a302f-22.jpg",
+    "1a0ee3a302f-23.jpg",
+    "1a0ee3a302f-24.jpg",
+    "1a0ee3a302f-25.jpg",
+    "1a0ee3a302f-26.jpg",
+    "1a0ee3a302f-27.jpg"
+   ],
    "image": "restaurants/2025-akme.jpg"
   },
   {

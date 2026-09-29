@@ -161,11 +161,12 @@ function main() {
   // ---------- views ----------
 
   const views = {
-    '': budgetPage,
+    '': dinnersPage,
     d: dinnerPage,
     ny: () => dinnerForm(null),
     ret: id => dinnerForm(data.dinners.find(d => d.id === id)),
-    budget: budgetPage,
+    budget: dinnersPage,
+    saldo: balancePage,
     menuer: menusPage,
     ideer: ideasPage,
     login: loginPage,
@@ -173,7 +174,7 @@ function main() {
 
   function render() {
     const [, view = '', arg] = decodeURIComponent(location.hash).split('/');
-    const html = (views[view] ?? budgetPage)(arg);
+    const html = (views[view] ?? dinnersPage)(arg);
     $('main').innerHTML = html ?? '<p>Ikke fundet.</p>';
     $('#auth').textContent = token ? 'Log ud' : 'Log ind';
     $('#auth').href = token ? '#/logud' : '#/login';
@@ -249,13 +250,32 @@ function main() {
       </form>`;
   }
 
-  function budgetPage() {
+  function dinnersPage() {
+    const priced = data.dinners.filter(d => d.price);
+    const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
+    return `
+      <section class="hero">
+        <p class="kicker">Madkontoen</p>
+        <h1>${kr(balance(data, today()))}</h1>
+        <p><a href="#/saldo">Se saldo og prognose</a></p>
+      </section>
+      <div class="row between"><h2>Middage</h2>${editOnly('<a class="btn" href="#/ny">+ Ny middag</a>')}</div>
+      <div class="scroll"><table>
+        <thead><tr><th></th><th>Dato</th><th>Sted</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
+        <tbody>${[...data.dinners].sort(byDate).map(d => `<tr>
+          <td class="thumb-cell"><a class="thumb" href="#/d/${esc(d.id)}" tabindex="-1">${cover(d)}</a></td><td><span class="wide">${esc(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td><td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></td>
+          <td class="num wide">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
+          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${d.price ? kr(d.price / data.members) : '–'}</td></tr>`).join('')}</tbody>
+        <tfoot><tr><th colspan="3">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
+          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th></th></tr></tfoot>
+      </table></div>`;
+  }
+
+  function balancePage() {
     const now = today();
     const f = forecast(data, now);
     const cp = [...data.checkpoints].sort(byDate)[0];
     const monthly = rateFor(data.rates, now.slice(0, 7)) * data.members;
-    const priced = data.dinners.filter(d => d.price);
-    const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
     return `
       <section class="hero">
         <p class="kicker">Madkontoen</p>
@@ -268,16 +288,6 @@ function main() {
         <div><dt>På madkontoen til den tid</dt><dd>${kr(f.savings)}</dd></div>
         <div><dt>Budget pr. person til den tid</dt><dd>${kr(f.savings / data.members)}</dd></div>
       </dl>` : ''}
-      <div class="row between"><h2>Middage</h2>${editOnly('<a class="btn" href="#/ny">+ Ny middag</a>')}</div>
-      <div class="scroll"><table>
-        <thead><tr><th></th><th>Dato</th><th>Sted</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
-        <tbody>${[...data.dinners].sort(byDate).map(d => `<tr>
-          <td class="thumb-cell"><a class="thumb" href="#/d/${esc(d.id)}" tabindex="-1">${cover(d)}</a></td><td><span class="wide">${esc(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td><td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></td>
-          <td class="num wide">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
-          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${d.price ? kr(d.price / data.members) : '–'}</td></tr>`).join('')}</tbody>
-        <tfoot><tr><th colspan="3">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th></th></tr></tfoot>
-      </table></div>
       <h2>Indbetaling pr. person</h2>
       <ul>${[...data.rates].sort((a, b) => a.from.localeCompare(b.from)).map(r => `<li>Fra ${esc(r.from)}: ${kr(r.perPerson)}/md.</li>`).join('')}</ul>
       ${editOnly(`<form data-form="rate" class="row">

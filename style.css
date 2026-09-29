@@ -61,8 +61,6 @@ img { max-width: 100%; display: block; }
 }
 .brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
 .mark { width: 1.6rem; height: 1.6rem; fill: none; stroke: var(--accent); stroke-width: 2.6; }
-.members { font-weight: 400; font-size: .85rem; letter-spacing: 0; color: var(--muted); margin-left: .35rem; }
-@media (max-width: 900px) { .members { display: none; } }
 nav { display: flex; gap: .25rem; }
 nav a { display: flex; align-items: center; gap: .4rem; padding: .4rem .7rem; border-radius: 99px; color: var(--muted); text-decoration: none; font-weight: 500; }
 nav a:hover { color: var(--ink); background: var(--surface); }

@@ -120,9 +120,7 @@
    "themes": [],
    "menu": [],
    "photos": [
-    "1a0ee3a302f-0.jpg",
-    "1a0ee3a302f-1.jpg",
-    "1a0ee3a302f-2.jpg"
+    "1a0ee3a302f-1.jpg"
    ],
    "image": "restaurants/2019-hoest.jpg"
   },
@@ -265,7 +263,7 @@
   },
   {
    "id": "2024-jatak",
-   "date": "2024-10-27",
+   "date": "2024-10-26",
    "restaurant": "Jatak",
    "website": "https://jatakcph.com",
    "closed": false,

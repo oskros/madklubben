@@ -64,6 +64,7 @@ function main() {
   };
   let token = store.get('gh-token');
   let data;
+  let editingIdea = null;
   const localUrls = {};
 
   // ---------- GitHub as storage ----------
@@ -177,7 +178,6 @@ function main() {
     $('#auth').textContent = token ? 'Log ud' : 'Log ind';
     $('#auth').href = token ? '#/logud' : '#/login';
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${view}`));
-    window.scrollTo(0, 0);
   }
 
   const editOnly = html => token ? html : '';
@@ -328,10 +328,17 @@ function main() {
   function ideasPage() {
     return `
       <h1>Idéer til næste gang</h1>
-      <ul class="ideas">${data.ideas.map((x, i) => `<li>
+      <ul class="ideas">${data.ideas.map((x, i) => token && i === editingIdea ? `<li>
+        <form data-form="editIdea" data-i="${i}" class="row">
+          <label>Restaurant <input name="name" required value="${esc(x.name)}"></label>
+          <label>Link <input name="url" type="url" value="${esc(x.url)}"></label>
+          <label>Note <input name="note" value="${esc(x.note)}"></label>
+          <button class="btn">Gem</button> <button type="button" class="link" data-action="cancel-idea">Annuller</button> <span class="status"></span>
+        </form></li>` : `<li>
         ${safeUrl(x.url) ? `<a href="${safeUrl(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : esc(x.name)}
         ${x.note ? `<span class="muted"> · ${esc(x.note)}</span>` : ''}
-        ${editOnly(`<button class="link" data-action="delete-idea" data-i="${i}">Fjern</button>`)}</li>`).join('')}</ul>
+        ${editOnly(`<button class="link" data-action="edit-idea" data-i="${i}">Ret</button>
+          <button class="link" data-action="delete-idea" data-i="${i}">Fjern</button>`)}</li>`).join('')}</ul>
       ${editOnly(`<form data-form="idea" class="row">
         <label>Restaurant <input name="name" required></label>
         <label>Link <input name="url" type="url"></label>
@@ -468,6 +475,16 @@ function main() {
         fresh.ideas.push({ name: fd.get('name').trim(), url: orNull(fd.get('url')), note: orNull(fd.get('note')) });
       });
     },
+
+    async editIdea(fd, form) {
+      const before = JSON.stringify(data.ideas[+form.dataset.i]);
+      await save(`Ret idé: ${fd.get('name')}`, fresh => {
+        const i = fresh.ideas.findIndex(x => JSON.stringify(x) === before);
+        if (i < 0) throw new Error('Idéen er lige blevet ændret af en anden. Genindlæs siden.');
+        fresh.ideas[i] = { name: fd.get('name').trim(), url: orNull(fd.get('url')), note: orNull(fd.get('note')) };
+      });
+      editingIdea = null;
+    },
   };
 
   document.addEventListener('submit', async e => {
@@ -493,6 +510,11 @@ function main() {
     if (photo) return openViewer(+photo.dataset.photo);
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
+    if (btn.dataset.action === 'edit-idea' || btn.dataset.action === 'cancel-idea') {
+      editingIdea = btn.dataset.action === 'edit-idea' ? +btn.dataset.i : null;
+      render();
+      document.querySelector('[data-form=editIdea] input')?.focus();
+    }
     if (btn.dataset.action === 'delete-idea') {
       const idea = JSON.stringify(data.ideas[+btn.dataset.i]);
       btn.disabled = true;
@@ -550,7 +572,9 @@ function main() {
       location.hash = '#/';
       return;
     }
+    editingIdea = null;
     render();
+    window.scrollTo(0, 0);
   });
 
   load()

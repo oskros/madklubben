@@ -341,16 +341,54 @@ function main() {
       </form>`;
   }
 
+  // ponytail: menu cards are the first photos of dinners with a menu; skip up to 3 of them. A "not a dish" flag per photo if this guesses wrong.
+  function dishPhoto(d) {
+    const skip = d.menu.length ? Math.min(3, d.photos.length - 1) : 0;
+    const pool = d.photos.slice(skip);
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function photoStrip() {
+    const withPhotos = [...data.dinners].sort(byDate).filter(d => d.photos.length);
+    if (!withPhotos.length) return '';
+    return `<div class="strip">${withPhotos.map(d => `
+      <a href="#/d/${esc(d.id)}" title="${esc(d.restaurant)}">
+        <img src="${esc(photoUrl(d, dishPhoto(d), true))}" alt="${esc(d.restaurant)}" loading="lazy">
+        <span>${esc(d.restaurant)}</span>
+      </a>`).join('')}</div>`;
+  }
+
+  function timeline() {
+    const dates = data.dinners.map(d => d.date).sort();
+    if (!dates.length) return '';
+    const first = +dates[0].slice(0, 4), last = +today().slice(0, 4) + 1;
+    const start = toMs(`${first}-01-01`), span = toMs(`${last}-01-01`) - start;
+    const pos = iso => ((toMs(iso) - start) / span * 100).toFixed(2);
+    const spent = data.dinners.reduce((sum, d) => sum + (d.price ?? 0), 0);
+    const years = Array.from({ length: last - first + 1 }, (_, i) => first + i);
+    return `
+      <section class="timeline">
+        <p>Siden ${new Date(toMs(dates[0])).toLocaleDateString('da-DK', { month: 'long', year: 'numeric', timeZone: 'UTC' })} har vi spist ${dates.length} middage for ${kr(spent)}</p>
+        <div class="track">
+          ${years.map(y => `<span class="year" style="left:${pos(`${y}-01-01`)}%">${y < last ? y : ''}</span>`).join('')}
+          ${[...data.dinners].sort((a, b) => a.date.localeCompare(b.date)).map(d => `<a class="dot" href="#/d/${esc(d.id)}" style="left:${pos(d.date)}%" title="${esc(d.restaurant)}, ${dato(d.date)}" aria-label="${esc(d.restaurant)}"></a>`).join('')}
+          <span class="now" style="left:${pos(today())}%" title="I dag"></span>
+        </div>
+      </section>`;
+  }
+
   function dinnersPage() {
     const priced = data.dinners.filter(d => d.price);
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
     const f = forecast(data, today());
     return `
+      ${photoStrip()}
       <a class="account" href="#/saldo">
         <span><span class="amount">${kr(balance(data, today()))}</span> på madkontoen</span>
         ${f ? `<span class="muted">Næste middag omkring ${dato(f.next)}</span>` : ''}
         ${icon('next')}
       </a>
+      ${timeline()}
       <div class="section-head">
         <h1>Middage <span class="count">${data.dinners.length}</span></h1>
         ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}

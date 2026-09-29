@@ -54,7 +54,10 @@ img { max-width: 100%; display: block; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
-.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+.brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+.mark { width: 1.6rem; height: 1.6rem; fill: none; stroke: var(--accent); stroke-width: 2.6; }
+.members { font-weight: 400; font-size: .85rem; letter-spacing: 0; color: var(--muted); margin-left: .35rem; }
+@media (max-width: 900px) { .members { display: none; } }
 nav { display: flex; gap: .25rem; }
 nav a { display: flex; align-items: center; gap: .4rem; padding: .4rem .7rem; border-radius: 99px; color: var(--muted); text-decoration: none; font-weight: 500; }
 nav a:hover { color: var(--ink); background: var(--surface); }
@@ -279,3 +282,22 @@ dialog .bar .i { width: 1.4rem; height: 1.4rem; }
 .csv-link { display: inline; color: var(--muted); font-size: .875rem; text-decoration: underline; text-underline-offset: .15em; cursor: pointer; }
 .csv-link input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .csv-link:has(input:focus-visible) { outline: 2px solid var(--accent); }
+
+/* front page: own photos and timeline */
+.strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(120px, 1fr); gap: 4px; margin: -.25rem 0 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip a { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 4px; scroll-snap-align: start; background: var(--surface); }
+.strip img { width: 100%; height: 100%; object-fit: cover; }
+.strip span { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.5rem .5rem .4rem; color: #fff; font-size: .8rem; font-weight: 700; background: linear-gradient(transparent, rgb(0 0 0 / .6)); }
+@media (max-width: 640px) { .strip { grid-auto-columns: 38%; margin-left: -16px; margin-right: -16px; padding: 0 16px; scroll-padding: 0 16px; } }
+.timeline { margin: 1.75rem 0 2rem; }
+.timeline p { font-weight: 700; font-size: 1.05rem; margin-bottom: 1rem; }
+.track { position: relative; height: 2.6rem; margin: 0 .5rem; border-top: 2px solid var(--line); }
+.year { position: absolute; top: .45rem; font-size: .75rem; color: var(--muted); padding-left: .3rem; border-left: 1px solid var(--line); line-height: 1.4; }
+.dot { position: absolute; top: -8px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg); }
+.dot:hover, .dot:focus-visible { transform: scale(1.35); }
+.now { position: absolute; top: -6px; width: 2px; height: 10px; margin-left: -1px; background: var(--muted); }
+@media (max-width: 640px) {
+  .year:nth-of-type(even) { visibility: hidden; }
+  .dot { top: -6px; width: 10px; height: 10px; margin-left: -5px; box-shadow: 0 0 0 2px var(--bg); }
+}

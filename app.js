@@ -265,12 +265,12 @@ function main() {
       </dl>` : ''}
       <div class="row between"><h2>Middage</h2>${editOnly('<a class="btn" href="#/ny">+ Ny middag</a>')}</div>
       <div class="scroll"><table>
-        <thead><tr><th>Dato</th><th>Sted</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
+        <thead><tr><th></th><th>Dato</th><th>Sted</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
         <tbody>${[...data.dinners].sort(byDate).map(d => `<tr>
-          <td><span class="wide">${esc(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td><td><a class="place" href="#/d/${esc(d.id)}"><span class="thumb">${cover(d)}</span>${esc(d.restaurant)}</a></td>
+          <td class="thumb-cell"><a class="thumb" href="#/d/${esc(d.id)}" tabindex="-1">${cover(d)}</a></td><td><span class="wide">${esc(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td><td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></td>
           <td class="num wide">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
           <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${d.price ? kr(d.price / data.members) : '–'}</td></tr>`).join('')}</tbody>
-        <tfoot><tr><th colspan="2">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
+        <tfoot><tr><th colspan="3">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
           <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th></th></tr></tfoot>
       </table></div>
       <h2>Indbetaling pr. person</h2>

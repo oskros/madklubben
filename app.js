@@ -174,8 +174,9 @@ function main() {
   const editOnly = html => token ? html : '';
 
   function cover(d) {
-    return d.photos[0]
-      ? `<img src="${esc(photoUrl(d, d.photos[0], true))}" alt="" loading="lazy">`
+    const src = d.photos[0] ? photoUrl(d, d.photos[0], true) : d.image;
+    return src
+      ? `<img src="${esc(src)}" alt="" loading="lazy">`
       : `<span class="initial">${esc(d.restaurant[0])}</span>`;
   }
 
@@ -443,6 +444,7 @@ function main() {
       if (!confirm(`Slet ${d.restaurant} og alle ${d.photos.length} billeder?`)) return;
       const files = {};
       for (const p of d.photos) for (const thumb of [false, true]) files[photoPath(d, p, thumb)] = null;
+      if (d.image) files[d.image] = null;
       btn.disabled = true;
       await save(`Slet middag: ${d.restaurant}`, fresh => { fresh.dinners = fresh.dinners.filter(x => x.id !== id); }, files)
         .then(() => { location.hash = '#/'; }).catch(err => alert(err.message));

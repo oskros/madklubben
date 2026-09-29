@@ -39,7 +39,8 @@
    "note": "Farveldinner før Rasmus tager til Australien + Oprettelse af madklubben (100/måned)",
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2016-llama.jpg"
   },
   {
    "id": "2017-bodil",
@@ -67,7 +68,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2018-den-lille-fede.jpg"
   },
   {
    "id": "2018-relae",
@@ -81,13 +83,14 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2018-relae.jpg"
   },
   {
    "id": "2019-neighbourhood",
    "date": "2019-06-09",
    "restaurant": "Neighbourhood",
-   "website": "https://www.neighbourhood.dk/",
+   "website": "https://www.facebook.com/neighbourhoodpizza/",
    "closed": false,
    "album": null,
    "price": 1920,
@@ -109,7 +112,8 @@
    "note": "Ændring til 200/måned",
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2019-hoest.jpg"
   },
   {
    "id": "2020-restaurant-108",
@@ -129,8 +133,8 @@
    "id": "2020-brasserie-barner",
    "date": "2020-10-24",
    "restaurant": "Brasserie Barner",
-   "website": "https://brasseriebarner.dk/",
-   "closed": false,
+   "website": null,
+   "closed": true,
    "album": null,
    "price": 2840,
    "outOfPocket": 90,
@@ -151,7 +155,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2021-marv-og-ben.jpg"
   },
   {
    "id": "2022-bistro-boheme",
@@ -165,7 +170,8 @@
    "note": "Lang pause pga flytning og rejser",
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2022-bistro-boheme.jpg"
   },
   {
    "id": "2023-op-la",
@@ -179,7 +185,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2023-op-la.jpg"
   },
   {
    "id": "2023-feed-bistro",
@@ -193,7 +200,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2023-feed-bistro.jpg"
   },
   {
    "id": "2023-mielcke-og-hurtigkarl",
@@ -207,7 +215,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2023-mielcke-og-hurtigkarl.jpg"
   },
   {
    "id": "2024-jatak",
@@ -221,7 +230,8 @@
    "note": "Ændring til 300/måned",
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2024-jatak.jpg"
   },
   {
    "id": "2025-donna",
@@ -235,7 +245,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2025-donna.jpg"
   },
   {
    "id": "2025-akme",
@@ -249,7 +260,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2025-akme.jpg"
   },
   {
    "id": "2026-aoc",
@@ -263,7 +275,8 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": []
+   "photos": [],
+   "image": "restaurants/2026-aoc.jpg"
   }
  ],
  "ideas": [

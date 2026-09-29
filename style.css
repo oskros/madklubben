@@ -229,7 +229,10 @@ label input, label textarea { color: var(--ink); font-size: 1rem; }
 .menu-edit li::before { content: counter(course); width: 1.6em; flex: none; text-align: right; color: var(--muted); }
 .menu-edit input { font-family: Newsreader, Georgia, serif; font-size: 1.08rem; }
 .menu-edit .icon-btn { color: var(--muted); }
-.add-row { justify-self: start; display: inline-flex; align-items: center; gap: .4rem; margin-left: 2.1em; padding: .35rem 0; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
+.grip { display: grid; place-items: center; width: 1.5rem; height: 2.4rem; flex: none; color: var(--muted); cursor: grab; touch-action: none; }
+.menu-edit .sortable-ghost { opacity: .35; }
+.menu-edit .sortable-fallback { opacity: .9; }
+.add-row { justify-self: start; display: inline-flex; align-items: center; gap: .4rem; margin-left: calc(2.1em + 2rem); padding: .35rem 0; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 700; cursor: pointer; }
 .drop { border-radius: var(--radius); outline: 2px dashed transparent; outline-offset: 8px; }
 .drop.over { outline-color: var(--accent); }
 .drop p { margin: -.5rem 0 0; }

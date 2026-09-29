@@ -184,9 +184,11 @@ function main() {
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
     if (dinner) billPreview(dinner);
-    const pick = $('.pick');
-    if (pick) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) =>
-      Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false }));
+    const pick = $('.pick'), courses = $('.menu-edit');
+    if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
+      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false });
+      if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, handle: '.grip' });
+    });
   }
 
   const editOnly = html => token ? html : '';
@@ -201,6 +203,7 @@ function main() {
     camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    grip: '<circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/>',
     next: '<path d="m9 18 6-6-6-6"/>',
     prev: '<path d="m15 18-6-6 6-6"/>',
     login: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>',
@@ -262,7 +265,7 @@ function main() {
       </div>`;
   }
 
-  const courseRow = (c = '') => `<li><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
+  const courseRow = (c = '') => `<li><span class="grip" title="Træk for at flytte">${icon('grip')}</span><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
 
   function billPreview(form) {
     const price = +form.price.value || 0, own = +form.outOfPocket.value || 0;

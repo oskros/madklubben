@@ -402,7 +402,7 @@ function main() {
           <td class="num wide">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
           <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${perPerson(d)}</td></tr>`).join('')}</tbody>
         <tfoot><tr><th colspan="3">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th></th></tr></tfoot>
+          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th class="num">${kr(total(priced, d => d.price) / data.members)}</th></tr></tfoot>
       </table></div>`;
   }
 

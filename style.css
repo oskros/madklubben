@@ -138,6 +138,7 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
   tr > :last-child { padding-right: 0; }
   .thumb { width: 44px; height: 34px; border-radius: 6px; }
   .dinners tbody tr:hover { background: none; }
+  .dinners tfoot th { font-size: .9rem; }
 }
 
 /* dinner page */

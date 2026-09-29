@@ -564,6 +564,24 @@ function main() {
     if (e.key === 'ArrowLeft') showPhoto(-1);
   });
 
+  // ---------- new version check ----------
+
+  const assets = ['app.js', 'style.css'];
+  const fetchAssets = cache => Promise.all(assets.map(a => fetch(a, { cache }).then(r => r.text()))).then(t => t.join());
+  const running = fetchAssets('default');
+  async function checkVersion() {
+    try {
+      if (await fetchAssets('no-store') !== await running) $('#update').hidden = false;
+    } catch {}
+  }
+  checkVersion();
+  setInterval(checkVersion, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && checkVersion());
+  $('#update button').addEventListener('click', async () => {
+    await fetchAssets('reload').catch(() => {});
+    location.reload();
+  });
+
   // ---------- boot ----------
 
   window.addEventListener('hashchange', () => {

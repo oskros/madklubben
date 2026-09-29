@@ -120,3 +120,6 @@ dialog::backdrop { background: rgb(0 0 0 / .9); }
 dialog img { max-width: 96vw; max-height: 86vh; margin: 0 auto; }
 dialog .bar { display: flex; justify-content: center; align-items: center; gap: 1rem; color: #fff; padding: .5rem; }
 dialog .bar button { background: none; border: 0; color: #fff; font-size: 1.8rem; cursor: pointer; padding: 0 .5rem; }
+
+#update { position: fixed; left: 50%; bottom: 1rem; transform: translateX(-50%); width: max-content; max-width: calc(100vw - 32px); display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: center; padding: .75rem 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 4px 16px rgb(0 0 0 / .15); }
+#update[hidden] { display: none; }

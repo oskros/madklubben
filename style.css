@@ -75,7 +75,7 @@ main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 16px 4rem; }
 .pick .tile { cursor: grab; touch-action: pan-y; user-select: none; }
 .pick .sortable-ghost { opacity: .3; }
 .grid img { width: 100%; height: 100%; object-fit: cover; }
-.del { position: absolute; top: .4rem; right: .4rem; display: flex; gap: .3rem; align-items: center; padding: .15rem .5rem; border-radius: 99px; background: rgb(0 0 0 / .6); color: #fff; font-size: .8rem; cursor: pointer; }
+.del { position: absolute; top: .25rem; right: .25rem; display: flex; gap: .2rem; align-items: center; padding: .05rem .35rem; border-radius: 99px; background: rgb(0 0 0 / .6); color: #fff; font-size: .7rem; cursor: pointer; }
 .del input { margin: 0; }
 .tile:has(.del input:checked) img { opacity: .3; }
 .tile:has(.del input:checked) .del { background: var(--accent); color: var(--accent-ink); }
@@ -97,7 +97,10 @@ th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(-
 }
 tfoot th { border-bottom: 0; }
 
-.stack { display: grid; gap: 1rem; max-width: 560px; }
+.stack { display: grid; gap: 1rem; }
+.stack > :not(fieldset) { max-width: 560px; min-width: 0; }
+.stack input:not([type=checkbox]), .stack textarea { width: 100%; }
+.pick { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
 .stack label { display: grid; gap: .3rem; }
 .stack label:has(input[type=checkbox]) { display: flex; gap: .5rem; align-items: center; }
 .row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: end; }

@@ -12,6 +12,10 @@
   {
    "from": "2024-11",
    "perPerson": 300
+  },
+  {
+   "from": "2099-01",
+   "perPerson": 1
   }
  ],
  "checkpoints": [

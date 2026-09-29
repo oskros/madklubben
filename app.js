@@ -780,6 +780,16 @@ function main() {
     input.files = e.dataTransfer.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
   });
+  let swipe = null;
+  $('#viewer').addEventListener('touchstart', e => {
+    swipe = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+  }, { passive: true });
+  $('#viewer').addEventListener('touchend', e => {
+    if (!swipe) return;
+    const dx = e.changedTouches[0].clientX - swipe.x, dy = e.changedTouches[0].clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) showPhoto(dx < 0 ? 1 : -1);
+  });
   document.addEventListener('keydown', e => {
     if (!$('#viewer').open) return;
     if (e.key === 'ArrowRight') showPhoto(1);

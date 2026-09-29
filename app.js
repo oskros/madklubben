@@ -72,6 +72,7 @@ function main() {
   async function gh(path, opts = {}) {
     const r = await fetch('https://api.github.com' + path, {
       ...opts,
+      cache: 'no-store',
       headers: { Authorization: `Bearer ${token}`, Accept: opts.accept ?? 'application/vnd.github+json' },
     });
     if (!r.ok) throw new Error(`GitHub svarede ${r.status}: ${(await r.text()).slice(0, 200)}`);
@@ -89,22 +90,30 @@ function main() {
   // Applies `mutate` to the newest data.json on GitHub (not our possibly stale copy) and commits it
   // together with `files` ({path: Blob | null}) in one commit. A concurrent edit makes the ref update fail.
   async function save(message, mutate, files = {}, progress = () => {}) {
-    const ref = await gh(`${base}/git/ref/heads/${REPO.branch}`);
-    const head = await gh(`${base}/git/commits/${ref.object.sha}`);
-    const fresh = JSON.parse(await gh(`${base}/contents/data.json?ref=${ref.object.sha}`, { accept: 'application/vnd.github.raw+json' }));
-    mutate(fresh);
-    const tree = [{ path: 'data.json', mode: '100644', type: 'blob', content: JSON.stringify(fresh, null, 1) + '\n' }];
+    const blobs = [];
     const entries = Object.entries(files);
     for (const [i, [path, blob]] of entries.entries()) {
       progress(`Uploader ${i + 1}/${entries.length}`);
       const sha = blob && (await post(`${base}/git/blobs`, { content: await b64(blob), encoding: 'base64' })).sha;
-      tree.push({ path, mode: '100644', type: 'blob', sha: sha ?? null });
+      blobs.push({ path, mode: '100644', type: 'blob', sha: sha ?? null });
     }
     progress('Gemmer');
-    const t = await post(`${base}/git/trees`, { base_tree: head.tree.sha, tree });
-    const c = await post(`${base}/git/commits`, { message, tree: t.sha, parents: [ref.object.sha] });
-    await post(`${base}/git/refs/heads/${REPO.branch}`, { sha: c.sha }, 'PATCH');
-    data = fresh;
+    for (let attempt = 1; ; attempt++) {
+      const ref = await gh(`${base}/git/ref/heads/${REPO.branch}`);
+      const head = await gh(`${base}/git/commits/${ref.object.sha}`);
+      const fresh = JSON.parse(await gh(`${base}/contents/data.json?ref=${ref.object.sha}`, { accept: 'application/vnd.github.raw+json' }));
+      mutate(fresh);
+      const tree = [{ path: 'data.json', mode: '100644', type: 'blob', content: JSON.stringify(fresh, null, 1) + '\n' }, ...blobs];
+      const t = await post(`${base}/git/trees`, { base_tree: head.tree.sha, tree });
+      const c = await post(`${base}/git/commits`, { message, tree: t.sha, parents: [ref.object.sha] });
+      try {
+        await post(`${base}/git/refs/heads/${REPO.branch}`, { sha: c.sha }, 'PATCH');
+        data = fresh;
+        return;
+      } catch (e) {
+        if (!e.message.includes('422') || attempt === 3) throw e;
+      }
+    }
   }
 
   async function load() {
@@ -485,9 +494,12 @@ function main() {
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
     if (btn.dataset.action === 'delete-idea') {
-      const name = data.ideas[+btn.dataset.i].name;
+      const idea = JSON.stringify(data.ideas[+btn.dataset.i]);
       btn.disabled = true;
-      await save(`Fjern idé: ${name}`, fresh => { fresh.ideas = fresh.ideas.filter(x => x.name !== name); }).catch(err => alert(err.message));
+      await save(`Fjern idé: ${JSON.parse(idea).name}`, fresh => {
+        const i = fresh.ideas.findIndex(x => JSON.stringify(x) === idea);
+        if (i >= 0) fresh.ideas.splice(i, 1);
+      }).catch(err => alert(err.message));
       render();
     }
     if (btn.dataset.action === 'delete-dinner') {

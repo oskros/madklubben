@@ -177,15 +177,37 @@ function main() {
     const [, view = '', arg] = decodeURIComponent(location.hash).split('/');
     const html = (views[view] ?? dinnersPage)(arg);
     $('main').innerHTML = html ?? '<p>Ikke fundet.</p>';
-    $('#auth').textContent = token ? 'Log ud' : 'Log ind';
+    $('#auth').innerHTML = `${icon(token ? 'logout' : 'login')}<span>${token ? 'Log ud' : 'Log ind'}</span>`;
     $('#auth').href = token ? '#/logud' : '#/login';
-    document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${view}`));
+    const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view;
+    document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const pick = $('.pick');
     if (pick) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) =>
       Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false }));
   }
 
   const editOnly = html => token ? html : '';
+
+  const ICONS = {
+    plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+    back: '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
+    external: '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+    album: '<path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.3-1.3a2.4 2.4 0 0 0-3.4 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/>',
+    edit: '<path d="M21.2 6.8a1 1 0 0 0-4-4L3.8 16.2a2 2 0 0 0-.5.8L2 21.4a.5.5 0 0 0 .6.6l4.4-1.3a2 2 0 0 0 .8-.5z"/><path d="m15 5 4 4"/>',
+    trash: '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
+    camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+    next: '<path d="m9 18 6-6-6-6"/>',
+    prev: '<path d="m15 18-6-6 6-6"/>',
+    login: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>',
+    logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>',
+  };
+  const icon = name => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
+  const iconLink = (href, name, label, extra = '') => `<a class="icon-btn" href="${href}" aria-label="${label}" title="${label}" ${extra}>${icon(name)}</a>`;
+  const iconButton = (name, label, attrs = '') => `<button type="button" class="icon-btn" aria-label="${label}" title="${label}" ${attrs}>${icon(name)}</button>`;
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
+  const perPerson = d => d.price ? kr(d.price / data.members) : '–';
 
   function cover(d) {
     const src = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], true));
@@ -195,79 +217,105 @@ function main() {
   }
 
   const chips = themes => themes.length ? `<p class="chips">${themes.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : '';
+  const menuList = d => `<ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>`;
 
   function dinnerPage(id) {
     const d = data.dinners.find(x => x.id === id);
     if (!d) return null;
-    const links = [
-      safeUrl(d.website) && `<a href="${safeUrl(d.website)}" target="_blank" rel="noopener">Restaurant website</a>`,
-      d.closed && '<span class="muted">Eksisterer ikke mere</span>',
-      safeUrl(d.album) && `<a href="${safeUrl(d.album)}" target="_blank" rel="noopener">Album i Google Photos</a>`,
-    ].filter(Boolean).join(' · ');
+    const hero = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], false));
     return `
-      <article class="dinner">
-        <p><a href="#/" data-action="back">← Tilbage</a></p>
-        <p class="kicker">${dato(d.date)}</p>
-        <h1>${esc(d.restaurant)}</h1>
-        ${links ? `<p>${links}</p>` : ''}
-        ${chips(d.themes)}
-        ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
-        <dl class="facts">
-          <div><dt>Regning</dt><dd>${kr(d.price)}</dd></div>
-          <div><dt>Pr. person</dt><dd>${d.price ? kr(d.price / data.members) : '–'}</dd></div>
-          <div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
-          <div><dt>Eget indskud</dt><dd>${kr(d.outOfPocket)}</dd></div>
-        </dl>
-        ${d.menu.length ? `<h2>Menu</h2><ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>` : ''}
-        ${editOnly(`<p><a class="btn" href="#/ret/${esc(d.id)}">Redigér middag og billeder</a></p>`)}
-        ${d.photos.length ? `<h2>Billeder</h2><div class="grid">${d.photos.map((p, i) => `
-          <button data-photo="${i}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}
-      </article>`;
+      <div class="toolbar">
+        ${iconLink('#/', 'back', 'Tilbage', 'data-action="back"')}
+        ${editOnly(iconLink(`#/ret/${esc(d.id)}`, 'edit', 'Redigér middag og billeder'))}
+      </div>
+      <header class="dinner-head">
+        ${hero ? `<img class="dinner-img" src="${esc(hero)}" alt="">` : ''}
+        <div>
+          <p class="date">${dato(d.date)}</p>
+          <h1>${esc(d.restaurant)}</h1>
+          <p class="links">
+            ${safeUrl(d.website) ? `<a href="${safeUrl(d.website)}" target="_blank" rel="noopener">${icon('external')}${esc(host(d.website))}</a>` : ''}
+            ${safeUrl(d.album) ? `<a href="${safeUrl(d.album)}" target="_blank" rel="noopener">${icon('album')}Google Photos</a>` : ''}
+            ${d.closed ? '<span class="muted">Lukket</span>' : ''}
+          </p>
+          ${chips(d.themes)}
+          ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
+          <dl class="figures">
+            <div><dt>Regning</dt><dd>${kr(d.price)}</dd></div>
+            <div><dt>Pr. person</dt><dd>${perPerson(d)}</dd></div>
+            <div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
+            <div><dt>Eget indskud</dt><dd>${kr(d.outOfPocket)}</dd></div>
+          </dl>
+        </div>
+      </header>
+      <div class="dinner-body${d.menu.length ? '' : ' no-menu'}">
+        ${d.menu.length ? `<section><h2>Menu</h2>${menuList(d)}</section>` : ''}
+        <section>
+          <h2>Billeder <span class="count">${d.photos.length || ''}</span></h2>
+          ${d.photos.length ? `<div class="grid">${d.photos.map((p, i) => `
+            <button data-photo="${i}" aria-label="Billede ${i + 1}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></button>`).join('')}</div>`
+            : `<p class="muted">Ingen billeder endnu.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj billeder</a>` : ''}</p>`}
+        </section>
+      </div>`;
   }
 
   function dinnerForm(d) {
     if (!token) return loginPage();
     const v = d ?? { date: today(), restaurant: '', website: '', album: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false };
     return `
-      <h1>${d ? `Redigér ${esc(d.restaurant)}` : 'Ny middag'}</h1>
+      <div class="toolbar">${iconLink(d ? `#/d/${esc(d.id)}` : '#/', 'back', 'Tilbage', 'data-action="back"')}</div>
+      <h1>${d ? esc(d.restaurant) : 'Ny middag'}</h1>
       <form data-form="dinner" data-id="${esc(d?.id ?? '')}" class="stack">
-        <label>Restaurant <input name="restaurant" required value="${esc(v.restaurant)}"></label>
-        <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
-        <label>Regning i alt (kr.) <input name="price" type="number" min="0" value="${esc(v.price)}"></label>
-        <label>Eget indskud (kr., betalt ud over madkontoen) <input name="outOfPocket" type="number" min="0" value="${esc(v.outOfPocket)}"></label>
-        <label>Restaurantens hjemmeside <input name="website" type="url" value="${esc(v.website)}"></label>
-        <label><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten eksisterer ikke mere</label>
-        <label>Link til album i Google Photos <input name="album" type="url" value="${esc(v.album)}"></label>
-        <label>Temaer (adskilt af komma) <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="nordisk, vin-parring, tasting menu"></label>
-        <label>Menu (én ret pr. linje) <textarea name="menu" rows="8">${esc(v.menu.join('\n'))}</textarea></label>
-        <label>Note <textarea name="note" rows="3">${esc(v.note)}</textarea></label>
-        <label>Tilføj billeder <input name="photos" type="file" accept="image/*" multiple></label>
-        <p class="muted small">Tip: I Google Photos-albummet vælg "Download alle", pak zip-filen ud, og vælg billederne her. De formindskes før upload.</p>
-        ${v.photos.length ? `<fieldset><legend>Billeder: træk for at ændre rækkefølgen</legend><div class="grid pick">${v.photos.map(p => `
-          <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
-            <label class="del"><input type="checkbox" name="delete" value="${esc(p)}"> Slet</label></div>`).join('')}</div>
-          <p class="muted small">Ændringer gemmes, når du trykker Gem.</p></fieldset>` : ''}
-        <p class="row"><button class="btn">Gem</button> <span class="status"></span>
-          ${d ? '<button type="button" class="btn danger" data-action="delete-dinner">Slet middag</button>' : ''}</p>
+        <div class="fields">
+          <label class="span2">Restaurant <input name="restaurant" required value="${esc(v.restaurant)}"></label>
+          <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
+          <label>Regning i alt, kr. <input name="price" type="number" min="0" inputmode="numeric" value="${esc(v.price)}"></label>
+          <label>Eget indskud, kr. <input name="outOfPocket" type="number" min="0" inputmode="numeric" value="${esc(v.outOfPocket)}"></label>
+          <label class="check"><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten er lukket</label>
+          <label>Hjemmeside <input name="website" type="url" value="${esc(v.website)}"></label>
+          <label>Album i Google Photos <input name="album" type="url" value="${esc(v.album)}"></label>
+          <label class="span2">Temaer, adskilt af komma <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="nordisk, vinmenu"></label>
+          <label>Menu, én ret pr. linje <textarea name="menu" rows="8">${esc(v.menu.join('\n'))}</textarea></label>
+          <label>Note <textarea name="note" rows="8">${esc(v.note)}</textarea></label>
+        </div>
+        <fieldset>
+          <legend>Billeder</legend>
+          <label class="upload">${icon('plus')}Tilføj billeder<input name="photos" type="file" accept="image/*" multiple></label>
+          <p class="muted small">Download albummet fra Google Photos, pak zip-filen ud og vælg billederne. De formindskes før upload.${v.photos.length ? ' Træk billederne for at ændre rækkefølgen.' : ''}</p>
+          ${v.photos.length ? `<div class="grid pick">${v.photos.map(p => `
+            <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
+              <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label></div>`).join('')}</div>` : ''}
+        </fieldset>
+        <div class="actions">
+          <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
+          ${d ? `<button type="button" class="btn danger" data-action="delete-dinner">${icon('trash')}Slet middag</button>` : ''}
+        </div>
       </form>`;
   }
 
   function dinnersPage() {
     const priced = data.dinners.filter(d => d.price);
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
+    const f = forecast(data, today());
     return `
-      <section class="hero">
-        <p class="kicker">Madkontoen</p>
-        <h1>${kr(balance(data, today()))}</h1>
-        <p><a href="#/saldo">Se saldo og prognose</a></p>
-      </section>
-      <div class="row between"><h2>Middage</h2>${editOnly('<a class="btn" href="#/ny">+ Ny middag</a>')}</div>
-      <div class="scroll"><table>
-        <thead><tr><th></th><th>Dato</th><th>Sted</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
-        <tbody>${[...data.dinners].sort(byDate).map(d => `<tr>
-          <td class="thumb-cell"><a class="thumb" href="#/d/${esc(d.id)}" tabindex="-1">${cover(d)}</a></td><td><span class="wide">${esc(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td><td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a><br><span class="muted small">${d.photos.length ? `${d.photos.length} ${d.photos.length === 1 ? 'billede' : 'billeder'}` : 'Ingen billeder'}</span></td>
+      <a class="account" href="#/saldo">
+        <span><span class="amount">${kr(balance(data, today()))}</span> på madkontoen</span>
+        ${f ? `<span class="muted">Næste middag omkring ${dato(f.next)}</span>` : ''}
+        ${icon('next')}
+      </a>
+      <div class="section-head">
+        <h1>Middage <span class="count">${data.dinners.length}</span></h1>
+        ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}
+      </div>
+      <div class="scroll"><table class="dinners">
+        <thead><tr><th></th><th>Dato</th><th>Restaurant</th><th class="num wide">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num">Pr. person</th></tr></thead>
+        <tbody>${[...data.dinners].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}">
+          <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
+          <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
+          <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
+            <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span></td>
           <td class="num wide">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
-          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${d.price ? kr(d.price / data.members) : '–'}</td></tr>`).join('')}</tbody>
+          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num">${perPerson(d)}</td></tr>`).join('')}</tbody>
         <tfoot><tr><th colspan="3">I alt</th><th class="num wide">${kr(total(priced, d => d.price))}</th>
           <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th></th></tr></tfoot>
       </table></div>`;
@@ -279,83 +327,90 @@ function main() {
     const cp = [...data.checkpoints].sort(byDate)[0];
     const monthly = rateFor(data.rates, now.slice(0, 7)) * data.members;
     return `
-      <section class="hero">
-        <p class="kicker">Madkontoen</p>
-        <h1>${kr(balance(data, now))}</h1>
-        <p class="muted">Beregnet ud fra bankens saldo ${kr(cp.balance)} d. ${dato(cp.date)} + indbetalinger ${kr(monthly)}/md. − middage siden.</p>
-      </section>
-      ${f ? `<dl class="facts">
-        <div><dt>Gns. tid mellem middage</dt><dd>${f.avgDays} dage</dd></div>
-        <div><dt>Forventet næste middag</dt><dd>${dato(f.next)}</dd></div>
+      <h1 class="big">${kr(balance(data, now))}</h1>
+      <p class="lead">på madkontoen i dag. Beregnet ud fra bankens saldo på ${kr(cp.balance)} den ${dato(cp.date)}, plus ${kr(monthly)} i indbetalinger hver måned, minus middagene siden.</p>
+      ${f ? `<dl class="figures">
+        <div><dt>Næste middag omkring</dt><dd>${dato(f.next)}</dd></div>
         <div><dt>På madkontoen til den tid</dt><dd>${kr(f.savings)}</dd></div>
-        <div><dt>Budget pr. person til den tid</dt><dd>${kr(f.savings / data.members)}</dd></div>
+        <div><dt>Budget pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
+        <div><dt>Mellem middagene i snit</dt><dd>${f.avgDays} dage</dd></div>
       </dl>` : ''}
-      <h2>Indbetaling pr. person</h2>
-      <ul>${[...data.rates].sort((a, b) => a.from.localeCompare(b.from)).map(r => `<li>Fra ${esc(r.from)}: ${kr(r.perPerson)}/md.</li>`).join('')}</ul>
-      ${editOnly(`<form data-form="rate" class="row">
-        <label>Ny sats fra måned <input name="from" type="month" required value="${now.slice(0, 7)}"></label>
-        <label>Kr. pr. person <input name="perPerson" type="number" min="0" required></label>
-        <button class="btn">Tilføj</button> <span class="status"></span></form>`)}
-      <h2>Saldo ifølge banken</h2>
-      <ul>${[...data.checkpoints].sort(byDate).map(c => `<li>${esc(c.date)}: ${kr(c.balance)}${c.note ? ` · <span class="muted">${esc(c.note)}</span>` : ''}</li>`).join('')}</ul>
-      ${editOnly(`<form data-form="checkpoint" class="row">
-        <label>Dato <input name="date" type="date" required value="${now}"></label>
-        <label>Saldo (kr.) <input name="balance" type="number" required></label>
-        <label>Note <input name="note"></label>
-        <button class="btn">Tilføj</button> <span class="status"></span></form>`)}`;
+      <div class="columns">
+        <section>
+          <h2>Indbetaling pr. person</h2>
+          <table class="plain">${[...data.rates].sort((a, b) => b.from.localeCompare(a.from)).map(r => `<tr><td>Fra ${esc(r.from)}</td><td class="num">${kr(r.perPerson)} / md.</td></tr>`).join('')}</table>
+          ${editOnly(`<form data-form="rate" class="inline">
+            <label>Fra måned <input name="from" type="month" required value="${now.slice(0, 7)}"></label>
+            <label>Kr. pr. person <input name="perPerson" type="number" min="0" inputmode="numeric" required></label>
+            ${`<button class="icon-btn solid" aria-label="Tilføj sats" title="Tilføj sats">${icon('plus')}</button>`} <span class="status"></span></form>`)}
+        </section>
+        <section>
+          <h2>Saldo ifølge banken</h2>
+          <table class="plain">${[...data.checkpoints].sort(byDate).map(c => `<tr><td>${dato(c.date)}${c.note ? `<br><span class="muted small">${esc(c.note)}</span>` : ''}</td><td class="num">${kr(c.balance)}</td></tr>`).join('')}</table>
+          ${editOnly(`<form data-form="checkpoint" class="inline">
+            <label>Dato <input name="date" type="date" required value="${now}"></label>
+            <label>Saldo, kr. <input name="balance" type="number" inputmode="numeric" required></label>
+            <label>Note <input name="note"></label>
+            <button class="icon-btn solid" aria-label="Tilføj saldo" title="Tilføj saldo">${icon('plus')}</button> <span class="status"></span></form>`)}
+        </section>
+      </div>`;
   }
 
   function menusPage(theme) {
     const all = [...new Set(data.dinners.flatMap(d => d.themes))].sort();
     const list = [...data.dinners].sort(byDate).filter(d => !theme || d.themes.includes(theme));
+    const withMenu = list.filter(d => d.menu.length), without = list.filter(d => !d.menu.length);
     return `
-      <h1>Menuer og temaer</h1>
+      <h1>Menuer</h1>
       ${all.length ? `<p class="chips filter"><a href="#/menuer" class="${theme ? '' : 'on'}">Alle</a>${all.map(t => `<a href="#/menuer/${encodeURIComponent(t)}" class="${t === theme ? 'on' : ''}">${esc(t)}</a>`).join('')}</p>` : ''}
-      <div class="compare">${list.map(d => `
+      <div class="compare">${withMenu.map(d => `
         <section>
           <h2><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></h2>
-          <p class="muted">${esc(d.date.slice(0, 4))}${d.menu.length ? ` · ${d.menu.length} retter` : ''}${d.price ? ` · ${kr(d.price / data.members)} pr. person` : ''}</p>
+          <p class="muted small">${esc(d.date.slice(0, 4))}, ${d.menu.length} retter${d.price ? `, ${perPerson(d)} pr. person` : ''}</p>
           ${chips(d.themes)}
-          ${d.menu.length ? `<ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>` : `<p class="muted small">Menu mangler.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj</a>` : ''}</p>`}
-        </section>`).join('')}</div>`;
+          ${menuList(d)}
+        </section>`).join('')}</div>
+      ${without.length ? `<p class="muted without">Uden menu: ${without.map(d => `<a href="#/${token ? 'ret' : 'd'}/${esc(d.id)}">${esc(d.restaurant)}</a>`).join(', ')}</p>` : ''}`;
   }
 
   function ideasPage() {
     return `
       <h1>Idéer til næste gang</h1>
       <ul class="ideas">${data.ideas.map((x, i) => token && i === editingIdea ? `<li>
-        <form data-form="editIdea" data-i="${i}" class="row">
+        <form data-form="editIdea" data-i="${i}" class="inline">
           <label>Restaurant <input name="name" required value="${esc(x.name)}"></label>
           <label>Link <input name="url" type="url" value="${esc(x.url)}"></label>
           <label>Note <input name="note" value="${esc(x.note)}"></label>
-          <button class="btn">Gem</button> <button type="button" class="link" data-action="cancel-idea">Annuller</button> <span class="status"></span>
+          <button class="icon-btn solid" aria-label="Gem" title="Gem">${icon('check')}</button>
+          ${iconButton('x', 'Annuller', 'data-action="cancel-idea"')} <span class="status"></span>
         </form></li>` : `<li>
-        ${safeUrl(x.url) ? `<a href="${safeUrl(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : esc(x.name)}
-        ${x.note ? `<span class="muted"> · ${esc(x.note)}</span>` : ''}
-        ${editOnly(`<button class="link" data-action="edit-idea" data-i="${i}">Ret</button>
-          <button class="link" data-action="delete-idea" data-i="${i}">Fjern</button>`)}</li>`).join('')}</ul>
-      ${editOnly(`<form data-form="idea" class="row">
+        <div>
+          ${safeUrl(x.url) ? `<a href="${safeUrl(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>` : `<strong>${esc(x.name)}</strong>`}
+          ${x.note ? `<span class="muted">${esc(x.note)}</span>` : ''}
+        </div>
+        ${editOnly(`<span class="tools">${iconButton('edit', 'Ret idé', `data-action="edit-idea" data-i="${i}"`)}${iconButton('trash', 'Fjern idé', `data-action="delete-idea" data-i="${i}"`)}</span>`)}</li>`).join('')}</ul>
+      ${editOnly(`<form data-form="idea" class="inline">
         <label>Restaurant <input name="name" required></label>
         <label>Link <input name="url" type="url"></label>
         <label>Note <input name="note"></label>
-        <button class="btn">Tilføj</button> <span class="status"></span></form>`)}`;
+        <button class="icon-btn solid" aria-label="Tilføj idé" title="Tilføj idé">${icon('plus')}</button> <span class="status"></span></form>`)}`;
   }
 
   function loginPage() {
     return `
       <h1>Log ind</h1>
-      <p>Alle kan se siden. For at redigere skal du bruge madklubbens kodeord.</p>
-      <form data-form="login" class="row">
+      <p class="lead">Alle kan se siden. For at redigere skal du bruge madklubbens kodeord.</p>
+      <form data-form="login" class="inline">
         <label>Kodeord <input name="password" type="password" required autocomplete="current-password"></label>
-        <button class="btn">Log ind</button> <span class="status"></span>
+        <button class="btn">${icon('login')}Log ind</button> <span class="status"></span>
       </form>
       <details>
-        <summary class="muted">Opsætning: ny GitHub-nøgle eller nyt kodeord</summary>
+        <summary class="muted">Ny GitHub-nøgle eller nyt kodeord</summary>
         <p class="muted small">Indsæt en GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes i repoet.</p>
-        <form data-form="setup" class="row">
+        <form data-form="setup" class="inline">
           <label>GitHub-token <input name="token" type="password" required autocomplete="off"></label>
           <label>Kodeord <input name="password" type="password" required autocomplete="new-password"></label>
-          <button class="btn">Gem</button> <span class="status"></span>
+          <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
         </form>
       </details>`;
   }
@@ -503,6 +558,8 @@ function main() {
   });
 
   document.addEventListener('click', async e => {
+    const row = e.target.closest('tr[data-href]');
+    if (row && !e.target.closest('a')) location.hash = row.dataset.href;
     const photo = e.target.closest('[data-photo]');
     if (photo) return openViewer(+photo.dataset.photo);
     const btn = e.target.closest('[data-action]');
@@ -554,9 +611,9 @@ function main() {
     $('#viewer .count').textContent = `${viewing.i + 1} / ${d.photos.length}`;
   }
   $('#viewer').addEventListener('click', e => {
-    const s = e.target.dataset.step;
+    const s = e.target.closest('[data-step]')?.dataset.step;
     if (s) showPhoto(+s);
-    else if (e.target.matches('dialog, [data-close]')) $('#viewer').close();
+    else if (e.target.matches('dialog') || e.target.closest('[data-close]')) $('#viewer').close();
   });
   document.addEventListener('keydown', e => {
     if (!$('#viewer').open) return;

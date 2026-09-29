@@ -84,7 +84,12 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0ee2c85d6-0.jpg",
+    "1a0ee2c85d6-1.jpg",
+    "1a0ee2c85d6-2.jpg",
+    "1a0ee2c85d6-3.jpg"
+   ],
    "image": "restaurants/2018-relae.jpg"
   },
   {
@@ -174,7 +179,18 @@
    "note": "Lang pause pga flytning og rejser",
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0ee2c85d6-0.jpg",
+    "1a0ee2c85d6-1.jpg",
+    "1a0ee2c85d6-2.jpg",
+    "1a0ee2c85d6-3.jpg",
+    "1a0ee2c85d6-4.jpg",
+    "1a0ee2c85d6-5.jpg",
+    "1a0ee2c85d6-6.jpg",
+    "1a0ee2c85d6-7.jpg",
+    "1a0ee2c85d6-8.jpg",
+    "1a0ee2c85d6-9.jpg"
+   ],
    "image": "restaurants/2022-bistro-boheme.jpg"
   },
   {
@@ -219,7 +235,9 @@
    "note": null,
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0ee2c85d6-0.jpg"
+   ],
    "image": "restaurants/2023-mielcke-og-hurtigkarl.jpg"
   },
   {
@@ -278,8 +296,60 @@
    "outOfPocket": 1100,
    "note": null,
    "themes": [],
-   "menu": [],
-   "photos": [],
+   "menu": [
+    "Østers & pære",
+    "Løjrom & kartoffel",
+    "Høstsild med æble, dild & wasabi",
+    "Kammusling med vichyssoise",
+    "Hvide ribs & caviar",
+    "Pighvar i kombu & porre",
+    "Rå rejer & ristet brød",
+    "Jomfruhummer med kirsebær",
+    "Rosenkål med vilde svampe & vin jaune",
+    "Gulerod med peberrod & okse",
+    "Vagtel i enebær",
+    "Granbarksost & trøffel",
+    "Stikkelsbær & geranium",
+    "Vilde Blåbær med Chartreuse & timian",
+    "Blomme med shiso & Szechuan peber",
+    "Brændt jordskok & hasselnød",
+    "Rose & rødbede",
+    "Chokolade & grankogle"
+   ],
+   "photos": [
+    "1a0ee2c85d6-0.jpg",
+    "1a0ee2c85d6-1.jpg",
+    "1a0ee2c85d6-2.jpg",
+    "1a0ee2c85d6-3.jpg",
+    "1a0ee2c85d6-4.jpg",
+    "1a0ee2c85d6-5.jpg",
+    "1a0ee2c85d6-6.jpg",
+    "1a0ee2c85d6-7.jpg",
+    "1a0ee2c85d6-8.jpg",
+    "1a0ee2c85d6-9.jpg",
+    "1a0ee2c85d6-10.jpg",
+    "1a0ee2c85d6-11.jpg",
+    "1a0ee2c85d6-12.jpg",
+    "1a0ee2c85d6-13.jpg",
+    "1a0ee2c85d6-14.jpg",
+    "1a0ee2c85d6-15.jpg",
+    "1a0ee2c85d6-16.jpg",
+    "1a0ee2c85d6-17.jpg",
+    "1a0ee2c85d6-18.jpg",
+    "1a0ee2c85d6-19.jpg",
+    "1a0ee2c85d6-20.jpg",
+    "1a0ee2c85d6-21.jpg",
+    "1a0ee2c85d6-22.jpg",
+    "1a0ee2c85d6-23.jpg",
+    "1a0ee2c85d6-24.jpg",
+    "1a0ee2c85d6-25.jpg",
+    "1a0ee2c85d6-26.jpg",
+    "1a0ee2c85d6-27.jpg",
+    "1a0ee2c85d6-28.jpg",
+    "1a0ee2c85d6-29.jpg",
+    "1a0ee2c85d6-30.jpg",
+    "1a0ee2c85d6-31.jpg"
+   ],
    "image": "restaurants/2026-aoc.jpg"
   }
  ],

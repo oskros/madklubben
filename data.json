@@ -1,0 +1,276 @@
+{
+ "members": 3,
+ "rates": [
+  {
+   "from": "2016-06",
+   "perPerson": 100
+  },
+  {
+   "from": "2019-11",
+   "perPerson": 200
+  },
+  {
+   "from": "2024-11",
+   "perPerson": 300
+  }
+ ],
+ "checkpoints": [
+  {
+   "date": "2016-05-31",
+   "balance": 0,
+   "note": "Madklubben oprettes"
+  },
+  {
+   "date": "2026-09-25",
+   "balance": 0,
+   "note": "Antaget efter AOC (fra regnearket) - ret til bankens saldo"
+  }
+ ],
+ "dinners": [
+  {
+   "id": "2016-llama",
+   "date": "2016-06-05",
+   "restaurant": "Llama",
+   "website": "https://cofoco.dk/en/llama/",
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "note": "Farveldinner før Rasmus tager til Australien + Oprettelse af madklubben (100/måned)",
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2017-bodil",
+   "date": "2017-02-28",
+   "restaurant": "Bodil",
+   "website": null,
+   "closed": true,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2018-den-lille-fede",
+   "date": "2018-02-10",
+   "restaurant": "Den lille fede",
+   "website": "https://denlillefede.com/",
+   "closed": false,
+   "album": null,
+   "price": 3000,
+   "outOfPocket": 0,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2018-relae",
+   "date": "2018-12-01",
+   "restaurant": "Relæ",
+   "website": null,
+   "closed": true,
+   "album": null,
+   "price": 4860,
+   "outOfPocket": 2260,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2019-neighbourhood",
+   "date": "2019-06-09",
+   "restaurant": "Neighbourhood",
+   "website": "https://www.neighbourhood.dk/",
+   "closed": false,
+   "album": null,
+   "price": 1920,
+   "outOfPocket": 1920,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2019-hoest",
+   "date": "2019-10-19",
+   "restaurant": "Høst",
+   "website": "https://cofoco.dk/en/hoest/#overview",
+   "closed": false,
+   "album": null,
+   "price": 2850,
+   "outOfPocket": 0,
+   "note": "Ændring til 200/måned",
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2020-restaurant-108",
+   "date": "2020-06-12",
+   "restaurant": "Restaurant 108",
+   "website": null,
+   "closed": true,
+   "album": null,
+   "price": 3452,
+   "outOfPocket": 2,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2020-brasserie-barner",
+   "date": "2020-10-24",
+   "restaurant": "Brasserie Barner",
+   "website": "https://brasseriebarner.dk/",
+   "closed": false,
+   "album": null,
+   "price": 2840,
+   "outOfPocket": 90,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2021-marv-og-ben",
+   "date": "2021-05-29",
+   "restaurant": "Marv og Ben",
+   "website": "https://www.marvogben.dk/front",
+   "closed": false,
+   "album": null,
+   "price": 4000,
+   "outOfPocket": 400,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2022-bistro-boheme",
+   "date": "2022-08-13",
+   "restaurant": "Bistro Boheme",
+   "website": "https://bistroboheme.dk/",
+   "closed": false,
+   "album": null,
+   "price": 7870,
+   "outOfPocket": 0,
+   "note": "Lang pause pga flytning og rejser",
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2023-op-la",
+   "date": "2023-01-20",
+   "restaurant": "Op La",
+   "website": "https://oplarestaurant.dk/",
+   "closed": false,
+   "album": null,
+   "price": 1400,
+   "outOfPocket": 0,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2023-feed-bistro",
+   "date": "2023-04-01",
+   "restaurant": "Feed Bistro",
+   "website": "https://feed.dk/",
+   "closed": false,
+   "album": null,
+   "price": 5145,
+   "outOfPocket": 1215,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2023-mielcke-og-hurtigkarl",
+   "date": "2023-12-02",
+   "restaurant": "Mielcke og Hurtigkarl",
+   "website": "https://www.mhcph.com/",
+   "closed": false,
+   "album": null,
+   "price": 9145,
+   "outOfPocket": 3945,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2024-jatak",
+   "date": "2024-10-27",
+   "restaurant": "Jatak",
+   "website": "https://jatakcph.com",
+   "closed": false,
+   "album": null,
+   "price": 5155,
+   "outOfPocket": 0,
+   "note": "Ændring til 300/måned",
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2025-donna",
+   "date": "2025-01-06",
+   "restaurant": "Donna",
+   "website": "https://cofoco.dk/donna",
+   "closed": false,
+   "album": null,
+   "price": 1916,
+   "outOfPocket": 0,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2025-akme",
+   "date": "2025-09-17",
+   "restaurant": "Akme",
+   "website": "https://akme.dk",
+   "closed": false,
+   "album": null,
+   "price": 7450,
+   "outOfPocket": 0,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  },
+  {
+   "id": "2026-aoc",
+   "date": "2026-09-25",
+   "restaurant": "AOC",
+   "website": "https://restaurantaoc.dk/",
+   "closed": false,
+   "album": null,
+   "price": 15900,
+   "outOfPocket": 1100,
+   "note": null,
+   "themes": [],
+   "menu": [],
+   "photos": []
+  }
+ ],
+ "ideas": [
+  {
+   "name": "ESSE",
+   "url": null,
+   "note": null
+  }
+ ]
+}

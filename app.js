@@ -872,6 +872,14 @@ function main() {
         }),
       });
     });
+    history.pushState({ viewer: true }, '');
+    let closedByBack = false;
+    const onBack = () => { closedByBack = true; pswp.close(); };
+    addEventListener('popstate', onBack, { once: true });
+    pswp.on('destroy', () => {
+      removeEventListener('popstate', onBack);
+      if (!closedByBack && history.state?.viewer) history.back();
+    });
     pswp.init();
   }
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };

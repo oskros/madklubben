@@ -828,7 +828,7 @@ function main() {
     const placed = data.dinners.filter(d => d.lat != null && d.lon != null);
     const touch = matchMedia('(hover: none)').matches;
     for (const d of placed) {
-      const dot = L.circleMarker([d.lat, d.lon], { radius: touch ? 9 : 7, color: getComputedStyle(document.body).backgroundColor, weight: 2, fillColor: color, fillOpacity: 1 });
+      const dot = L.circleMarker([d.lat, d.lon], { radius: touch ? 6 : 5.5, color: getComputedStyle(document.body).backgroundColor, weight: 1.5, fillColor: color, fillOpacity: 1 });
       if (touch) {
         const short = new Date(toMs(d.date)).toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
         dot.bindPopup(`<strong>${esc(d.restaurant)}</strong><span class="muted">${short}</span><a href="#/d/${esc(d.id)}" aria-label="Se middag">${icon('next')}</a>`, { closeButton: false, offset: [0, -4], className: 'dot-popup' });

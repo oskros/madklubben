@@ -522,6 +522,7 @@ function main() {
     const el = $('#filter');
     el.hidden = !personal();
     if (!personal()) return;
+    el.classList.toggle('on', groupFilter() !== 'alle');
     el.innerHTML = [['alle', 'Alle'], ...Object.entries(GROUPS)].map(([k, n]) => `<option value="${k}" ${groupFilter() === k ? 'selected' : ''}>${n}</option>`).join('');
   }
 

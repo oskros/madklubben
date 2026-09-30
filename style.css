@@ -390,7 +390,17 @@ h2 { font-weight: 600; }
 .dinner-form textarea.grow { overflow: hidden; min-height: 5.2rem; }
 
 /* Oskar's own visits (only with the #/config switch) */
-#filter { font: inherit; font-size: .9rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: .3rem .5rem; margin-left: auto; margin-right: .75rem; }
+#filter {
+  appearance: none; font: inherit; font-weight: 500; color: var(--muted); cursor: pointer;
+  border: 0; border-radius: 99px; padding: .4rem 1.8rem .4rem .8rem; margin-left: auto; margin-right: .5rem;
+  background: var(--surface) no-repeat;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 15px) 55%, calc(100% - 10px) 55%;
+  background-size: 5px 5px;
+}
+#filter:hover { color: var(--ink); }
+#filter.on { color: var(--accent); background-color: var(--accent-soft); }
+#filter option { color: var(--ink); background: var(--bg); }
 .top { flex-wrap: nowrap; }
 @media (max-width: 700px) { .top:has(#filter:not([hidden])) { justify-content: space-between; } #filter { margin: 0; } }
 .tag { display: inline-block; margin-left: .5rem; font-size: .72rem; padding: .05rem .45rem; border-radius: 4px; background: var(--surface); color: var(--muted); vertical-align: .1em; }

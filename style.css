@@ -401,6 +401,19 @@ h2 { font-weight: 600; }
 #filter:hover { color: var(--ink); }
 #filter.on { color: var(--accent); background-color: var(--accent-soft); }
 #filter option { color: var(--ink); background: var(--bg); }
+@supports (appearance: base-select) {
+  #filter, #filter::picker(select) { appearance: base-select; }
+  #filter::picker-icon { display: none; }
+  #filter::picker(select) {
+    margin-top: .35rem; padding: .3rem; min-width: anchor-size(width);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--bg); box-shadow: 0 8px 24px rgb(0 0 0 / .12);
+  }
+  #filter option { padding: .4rem .8rem; border-radius: 6px; font-weight: 500; }
+  #filter option::checkmark { display: none; }
+  #filter option:hover, #filter option:focus-visible { background: var(--surface); outline: none; }
+  #filter option:checked { color: var(--accent); background: var(--accent-soft); }
+}
 .top { flex-wrap: nowrap; }
 @media (max-width: 700px) { .top:has(#filter:not([hidden])) { justify-content: space-between; } #filter { margin: 0; } }
 .tag { display: inline-block; margin-left: .5rem; font-size: .72rem; padding: .05rem .45rem; border-radius: 4px; background: var(--surface); color: var(--muted); vertical-align: .1em; }

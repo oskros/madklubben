@@ -218,7 +218,7 @@ function main() {
     if ($('#map')) drawMap($('#map'));
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
-      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, select, .note-btn', preventOnFilter: false });
+      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, .course-btn, .note-btn', preventOnFilter: false });
       if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, handle: '.grip', onEnd: () => refreshCourseSelects(dinner) });
     });
   }
@@ -304,18 +304,42 @@ function main() {
 
   let courseKeys = 0;
   const courseRow = (c = '', key = `n${courseKeys++}`) => `<li><span class="grip" title="Træk for at flytte">${icon('grip')}</span><input type="hidden" name="menuKey" value="${esc(key)}"><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
-  const courseOf = (d, p) => d.photoCourses?.[p] != null ? d.menu[d.photoCourses[p]] : undefined;
+  const coursesOf = (d, p) => [d.photoCourses?.[p] ?? []].flat().filter(n => d.menu[n] != null);
+  const courseRows = form => [...form.querySelectorAll('.menu-edit li')]
+    .map(li => ({ key: li.querySelector('[name=menuKey]').value, text: li.querySelector('[name=menu]').value.trim() }))
+    .filter(r => r.text);
 
   function refreshCourseSelects(form) {
-    const rows = [...form.querySelectorAll('.menu-edit li')]
-      .map(li => ({ key: li.querySelector('[name=menuKey]').value, text: li.querySelector('[name=menu]').value.trim() }))
-      .filter(r => r.text);
-    form.querySelectorAll('select[name=course]').forEach(sel => {
-      const was = sel.value || sel.dataset.initial || '';
-      sel.innerHTML = `<option value="">Ingen ret</option>${rows.map((r, i) => `<option value="${esc(r.key)}">${i + 1}. ${esc(r.text)}</option>`).join('')}`;
-      sel.value = rows.some(r => r.key === was) ? was : '';
-      delete sel.dataset.initial;
+    const rows = courseRows(form);
+    form.querySelectorAll('.tile [name=course]').forEach(input => {
+      const picked = rows.map((r, i) => ({ ...r, i })).filter(r => input.value.split(' ').includes(r.key));
+      input.value = picked.map(r => r.key).join(' ');
+      const btn = input.nextElementSibling;
+      btn.innerHTML = picked.length
+        ? `<span>${picked[0].i + 1}. ${esc(picked[0].text)}</span>${picked.length > 1 ? `<b>+${picked.length - 1}</b>` : ''}`
+        : '<span>Tilføj ret</span>';
+      btn.title = picked.map(r => `${r.i + 1}. ${r.text}`).join('\n');
+      btn.classList.toggle('on', picked.length > 0);
     });
+  }
+
+  function pickCourses(btn) {
+    const input = btn.previousElementSibling, form = btn.form;
+    let dlg = $('#course-picker');
+    if (!dlg) {
+      document.body.insertAdjacentHTML('beforeend', '<dialog id="course-picker"><form method="dialog"><h3>Retter på billedet</h3><div class="opts"></div><button class="btn">Færdig</button></form></dialog>');
+      dlg = $('#course-picker');
+    }
+    const on = input.value.split(' ');
+    const rows = courseRows(form);
+    dlg.querySelector('.opts').innerHTML = rows.length
+      ? rows.map((r, i) => `<label class="check"><input type="checkbox" value="${esc(r.key)}" ${on.includes(r.key) ? 'checked' : ''}> ${i + 1}. ${esc(r.text)}</label>`).join('')
+      : '<p class="muted">Skriv menuen først.</p>';
+    dlg.onclose = () => {
+      input.value = [...dlg.querySelectorAll('.opts input:checked')].map(c => c.value).join(' ');
+      refreshCourseSelects(form);
+    };
+    dlg.showModal();
   }
 
   function billPreview(form) {
@@ -376,7 +400,7 @@ function main() {
               <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label>
               <input type="hidden" name="photoNote" value="${esc(v.photoNotes?.[p] ?? '')}">
               <button type="button" class="note-btn${v.photoNotes?.[p] ? ' on' : ''}" data-action="photo-note" title="${esc(v.photoNotes?.[p] || 'Tilføj note')}" aria-label="Note til billedet">${icon('edit')}</button>
-              <select name="course" aria-label="Ret på billedet" data-initial="${v.photoCourses?.[p] != null ? `o${v.photoCourses[p]}` : ''}"></select></div>`).join('')}</div>` : ''}
+              <input type="hidden" name="course" value="${coursesOf(v, p).map(n => `o${n}`).join(' ')}"><button type="button" class="course-btn" data-action="pick-courses" aria-label="Retter på billedet"></button></div>`).join('')}</div>` : ''}
         </section>
         <div class="actions">
           <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
@@ -387,7 +411,7 @@ function main() {
 
   // ponytail: without course links, menu cards are guessed to be the first photos of dinners with a menu; skip up to 3 of them.
   function dishPhoto(d) {
-    const linked = d.photos.filter(p => courseOf(d, p));
+    const linked = d.photos.filter(p => coursesOf(d, p).length);
     const skip = d.menu.length ? Math.min(3, d.photos.length - 1) : 0;
     const pool = linked.length ? linked : d.photos.slice(skip);
     return pool[Math.floor(Math.random() * pool.length)];
@@ -652,7 +676,9 @@ function main() {
         note: orNull(fd.get('note')),
       };
       const keys = fd.getAll('menuKey').filter((_, i) => fd.getAll('menu')[i].trim());
-      const linked = Object.fromEntries(fd.getAll('order').map((p, i) => [p, keys.indexOf(fd.getAll('course')[i])]).filter(([, i]) => i >= 0));
+      const linked = Object.fromEntries(fd.getAll('order')
+        .map((p, i) => [p, fd.getAll('course')[i].split(' ').map(k => keys.indexOf(k)).filter(n => n >= 0).sort((a, b) => a - b)])
+        .filter(([, ns]) => ns.length));
       const notes = Object.fromEntries(fd.getAll('order').map((p, i) => [p, fd.getAll('photoNote')[i].trim()]).filter(([, n]) => n));
       const id = oldId || `${fields.date.slice(0, 4)}-${slug(fields.restaurant)}-${Date.now().toString(36).slice(-3)}`;
       const del = fd.getAll('delete');
@@ -746,6 +772,7 @@ function main() {
       btn.title = btn.getAttribute('aria-label');
       input.focus();
     }
+    if (btn.dataset.action === 'pick-courses') pickCourses(btn);
     if (btn.dataset.action === 'photo-note') {
       const input = btn.parentElement.querySelector('[name=photoNote]');
       const note = prompt('Note til billedet (vises i billedfremviseren)', input.value);
@@ -837,11 +864,11 @@ function main() {
         name: 'course', order: 9, isButton: false, appendTo: 'root',
         onInit: (el, p) => p.on('change', () => {
           const photo = d.photos[p.currIndex];
-          const n = d.photoCourses?.[photo];
+          const ns = coursesOf(d, photo);
           const note = d.photoNotes?.[photo];
-          el.hidden = n == null && !note;
-          el.innerHTML = (n == null ? '' : `<span class="n">${n + 1}</span>${esc(d.menu[n])}`)
-            + (note ? `<small${n == null ? ' class="alone"' : ''}>${esc(note)}</small>` : '');
+          el.hidden = !ns.length && !note;
+          el.innerHTML = ns.map(n => `<div><span class="n">${n + 1}</span>${esc(d.menu[n])}</div>`).join('')
+            + (note ? `<small${ns.length ? '' : ' class="alone"'}>${esc(note)}</small>` : '');
         }),
       });
     });

@@ -171,10 +171,18 @@
    "lat": 55.692998,
    "lon": 12.543219,
    "photoCourses": {
-    "1a0ee2c85d6-0.jpg": 4,
-    "1a0ee2c85d6-1.jpg": 5,
-    "1a0ee2c85d6-3.jpg": 6,
-    "1a0ee2c85d6-2.jpg": 6
+    "1a0ee2c85d6-0.jpg": [
+     4
+    ],
+    "1a0ee2c85d6-1.jpg": [
+     5
+    ],
+    "1a0ee2c85d6-3.jpg": [
+     6
+    ],
+    "1a0ee2c85d6-2.jpg": [
+     6
+    ]
    }
   },
   {
@@ -223,8 +231,12 @@
    "date": "2019-09-14",
    "image": "restaurants/2019-knud-89e837cd.jpg",
    "photoCourses": {
-    "1a0f1d04630-0.jpg": 0,
-    "1a0f1d04630-1.jpg": 1
+    "1a0f1d04630-0.jpg": [
+     0
+    ],
+    "1a0f1d04630-1.jpg": [
+     1
+    ]
    }
   },
   {
@@ -253,7 +265,9 @@
    "lat": 55.683361,
    "lon": 12.566165,
    "photoCourses": {
-    "1a0ee3a302f-1.jpg": 1
+    "1a0ee3a302f-1.jpg": [
+     1
+    ]
    }
   },
   {
@@ -290,12 +304,24 @@
    "lon": 12.551603,
    "note": "Med Ida.",
    "photoCourses": {
-    "1a0f1d04758-0.jpg": 3,
-    "1a0f1d04758-1.jpg": 0,
-    "1a0f1d04758-2.jpg": 1,
-    "1a0f1d04758-3.jpg": 2,
-    "1a0f1d04758-4.jpg": 4,
-    "1a0f1d04758-5.jpg": 5
+    "1a0f1d04758-0.jpg": [
+     3
+    ],
+    "1a0f1d04758-1.jpg": [
+     0
+    ],
+    "1a0f1d04758-2.jpg": [
+     1
+    ],
+    "1a0f1d04758-3.jpg": [
+     2
+    ],
+    "1a0f1d04758-4.jpg": [
+     4
+    ],
+    "1a0f1d04758-5.jpg": [
+     5
+    ]
    }
   },
   {
@@ -404,28 +430,72 @@
     "1a0f180a06a-32.jpg"
    ],
    "photoCourses": {
-    "1a0f180a06a-21.jpg": 0,
-    "1a0f180a06a-30.jpg": 1,
-    "1a0f180a06a-20.jpg": 2,
-    "1a0f180a06a-16.jpg": 3,
-    "1a0f180a06a-27.jpg": 3,
-    "1a0f180a06a-19.jpg": 4,
-    "1a0f180a06a-26-v2.jpg": 5,
-    "1a0f180a06a-18.jpg": 6,
-    "1a0f180a06a-22.jpg": 6,
-    "1a0f180a06a-25.jpg": 7,
-    "1a0f180a06a-10.jpg": 8,
-    "1a0f180a06a-6.jpg": 9,
-    "1a0f180a06a-5.jpg": 10,
-    "1a0f180a06a-12.jpg": 10,
-    "1a0f180a06a-13.jpg": 11,
-    "1a0f180a06a-3.jpg": 12,
-    "1a0f180a06a-2.jpg": 12,
-    "1a0f180a06a-7.jpg": 13,
-    "1a0f180a06a-11.jpg": 14,
-    "1a0f180a06a-8.jpg": 15,
-    "1a0f180a06a-4.jpg": 16,
-    "1a0f180a06a-1.jpg": 16
+    "1a0f180a06a-21.jpg": [
+     0
+    ],
+    "1a0f180a06a-30.jpg": [
+     1
+    ],
+    "1a0f180a06a-20.jpg": [
+     2
+    ],
+    "1a0f180a06a-16.jpg": [
+     3
+    ],
+    "1a0f180a06a-27.jpg": [
+     3
+    ],
+    "1a0f180a06a-19.jpg": [
+     4
+    ],
+    "1a0f180a06a-26-v2.jpg": [
+     5
+    ],
+    "1a0f180a06a-18.jpg": [
+     6
+    ],
+    "1a0f180a06a-22.jpg": [
+     6
+    ],
+    "1a0f180a06a-25.jpg": [
+     7
+    ],
+    "1a0f180a06a-10.jpg": [
+     8
+    ],
+    "1a0f180a06a-6.jpg": [
+     9
+    ],
+    "1a0f180a06a-5.jpg": [
+     10
+    ],
+    "1a0f180a06a-12.jpg": [
+     10
+    ],
+    "1a0f180a06a-13.jpg": [
+     11
+    ],
+    "1a0f180a06a-3.jpg": [
+     12
+    ],
+    "1a0f180a06a-2.jpg": [
+     12
+    ],
+    "1a0f180a06a-7.jpg": [
+     13
+    ],
+    "1a0f180a06a-11.jpg": [
+     14
+    ],
+    "1a0f180a06a-8.jpg": [
+     15
+    ],
+    "1a0f180a06a-4.jpg": [
+     16
+    ],
+    "1a0f180a06a-1.jpg": [
+     16
+    ]
    }
   },
   {
@@ -454,8 +524,12 @@
    "date": "2020-08-05",
    "image": "restaurants/2020-knud-89e837cd.jpg",
    "photoCourses": {
-    "1a0f1d04a2c-0.jpg": 0,
-    "1a0f1d04a2c-1.jpg": 0
+    "1a0f1d04a2c-0.jpg": [
+     0
+    ],
+    "1a0f1d04a2c-1.jpg": [
+     0
+    ]
    }
   },
   {
@@ -514,10 +588,18 @@
    "lon": 12.580743,
    "note": "Med Ida.",
    "photoCourses": {
-    "1a0f1d04b3f-3.jpg": 0,
-    "1a0f1d04b3f-2.jpg": 1,
-    "1a0f1d04b3f-0.jpg": 2,
-    "1a0f1d04b3f-1.jpg": 4
+    "1a0f1d04b3f-3.jpg": [
+     0
+    ],
+    "1a0f1d04b3f-2.jpg": [
+     1
+    ],
+    "1a0f1d04b3f-0.jpg": [
+     2
+    ],
+    "1a0f1d04b3f-1.jpg": [
+     4
+    ]
    }
   },
   {
@@ -567,9 +649,15 @@
    "lon": 12.574254,
    "note": "Med Ida.",
    "photoCourses": {
-    "1a0f1d04ffa-1.jpg": 0,
-    "1a0f1d04ffa-0.jpg": 1,
-    "1a0f1d04ffa-2.jpg": 2
+    "1a0f1d04ffa-1.jpg": [
+     0
+    ],
+    "1a0f1d04ffa-0.jpg": [
+     1
+    ],
+    "1a0f1d04ffa-2.jpg": [
+     2
+    ]
    }
   },
   {
@@ -633,14 +721,30 @@
    "lat": 55.687338,
    "lon": 12.591448,
    "photoCourses": {
-    "1a0ee2c85d6-9.jpg": 0,
-    "1a0ee2c85d6-0.jpg": 1,
-    "1a0ee2c85d6-3.jpg": 2,
-    "1a0ee2c85d6-1.jpg": 3,
-    "1a0ee2c85d6-6.jpg": 4,
-    "1a0ee2c85d6-4.jpg": 5,
-    "1a0ee2c85d6-8.jpg": 6,
-    "1a0ee2c85d6-7.jpg": 7
+    "1a0ee2c85d6-9.jpg": [
+     0
+    ],
+    "1a0ee2c85d6-0.jpg": [
+     1
+    ],
+    "1a0ee2c85d6-3.jpg": [
+     2
+    ],
+    "1a0ee2c85d6-1.jpg": [
+     3
+    ],
+    "1a0ee2c85d6-6.jpg": [
+     4
+    ],
+    "1a0ee2c85d6-4.jpg": [
+     5
+    ],
+    "1a0ee2c85d6-8.jpg": [
+     6
+    ],
+    "1a0ee2c85d6-7.jpg": [
+     7
+    ]
    }
   },
   {
@@ -812,12 +916,24 @@
    "lat": 55.687063,
    "lon": 12.547842,
    "photoCourses": {
-    "1a0f14db60f-0.jpg": 1,
-    "1a0ee3a302f-1.jpg": 3,
-    "1a0ee3a302f-2.jpg": 4,
-    "1a0f14db60f-1.jpg": 4,
-    "1a0ee3a302f-3.jpg": 5,
-    "1a0ee3a302f-4.jpg": 7
+    "1a0f14db60f-0.jpg": [
+     1
+    ],
+    "1a0ee3a302f-1.jpg": [
+     3
+    ],
+    "1a0ee3a302f-2.jpg": [
+     4
+    ],
+    "1a0f14db60f-1.jpg": [
+     4
+    ],
+    "1a0ee3a302f-3.jpg": [
+     5
+    ],
+    "1a0ee3a302f-4.jpg": [
+     7
+    ]
    }
   },
   {
@@ -854,13 +970,27 @@
    "lat": 55.677347,
    "lon": 12.56779,
    "photoCourses": {
-    "1a0ee3a302f-0.jpg": 0,
-    "1a0ee3a302f-1.jpg": 1,
-    "1a0ee3a302f-2.jpg": 2,
-    "1a0ee3a302f-3.jpg": 3,
-    "1a0ee3a302f-4.jpg": 4,
-    "1a0ee3a302f-5.jpg": 5,
-    "1a0ee3a302f-6.jpg": 6
+    "1a0ee3a302f-0.jpg": [
+     0
+    ],
+    "1a0ee3a302f-1.jpg": [
+     1
+    ],
+    "1a0ee3a302f-2.jpg": [
+     2
+    ],
+    "1a0ee3a302f-3.jpg": [
+     3
+    ],
+    "1a0ee3a302f-4.jpg": [
+     4
+    ],
+    "1a0ee3a302f-5.jpg": [
+     5
+    ],
+    "1a0ee3a302f-6.jpg": [
+     6
+    ]
    }
   },
   {
@@ -904,9 +1034,15 @@
    "lon": 12.571248,
    "note": "Med Ida. En speakeasy bag en hattebutik ved Nørreport. Menuen er fra en anmeldelse i september 2025, så enkelte retter var nok anderledes i juni.",
    "photoCourses": {
-    "1a0f1d053d4-0.jpg": 9,
-    "1a0f1d053d4-2.jpg": 3,
-    "1a0f1d053d4-4.jpg": 4
+    "1a0f1d053d4-0.jpg": [
+     9
+    ],
+    "1a0f1d053d4-2.jpg": [
+     3
+    ],
+    "1a0f1d053d4-4.jpg": [
+     4
+    ]
    }
   },
   {
@@ -937,9 +1073,15 @@
    "date": "2025-07-27",
    "image": "restaurants/2025-knud-89e837cd.jpg",
    "photoCourses": {
-    "1a0f1d05d20-0.jpg": 0,
-    "1a0f1d05d20-1.jpg": 2,
-    "1a0f1d05d20-2.jpg": 0
+    "1a0f1d05d20-0.jpg": [
+     0
+    ],
+    "1a0f1d05d20-1.jpg": [
+     2
+    ],
+    "1a0f1d05d20-2.jpg": [
+     0
+    ]
    }
   },
   {
@@ -1001,24 +1143,60 @@
    "lat": 55.706819,
    "lon": 12.59854,
    "photoCourses": {
-    "1a0ee3a302f-2.jpg": 0,
-    "1a0ee3a302f-4.jpg": 1,
-    "1a0ee3a302f-5.jpg": 1,
-    "1a0ee3a302f-7.jpg": 2,
-    "1a0ee3a302f-8.jpg": 3,
-    "1a0ee3a302f-9.jpg": 3,
-    "1a0ee3a302f-12.jpg": 4,
-    "1a0ee3a302f-13.jpg": 5,
-    "1a0ee3a302f-14.jpg": 6,
-    "1a0ee3a302f-16.jpg": 7,
-    "1a0ee3a302f-17.jpg": 9,
-    "1a0ee3a302f-18.jpg": 9,
-    "1a0ee3a302f-19.jpg": 9,
-    "1a0ee3a302f-20.jpg": 9,
-    "1a0ee3a302f-21.jpg": 8,
-    "1a0ee3a302f-23.jpg": 9,
-    "1a0ee3a302f-24.jpg": 9,
-    "1a0ee3a302f-25.jpg": 10
+    "1a0ee3a302f-2.jpg": [
+     0
+    ],
+    "1a0ee3a302f-4.jpg": [
+     1
+    ],
+    "1a0ee3a302f-5.jpg": [
+     1
+    ],
+    "1a0ee3a302f-7.jpg": [
+     2
+    ],
+    "1a0ee3a302f-8.jpg": [
+     3
+    ],
+    "1a0ee3a302f-9.jpg": [
+     3
+    ],
+    "1a0ee3a302f-12.jpg": [
+     4
+    ],
+    "1a0ee3a302f-13.jpg": [
+     5
+    ],
+    "1a0ee3a302f-14.jpg": [
+     6
+    ],
+    "1a0ee3a302f-16.jpg": [
+     7
+    ],
+    "1a0ee3a302f-17.jpg": [
+     9
+    ],
+    "1a0ee3a302f-18.jpg": [
+     9
+    ],
+    "1a0ee3a302f-19.jpg": [
+     9
+    ],
+    "1a0ee3a302f-20.jpg": [
+     9
+    ],
+    "1a0ee3a302f-21.jpg": [
+     8
+    ],
+    "1a0ee3a302f-23.jpg": [
+     9
+    ],
+    "1a0ee3a302f-24.jpg": [
+     9
+    ],
+    "1a0ee3a302f-25.jpg": [
+     10
+    ]
    }
   },
   {
@@ -1089,29 +1267,75 @@
    "lat": 55.683209,
    "lon": 12.589053,
    "photoCourses": {
-    "1a0ee2c85d6-12.jpg": 0,
-    "1a0ee2c85d6-6.jpg": 1,
-    "1a0ee2c85d6-22.jpg": 2,
-    "1a0ee2c85d6-17.jpg": 3,
-    "1a0ee2c85d6-24.jpg": 4,
-    "1a0ee2c85d6-14.jpg": 5,
-    "1a0ee2c85d6-23.jpg": 6,
-    "1a0ee2c85d6-30.jpg": 6,
-    "1a0ee2c85d6-15.jpg": 7,
-    "1a0ee2c85d6-27.jpg": 8,
-    "1a0ee2c85d6-11.jpg": 9,
-    "1a0ee2c85d6-4.jpg": 10,
-    "1a0ee2c85d6-1.jpg": 11,
-    "1a0ee2c85d6-29.jpg": 12,
-    "1a0ee2c85d6-13.jpg": 12,
-    "1a0ee2c85d6-20.jpg": 13,
-    "1a0ee2c85d6-7.jpg": 14,
-    "1a0ee2c85d6-21.jpg": 14,
-    "1a0ee2c85d6-8.jpg": 15,
-    "1a0ee2c85d6-9.jpg": 16,
-    "1a0ee2c85d6-16.jpg": 17,
-    "1a0ee2c85d6-3.jpg": 17,
-    "1a0ee2c85d6-28.jpg": 18
+    "1a0ee2c85d6-12.jpg": [
+     0
+    ],
+    "1a0ee2c85d6-6.jpg": [
+     1
+    ],
+    "1a0ee2c85d6-22.jpg": [
+     2
+    ],
+    "1a0ee2c85d6-17.jpg": [
+     3
+    ],
+    "1a0ee2c85d6-24.jpg": [
+     4
+    ],
+    "1a0ee2c85d6-14.jpg": [
+     5
+    ],
+    "1a0ee2c85d6-23.jpg": [
+     6
+    ],
+    "1a0ee2c85d6-30.jpg": [
+     6
+    ],
+    "1a0ee2c85d6-15.jpg": [
+     7
+    ],
+    "1a0ee2c85d6-27.jpg": [
+     8
+    ],
+    "1a0ee2c85d6-11.jpg": [
+     9
+    ],
+    "1a0ee2c85d6-4.jpg": [
+     10
+    ],
+    "1a0ee2c85d6-1.jpg": [
+     11
+    ],
+    "1a0ee2c85d6-29.jpg": [
+     12
+    ],
+    "1a0ee2c85d6-13.jpg": [
+     12
+    ],
+    "1a0ee2c85d6-20.jpg": [
+     13
+    ],
+    "1a0ee2c85d6-7.jpg": [
+     14
+    ],
+    "1a0ee2c85d6-21.jpg": [
+     14
+    ],
+    "1a0ee2c85d6-8.jpg": [
+     15
+    ],
+    "1a0ee2c85d6-9.jpg": [
+     16
+    ],
+    "1a0ee2c85d6-16.jpg": [
+     17
+    ],
+    "1a0ee2c85d6-3.jpg": [
+     17
+    ],
+    "1a0ee2c85d6-28.jpg": [
+     18
+    ]
    },
    "photoNotes": {
     "1a0ee2c85d6-0.jpg": "Tørret oksehjerte. Revet ud over tartaren I ret 11"

@@ -161,16 +161,35 @@
     "Quince & rose."
    ],
    "photos": [
+    "ext1a0f4600bbd-0.jpg",
+    "ext1a0f4600c1b-1.jpg",
+    "ext1a0f4600c5c-2.jpg",
+    "ext1a0f4600ca1-3.jpg",
     "1a0ee2c85d6-0.jpg",
     "1a0ee2c85d6-1.jpg",
     "1a0ee2c85d6-3.jpg",
-    "1a0ee2c85d6-2.jpg"
+    "1a0ee2c85d6-2.jpg",
+    "ext1a0f4600cf0-4.jpg",
+    "ext1a0f4600d3e-5.jpg",
+    "ext1a0f4600da3-6.jpg"
    ],
    "image": "restaurants/2018-relae-4f01b6e2.jpg",
    "address": "Jægersborggade 41, 2200 København N",
    "lat": 55.692998,
    "lon": 12.543219,
    "photoCourses": {
+    "ext1a0f4600bbd-0.jpg": [
+     0
+    ],
+    "ext1a0f4600c1b-1.jpg": [
+     1
+    ],
+    "ext1a0f4600c5c-2.jpg": [
+     2
+    ],
+    "ext1a0f4600ca1-3.jpg": [
+     3
+    ],
     "1a0ee2c85d6-0.jpg": [
      4
     ],
@@ -182,7 +201,25 @@
     ],
     "1a0ee2c85d6-2.jpg": [
      6
+    ],
+    "ext1a0f4600cf0-4.jpg": [
+     7
+    ],
+    "ext1a0f4600d3e-5.jpg": [
+     8
+    ],
+    "ext1a0f4600da3-6.jpg": [
+     9
     ]
+   },
+   "photoNotes": {
+    "ext1a0f4600bbd-0.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600c1b-1.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600c5c-2.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600ca1-3.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600cf0-4.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600d3e-5.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600da3-6.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)"
    }
   },
   {
@@ -258,16 +295,33 @@
     "Blåbærsorbet med karamel og urtechokolade"
    ],
    "photos": [
-    "1a0ee3a302f-1.jpg"
+    "ext1a0f4600ded-7.jpg",
+    "1a0ee3a302f-1.jpg",
+    "ext1a0f4600dfe-8.jpg",
+    "ext1a0f4600e12-9.jpg"
    ],
    "image": "restaurants/2019-hoest-fa44a333.jpg",
    "address": "Nørre Farimagsgade 41, 1364 København K",
    "lat": 55.683361,
    "lon": 12.566165,
    "photoCourses": {
+    "ext1a0f4600ded-7.jpg": [
+     0
+    ],
     "1a0ee3a302f-1.jpg": [
      1
+    ],
+    "ext1a0f4600dfe-8.jpg": [
+     3
+    ],
+    "ext1a0f4600e12-9.jpg": [
+     4
     ]
+   },
+   "photoNotes": {
+    "ext1a0f4600ded-7.jpg": "Foto: anden gæst på TripAdvisor (31. okt. 2019)",
+    "ext1a0f4600dfe-8.jpg": "Foto: anden gæst på TripAdvisor (31. okt. 2019)",
+    "ext1a0f4600e12-9.jpg": "Foto: anden gæst på TripAdvisor (31. okt. 2019)"
    }
   },
   {

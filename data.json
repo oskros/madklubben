@@ -46,6 +46,7 @@
     "1a0f1bb7867-1.jpg",
     "1a0f1bb7903-2.jpg",
     "1a0f1bb79a7-3.jpg",
+    "ext1a0f473b803-2.jpg",
     "1a0f1bb7a35-4.jpg"
    ],
    "id": "2015-onyx",
@@ -58,7 +59,15 @@
    "address": "Vörösmarty tér 7-8, 1051 Budapest",
    "lat": 47.4972556,
    "lon": 19.0505627,
-   "note": "Med Ida i Budapest."
+   "note": "Med Ida i Budapest.",
+   "photoCourses": {
+    "ext1a0f473b803-2.jpg": [
+     5
+    ]
+   },
+   "photoNotes": {
+    "ext1a0f473b803-2.jpg": "Foto: Onfan Food, Flickr (juli 2015)"
+   }
   },
   {
    "id": "2016-llama",
@@ -405,7 +414,9 @@
     "HYLDEBLOMST DESSERT med søde æggeblommer og saké"
    ],
    "photos": [
-    "1a0f14c5929-0.jpg"
+    "1a0f14c5929-0.jpg",
+    "ext1a0f473b7d2-0.jpg",
+    "ext1a0f473b7ec-1.jpg"
    ],
    "image": "restaurants/2020-restaurant-108-b7ee5fef.jpg",
    "address": "Strandgade 108, 1401 København K",
@@ -422,7 +433,19 @@
      6,
      7,
      8
+    ],
+    "ext1a0f473b7d2-0.jpg": [
+     9,
+     10,
+     11
+    ],
+    "ext1a0f473b7ec-1.jpg": [
+     12
     ]
+   },
+   "photoNotes": {
+    "ext1a0f473b7d2-0.jpg": "Foto: Restaurant 108, Facebook (26. juni 2020)",
+    "ext1a0f473b7ec-1.jpg": "Foto: Restaurant 108, Facebook (6. juli 2020)"
    }
   },
   {

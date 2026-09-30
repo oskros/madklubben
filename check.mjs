@@ -29,6 +29,10 @@ assert.equal(f.avgDays, 55);
 assert.equal(f.next, '2024-06-04');
 assert.equal(f.savings, 50 + 900 + 900);
 
+const withOwn = { ...data, dinners: [...data.dinners, { date: '2024-05-20', price: 9000, outOfPocket: null, group: 'ida' }] };
+assert.equal(balance(withOwn, '2024-06-01'), balance(data, '2024-06-01'), 'own visits never touch the madkonto');
+assert.deepEqual(forecast(withOwn, '2024-05-01'), forecast(data, '2024-05-01'), 'own visits are left out of the forecast');
+
 const csv = '\uFEFFDato;Tekst;Beløb;Saldo;Afstemt;Kontonummer\n'
   + '25.09.2026;Lønkonto;-9.700,00;0,00;;0000 000000\n'
   + '07.09.2026;Lønkonto;300,00;9.700,00;;0000 000000\n'

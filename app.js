@@ -44,18 +44,20 @@ export function latestBalance(csv) {
   return best;
 }
 
+// Dinners outside the club (Oskar's own visits) never touch the madkonto.
+export const isClub = d => (d.group ?? 'madklubben') === 'madklubben';
 export const fromFund = d => (d.price ?? 0) - (d.outOfPocket ?? 0);
 
 // A checkpoint is the bank balance at the end of its date, so dinners that day are already paid.
 export function balance(data, date) {
   const cp = data.checkpoints.filter(c => c.date <= date).sort((a, b) => a.date.localeCompare(b.date)).at(-1)
     ?? { date: '0000-00-00', balance: 0 };
-  const spent = data.dinners.filter(d => d.date > cp.date && d.date <= date).reduce((s, d) => s + fromFund(d), 0);
+  const spent = data.dinners.filter(d => isClub(d) && d.date > cp.date && d.date <= date).reduce((s, d) => s + fromFund(d), 0);
   return cp.balance + depositsBetween(data, cp.date, date) - spent;
 }
 
 export function forecast(data, today) {
-  const dates = data.dinners.map(d => d.date).sort();
+  const dates = data.dinners.filter(isClub).map(d => d.date).sort();
   if (dates.length < 2) return null;
   const avgDays = daysBetween(dates[0], dates.at(-1)) / (dates.length - 1);
   const next = toIso(Math.max(toMs(dates.at(-1)) + avgDays * DAY, toMs(today)));
@@ -84,6 +86,10 @@ function main() {
   let token = store.get('gh-token');
   let data;
   let editingIdea = null;
+  const GROUPS = { madklubben: 'Madklubben', ida: 'Ida', andre: 'Andre' };
+  const personal = () => store.get('mig') === '1';
+  const groupFilter = () => personal() ? store.get('mig-filter') ?? 'alle' : 'madklubben';
+  const shown = () => data.dinners.filter(d => groupFilter() === 'alle' || (d.group ?? 'madklubben') === groupFilter());
   const localUrls = {};
 
   // ---------- GitHub as storage ----------
@@ -191,6 +197,7 @@ function main() {
     ideer: ideasPage,
     login: loginPage,
     opsaetning: setupPage,
+    config: configPage,
   };
 
   function render() {
@@ -199,6 +206,7 @@ function main() {
     $('main').innerHTML = html ?? '<p>Ikke fundet.</p>';
     $('#auth').innerHTML = `${icon(token ? 'logout' : 'login')}<span>${token ? 'Log ud' : 'Log ind'}</span>`;
     $('#auth').href = token ? '#/logud' : '#/login';
+    renderFilter();
     const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view;
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
@@ -237,7 +245,8 @@ function main() {
   const iconLink = (href, name, label, extra = '') => `<a class="icon-btn" href="${href}" aria-label="${label}" title="${label}" ${extra}>${icon(name)}</a>`;
   const iconButton = (name, label, attrs = '') => `<button type="button" class="icon-btn" aria-label="${label}" title="${label}" ${attrs}>${icon(name)}</button>`;
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
-  const perPerson = d => d.price ? kr(d.price / data.members) : '–';
+  const heads = d => isClub(d) ? data.members : d.people || 2;
+  const perPerson = d => d.price ? kr(d.price / heads(d)) : '–';
 
   function cover(d) {
     const src = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], true));
@@ -274,8 +283,8 @@ function main() {
           <dl class="figures">
             <div><dt>Regning</dt><dd>${kr(d.price)}</dd></div>
             <div><dt>Pr. person</dt><dd>${perPerson(d)}</dd></div>
-            <div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
-            <div><dt>Eget indskud pr. person</dt><dd>${d.outOfPocket == null ? '–' : kr(d.outOfPocket / data.members)}</dd></div>
+            ${isClub(d) ? `<div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
+            <div><dt>Eget indskud pr. person</dt><dd>${d.outOfPocket == null ? '–' : kr(d.outOfPocket / data.members)}</dd></div>` : `<div><dt>Med</dt><dd>${GROUPS[d.group] ?? 'Andre'}</dd></div>`}
           </dl>
         </div>
       </header>
@@ -293,20 +302,26 @@ function main() {
   const courseRow = (c = '') => `<li><span class="grip" title="Træk for at flytte">${icon('grip')}</span><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
 
   function billPreview(form) {
-    const price = +form.price.value || 0, own = (+form.outOfPocket.value || 0) * data.members;
-    form.querySelector('.bill').textContent = price
-      ? `${kr(price - own)} fra madkontoen, ${kr(price / data.members)} pr. person`
-      : '';
+    const price = +form.price.value || 0;
+    const club = (form.group?.value ?? 'madklubben') === 'madklubben';
+    form.querySelectorAll('.club-only').forEach(el => { el.hidden = !club; });
+    form.querySelectorAll('.own-only').forEach(el => { el.hidden = club; });
+    const n = club ? data.members : +form.people?.value || 2;
+    const own = (+form.outOfPocket.value || 0) * data.members;
+    form.querySelector('.bill').textContent = !price ? '' : club
+      ? `${kr(price - own)} fra madkontoen, ${kr(price / n)} pr. person`
+      : `${kr(price / n)} pr. person`;
   }
 
   function dinnerForm(d) {
     if (!token) return loginPage();
-    const v = d ?? { date: today(), restaurant: '', website: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false };
+    const v = d ?? { date: today(), restaurant: '', website: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false, group: groupFilter() === 'alle' ? 'madklubben' : groupFilter() };
     return `
       <div class="toolbar">${iconLink(d ? `#/d/${esc(d.id)}` : '#/', 'back', 'Tilbage')}</div>
       <h1>${d ? esc(d.restaurant) : 'Ny middag'}</h1>
       <form data-form="dinner" data-id="${esc(d?.id ?? '')}" class="dinner-form">
         <section>
+          ${personal() || !isClub(v) ? `<label>Hvem <select name="group">${Object.entries(GROUPS).map(([k, n]) => `<option value="${k}" ${(v.group ?? 'madklubben') === k ? 'selected' : ''}>${n}</option>`).join('')}</select></label>` : ''}
           <label>Restaurant <input name="restaurant" required value="${esc(v.restaurant)}" autocomplete="off"></label>
           <div class="pair">
             <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
@@ -325,7 +340,8 @@ function main() {
           <h2>Regning</h2>
           <div class="pair">
             <label>I alt, kr. <input name="price" type="number" min="0" inputmode="numeric" value="${esc(v.price)}"></label>
-            <label>Eget indskud pr. person, kr. <input name="outOfPocket" type="number" min="0" step="any" inputmode="decimal" value="${v.outOfPocket == null ? '' : Math.round(v.outOfPocket / data.members * 100) / 100}"></label>
+            <label class="own-only">Antal personer <input name="people" type="number" min="1" inputmode="numeric" value="${esc(v.people ?? 2)}"></label>
+            <label class="club-only">Eget indskud pr. person, kr. <input name="outOfPocket" type="number" min="0" step="any" inputmode="decimal" value="${v.outOfPocket == null ? '' : Math.round(v.outOfPocket / data.members * 100) / 100}"></label>
           </div>
           <p class="bill muted"></p>
         </section>
@@ -357,7 +373,7 @@ function main() {
   }
 
   function photoStrip() {
-    const withPhotos = [...data.dinners].sort(byDate).filter(d => d.photos.length);
+    const withPhotos = [...shown()].sort(byDate).filter(d => d.photos.length);
     if (!withPhotos.length) return '';
     return `<div class="strip">${withPhotos.map(d => `
       <a href="#/d/${esc(d.id)}" title="${esc(d.restaurant)}">
@@ -367,7 +383,7 @@ function main() {
   }
 
   function timeline() {
-    const dates = data.dinners.map(d => d.date).sort();
+    const dates = shown().map(d => d.date).sort();
     if (!dates.length) return '';
     const first = +dates[0].slice(0, 4), last = +today().slice(0, 4) + 1;
     const start = toMs(`${first}-01-01`), span = toMs(`${last}-01-01`) - start;
@@ -378,14 +394,14 @@ function main() {
         <h2>Tidslinje</h2>
         <div class="track">
           ${years.map(y => `<span class="year" style="left:${pos(`${y}-01-01`)}%">${y < last ? y : ''}</span>`).join('')}
-          ${[...data.dinners].sort((a, b) => a.date.localeCompare(b.date)).map(d => `<a class="dot" href="#/d/${esc(d.id)}" style="left:${pos(d.date)}%" title="${esc(d.restaurant)}, ${dato(d.date)}" aria-label="${esc(d.restaurant)}"></a>`).join('')}
+          ${[...shown()].sort((a, b) => a.date.localeCompare(b.date)).map(d => `<a class="dot${isClub(d) ? '' : ' own'}" href="#/d/${esc(d.id)}" style="left:${pos(d.date)}%" title="${esc(d.restaurant)}, ${dato(d.date)}" aria-label="${esc(d.restaurant)}"></a>`).join('')}
           <span class="now" style="left:${pos(today())}%" title="I dag"></span>
         </div>
       </section>`;
   }
 
   function dinnersPage() {
-    const priced = data.dinners.filter(d => d.price);
+    const list = shown(), priced = list.filter(d => d.price), clubPriced = priced.filter(isClub);
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
     const f = forecast(data, today());
     return `
@@ -396,22 +412,22 @@ function main() {
         ${icon('next')}
       </a>
       ${timeline()}
-      ${data.dinners.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}
+      ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}
       <div class="section-head">
-        <h1>Middage <span class="count">${data.dinners.length}</span></h1>
+        <h1>${groupFilter() === 'madklubben' || groupFilter() === 'alle' ? 'Middage' : GROUPS[groupFilter()]} <span class="count">${list.length}</span></h1>
         ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}
       </div>
       <div class="scroll"><table class="dinners">
         <thead><tr><th></th><th>Dato</th><th>Restaurant</th><th class="num">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num wide">Pr. person</th></tr></thead>
-        <tbody>${[...data.dinners].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}">
+        <tbody>${[...list].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}"${isClub(d) ? '' : ' class="own"'}>
           <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
           <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
           <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
-            <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span></td>
-          <td class="num">${kr(d.price)}</td><td class="num wide">${d.price ? kr(fromFund(d)) : '–'}</td>
-          <td class="num wide">${kr(d.outOfPocket)}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
+            <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span>${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
+          <td class="num">${kr(d.price)}</td><td class="num wide">${isClub(d) && d.price ? kr(fromFund(d)) : '–'}</td>
+          <td class="num wide">${isClub(d) ? kr(d.outOfPocket) : '–'}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
         <tfoot><tr><th colspan="3">I alt</th><th class="num">${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${kr(total(priced, fromFund))}</th><th class="num wide">${kr(total(priced, d => d.outOfPocket ?? 0))}</th><th class="num wide">${kr(total(priced, d => d.price) / data.members)}</th></tr></tfoot>
+          <th class="num wide">${clubPriced.length ? kr(total(clubPriced, fromFund)) : '–'}</th><th class="num wide">${clubPriced.length ? kr(total(clubPriced, d => d.outOfPocket ?? 0)) : '–'}</th><th class="num wide">${kr(total(priced, d => d.price / heads(d)))}</th></tr></tfoot>
       </table></div>`;
   }
 
@@ -451,8 +467,8 @@ function main() {
   }
 
   function menusPage(theme) {
-    const all = [...new Set(data.dinners.flatMap(d => d.themes))].sort();
-    const list = [...data.dinners].sort(byDate).filter(d => !theme || d.themes.includes(theme));
+    const all = [...new Set(shown().flatMap(d => d.themes))].sort();
+    const list = [...shown()].sort(byDate).filter(d => !theme || d.themes.includes(theme));
     const withMenu = list.filter(d => d.menu.length), without = list.filter(d => !d.menu.length);
     return `
       <h1>Menuer</h1>
@@ -493,6 +509,21 @@ function main() {
   }
 
   const secret = (name, autocomplete) => `<span class="secret"><input name="${name}" type="password" required autocomplete="${autocomplete}">${iconButton('eye', 'Vis kodeord', 'data-action="reveal" aria-pressed="false"')}</span>`;
+
+  function configPage() {
+    return `
+      <h1>Indstillinger</h1>
+      <p class="lead">Gælder kun i denne browser.</p>
+      <label class="check big-check"><input type="checkbox" data-action="toggle-mine" ${personal() ? 'checked' : ''}> Vis mine egne besøg</label>
+      <p class="muted small">Tilføjer et filter i toppen (Alle, Madklubben, Ida, Andre) og et Hvem-felt, når du opretter en middag. Madkontoen tæller altid kun Madklubben.</p>`;
+  }
+
+  function renderFilter() {
+    const el = $('#filter');
+    el.hidden = !personal();
+    if (!personal()) return;
+    el.innerHTML = [['alle', 'Alle'], ...Object.entries(GROUPS)].map(([k, n]) => `<option value="${k}" ${groupFilter() === k ? 'selected' : ''}>${n}</option>`).join('');
+  }
 
   function loginPage() {
     return `
@@ -586,6 +617,9 @@ function main() {
         date: fd.get('date'),
         price: num(fd.get('price')),
         outOfPocket: fd.get('outOfPocket') === '' ? null : Math.round(Number(fd.get('outOfPocket')) * data.members),
+        ...(fd.get('group') && fd.get('group') !== 'madklubben'
+          ? { group: fd.get('group'), people: num(fd.get('people')), outOfPocket: null }
+          : { group: undefined, people: undefined }),
         website: orNull(fd.get('website')),
         closed: fd.get('closed') === 'on',
         address: orNull(fd.get('address')),
@@ -668,6 +702,12 @@ function main() {
     if (photo) return openViewer(+photo.dataset.photo);
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
+    if (btn.dataset.action === 'toggle-mine') {
+      store.set('mig', btn.checked ? '1' : null);
+      if (!btn.checked) store.set('mig-filter', null);
+      renderFilter();
+      return;
+    }
     if (btn.dataset.action === 'reveal') {
       const input = btn.previousElementSibling, show = input.type === 'password';
       input.type = show ? 'text' : 'password';
@@ -737,6 +777,10 @@ function main() {
     if (e.target.matches('textarea.grow')) grow(e.target);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);
+  });
+  document.addEventListener('change', e => {
+    if (e.target.id === 'filter') { store.set('mig-filter', e.target.value); render(); }
+    if (e.target.name === 'group') billPreview(e.target.form);
   });
   document.addEventListener('change', async e => {
     if (e.target.name !== 'bankcsv' || !e.target.files.length) return;
@@ -823,7 +867,7 @@ function main() {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     const color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-    const placed = data.dinners.filter(d => d.lat != null && d.lon != null);
+    const placed = shown().filter(d => d.lat != null && d.lon != null);
     const touch = matchMedia('(hover: none)').matches;
     for (const d of placed) {
       const dot = L.circleMarker([d.lat, d.lon], { radius: touch ? 6 : 5.5, color: getComputedStyle(document.body).backgroundColor, weight: 1.5, fillColor: color, fillOpacity: 1 });

@@ -761,20 +761,39 @@ function main() {
   let viewing = null;
   function openViewer(i) {
     const id = decodeURIComponent(location.hash).split('/')[2];
-    viewing = { d: data.dinners.find(x => x.id === id), i };
+    const d = data.dinners.find(x => x.id === id);
+    viewing = { d, i };
+    const v = $('#viewer');
+    v.classList.toggle('single', d.photos.length < 2);
+    $('#viewer .vtitle strong').textContent = d.restaurant;
+    $('#viewer .vtitle span').textContent = dato(d.date);
+    $('#viewer .film').innerHTML = d.photos.map((p, n) =>
+      `<button data-go="${n}" aria-label="Billede ${n + 1}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></button>`).join('');
     showPhoto(0);
-    $('#viewer').showModal();
+    v.showModal();
   }
-  function showPhoto(step) {
+  function showPhoto(step, to) {
     const { d } = viewing;
-    viewing.i = (viewing.i + step + d.photos.length) % d.photos.length;
-    $('#viewer img').src = photoUrl(d, d.photos[viewing.i], false);
-    $('#viewer .count').textContent = `${viewing.i + 1} / ${d.photos.length}`;
+    const n = d.photos.length;
+    viewing.i = to ?? (viewing.i + step + n) % n;
+    const img = $('#viewer .stage img');
+    const src = photoUrl(d, d.photos[viewing.i], false);
+    if (img.getAttribute('src') !== src) {
+      img.classList.add('loading');
+      img.onload = () => img.classList.remove('loading');
+      img.src = src;
+    }
+    for (const k of [1, -1]) new Image().src = photoUrl(d, d.photos[(viewing.i + k + n) % n], false);
+    $('#viewer .count').textContent = `${viewing.i + 1} / ${n}`;
+    document.querySelectorAll('#viewer .film button').forEach((b, k) => b.classList.toggle('on', k === viewing.i));
+    $('#viewer .film button.on')?.scrollIntoView({ block: 'nearest', inline: 'center' });
   }
   $('#viewer').addEventListener('click', e => {
     const s = e.target.closest('[data-step]')?.dataset.step;
+    const go = e.target.closest('[data-go]')?.dataset.go;
     if (s) showPhoto(+s);
-    else if (e.target.matches('dialog') || e.target.closest('[data-close]')) $('#viewer').close();
+    else if (go) showPhoto(0, +go);
+    else if (e.target.matches('dialog, .stage, .vbar') || e.target.closest('[data-close]')) $('#viewer').close();
   });
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {

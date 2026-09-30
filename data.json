@@ -163,7 +163,10 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Canadisk hummer, råstegt i hvidløg og urter. Serveret med grillet citron estragonmayonnaise og frilicesalat",
+    "300 gr. dansk krogmodnet Ribeye med fritter, estragonmayonnaise og vendt salat"
+   ],
    "photos": [
     "1a0f1d04630-0.jpg",
     "1a0f1d04630-1.jpg"
@@ -206,7 +209,14 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Fried oysters with sauce tatar",
+    "Cod ceviche - raw marinated cod, mango and coriander",
+    "Blue mussels",
+    "Peel-and-eat shrimps",
+    "Whole grilled sea bass with salsa verde",
+    "Grilled flat iron steak, 200 g."
+   ],
    "photos": [
     "1a0f1d04758-0.jpg",
     "1a0f1d04758-1.jpg",
@@ -313,7 +323,10 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Råstegt sort dansk hummer – 1/1 dansk sort hummer, ca. 500 gram pr. stk. råstegt i smør med hvidløg og urter. Serveret med salat, citron og mayonnaise",
+    "Frittet kartofler med estragon mayonnaise"
+   ],
    "photos": [
     "1a0f1d04a2c-0.jpg",
     "1a0f1d04a2c-1.jpg"
@@ -356,7 +369,14 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Mozzarella – Bøffelmozzarella med ramsløgspesto",
+    "Finocchi Gratinati – Gratineret fennikel",
+    "Broccolini – Aspargesbroccoli med gedeost og boghvedekerner",
+    "Babaganoush – Auberginedip",
+    "Arancini – Risottokugler med chili og mynte",
+    "To slags pasta (Chef’s choise)"
+   ],
    "photos": [
     "1a0f1d04b3f-0.jpg",
     "1a0f1d04b3f-1.jpg",
@@ -688,7 +708,10 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Whole Roasted Lobster – Whole roasted lobster. Tarragon mayonnaise. Baked tomatoes and pommes frites – lemon",
+    "French Tartare – Chopped organic beef round – with onion, lemon, olive oil and mustard. Tarragon mayonnaise, radishes, fried capers, horseradish and mustard cress"
+   ],
    "photos": [
     "1a0f1d05d20-0.jpg",
     "1a0f1d05d20-1.jpg",

@@ -294,7 +294,7 @@ dialog { overscroll-behavior: contain; }
 .csv-link:has(input:focus-visible) { outline: 2px solid var(--accent); }
 
 /* front page: own photos and timeline */
-.strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(120px, 1fr); gap: 4px; margin: -.25rem 0 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.strip { display: grid; grid-auto-flow: column; grid-auto-columns: 120px; gap: 4px; margin: -.25rem 0 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .strip::-webkit-scrollbar { display: none; }
 .strip a { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 4px; scroll-snap-align: start; background: var(--surface); }
 .strip img { width: 100%; height: 100%; object-fit: cover; }

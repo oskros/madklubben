@@ -84,7 +84,6 @@ function main() {
   let token = store.get('gh-token');
   let data;
   let editingIdea = null;
-  let visited = 0;
   const localUrls = {};
 
   // ---------- GitHub as storage ----------
@@ -255,7 +254,7 @@ function main() {
     const hero = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], false));
     return `
       <div class="toolbar">
-        ${iconLink('#/', 'back', 'Tilbage', 'data-action="back"')}
+        ${iconLink('#/', 'back', 'Til forsiden')}
         ${editOnly(iconLink(`#/ret/${esc(d.id)}`, 'edit', 'Redigér middag og billeder'))}
       </div>
       <header class="dinner-head">
@@ -303,7 +302,7 @@ function main() {
     if (!token) return loginPage();
     const v = d ?? { date: today(), restaurant: '', website: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false };
     return `
-      <div class="toolbar">${iconLink(d ? `#/d/${esc(d.id)}` : '#/', 'back', 'Tilbage', 'data-action="back"')}</div>
+      <div class="toolbar">${iconLink(d ? `#/d/${esc(d.id)}` : '#/', 'back', 'Tilbage')}</div>
       <h1>${d ? esc(d.restaurant) : 'Ny middag'}</h1>
       <form data-form="dinner" data-id="${esc(d?.id ?? '')}" class="dinner-form">
         <section>
@@ -608,7 +607,7 @@ function main() {
         d.photos = kept.filter(p => !del.includes(p)).concat(names);
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
-      location.hash = `#/d/${id}`;
+      location.replace(`#/d/${id}`);
     },
 
     async rate(fd) {
@@ -668,10 +667,6 @@ function main() {
     if (photo) return openViewer(+photo.dataset.photo);
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
-    if (btn.dataset.action === 'back' && visited > 0) {
-      e.preventDefault();
-      history.back();
-    }
     if (btn.dataset.action === 'reveal') {
       const input = btn.previousElementSibling, show = input.type === 'password';
       input.type = show ? 'text' : 'password';
@@ -941,7 +936,6 @@ function main() {
       return;
     }
     editingIdea = null;
-    visited++;
     render();
     window.scrollTo(0, 0);
   });

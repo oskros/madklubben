@@ -928,6 +928,9 @@ function main() {
 
   // ---------- boot ----------
 
+  const isFront = h => ['', '#', '#/', '#/budget'].includes(h);
+  let frontScroll = 0, onFront = isFront(location.hash);
+  window.addEventListener('scroll', () => { if (onFront) frontScroll = window.scrollY; }, { passive: true });
   window.addEventListener('hashchange', () => {
     if (location.hash === '#/logud') {
       token = null;
@@ -936,8 +939,11 @@ function main() {
       return;
     }
     editingIdea = null;
+    onFront = false;
     render();
-    window.scrollTo(0, 0);
+    const front = isFront(location.hash);
+    window.scrollTo(0, front ? frontScroll : 0);
+    onFront = front;
   });
 
   load()

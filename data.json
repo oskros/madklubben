@@ -854,9 +854,21 @@
    "album": null,
    "price": 7450,
    "outOfPocket": 0,
-   "note": "Drinks på Åben i Nordhavn inden. \"Godt nok stegt til sidst.\"",
+   "note": "Drinks på Åben i Nordhavn inden. \"Godt nok stegt til sidst.\" Akmē skifter menu hver uge, så menuen er sat sammen ud fra vores billeder, andre gæsters opslag og anmeldelser fra efteråret 2025; havtaskeleveren og fignancieren er med White Guides ord.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "majroe i klar dashi",
+    "små bidder: reje med wasabi, krabbe på nori, bladindpakket bid, blæksprutte på tartelet",
+    "østers og tomat med gelé af tomatvand og blåmuslinger",
+    "akami-tun med sojabønner og grønt",
+    "rå fisk med myoga og grøn chili",
+    "havtaskelever med tofu, sesam, toppe fra tokyo turnips og en figen fra Provence",
+    "makrel en croûte med ristet nori-sauce",
+    "koji-ris med urter",
+    "hvid fisk under skum",
+    "canette – farseret hals med lever og hjerte, bryst med kantareller og pebersauce, pithivier",
+    "”Fig”nanciere med kastanie, honning, miso og figner syltet i gul chartreuse, grillet vaniljeis og brændt karamel"
+   ],
    "photos": [
     "1a0ee3a302f-0.jpg",
     "1a0ee3a302f-1.jpg",

@@ -381,7 +381,31 @@
     "1a0f180a06a-1.jpg",
     "1a0f180a06a-9.jpg",
     "1a0f180a06a-32.jpg"
-   ]
+   ],
+   "photoCourses": {
+    "1a0f180a06a-21.jpg": 0,
+    "1a0f180a06a-30.jpg": 1,
+    "1a0f180a06a-20.jpg": 2,
+    "1a0f180a06a-16.jpg": 3,
+    "1a0f180a06a-27.jpg": 3,
+    "1a0f180a06a-19.jpg": 4,
+    "1a0f180a06a-26-v2.jpg": 5,
+    "1a0f180a06a-18.jpg": 6,
+    "1a0f180a06a-22.jpg": 6,
+    "1a0f180a06a-25.jpg": 7,
+    "1a0f180a06a-10.jpg": 8,
+    "1a0f180a06a-6.jpg": 9,
+    "1a0f180a06a-5.jpg": 10,
+    "1a0f180a06a-12.jpg": 10,
+    "1a0f180a06a-13.jpg": 11,
+    "1a0f180a06a-3.jpg": 12,
+    "1a0f180a06a-2.jpg": 12,
+    "1a0f180a06a-7.jpg": 13,
+    "1a0f180a06a-11.jpg": 14,
+    "1a0f180a06a-8.jpg": 15,
+    "1a0f180a06a-4.jpg": 16,
+    "1a0f180a06a-1.jpg": 16
+   }
   },
   {
    "group": "ida",
@@ -571,7 +595,17 @@
    "image": "restaurants/2022-bistro-boheme-9875f6b3.jpg",
    "address": "Esplanaden 8, 1263 København K",
    "lat": 55.687338,
-   "lon": 12.591448
+   "lon": 12.591448,
+   "photoCourses": {
+    "1a0ee2c85d6-9.jpg": 0,
+    "1a0ee2c85d6-0.jpg": 1,
+    "1a0ee2c85d6-3.jpg": 2,
+    "1a0ee2c85d6-1.jpg": 3,
+    "1a0ee2c85d6-6.jpg": 4,
+    "1a0ee2c85d6-4.jpg": 5,
+    "1a0ee2c85d6-8.jpg": 6,
+    "1a0ee2c85d6-7.jpg": 7
+   }
   },
   {
    "id": "2023-op-la",
@@ -902,7 +936,27 @@
    "image": "restaurants/2025-akme-6dc9ee4e.jpg",
    "address": "Sandkaj 39, 2150 Nordhavn",
    "lat": 55.706819,
-   "lon": 12.59854
+   "lon": 12.59854,
+   "photoCourses": {
+    "1a0ee3a302f-2.jpg": 0,
+    "1a0ee3a302f-4.jpg": 1,
+    "1a0ee3a302f-5.jpg": 1,
+    "1a0ee3a302f-7.jpg": 2,
+    "1a0ee3a302f-8.jpg": 3,
+    "1a0ee3a302f-9.jpg": 3,
+    "1a0ee3a302f-12.jpg": 4,
+    "1a0ee3a302f-13.jpg": 5,
+    "1a0ee3a302f-14.jpg": 6,
+    "1a0ee3a302f-16.jpg": 7,
+    "1a0ee3a302f-17.jpg": 9,
+    "1a0ee3a302f-18.jpg": 9,
+    "1a0ee3a302f-19.jpg": 9,
+    "1a0ee3a302f-20.jpg": 9,
+    "1a0ee3a302f-21.jpg": 8,
+    "1a0ee3a302f-23.jpg": 9,
+    "1a0ee3a302f-24.jpg": 9,
+    "1a0ee3a302f-25.jpg": 10
+   }
   },
   {
    "id": "2026-aoc",

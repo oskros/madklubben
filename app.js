@@ -213,13 +213,13 @@ function main() {
     const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view;
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
-    if (dinner) billPreview(dinner);
+    if (dinner) { billPreview(dinner); refreshCourseSelects(dinner); }
     document.querySelectorAll('textarea.grow').forEach(grow);
     if ($('#map')) drawMap($('#map'));
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
-      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false });
-      if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, handle: '.grip' });
+      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, select', preventOnFilter: false });
+      if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, handle: '.grip', onEnd: () => refreshCourseSelects(dinner) });
     });
   }
 
@@ -302,7 +302,21 @@ function main() {
       </div>`;
   }
 
-  const courseRow = (c = '') => `<li><span class="grip" title="Træk for at flytte">${icon('grip')}</span><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
+  let courseKeys = 0;
+  const courseRow = (c = '', key = `n${courseKeys++}`) => `<li><span class="grip" title="Træk for at flytte">${icon('grip')}</span><input type="hidden" name="menuKey" value="${esc(key)}"><input name="menu" value="${esc(c)}" aria-label="Ret" autocomplete="off">${iconButton('x', 'Fjern ret', 'data-action="remove-course" tabindex="-1"')}</li>`;
+  const courseOf = (d, p) => d.photoCourses?.[p] != null ? d.menu[d.photoCourses[p]] : undefined;
+
+  function refreshCourseSelects(form) {
+    const rows = [...form.querySelectorAll('.menu-edit li')]
+      .map(li => ({ key: li.querySelector('[name=menuKey]').value, text: li.querySelector('[name=menu]').value.trim() }))
+      .filter(r => r.text);
+    form.querySelectorAll('select[name=course]').forEach(sel => {
+      const was = sel.value || sel.dataset.initial || '';
+      sel.innerHTML = `<option value="">Ingen ret</option>${rows.map((r, i) => `<option value="${esc(r.key)}">${i + 1}. ${esc(r.text)}</option>`).join('')}`;
+      sel.value = rows.some(r => r.key === was) ? was : '';
+      delete sel.dataset.initial;
+    });
+  }
 
   function billPreview(form) {
     const price = +form.price.value || 0;
@@ -350,7 +364,7 @@ function main() {
         </section>
         <section>
           <h2>Menu</h2>
-          <ol class="menu-edit">${(v.menu.length ? v.menu : ['']).map(courseRow).join('')}</ol>
+          <ol class="menu-edit">${(v.menu.length ? v.menu : ['']).map((c, i) => courseRow(c, `o${i}`)).join('')}</ol>
           <button type="button" class="add-row" data-action="add-course">${icon('plus')}Tilføj ret</button>
         </section>
         <section class="drop">
@@ -359,7 +373,8 @@ function main() {
           <p class="muted small">Eller træk dem herind. De formindskes før upload.${v.photos.length ? ' Træk billederne nedenfor for at ændre rækkefølgen.' : ''}</p>
           ${v.photos.length ? `<div class="grid pick">${v.photos.map(p => `
             <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
-              <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label></div>`).join('')}</div>` : ''}
+              <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label>
+              <select name="course" aria-label="Ret på billedet" data-initial="${v.photoCourses?.[p] != null ? `o${v.photoCourses[p]}` : ''}"></select></div>`).join('')}</div>` : ''}
         </section>
         <div class="actions">
           <button class="btn">${icon('check')}Gem</button> <span class="status"></span>
@@ -368,10 +383,11 @@ function main() {
       </form>`;
   }
 
-  // ponytail: menu cards are the first photos of dinners with a menu; skip up to 3 of them. A "not a dish" flag per photo if this guesses wrong.
+  // ponytail: without course links, menu cards are guessed to be the first photos of dinners with a menu; skip up to 3 of them.
   function dishPhoto(d) {
+    const linked = d.photos.filter(p => courseOf(d, p));
     const skip = d.menu.length ? Math.min(3, d.photos.length - 1) : 0;
-    const pool = d.photos.slice(skip);
+    const pool = linked.length ? linked : d.photos.slice(skip);
     return pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -633,6 +649,8 @@ function main() {
         menu: fd.getAll('menu').map(c => c.trim()).filter(Boolean),
         note: orNull(fd.get('note')),
       };
+      const keys = fd.getAll('menuKey').filter((_, i) => fd.getAll('menu')[i].trim());
+      const linked = Object.fromEntries(fd.getAll('order').map((p, i) => [p, keys.indexOf(fd.getAll('course')[i])]).filter(([, i]) => i >= 0));
       const id = oldId || `${fields.date.slice(0, 4)}-${slug(fields.restaurant)}-${Date.now().toString(36).slice(-3)}`;
       const del = fd.getAll('delete');
       const order = fd.getAll('order');
@@ -644,6 +662,8 @@ function main() {
         Object.assign(d, fields);
         const kept = order.filter(p => d.photos.includes(p)).concat(d.photos.filter(p => !order.includes(p)));
         d.photos = kept.filter(p => !del.includes(p)).concat(names);
+        const pc = Object.fromEntries(Object.entries(linked).filter(([p]) => d.photos.includes(p)));
+        if (Object.keys(pc).length) d.photoCourses = pc; else delete d.photoCourses;
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
       location.replace(`#/d/${id}`);
@@ -723,11 +743,14 @@ function main() {
     }
     if (btn.dataset.action === 'add-course') {
       $('.menu-edit').insertAdjacentHTML('beforeend', courseRow());
-      $('.menu-edit li:last-child input').focus();
+      $('.menu-edit li:last-child [name=menu]').focus();
+      refreshCourseSelects(btn.form);
     }
     if (btn.dataset.action === 'remove-course') {
       const li = btn.closest('li');
-      if (li.parentElement.children.length > 1) li.remove(); else li.querySelector('input').value = '';
+      const form = btn.form;
+      if (li.parentElement.children.length > 1) li.remove(); else li.querySelector('[name=menu]').value = '';
+      refreshCourseSelects(form);
     }
     if (btn.dataset.action === 'edit-idea' || btn.dataset.action === 'cancel-idea') {
       editingIdea = btn.dataset.action === 'edit-idea' ? +btn.dataset.i : null;
@@ -791,15 +814,26 @@ function main() {
       arrowNextTitle: 'Næste',
       errorMsg: 'Billedet kunne ikke hentes',
     });
-    pswp.on('uiRegister', () => pswp.ui.registerElement({
-      name: 'title', order: 4, isButton: false, appendTo: 'bar',
-      html: `<strong>${esc(d.restaurant)}</strong> <span>${esc(dato(d.date))}</span>`,
-    }));
+    pswp.on('uiRegister', () => {
+      pswp.ui.registerElement({
+        name: 'title', order: 4, isButton: false, appendTo: 'bar',
+        html: `<strong>${esc(d.restaurant)}</strong> <span>${esc(dato(d.date))}</span>`,
+      });
+      pswp.ui.registerElement({
+        name: 'course', order: 9, isButton: false, appendTo: 'root',
+        onInit: (el, p) => p.on('change', () => {
+          const n = d.photoCourses?.[d.photos[p.currIndex]];
+          el.hidden = n == null;
+          el.innerHTML = n == null ? '' : `<span class="n">${n + 1}</span>${esc(d.menu[n])}`;
+        }),
+      });
+    });
     pswp.init();
   }
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
+    if (e.target.name === 'menu') refreshCourseSelects(e.target.form);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);
   });
@@ -833,7 +867,8 @@ function main() {
     if (e.key === 'Enter' && e.target.name === 'menu') {
       e.preventDefault();
       e.target.closest('li').insertAdjacentHTML('afterend', courseRow());
-      e.target.closest('li').nextElementSibling.querySelector('input').focus();
+      e.target.closest('li').nextElementSibling.querySelector('[name=menu]').focus();
+      refreshCourseSelects(e.target.form);
     }
   });
   document.addEventListener('paste', e => {
@@ -843,7 +878,8 @@ function main() {
     e.preventDefault();
     const li = e.target.closest('li');
     e.target.value = courses[0];
-    li.insertAdjacentHTML('afterend', courses.slice(1).map(courseRow).join(''));
+    li.insertAdjacentHTML('afterend', courses.slice(1).map(c => courseRow(c)).join(''));
+    refreshCourseSelects(e.target.form);
   });
   document.addEventListener('dragover', e => {
     const drop = e.target.closest('.drop');

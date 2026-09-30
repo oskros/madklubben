@@ -161,20 +161,20 @@
     "Quince & rose."
    ],
    "photos": [
+    "1a0ee2c85d6-0.jpg",
     "1a0ee2c85d6-1.jpg",
     "1a0ee2c85d6-3.jpg",
-    "1a0ee2c85d6-2.jpg",
-    "1a0ee2c85d6-0.jpg"
+    "1a0ee2c85d6-2.jpg"
    ],
    "image": "restaurants/2018-relae-4f01b6e2.jpg",
    "address": "Jægersborggade 41, 2200 København N",
    "lat": 55.692998,
    "lon": 12.543219,
    "photoCourses": {
+    "1a0ee2c85d6-0.jpg": 4,
     "1a0ee2c85d6-1.jpg": 5,
     "1a0ee2c85d6-3.jpg": 6,
-    "1a0ee2c85d6-2.jpg": 6,
-    "1a0ee2c85d6-0.jpg": 4
+    "1a0ee2c85d6-2.jpg": 6
    }
   },
   {

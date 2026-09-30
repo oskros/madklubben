@@ -830,7 +830,8 @@ function main() {
     for (const d of placed) {
       const dot = L.circleMarker([d.lat, d.lon], { radius: touch ? 9 : 7, color: getComputedStyle(document.body).backgroundColor, weight: 2, fillColor: color, fillOpacity: 1 });
       if (touch) {
-        dot.bindPopup(`<strong>${esc(d.restaurant)}</strong><span class="muted">${dato(d.date)}</span><a href="#/d/${esc(d.id)}">Se middag ${icon('next')}</a>`, { closeButton: false, offset: [0, -4], className: 'dot-popup' });
+        const short = new Date(toMs(d.date)).toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+        dot.bindPopup(`<strong>${esc(d.restaurant)}</strong><span class="muted">${short}</span><a href="#/d/${esc(d.id)}" aria-label="Se middag">${icon('next')}</a>`, { closeButton: false, offset: [0, -4], className: 'dot-popup' });
       } else {
         dot.bindTooltip(`${esc(d.restaurant)}<br><span class="muted">${esc(d.date.slice(0, 4))}</span>`, { direction: 'top', offset: [0, -6] })
           .on('click', () => { location.hash = `#/d/${d.id}`; });

@@ -156,6 +156,29 @@
    "lon": 12.558415
   },
   {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d04630-0.jpg",
+    "1a0f1d04630-1.jpg"
+   ],
+   "restaurant": "Knud",
+   "website": "https://www.knud.biz/",
+   "address": "Havnegade 18, 3390 Hundested",
+   "lat": 55.965636,
+   "lon": 11.846715,
+   "note": "Med Ida.",
+   "id": "2019-knud",
+   "date": "2019-09-14",
+   "image": "restaurants/2019-knud.jpg"
+  },
+  {
    "id": "2019-hoest",
    "date": "2019-10-19",
    "restaurant": "Høst",
@@ -174,6 +197,32 @@
    "address": "Nørre Farimagsgade 41, 1364 København K",
    "lat": 55.683361,
    "lon": 12.566165
+  },
+  {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d04758-0.jpg",
+    "1a0f1d04758-1.jpg",
+    "1a0f1d04758-2.jpg",
+    "1a0f1d04758-3.jpg",
+    "1a0f1d04758-4.jpg",
+    "1a0f1d04758-5.jpg"
+   ],
+   "id": "2020-oysters-og-grill",
+   "date": "2020-05-19",
+   "restaurant": "Oysters & Grill",
+   "website": "https://cofoco.dk/en/restaurant/oysters-and-grill",
+   "address": "Sjællandsgade 1B, 2200 København N",
+   "lat": 55.6929,
+   "lon": 12.551603,
+   "note": "Med Ida."
   },
   {
    "id": "2020-restaurant-108",
@@ -250,6 +299,29 @@
    ]
   },
   {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d04a2c-0.jpg",
+    "1a0f1d04a2c-1.jpg"
+   ],
+   "restaurant": "Knud",
+   "website": "https://www.knud.biz/",
+   "address": "Havnegade 18, 3390 Hundested",
+   "lat": 55.965636,
+   "lon": 11.846715,
+   "note": "Med Ida.",
+   "id": "2020-knud",
+   "date": "2020-08-05",
+   "image": "restaurants/2020-knud.jpg"
+  },
+  {
    "id": "2020-brasserie-barner",
    "date": "2020-10-24",
    "restaurant": "Brasserie Barner",
@@ -270,6 +342,31 @@
    "lon": 12.578201
   },
   {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d04b3f-0.jpg",
+    "1a0f1d04b3f-1.jpg",
+    "1a0f1d04b3f-2.jpg",
+    "1a0f1d04b3f-3.jpg",
+    "1a0f1d04b3f-4.jpg"
+   ],
+   "id": "2021-hos-fischer",
+   "date": "2021-05-14",
+   "restaurant": "Hos Fischer",
+   "website": "https://hosfischer.dk/",
+   "address": "Victor Borges Plads 12, 2100 København Ø",
+   "lat": 55.701733,
+   "lon": 12.580743,
+   "note": "Med Ida."
+  },
+  {
    "id": "2021-marv-og-ben",
    "date": "2021-05-29",
    "restaurant": "Marv og Ben",
@@ -286,6 +383,30 @@
    "address": "Snaregade 4, 1205 København K",
    "lat": 55.677304,
    "lon": 12.576943
+  },
+  {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d04ffa-0.jpg",
+    "1a0f1d04ffa-1.jpg",
+    "1a0f1d04ffa-2.jpg",
+    "1a0f1d04ffa-3.jpg"
+   ],
+   "id": "2021-bottega-estadio",
+   "date": "2021-07-18",
+   "restaurant": "Bottega Estadio",
+   "website": "https://estadio.dk/",
+   "address": "Gunnar Nu Hansens Plads 9, 2100 København Ø",
+   "lat": 55.70475,
+   "lon": 12.574254,
+   "note": "Med Ida."
   },
   {
    "closed": false,
@@ -511,6 +632,59 @@
    "address": "Vester Voldgade 25, 1552 København V",
    "lat": 55.677347,
    "lon": 12.56779
+  },
+  {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d053d4-0.jpg",
+    "1a0f1d053d4-1.jpg",
+    "1a0f1d053d4-2.jpg",
+    "1a0f1d053d4-3.jpg",
+    "1a0f1d053d4-4.jpg",
+    "1a0f1d053d4-5.jpg",
+    "1a0f1d053d4-6.jpg",
+    "1a0f1d053d4-7.jpg",
+    "1a0f1d053d4-8.jpg"
+   ],
+   "id": "2025-abigail",
+   "date": "2025-06-14",
+   "restaurant": "Abigail",
+   "website": "https://norrlyst.dk/abigail/",
+   "address": "Nørregade 30, 1165 København K",
+   "lat": 55.681738,
+   "lon": 12.571248,
+   "note": "Med Ida. En speakeasy bag en hattebutik ved Nørreport."
+  },
+  {
+   "group": "ida",
+   "people": 2,
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [
+    "1a0f1d05d20-0.jpg",
+    "1a0f1d05d20-1.jpg",
+    "1a0f1d05d20-2.jpg"
+   ],
+   "restaurant": "Knud",
+   "website": "https://www.knud.biz/",
+   "address": "Havnegade 18, 3390 Hundested",
+   "lat": 55.965636,
+   "lon": 11.846715,
+   "note": "Frokost med Ida.",
+   "id": "2025-knud",
+   "date": "2025-07-27",
+   "image": "restaurants/2025-knud.jpg"
   },
   {
    "id": "2025-akme",

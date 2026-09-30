@@ -758,43 +758,45 @@ function main() {
 
   // ---------- photo viewer ----------
 
-  let viewing = null;
-  function openViewer(i) {
+  let photoswipe;
+  const ratio = src => new Promise(ok => {
+    const im = new Image();
+    im.onload = () => ok(im.naturalWidth / im.naturalHeight || 4 / 3);
+    im.onerror = () => ok(4 / 3);
+    im.src = src;
+  });
+  async function openViewer(i) {
+    photoswipe ??= import('https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.esm.min.js').then(m => {
+      document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css">');
+      return m.default;
+    });
     const id = decodeURIComponent(location.hash).split('/')[2];
     const d = data.dinners.find(x => x.id === id);
-    viewing = { d, i };
-    const v = $('#viewer');
-    v.classList.toggle('single', d.photos.length < 2);
-    $('#viewer .vtitle strong').textContent = d.restaurant;
-    $('#viewer .vtitle span').textContent = dato(d.date);
-    $('#viewer .film').innerHTML = d.photos.map((p, n) =>
-      `<button data-go="${n}" aria-label="Billede ${n + 1}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></button>`).join('');
-    showPhoto(0);
-    v.showModal();
+    const [PhotoSwipe, ratios] = await Promise.all([photoswipe, Promise.all(d.photos.map(p => ratio(photoUrl(d, p, true))))]);
+    const long = 1600;
+    const pswp = new PhotoSwipe({
+      dataSource: d.photos.map((p, k) => ({
+        src: photoUrl(d, p, false),
+        msrc: photoUrl(d, p, true),
+        width: ratios[k] >= 1 ? long : Math.round(long * ratios[k]),
+        height: ratios[k] >= 1 ? Math.round(long / ratios[k]) : long,
+      })),
+      index: i,
+      bgOpacity: 1,
+      showHideAnimationType: 'fade',
+      wheelToZoom: true,
+      closeTitle: 'Luk',
+      zoomTitle: 'Zoom',
+      arrowPrevTitle: 'Forrige',
+      arrowNextTitle: 'Næste',
+      errorMsg: 'Billedet kunne ikke hentes',
+    });
+    pswp.on('uiRegister', () => pswp.ui.registerElement({
+      name: 'title', order: 4, isButton: false, appendTo: 'bar',
+      html: `<strong>${esc(d.restaurant)}</strong> <span>${esc(dato(d.date))}</span>`,
+    }));
+    pswp.init();
   }
-  function showPhoto(step, to) {
-    const { d } = viewing;
-    const n = d.photos.length;
-    viewing.i = to ?? (viewing.i + step + n) % n;
-    const img = $('#viewer .stage img');
-    const src = photoUrl(d, d.photos[viewing.i], false);
-    if (img.getAttribute('src') !== src) {
-      img.classList.add('loading');
-      img.onload = () => img.classList.remove('loading');
-      img.src = src;
-    }
-    for (const k of [1, -1]) new Image().src = photoUrl(d, d.photos[(viewing.i + k + n) % n], false);
-    $('#viewer .count').textContent = `${viewing.i + 1} / ${n}`;
-    document.querySelectorAll('#viewer .film button').forEach((b, k) => b.classList.toggle('on', k === viewing.i));
-    $('#viewer .film button.on')?.scrollIntoView({ block: 'nearest', inline: 'center' });
-  }
-  $('#viewer').addEventListener('click', e => {
-    const s = e.target.closest('[data-step]')?.dataset.step;
-    const go = e.target.closest('[data-go]')?.dataset.go;
-    if (s) showPhoto(+s);
-    else if (go) showPhoto(0, +go);
-    else if (e.target.matches('dialog, .stage, .vbar') || e.target.closest('[data-close]')) $('#viewer').close();
-  });
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
@@ -856,21 +858,6 @@ function main() {
     const input = drop.querySelector('input[type=file]');
     input.files = e.dataTransfer.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
-  });
-  let swipe = null;
-  $('#viewer').addEventListener('touchstart', e => {
-    swipe = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
-  }, { passive: true });
-  $('#viewer').addEventListener('touchend', e => {
-    if (!swipe) return;
-    const dx = e.changedTouches[0].clientX - swipe.x, dy = e.changedTouches[0].clientY - swipe.y;
-    swipe = null;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) showPhoto(dx < 0 ? 1 : -1);
-  });
-  document.addEventListener('keydown', e => {
-    if (!$('#viewer').open) return;
-    if (e.key === 'ArrowRight') showPhoto(1);
-    if (e.key === 'ArrowLeft') showPhoto(-1);
   });
 
   // ---------- map and address search (OpenStreetMap) ----------

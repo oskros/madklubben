@@ -148,7 +148,18 @@
    "outOfPocket": 2260,
    "note": "Bord kl. 21, øl på Mikkeller & Friends inden. Også på listen: AOC (lidt for dyrt), Krogs, Clou, Kiin Kiin, Amass og The Market.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Oxalis root & Farm of Ideas greens.",
+    "Pike perch & turnip.",
+    "Carrot & meadowsweet.",
+    "Squid.",
+    "Crown prince pumpkin.",
+    "Mushroom & almond shoyu.",
+    "Farm of Ideas duck & apple.",
+    "Viili & lingonberry.",
+    "Aronia & pine.",
+    "Quince & rose."
+   ],
    "photos": [
     "1a0ee2c85d6-1.jpg",
     "1a0ee2c85d6-3.jpg",
@@ -217,7 +228,13 @@
    "outOfPocket": 0,
    "note": "Hao's anbefaling. Også på listen: Pluto, 108, Yaffa (50% i åbningsmåneden) og Sidecar. Cocktails og hyrevogn hjem bagefter, og satsen steg til 200 kr samme uge.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Salat på taskekrabbe med græskar og hyldeblomst",
+    "Røget kammusling med syltede pærer og peberrod",
+    "Grillet jomfruhummer med tomater og ramsløgskapers",
+    "Letbagt kulmule med broccoli og kyllingeskind eller Oksemørbrad med broccoli og kyllingeskind",
+    "Blåbærsorbet med karamel og urtechokolade"
+   ],
    "photos": [
     "1a0ee3a302f-1.jpg"
    ],
@@ -270,7 +287,21 @@
    "outOfPocket": 0,
    "note": "Første middag efter corona nedlukningen, på 108's sommermenu-kampagne til 400 kr. Øl ved streetfood på Christianshavn inden.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "SYLTET MAKREL med stikkelsbær og lærketræs olie",
+    "BLÅMUSLINGER med sommerens krydderurter",
+    "DANSK HUMMER med hvide ribs",
+    "GRILLET COURGETTE marineret i miso og maitake svampe",
+    "NYE DANSKE KARTOFLER med en sauce af Karl Johan svampe og hasselnødde olie",
+    "DANSKE JORDBÆR med basilikum og gran salt",
+    "LAMME LEVER med ristet byg og bog",
+    "AGURKER FRA KROGERUP med fennikel og hvide ribs",
+    "TARTAR AF LAM med peberrod og hybenkerneolie",
+    "GLASERET GRIS med en sauce på mørke bær og varme krydderier",
+    "SÆSONENS URTER marineret i stikkelsbær saft",
+    "SYLTEDE SAGER aromatiske smage fra gemmerne",
+    "HYLDEBLOMST DESSERT med søde æggeblommer og saké"
+   ],
    "photos": [
     "1a0f14c5929-0.jpg"
    ],

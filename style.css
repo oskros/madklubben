@@ -252,6 +252,9 @@ label input, label textarea { color: var(--ink); font-size: 1rem; }
 .pick .sortable-ghost { opacity: .3; }
 .tile select { position: absolute; left: 4px; right: 4px; bottom: 4px; width: calc(100% - 8px); padding: .25rem .4rem; font-size: .75rem; border: 0; border-radius: 6px; background: rgb(0 0 0 / .6); color: #fff; cursor: pointer; }
 .tile select:has(option:checked:not([value=""])) { background: var(--accent); }
+.note-btn { position: absolute; top: 4px; left: 4px; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; padding: 0; border: 0; border-radius: 99px; background: rgb(0 0 0 / .55); color: #fff; cursor: pointer; }
+.note-btn .i { width: 1rem; height: 1rem; }
+.note-btn.on { background: var(--accent); }
 .del { position: absolute; top: 4px; right: 4px; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 99px; background: rgb(0 0 0 / .55); color: #fff; cursor: pointer; }
 .del input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
 .del .i { width: 1rem; height: 1rem; }
@@ -270,6 +273,8 @@ summary { cursor: pointer; margin-bottom: .75rem; }
 .pswp__title span { margin-left: .5rem; color: rgb(255 255 255 / .6); font-size: .9rem; }
 .pswp__course { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.5rem max(1.25rem, env(safe-area-inset-left)) calc(1.4rem + env(safe-area-inset-bottom)); background: linear-gradient(transparent, rgb(0 0 0 / .75)); color: #fff; font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.9rem); line-height: 1.3; text-align: center; text-wrap: balance; pointer-events: none; transition: opacity .2s; }
 .pswp__course[hidden] { display: none; }
+.pswp__course small { display: block; margin-top: .3rem; font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: .58em; color: rgb(255 255 255 / .8); }
+.pswp__course small.alone { margin-top: 0; font-family: var(--serif); font-size: .8em; color: #fff; }
 .pswp__course .n { display: inline-grid; place-items: center; min-width: 1.7em; height: 1.7em; margin-right: .55em; padding: 0 .35em; border-radius: 99px; background: rgb(255 255 255 / .18); font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: .62em; font-weight: 700; vertical-align: .25em; }
 .pswp--ui-visible .pswp__course { opacity: 1; }
 .pswp:not(.pswp--ui-visible) .pswp__course { opacity: 0; }

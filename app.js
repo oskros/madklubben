@@ -218,7 +218,7 @@ function main() {
     if ($('#map')) drawMap($('#map'));
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
-      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, select', preventOnFilter: false });
+      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, select, .note-btn', preventOnFilter: false });
       if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, handle: '.grip', onEnd: () => refreshCourseSelects(dinner) });
     });
   }
@@ -374,6 +374,8 @@ function main() {
           ${v.photos.length ? `<div class="grid pick">${v.photos.map(p => `
             <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
               <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label>
+              <input type="hidden" name="photoNote" value="${esc(v.photoNotes?.[p] ?? '')}">
+              <button type="button" class="note-btn${v.photoNotes?.[p] ? ' on' : ''}" data-action="photo-note" title="${esc(v.photoNotes?.[p] || 'Tilføj note')}" aria-label="Note til billedet">${icon('edit')}</button>
               <select name="course" aria-label="Ret på billedet" data-initial="${v.photoCourses?.[p] != null ? `o${v.photoCourses[p]}` : ''}"></select></div>`).join('')}</div>` : ''}
         </section>
         <div class="actions">
@@ -651,6 +653,7 @@ function main() {
       };
       const keys = fd.getAll('menuKey').filter((_, i) => fd.getAll('menu')[i].trim());
       const linked = Object.fromEntries(fd.getAll('order').map((p, i) => [p, keys.indexOf(fd.getAll('course')[i])]).filter(([, i]) => i >= 0));
+      const notes = Object.fromEntries(fd.getAll('order').map((p, i) => [p, fd.getAll('photoNote')[i].trim()]).filter(([, n]) => n));
       const id = oldId || `${fields.date.slice(0, 4)}-${slug(fields.restaurant)}-${Date.now().toString(36).slice(-3)}`;
       const del = fd.getAll('delete');
       const order = fd.getAll('order');
@@ -664,6 +667,8 @@ function main() {
         d.photos = kept.filter(p => !del.includes(p)).concat(names);
         const pc = Object.fromEntries(Object.entries(linked).filter(([p]) => d.photos.includes(p)));
         if (Object.keys(pc).length) d.photoCourses = pc; else delete d.photoCourses;
+        const pn = Object.fromEntries(Object.entries(notes).filter(([p]) => d.photos.includes(p)));
+        if (Object.keys(pn).length) d.photoNotes = pn; else delete d.photoNotes;
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
       location.replace(`#/d/${id}`);
@@ -740,6 +745,15 @@ function main() {
       btn.setAttribute('aria-label', show ? 'Skjul kodeord' : 'Vis kodeord');
       btn.title = btn.getAttribute('aria-label');
       input.focus();
+    }
+    if (btn.dataset.action === 'photo-note') {
+      const input = btn.parentElement.querySelector('[name=photoNote]');
+      const note = prompt('Note til billedet (vises i billedfremviseren)', input.value);
+      if (note != null) {
+        input.value = note.trim();
+        btn.classList.toggle('on', !!input.value);
+        btn.title = input.value || 'Tilføj note';
+      }
     }
     if (btn.dataset.action === 'add-course') {
       $('.menu-edit').insertAdjacentHTML('beforeend', courseRow());
@@ -822,9 +836,12 @@ function main() {
       pswp.ui.registerElement({
         name: 'course', order: 9, isButton: false, appendTo: 'root',
         onInit: (el, p) => p.on('change', () => {
-          const n = d.photoCourses?.[d.photos[p.currIndex]];
-          el.hidden = n == null;
-          el.innerHTML = n == null ? '' : `<span class="n">${n + 1}</span>${esc(d.menu[n])}`;
+          const photo = d.photos[p.currIndex];
+          const n = d.photoCourses?.[photo];
+          const note = d.photoNotes?.[photo];
+          el.hidden = n == null && !note;
+          el.innerHTML = (n == null ? '' : `<span class="n">${n + 1}</span>${esc(d.menu[n])}`)
+            + (note ? `<small${n == null ? ' class="alone"' : ''}>${esc(note)}</small>` : '');
         }),
       });
     });

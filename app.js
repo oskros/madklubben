@@ -143,9 +143,12 @@ function main() {
   }
 
   async function load() {
-    data = token
-      ? JSON.parse(await gh(`${base}/contents/data.json?ref=${REPO.branch}`, { accept: 'application/vnd.github.raw+json' }))
-      : await (await fetch('data.json', { cache: 'no-cache' })).json();
+    if (!token) {
+      data = await (await fetch('data.json', { cache: 'no-cache' })).json();
+      return;
+    }
+    const ref = await gh(`${base}/git/ref/heads/${REPO.branch}`);
+    data = JSON.parse(await gh(`${base}/contents/data.json?ref=${ref.object.sha}`, { accept: 'application/vnd.github.raw+json' }));
   }
 
   // ---------- photos ----------

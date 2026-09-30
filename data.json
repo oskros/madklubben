@@ -304,12 +304,24 @@
    "lon": 12.551603,
    "note": "Med Ida.",
    "photoCourses": {
-    "1a0f1d04758-1.jpg": 0,
-    "1a0f1d04758-2.jpg": 1,
-    "1a0f1d04758-3.jpg": 2,
-    "1a0f1d04758-0.jpg": 3,
-    "1a0f1d04758-4.jpg": 4,
-    "1a0f1d04758-5.jpg": 5
+    "1a0f1d04758-1.jpg": [
+     0
+    ],
+    "1a0f1d04758-2.jpg": [
+     1
+    ],
+    "1a0f1d04758-3.jpg": [
+     2
+    ],
+    "1a0f1d04758-0.jpg": [
+     3
+    ],
+    "1a0f1d04758-4.jpg": [
+     4
+    ],
+    "1a0f1d04758-5.jpg": [
+     5
+    ]
    }
   },
   {
@@ -344,7 +356,20 @@
    "image": "restaurants/2020-restaurant-108-b7ee5fef.jpg",
    "address": "Strandgade 108, 1401 København K",
    "lat": 55.677609,
-   "lon": 12.597816
+   "lon": 12.597816,
+   "photoCourses": {
+    "1a0f14c5929-0.jpg": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ]
+   }
   },
   {
    "id": "2020-noma",

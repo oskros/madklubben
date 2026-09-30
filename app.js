@@ -867,6 +867,7 @@ function main() {
           const ns = coursesOf(d, photo);
           const note = d.photoNotes?.[photo];
           el.hidden = !ns.length && !note;
+          el.classList.toggle('many', ns.length > 2);
           el.innerHTML = ns.map(n => `<div><span class="n">${n + 1}</span>${esc(d.menu[n])}</div>`).join('')
             + (note ? `<small${ns.length ? '' : ' class="alone"'}>${esc(note)}</small>` : '');
         }),

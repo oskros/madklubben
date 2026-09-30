@@ -284,6 +284,11 @@ summary { cursor: pointer; margin-bottom: .75rem; }
 .pswp__course { position: absolute; left: 0; right: 0; bottom: 0; padding: 3.5rem max(1.25rem, env(safe-area-inset-left)) calc(1.4rem + env(safe-area-inset-bottom)); background: linear-gradient(transparent, rgb(0 0 0 / .75)); color: #fff; font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.9rem); line-height: 1.3; text-align: center; text-wrap: balance; pointer-events: none; transition: opacity .2s; }
 .pswp__course[hidden] { display: none; }
 .pswp__course div + div { margin-top: .25rem; }
+.pswp__course.many { text-align: left; font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: clamp(.85rem, 1.3vw, 1.05rem); padding-top: 4rem; }
+.pswp__course.many div { max-width: 48rem; margin-inline: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pswp__course.many div + div { margin-top: .15rem; }
+.pswp__course.many .n { font-size: .75em; min-width: 1.6em; height: 1.6em; margin-right: .5em; vertical-align: .05em; }
+.pswp__course.many small { max-width: 48rem; margin-inline: auto; }
 .pswp__course small { display: block; margin-top: .3rem; font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: .58em; color: rgb(255 255 255 / .8); }
 .pswp__course small.alone { margin-top: 0; font-family: var(--serif); font-size: .8em; color: #fff; }
 .pswp__course .n { display: inline-grid; place-items: center; min-width: 1.7em; height: 1.7em; margin-right: .55em; padding: 0 .35em; border-radius: 99px; background: rgb(255 255 255 / .18); font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: .62em; font-weight: 700; vertical-align: .25em; }

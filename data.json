@@ -107,7 +107,15 @@
    "outOfPocket": 0,
    "note": "7 retter inkl. vin, kaffe og cava for 910 kr. Laurence havde været tjener der. Første booking (20/1) blev aflyst, da Rasmus havde glemt halvårsdag med damen.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Græskarsuppe – Gurkemeje & lardo",
+    "Gravad laks – Æggeblomme & selleri",
+    "Stegt torsk – Variation af skozonerrødder & sauce på gran",
+    "Braiseret lam – Savoykål, tørret andehjerte & hasselnød",
+    "Onglet – Glaseret rødbede & blanquette sauce med persille",
+    "Dronning Victoria ost – Blommer rehydreret i rom, nøddebrød & honning med trøffel",
+    "Karamelmousse – Sprød æble-krokant & sorbet på havesyre"
+   ],
    "photos": [],
    "image": "restaurants/2018-den-lille-fede.jpg",
    "address": "Store Kongensgade 17B, 1264 København K",

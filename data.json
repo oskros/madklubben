@@ -54,7 +54,7 @@
    "group": "ida",
    "people": 2,
    "website": "https://onyxrestaurant.hu/",
-   "image": "restaurants/2015-onyx.jpg",
+   "image": "restaurants/2015-onyx-3b84133c.jpg",
    "address": "Vörösmarty tér 7-8, 1051 Budapest",
    "lat": 47.4972556,
    "lon": 19.0505627,
@@ -83,7 +83,7 @@
     "Banan syltet i ahornsirup med curd, mascarponeis, karameliserede popcorn & chokoladesauce med mezcal"
    ],
    "photos": [],
-   "image": "restaurants/2016-llama.jpg",
+   "image": "restaurants/2016-llama-703f40bd.jpg",
    "address": "Lille Kongensgade 14, 1074 København K",
    "lat": 55.679633,
    "lon": 12.583828
@@ -106,7 +106,7 @@
     "Chokolade – skyr – blåbær"
    ],
    "photos": [],
-   "image": "restaurants/2017-bodil.jpg",
+   "image": "restaurants/2017-bodil-d0f5727e.jpg",
    "address": "Sønder Boulevard 105, 1720 København V",
    "lat": 55.664071,
    "lon": 12.545383
@@ -132,7 +132,7 @@
     "Karamelmousse – Sprød æble-krokant & sorbet på havesyre"
    ],
    "photos": [],
-   "image": "restaurants/2018-den-lille-fede.jpg",
+   "image": "restaurants/2018-den-lille-fede-75868f5e.jpg",
    "address": "Store Kongensgade 17B, 1264 København K",
    "lat": 55.682166,
    "lon": 12.585706
@@ -166,7 +166,7 @@
     "1a0ee2c85d6-2.jpg",
     "1a0ee2c85d6-0.jpg"
    ],
-   "image": "restaurants/2018-relae.jpg",
+   "image": "restaurants/2018-relae-4f01b6e2.jpg",
    "address": "Jægersborggade 41, 2200 København N",
    "lat": 55.692998,
    "lon": 12.543219
@@ -186,7 +186,7 @@
    "photos": [
     "1a0f24e6dd7-menukort.jpg"
    ],
-   "image": "restaurants/2019-neighbourhood.jpg",
+   "image": "restaurants/2019-neighbourhood-df1f0306.jpg",
    "address": "Istedgade 27, 1650 København V",
    "lat": 55.67063,
    "lon": 12.558415
@@ -215,7 +215,7 @@
    "note": "Med Ida.",
    "id": "2019-knud",
    "date": "2019-09-14",
-   "image": "restaurants/2019-knud.jpg"
+   "image": "restaurants/2019-knud-60fac677.jpg"
   },
   {
    "id": "2019-hoest",
@@ -238,7 +238,7 @@
    "photos": [
     "1a0ee3a302f-1.jpg"
    ],
-   "image": "restaurants/2019-hoest.jpg",
+   "image": "restaurants/2019-hoest-40164ed1.jpg",
    "address": "Nørre Farimagsgade 41, 1364 København K",
    "lat": 55.683361,
    "lon": 12.566165
@@ -271,7 +271,7 @@
    "date": "2020-05-19",
    "restaurant": "Oysters & Grill",
    "website": "https://cofoco.dk/en/restaurant/oysters-and-grill",
-   "image": "restaurants/2020-oysters-og-grill.jpg",
+   "image": "restaurants/2020-oysters-og-grill-91dc2eee.jpg",
    "address": "Sjællandsgade 1B, 2200 København N",
    "lat": 55.6929,
    "lon": 12.551603,
@@ -306,7 +306,7 @@
    "photos": [
     "1a0f14c5929-0.jpg"
    ],
-   "image": "restaurants/2020-restaurant-108.jpg",
+   "image": "restaurants/2020-restaurant-108-b7ee5fef.jpg",
    "address": "Strandgade 108, 1401 København K",
    "lat": 55.677609,
    "lon": 12.597816
@@ -322,7 +322,7 @@
    "album": null,
    "price": 15544,
    "outOfPocket": null,
-   "image": "restaurants/2020-noma.jpg",
+   "image": "restaurants/2020-noma-c7273394.jpg",
    "address": "Refshalevej 96, 1432 København K",
    "lat": 55.683153,
    "lon": 12.610426,
@@ -348,7 +348,7 @@
     "1a0f180a06a-16.jpg",
     "1a0f180a06a-27.jpg",
     "1a0f180a06a-19.jpg",
-    "1a0f180a06a-26.jpg",
+    "1a0f180a06a-26-v2.jpg",
     "1a0f180a06a-17.jpg",
     "1a0f180a06a-23.jpg",
     "1a0f180a06a-18.jpg",
@@ -396,7 +396,7 @@
    "note": "Med Ida.",
    "id": "2020-knud",
    "date": "2020-08-05",
-   "image": "restaurants/2020-knud.jpg"
+   "image": "restaurants/2020-knud-60fac677.jpg"
   },
   {
    "id": "2020-brasserie-barner",
@@ -416,7 +416,7 @@
     "1a0f24e6ecb-menukort.jpg",
     "1a0f16721f9-0.jpg"
    ],
-   "image": "restaurants/2020-brasserie-barner.jpg",
+   "image": "restaurants/2020-brasserie-barner-2a5948e2.jpg",
    "address": "Århusgade 1, 2100 København Ø",
    "lat": 55.706059,
    "lon": 12.578201
@@ -448,7 +448,7 @@
    "date": "2021-05-14",
    "restaurant": "Hos Fischer",
    "website": "https://hosfischer.dk/",
-   "image": "restaurants/2021-hos-fischer.jpg",
+   "image": "restaurants/2021-hos-fischer-2e7b2746.jpg",
    "address": "Victor Borges Plads 12, 2100 København Ø",
    "lat": 55.701733,
    "lon": 12.580743,
@@ -467,7 +467,7 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2021-marv-og-ben.jpg",
+   "image": "restaurants/2021-marv-og-ben-632834ce.jpg",
    "address": "Snaregade 4, 1205 København K",
    "lat": 55.677304,
    "lon": 12.576943
@@ -495,7 +495,7 @@
    "date": "2021-07-18",
    "restaurant": "Bottega Estadio",
    "website": "https://estadio.dk/",
-   "image": "restaurants/2021-bottega-estadio.jpg",
+   "image": "restaurants/2021-bottega-estadio-86f47a97.jpg",
    "address": "Gunnar Nu Hansens Plads 9, 2100 København Ø",
    "lat": 55.70475,
    "lon": 12.574254,
@@ -517,7 +517,7 @@
    "group": "ida",
    "people": 9,
    "website": "https://restaurant-anarki.dk/",
-   "image": "restaurants/2021-anarki.jpg",
+   "image": "restaurants/2021-anarki-8b93f431.jpg",
    "address": "Vodroffsvej 47, 1900 Frederiksberg C",
    "lat": 55.679403,
    "lon": 12.554632,
@@ -546,9 +546,9 @@
     "1a0ee2c85d6-7.jpg",
     "1a0ee2c85d6-8.jpg",
     "1a0ee2c85d6-9.jpg",
-    "1a0f2599895-menukort.jpg"
+    "1a0f2599895-menukort-v2.jpg"
    ],
-   "image": "restaurants/2022-bistro-boheme.jpg",
+   "image": "restaurants/2022-bistro-boheme-d41622c4.jpg",
    "address": "Esplanaden 8, 1263 København K",
    "lat": 55.687338,
    "lon": 12.591448
@@ -568,7 +568,7 @@
    "photos": [
     "1a0f2968e84-menukort.jpg"
    ],
-   "image": "restaurants/2023-op-la.jpg",
+   "image": "restaurants/2023-op-la-9314487b.jpg",
    "address": "Gladsaxevej 130, 2860 Søborg",
    "lat": 55.730155,
    "lon": 12.507891
@@ -591,7 +591,7 @@
    "group": "andre",
    "people": 3,
    "website": "https://restaurant-anarki.dk/",
-   "image": "restaurants/2023-anarki.jpg",
+   "image": "restaurants/2023-anarki-8b93f431.jpg",
    "address": "Vodroffsvej 47, 1900 Frederiksberg C",
    "lat": 55.679403,
    "lon": 12.554632,
@@ -616,7 +616,7 @@
     "Dessert – Choose between: Creme Brulée or Chocolate Fudge"
    ],
    "photos": [],
-   "image": "restaurants/2023-feed-bistro.jpg",
+   "image": "restaurants/2023-feed-bistro-5d8249fd.jpg",
    "address": "Vesterbrogade 1P, 1620 København V",
    "lat": 55.675001,
    "lon": 12.566404
@@ -655,7 +655,7 @@
     "1a0ee2c85d6-0.jpg",
     "1a0ee3a302f-2.jpg"
    ],
-   "image": "restaurants/2023-mielcke-og-hurtigkarl.jpg",
+   "image": "restaurants/2023-mielcke-og-hurtigkarl-fb6002ca.jpg",
    "address": "Frederiksberg Runddel 1, 2000 Frederiksberg",
    "lat": 55.674661,
    "lon": 12.53128
@@ -679,7 +679,7 @@
    "group": "andre",
    "people": 3,
    "website": "https://www.sanmarcojunior.dk/",
-   "image": "restaurants/2024-san-marco-junior.jpg",
+   "image": "restaurants/2024-san-marco-junior-379e560e.jpg",
    "address": "Falkoner Allé 10, 2000 Frederiksberg",
    "lat": 55.679283,
    "lon": 12.533775,
@@ -715,7 +715,7 @@
     "1a0ee3a302f-3.jpg",
     "1a0ee3a302f-4.jpg"
    ],
-   "image": "restaurants/2024-jatak.jpg",
+   "image": "restaurants/2024-jatak-55095405.jpg",
    "address": "Rantzausgade 39, 2200 København N",
    "lat": 55.687063,
    "lon": 12.547842
@@ -749,7 +749,7 @@
     "1a0ee3a302f-5.jpg",
     "1a0ee3a302f-6.jpg"
    ],
-   "image": "restaurants/2025-donna.jpg",
+   "image": "restaurants/2025-donna-614ab6e8.jpg",
    "address": "Vester Voldgade 25, 1552 København V",
    "lat": 55.677347,
    "lon": 12.56779
@@ -789,7 +789,7 @@
    "date": "2025-06-14",
    "restaurant": "Abigail",
    "website": "https://norrlyst.dk/abigail/",
-   "image": "restaurants/2025-abigail.jpg",
+   "image": "restaurants/2025-abigail-865456fc.jpg",
    "address": "Nørregade 30, 1165 København K",
    "lat": 55.681738,
    "lon": 12.571248,
@@ -820,7 +820,7 @@
    "note": "Frokost med Ida.",
    "id": "2025-knud",
    "date": "2025-07-27",
-   "image": "restaurants/2025-knud.jpg"
+   "image": "restaurants/2025-knud-60fac677.jpg"
   },
   {
    "id": "2025-akme",
@@ -864,7 +864,7 @@
     "1a0ee3a302f-26.jpg",
     "1a0ee3a302f-27.jpg"
    ],
-   "image": "restaurants/2025-akme.jpg",
+   "image": "restaurants/2025-akme-6dc9ee4e.jpg",
    "address": "Sandkaj 39, 2150 Nordhavn",
    "lat": 55.706819,
    "lon": 12.59854
@@ -931,7 +931,7 @@
     "1a0ee2c85d6-28.jpg",
     "1a0ee2c85d6-2.jpg"
    ],
-   "image": "restaurants/2026-aoc.jpg",
+   "image": "restaurants/2026-aoc-b7a31fde.jpg",
    "address": "Dronningens Tværgade 2, 1302 København K",
    "lat": 55.683209,
    "lon": 12.589053

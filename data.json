@@ -645,7 +645,8 @@
    "menu": [
     "Sardiner – kapers salat, aioli",
     "Venø Østers Ceviche – fermenteret habanero, pico de gallo mignonette, tomater, rødløg",
-    "Pighvar – salsa, escalivada (grillet grønt)"
+    "Pighvar – salsa, escalivada (grillet grønt)",
+    "Chokoladecreme med karamelliserede pekannødder, vaniljeis og karamel"
    ],
    "photos": [
     "1a0f1d04ffa-1.jpg",
@@ -661,7 +662,7 @@
    "address": "Gunnar Nu Hansens Plads 9, 2100 København Ø",
    "lat": 55.70475,
    "lon": 12.574254,
-   "note": "Med Ida.",
+   "note": "Med Ida. Desserten stod ikke på kortet, så den er beskrevet ud fra billedet.",
    "photoCourses": {
     "1a0f1d04ffa-1.jpg": [
      0
@@ -671,6 +672,9 @@
     ],
     "1a0f1d04ffa-2.jpg": [
      2
+    ],
+    "1a0f1d04ffa-3.jpg": [
+     3
     ]
    }
   },

@@ -328,12 +328,13 @@ h2 { font-weight: 600; }
 .dinners tbody td:first-child, .dinners tbody td:last-child { border-radius: 0; }
 .dinners tfoot th { border-top: 3px double var(--ink); }
 .figures, .forecast, .plain td { border-top-style: dotted; }
-.thumb, .strip a, .grid button, .grid .tile, .dinner-img { border-radius: 2px; }
-.dinner-img { border: 1px solid var(--line); padding: 4px; background: var(--bg); }
+.strip a, .grid button, .grid .tile { border-radius: 2px; }
+.thumb { border-radius: 6px; }
+.dinner-img { border: 1px solid var(--line); padding: 4px; background: var(--bg); border-radius: 12px; }
 .place a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .2em; }
 .idea > strong { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; }
 @media (max-width: 760px) {
-  .dinner-img { border: 0; padding: 0; }
+  .dinner-img { border: 0; padding: 0; border-radius: 0; }
 }
 
 /* herbs from A Curious Herbal in the margins */

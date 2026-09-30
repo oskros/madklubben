@@ -881,11 +881,46 @@
     "Beef Wellington – All in",
     "Dessert – Choose between: Creme Brulée or Chocolate Fudge"
    ],
-   "photos": [],
+   "photos": [
+    "ext1a0f46663a2-0.jpg",
+    "ext1a0f46663b8-1.jpg",
+    "ext1a0f46664b6-2.jpg",
+    "ext1a0f4666523-3.jpg",
+    "ext1a0f46665c6-4.jpg",
+    "ext1a0f4666699-5.jpg"
+   ],
    "image": "restaurants/2023-feed-bistro-920ab5f7.jpg",
    "address": "Vesterbrogade 1P, 1620 København V",
    "lat": 55.675001,
-   "lon": 12.566404
+   "lon": 12.566404,
+   "photoCourses": {
+    "ext1a0f46663a2-0.jpg": [
+     0
+    ],
+    "ext1a0f46663b8-1.jpg": [
+     1
+    ],
+    "ext1a0f46664b6-2.jpg": [
+     2
+    ],
+    "ext1a0f4666523-3.jpg": [
+     3
+    ],
+    "ext1a0f46665c6-4.jpg": [
+     4
+    ],
+    "ext1a0f4666699-5.jpg": [
+     4
+    ]
+   },
+   "photoNotes": {
+    "ext1a0f46663a2-0.jpg": "Foto: Feed Bistro, Instagram (apr. 2023)",
+    "ext1a0f46663b8-1.jpg": "Foto: Kent W, TripAdvisor (maj 2023)",
+    "ext1a0f46664b6-2.jpg": "Foto: Feed Bistro, TripAdvisor",
+    "ext1a0f4666523-3.jpg": "Foto: Kent W, TripAdvisor (maj 2023)",
+    "ext1a0f46665c6-4.jpg": "Crème brûlée. Foto: Soerenkh, TripAdvisor (maj 2023)",
+    "ext1a0f4666699-5.jpg": "Chocolate fudge. Foto: Kent W, TripAdvisor (maj 2023)"
+   }
   },
   {
    "id": "2023-mielcke-og-hurtigkarl",
@@ -988,6 +1023,7 @@
    "photos": [
     "1a0ee3a302f-0.jpg",
     "1a0f14db60f-0.jpg",
+    "ext1a0f4666781-6.jpg",
     "1a0ee3a302f-1.jpg",
     "1a0ee3a302f-2.jpg",
     "1a0f14db60f-1.jpg",
@@ -1001,6 +1037,9 @@
    "photoCourses": {
     "1a0f14db60f-0.jpg": [
      1
+    ],
+    "ext1a0f4666781-6.jpg": [
+     2
     ],
     "1a0ee3a302f-1.jpg": [
      3
@@ -1017,6 +1056,9 @@
     "1a0ee3a302f-4.jpg": [
      7
     ]
+   },
+   "photoNotes": {
+    "ext1a0f4666781-6.jpg": "Foto: Jatak, Instagram (nov. 2024)"
    }
   },
   {

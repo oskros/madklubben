@@ -362,7 +362,6 @@ h2 { font-weight: 600; }
   #map { background: #15171a; }
 }
 .leaflet-tooltip { font-family: var(--serif); font-size: .95rem; }
-.leaflet-control-attribution { font-size: .65rem; }
 @media (max-width: 640px) { #map { height: 260px; margin: 0 -16px; border-left: 0; border-right: 0; border-radius: 0; } }
 .address-field { position: relative; }
 .suggest { position: absolute; z-index: 5; left: 0; right: 0; top: 100%; margin: .25rem 0 0; padding: .25rem; list-style: none; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 8px 24px -8px rgb(0 0 0 / .3); max-height: 16rem; overflow-y: auto; }
@@ -380,7 +379,8 @@ h2 { font-weight: 600; }
 .dot-popup a { display: inline-flex; align-items: center; gap: .2rem; margin-top: .35rem; font-weight: 700; color: var(--accent); text-decoration: none; }
 .dot-popup a .i { width: 1rem; height: 1rem; }
 #map .dot-popup a { color: var(--accent); }
-#map .leaflet-control-attribution { background: color-mix(in srgb, var(--bg) 85%, transparent); color: var(--muted); }
+#map .leaflet-control-attribution { background: none; color: var(--muted); opacity: .55; font-size: .6rem; padding: 0 .4rem .15rem; }
+#map .leaflet-control-attribution:hover { opacity: 1; }
 #map .leaflet-control-attribution a { color: var(--muted); }
 #map .leaflet-bar a, #map .leaflet-bar a:hover { background: var(--bg); color: var(--ink); border-bottom-color: var(--line); }
 #map .leaflet-bar { border: 1px solid var(--line); box-shadow: none; border-radius: 4px; }

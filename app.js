@@ -819,6 +819,7 @@ function main() {
     const L = await leaflet;
     if (!el.isConnected) return;
     const map = L.map(el, { wheelPxPerZoomLevel: 240, zoomSnap: .5, zoomDelta: .5 });
+    map.attributionControl.setPrefix(false);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',

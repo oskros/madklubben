@@ -88,7 +88,7 @@ function main() {
   let editingIdea = null;
   const GROUPS = { madklubben: 'Madklubben', ida: 'Ida', andre: 'Andre' };
   const personal = () => store.get('mig') === '1';
-  const groupFilter = () => personal() ? store.get('mig-filter') ?? 'alle' : 'madklubben';
+  const groupFilter = () => personal() ? store.get('mig-filter') ?? 'madklubben' : 'madklubben';
   const shown = () => data.dinners.filter(d => groupFilter() === 'alle' || (d.group ?? 'madklubben') === groupFilter());
   const localUrls = {};
 
@@ -522,7 +522,7 @@ function main() {
     const el = $('#filter');
     el.hidden = !personal();
     if (!personal()) return;
-    el.classList.toggle('on', groupFilter() !== 'alle');
+    el.classList.toggle('on', groupFilter() !== 'madklubben');
     el.innerHTML = [['alle', 'Alle'], ...Object.entries(GROUPS)].map(([k, n]) => `<option value="${k}" ${groupFilter() === k ? 'selected' : ''}>${n}</option>`).join('');
   }
 

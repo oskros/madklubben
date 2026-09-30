@@ -150,7 +150,7 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 .links a { display: inline-flex; align-items: center; gap: .6rem; color: var(--ink); text-decoration: none; }
 .links a .i { color: var(--accent); }
 .links a:hover span { text-decoration: underline; text-underline-offset: .2em; }
-.note { max-width: 60ch; }
+.note { max-width: 60ch; margin: 1.4rem 0 .25rem; padding: .15rem 0 .15rem 1rem; border-left: 2px solid var(--accent); font-family: var(--serif); font-size: 1.1rem; line-height: 1.5; color: var(--ink); }
 .figures { display: flex; flex-wrap: wrap; gap: 1rem 2.75rem; margin: 1.25rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); }
 .figures dt { font-size: .8rem; color: var(--muted); }
 .figures dd { margin: 0; font-size: 1.2rem; font-weight: 700; }

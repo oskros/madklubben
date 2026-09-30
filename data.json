@@ -447,7 +447,10 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Sardiner – kapers salat, aioli",
+    "Venø Østers Ceviche – fermenteret habanero, pico de gallo mignonette, tomater, rødløg"
+   ],
    "photos": [
     "1a0f1d04ffa-0.jpg",
     "1a0f1d04ffa-1.jpg",
@@ -536,8 +539,12 @@
    "price": null,
    "outOfPocket": null,
    "themes": [],
-   "menu": [],
-   "photos": [],
+   "menu": [
+    "FAMILY STYLE MENU – 7 servings"
+   ],
+   "photos": [
+    "1a0f25042fb-menukort.jpg"
+   ],
    "id": "2023-anarki",
    "date": "2023-02-01",
    "restaurant": "Anarki",
@@ -673,7 +680,15 @@
    "outOfPocket": 0,
    "note": "Spontan mandagsmiddag, Rasmus' forslag.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Arancini – Arancini med Tomat, Mozzarella og Parmesan",
+    "Baccala – Rørt og Saltet Torsk med Grillede Artiskokker og Bitre Salater",
+    "Crudo di Tonno – Crudo af Tun med Chili, Taggiasca Oliven, Tomater og Merian",
+    "Prosciutto – Tomatsauce, Fior di Latte, Bøffelmozzarella og Prosciutto",
+    "Rigatoni alla Vodka – Rigatoni med Tomat, Chili, Stracciatella og Vodka Sauce",
+    "Spaghetti ai Frutti di Mare – Spaghetti med Rejer, Muslinger og Jomfruhummer",
+    "Panna Cotta – Panna Cotta med Citron, Hindbær og Ristede Hasselnødder"
+   ],
    "photos": [
     "1a0ee3a302f-0.jpg",
     "1a0ee3a302f-1.jpg",

@@ -552,8 +552,8 @@
     "Pighvar – salsa, escalivada (grillet grønt)"
    ],
    "photos": [
-    "1a0f1d04ffa-0.jpg",
     "1a0f1d04ffa-1.jpg",
+    "1a0f1d04ffa-0.jpg",
     "1a0f1d04ffa-2.jpg",
     "1a0f1d04ffa-3.jpg"
    ],
@@ -567,8 +567,8 @@
    "lon": 12.574254,
    "note": "Med Ida.",
    "photoCourses": {
-    "1a0f1d04ffa-0.jpg": 1,
     "1a0f1d04ffa-1.jpg": 0,
+    "1a0f1d04ffa-0.jpg": 1,
     "1a0f1d04ffa-2.jpg": 2
    }
   },

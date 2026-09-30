@@ -10,7 +10,7 @@
    "perPerson": 200
   },
   {
-   "from": "2024-11",
+   "from": "2024-07",
    "perPerson": 300
   }
  ],
@@ -29,14 +29,14 @@
  "dinners": [
   {
    "id": "2016-llama",
-   "date": "2016-06-05",
+   "date": "2016-07-05",
    "restaurant": "Llama",
    "website": "https://cofoco.dk/en/llama/",
    "closed": false,
    "album": null,
    "price": null,
    "outOfPocket": null,
-   "note": "Farveldinner før Rasmus tager til Australien + Oprettelse af madklubben (100/måned)",
+   "note": "Farvelmiddag for Rasmus. Condesa havde lukket, og Barburrito og El Viejo México var også i spil. Dagen efter blev madkontoen oprettet med 100 kr/md.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -54,7 +54,7 @@
    "album": null,
    "price": null,
    "outOfPocket": null,
-   "note": null,
+   "note": "Oskars forslag efter anbefalinger fra to andre. Bord kl. 19.45.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -72,7 +72,7 @@
    "album": null,
    "price": 3000,
    "outOfPocket": 0,
-   "note": null,
+   "note": "7 retter inkl. vin, kaffe og cava for 910 kr. Laurence havde været tjener der. Første booking (20/1) blev aflyst, da Rasmus havde glemt halvårsdag med damen.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -90,7 +90,7 @@
    "album": null,
    "price": 4860,
    "outOfPocket": 2260,
-   "note": null,
+   "note": "Bord kl. 21, øl på Mikkeller & Friends inden. Også på listen: AOC (lidt for dyrt), Krogs, Clou, Kiin Kiin, Amass og The Market.",
    "themes": [],
    "menu": [],
    "photos": [
@@ -113,7 +113,7 @@
    "album": null,
    "price": 1920,
    "outOfPocket": 1920,
-   "note": null,
+   "note": "Spontant: drinks i Kødbyen blev til aftensmad. Rasmus og Oskar gav (bonustid).",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -131,7 +131,7 @@
    "album": null,
    "price": 2850,
    "outOfPocket": 0,
-   "note": "Ændring til 200/måned",
+   "note": "Hao's anbefaling. Også på listen: Pluto, 108, Yaffa (50% i åbningsmåneden) og Sidecar. Cocktails og hyrevogn hjem bagefter, og satsen røg op på 200 kr samme uge.",
    "themes": [],
    "menu": [],
    "photos": [
@@ -151,7 +151,7 @@
    "album": null,
    "price": 3452,
    "outOfPocket": 2,
-   "note": null,
+   "note": "Første middag efter nedlukningen, på 108's sommermenu-kampagne til 400 kr. Øl ved streetfood på Christianshavn inden.",
    "themes": [],
    "menu": [],
    "photos": [
@@ -171,7 +171,7 @@
    "album": null,
    "price": 2840,
    "outOfPocket": 90,
-   "note": null,
+   "note": "Oskar var gået forbi et par gange og syntes det så nice ud. Øl på Bicycle Brewery Taproom inden.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -189,7 +189,7 @@
    "album": null,
    "price": 4000,
    "outOfPocket": 400,
-   "note": null,
+   "note": "Coronaregler: alt lukkede kl. 23, så bord kl. 17 og test inden. Bookingrod gav et gratis glas champagne. Rasmus tabte sit dankort, og en fremmed kom med det til Gammel Strand. Boheme og Maison var fuldt booket.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -207,7 +207,7 @@
    "album": null,
    "price": 7870,
    "outOfPocket": 0,
-   "note": "Lang pause pga flytning og rejser",
+   "note": "Ventet på i over et år (første forsøg i 2021). Øl på Toldboden inden, espresso- og cortadosmagning til sidst.",
    "themes": [],
    "menu": [],
    "photos": [
@@ -236,7 +236,7 @@
    "album": null,
    "price": 1400,
    "outOfPocket": 0,
-   "note": null,
+   "note": "Billig madklub på den vietnamesiske ude ved Oskar i Søborg. Rasmus troede det lå på Vesterbro.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -251,10 +251,10 @@
    "restaurant": "Feed Bistro",
    "website": "https://feed.dk/",
    "closed": false,
-   "album": null,
+   "album": "https://photos.app.goo.gl/NnrFCiG7SfHbSBDVA",
    "price": 5145,
    "outOfPocket": 1215,
-   "note": null,
+   "note": "Rasmus valgte, da han hørte ordet wagyu. All-in menuen kostede 995 kr. Også på listen: Trio, Les Trois Cochons, Alto Palato og The Pescetarian.",
    "themes": [],
    "menu": [],
    "photos": [],
@@ -272,7 +272,7 @@
    "album": null,
    "price": 9145,
    "outOfPocket": 3945,
-   "note": null,
+   "note": "Oskars ønske siden 2019. \"The experience\" med vinmenu, Laurence fik kombucha-juicemenuen.",
    "themes": [],
    "menu": [
     "daikon & yuzu kosho – HAMACHI",
@@ -311,7 +311,7 @@
    "album": null,
    "price": 5155,
    "outOfPocket": 0,
-   "note": "Ændring til 300/måned",
+   "note": "Faste seatings, vi tog kl. 20.30 med øl på Kølsters inden. AOC var også oppe at vende (3.200 kr pr. kuvert), men for dyrt dengang.",
    "themes": [],
    "menu": [
     "Green Tomato – Potato and Mustard",
@@ -346,7 +346,7 @@
    "album": null,
    "price": 1916,
    "outOfPocket": 0,
-   "note": null,
+   "note": "Spontan mandagsmiddag, Rasmus' forslag.",
    "themes": [],
    "menu": [],
    "photos": [
@@ -372,7 +372,7 @@
    "album": null,
    "price": 7450,
    "outOfPocket": 0,
-   "note": null,
+   "note": "Drinks på Åben i Nordhavn inden. \"Godt nok stegt til sidst.\"",
    "themes": [],
    "menu": [],
    "photos": [
@@ -419,7 +419,7 @@
    "album": null,
    "price": 16000,
    "outOfPocket": 3300,
-   "note": null,
+   "note": "Drømmen siden 2018. Laurence var syg men tog med alligevel (1.000 kr i udeblivelsesgebyr). Drinks på Dahl & Dahl inden.",
    "themes": [],
    "menu": [
     "Østers & pære",
@@ -483,6 +483,61 @@
    "name": "ESSE",
    "url": "https://esserestaurant.dk/",
    "note": "anbefalet af Hanna"
+  },
+  {
+   "name": "Parsley Salon",
+   "url": "https://www.parsleysalon.dk/",
+   "note": "Oskar. Hao siger det er the place to go (Hellerup, 1 stjerne)."
+  },
+  {
+   "name": "Lille Mølle",
+   "url": "https://norrlyst.dk/restaurantlillemoelle/",
+   "note": "Oskar. I den gamle mølle på Christianshavns Vold, åbnede 2025."
+  },
+  {
+   "name": "Trio",
+   "url": "https://restauranttrio.dk/",
+   "note": "Oskar. AOC's søsterrestaurant i toppen af Axel Towers."
+  },
+  {
+   "name": "Pluto",
+   "url": "https://www.restaurantpluto.dk/",
+   "note": "Laurence og Oskar. Oppe at vende før Høst."
+  },
+  {
+   "name": "Sidecar",
+   "url": "https://www.sidecarnoerrebro.dk/",
+   "note": "Laurence. Foreslået tre gange fra 2018 til 2020."
+  },
+  {
+   "name": "Lalala",
+   "url": "https://www.la-la-la.dk/",
+   "note": "Laurence. \"Sygt godt, specielt deres a la carte.\""
+  },
+  {
+   "name": "Les Trois Cochons",
+   "url": "https://cofoco.dk/en/restaurant/les-trois-cochons",
+   "note": "Laurence. Fransk bistro, meget for pengene a la carte."
+  },
+  {
+   "name": "Hongs Special",
+   "url": "https://www.facebook.com/p/Restaurant-HONGS-special-61552012305363/",
+   "note": "Rasmus. Dim sum på Hvidovrevej, som blev overrendt."
+  },
+  {
+   "name": "Schønnemann",
+   "url": "https://www.restaurantschonnemann.dk/",
+   "note": "Laurence. Gourmet-smørrebrød til en julefrokost-madklub (kun frokost)."
+  },
+  {
+   "name": "Told & Snaps",
+   "url": "https://www.toldogsnaps.dk/",
+   "note": "Laurence. Klassisk smørrebrød i Nyhavn til julefrokost."
+  },
+  {
+   "name": "Palægade",
+   "url": "https://palaegade.dk/",
+   "note": "Laurence. Smørrebrød om dagen, klassisk køkken om aftenen."
   }
  ]
 }

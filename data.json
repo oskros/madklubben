@@ -71,7 +71,17 @@
    "outOfPocket": null,
    "note": "Farvelmiddag for Rasmus. Vi overvejede også Condesa (havde lukket), samt Barburrito og El Viejo México var også i spil. Dagen efter blev madkontoen oprettet med 100 kr/md.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Taco med oksebryst, salsa crilolla & chuchum mayonnaise",
+    "Grillet padron peber med miso yoghurt",
+    "Tostada med krabbe & avocado",
+    "Ceviche af havbars med søde kartofler, mango, radise & leche de tigre",
+    "Tiradito af hamachi med ají amarillo, ristede jordnødder & nashi pære",
+    "Stegt perlehøne med græskarkernemole & grillet hjertesalat",
+    "Majssalat med agurk & fårefeta",
+    "Grillet courget med mojo rojo",
+    "Banan syltet i ahornsirup med curd, mascarponeis, karameliserede popcorn & chokoladesauce med mezcal"
+   ],
    "photos": [],
    "image": "restaurants/2016-llama.jpg",
    "address": "Lille Kongensgade 14, 1074 København K",
@@ -87,9 +97,14 @@
    "album": null,
    "price": null,
    "outOfPocket": null,
-   "note": "Oskars forslag efter anbefalinger fra to venner. Bord kl. 19.45.",
+   "note": "Oskars forslag efter anbefalinger fra to venner. Bord kl. 19.45. Menuen er fra restaurantens hjemmeside 24. marts 2017, så den kan have været en anden den aften.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Laks – rødbede – gedeost – lakrids",
+    "Kalvetatar – bøgehatte – hasselnød – æggeblomme",
+    "Svinebryst – græskar – tranebær – selleri",
+    "Chokolade – skyr – blåbær"
+   ],
    "photos": [],
    "image": "restaurants/2017-bodil.jpg",
    "address": "Sønder Boulevard 105, 1720 København V",
@@ -157,7 +172,9 @@
    "note": "Spontant: drinks i Kødbyen blev til aftensmad. Rasmus og Oskar gav (bonustid).",
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0f24e6dd7-menukort.jpg"
+   ],
    "image": "restaurants/2019-neighbourhood.jpg",
    "address": "Istedgade 27, 1650 København V",
    "lat": 55.67063,
@@ -360,9 +377,12 @@
    "outOfPocket": 90,
    "note": "Oskar var gået forbi et par gange og syntes det så fedt ud. Øl på Bicycle Brewery Taproom inden.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "6 retters delemenu"
+   ],
    "photos": [
-    "1a0f16721f9-0.jpg"
+    "1a0f16721f9-0.jpg",
+    "1a0f24e6ecb-menukort.jpg"
    ],
    "image": "restaurants/2020-brasserie-barner.jpg",
    "address": "Århusgade 1, 2100 København Ø",

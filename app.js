@@ -203,6 +203,7 @@ function main() {
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
     if (dinner) billPreview(dinner);
+    document.querySelectorAll('textarea.grow').forEach(grow);
     if ($('#map')) drawMap($('#map'));
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
@@ -317,7 +318,7 @@ function main() {
             <ul class="suggest" id="address-list" role="listbox" hidden></ul>
           </div>
           <label>Temaer <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="fx nordisk, vinmenu"></label>
-          <label>Note <input name="note" value="${esc(v.note)}"></label>
+          <label>Note <textarea name="note" rows="3" class="grow">${esc(v.note)}</textarea></label>
           ${d ? `<label class="check"><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten er lukket</label>` : ''}
         </section>
         <section>
@@ -731,7 +732,9 @@ function main() {
     if (s) showPhoto(+s);
     else if (e.target.matches('dialog') || e.target.closest('[data-close]')) $('#viewer').close();
   });
+  const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
+    if (e.target.matches('textarea.grow')) grow(e.target);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);
   });

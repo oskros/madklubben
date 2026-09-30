@@ -386,3 +386,5 @@ h2 { font-weight: 600; }
 #map .leaflet-bar { border: 1px solid var(--line); box-shadow: none; border-radius: 4px; }
 #map .map-reset { display: grid; place-items: center; }
 #map .map-reset .i { width: 15px; height: 15px; }
+.dinner-form textarea { width: 100%; resize: vertical; line-height: 1.45; }
+.dinner-form textarea.grow { overflow: hidden; min-height: 5.2rem; }

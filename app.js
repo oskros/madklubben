@@ -263,12 +263,12 @@ function main() {
         <div>
           <p class="date">${dato(d.date)}</p>
           <h1>${esc(d.restaurant)}</h1>
-          <p class="links">
-            ${d.address ? `<a href="https://www.openstreetmap.org/?mlat=${d.lat}&mlon=${d.lon}#map=17/${d.lat}/${d.lon}" target="_blank" rel="noopener">${icon('pin')}${esc(d.address)}</a>` : ''}
-            ${safeUrl(d.website) ? `<a href="${safeUrl(d.website)}" target="_blank" rel="noopener">${icon('external')}${esc(host(d.website))}</a>` : ''}
-            ${safeUrl(d.album) ? `<a href="${safeUrl(d.album)}" target="_blank" rel="noopener">${icon('album')}Google Photos</a>` : ''}
-            ${d.closed ? '<span class="muted">Lukket</span>' : ''}
-          </p>
+          <ul class="links">
+            ${d.address ? `<li><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${d.restaurant}, ${d.address}`)}" target="_blank" rel="noopener">${icon('pin')}<span>${esc(d.address)}</span></a></li>` : ''}
+            ${safeUrl(d.website) ? `<li><a href="${safeUrl(d.website)}" target="_blank" rel="noopener">${icon('external')}<span>${esc(host(d.website))}</span></a></li>` : ''}
+            ${safeUrl(d.album) ? `<li><a href="${safeUrl(d.album)}" target="_blank" rel="noopener">${icon('album')}<span>Google Photos</span></a></li>` : ''}
+            ${d.closed ? `<li class="muted">Lukket</li>` : ''}
+          </ul>
           ${chips(d.themes)}
           ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
           <dl class="figures">

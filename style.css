@@ -384,3 +384,5 @@ h2 { font-weight: 600; }
 #map .leaflet-control-attribution a { color: var(--muted); }
 #map .leaflet-bar a, #map .leaflet-bar a:hover { background: var(--bg); color: var(--ink); border-bottom-color: var(--line); }
 #map .leaflet-bar { border: 1px solid var(--line); box-shadow: none; border-radius: 4px; }
+#map .map-reset { display: grid; place-items: center; }
+#map .map-reset .i { width: 15px; height: 15px; }

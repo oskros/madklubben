@@ -169,7 +169,13 @@
    "image": "restaurants/2018-relae-4f01b6e2.jpg",
    "address": "Jægersborggade 41, 2200 København N",
    "lat": 55.692998,
-   "lon": 12.543219
+   "lon": 12.543219,
+   "photoCourses": {
+    "1a0ee2c85d6-1.jpg": 5,
+    "1a0ee2c85d6-3.jpg": 6,
+    "1a0ee2c85d6-2.jpg": 6,
+    "1a0ee2c85d6-0.jpg": 4
+   }
   },
   {
    "id": "2019-neighbourhood",
@@ -215,7 +221,11 @@
    "note": "Med Ida.",
    "id": "2019-knud",
    "date": "2019-09-14",
-   "image": "restaurants/2019-knud-89e837cd.jpg"
+   "image": "restaurants/2019-knud-89e837cd.jpg",
+   "photoCourses": {
+    "1a0f1d04630-0.jpg": 0,
+    "1a0f1d04630-1.jpg": 1
+   }
   },
   {
    "id": "2019-hoest",
@@ -241,7 +251,10 @@
    "image": "restaurants/2019-hoest-fa44a333.jpg",
    "address": "Nørre Farimagsgade 41, 1364 København K",
    "lat": 55.683361,
-   "lon": 12.566165
+   "lon": 12.566165,
+   "photoCourses": {
+    "1a0ee3a302f-1.jpg": 1
+   }
   },
   {
    "group": "ida",
@@ -275,7 +288,15 @@
    "address": "Sjællandsgade 1B, 2200 København N",
    "lat": 55.6929,
    "lon": 12.551603,
-   "note": "Med Ida."
+   "note": "Med Ida.",
+   "photoCourses": {
+    "1a0f1d04758-0.jpg": 3,
+    "1a0f1d04758-1.jpg": 0,
+    "1a0f1d04758-2.jpg": 1,
+    "1a0f1d04758-3.jpg": 2,
+    "1a0f1d04758-4.jpg": 4,
+    "1a0f1d04758-5.jpg": 5
+   }
   },
   {
    "id": "2020-restaurant-108",
@@ -431,7 +452,11 @@
    "note": "Med Ida.",
    "id": "2020-knud",
    "date": "2020-08-05",
-   "image": "restaurants/2020-knud-89e837cd.jpg"
+   "image": "restaurants/2020-knud-89e837cd.jpg",
+   "photoCourses": {
+    "1a0f1d04a2c-0.jpg": 0,
+    "1a0f1d04a2c-1.jpg": 0
+   }
   },
   {
    "id": "2020-brasserie-barner",
@@ -487,7 +512,13 @@
    "address": "Victor Borges Plads 12, 2100 København Ø",
    "lat": 55.701733,
    "lon": 12.580743,
-   "note": "Med Ida."
+   "note": "Med Ida.",
+   "photoCourses": {
+    "1a0f1d04b3f-0.jpg": 2,
+    "1a0f1d04b3f-1.jpg": 4,
+    "1a0f1d04b3f-2.jpg": 1,
+    "1a0f1d04b3f-3.jpg": 0
+   }
   },
   {
    "id": "2021-marv-og-ben",
@@ -534,7 +565,12 @@
    "address": "Gunnar Nu Hansens Plads 9, 2100 København Ø",
    "lat": 55.70475,
    "lon": 12.574254,
-   "note": "Med Ida."
+   "note": "Med Ida.",
+   "photoCourses": {
+    "1a0f1d04ffa-0.jpg": 1,
+    "1a0f1d04ffa-1.jpg": 0,
+    "1a0f1d04ffa-2.jpg": 2
+   }
   },
   {
    "closed": false,
@@ -774,7 +810,15 @@
    "image": "restaurants/2024-jatak-987b0b44.jpg",
    "address": "Rantzausgade 39, 2200 København N",
    "lat": 55.687063,
-   "lon": 12.547842
+   "lon": 12.547842,
+   "photoCourses": {
+    "1a0f14db60f-0.jpg": 1,
+    "1a0ee3a302f-1.jpg": 3,
+    "1a0ee3a302f-2.jpg": 4,
+    "1a0f14db60f-1.jpg": 4,
+    "1a0ee3a302f-3.jpg": 5,
+    "1a0ee3a302f-4.jpg": 7
+   }
   },
   {
    "id": "2025-donna",
@@ -808,7 +852,16 @@
    "image": "restaurants/2025-donna-5968804a.jpg",
    "address": "Vester Voldgade 25, 1552 København V",
    "lat": 55.677347,
-   "lon": 12.56779
+   "lon": 12.56779,
+   "photoCourses": {
+    "1a0ee3a302f-0.jpg": 0,
+    "1a0ee3a302f-1.jpg": 1,
+    "1a0ee3a302f-2.jpg": 2,
+    "1a0ee3a302f-3.jpg": 3,
+    "1a0ee3a302f-4.jpg": 4,
+    "1a0ee3a302f-5.jpg": 5,
+    "1a0ee3a302f-6.jpg": 6
+   }
   },
   {
    "group": "ida",
@@ -849,7 +902,12 @@
    "address": "Nørregade 30, 1165 København K",
    "lat": 55.681738,
    "lon": 12.571248,
-   "note": "Med Ida. En speakeasy bag en hattebutik ved Nørreport. Menuen er fra en anmeldelse i september 2025, så enkelte retter var nok anderledes i juni."
+   "note": "Med Ida. En speakeasy bag en hattebutik ved Nørreport. Menuen er fra en anmeldelse i september 2025, så enkelte retter var nok anderledes i juni.",
+   "photoCourses": {
+    "1a0f1d053d4-0.jpg": 9,
+    "1a0f1d053d4-2.jpg": 3,
+    "1a0f1d053d4-4.jpg": 4
+   }
   },
   {
    "group": "ida",
@@ -877,7 +935,12 @@
    "note": "Frokost med Ida.",
    "id": "2025-knud",
    "date": "2025-07-27",
-   "image": "restaurants/2025-knud-89e837cd.jpg"
+   "image": "restaurants/2025-knud-89e837cd.jpg",
+   "photoCourses": {
+    "1a0f1d05d20-0.jpg": 0,
+    "1a0f1d05d20-1.jpg": 2,
+    "1a0f1d05d20-2.jpg": 0
+   }
   },
   {
    "id": "2025-akme",
@@ -1023,7 +1086,19 @@
    "image": "restaurants/2026-aoc-aa3a2633.jpg",
    "address": "Dronningens Tværgade 2, 1302 København K",
    "lat": 55.683209,
-   "lon": 12.589053
+   "lon": 12.589053,
+   "photoCourses": {
+    "1a0ee2c85d6-12.jpg": 0,
+    "1a0ee2c85d6-6.jpg": 1,
+    "1a0ee2c85d6-22.jpg": 2,
+    "1a0ee2c85d6-24.jpg": 4,
+    "1a0ee2c85d6-27.jpg": 7,
+    "1a0ee2c85d6-1.jpg": 10,
+    "1a0ee2c85d6-7.jpg": 13,
+    "1a0ee2c85d6-9.jpg": 15,
+    "1a0ee2c85d6-16.jpg": 16,
+    "1a0ee2c85d6-28.jpg": 17
+   }
   }
  ],
  "ideas": [

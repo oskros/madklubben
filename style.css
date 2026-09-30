@@ -405,7 +405,7 @@ h2 { font-weight: 600; }
   #filter, #filter::picker(select) { appearance: base-select; }
   #filter::picker-icon { display: none; }
   #filter::picker(select) {
-    margin-top: .35rem; padding: .3rem; min-width: anchor-size(width);
+    margin-top: .35rem; padding: .3rem; min-width: anchor-size(width); overflow: visible;
     border: 1px solid var(--line); border-radius: var(--radius);
     background: var(--bg); box-shadow: 0 8px 24px rgb(0 0 0 / .12);
   }

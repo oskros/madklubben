@@ -881,7 +881,8 @@ function main() {
       }
       dot.addTo(map);
     }
-    const home = () => map.fitBounds(placed.map(d => [d.lat, d.lon]), { padding: [28, 28], maxZoom: 15 });
+    const inCopenhagen = placed.filter(d => map.distance([d.lat, d.lon], [55.6761, 12.5683]) < 50000);
+    const home = () => map.fitBounds((inCopenhagen.length ? inCopenhagen : placed).map(d => [d.lat, d.lon]), { padding: [28, 28], maxZoom: 15 });
     home();
     const reset = L.DomUtil.create('a', 'map-reset', map.zoomControl.getContainer());
     reset.href = '#';

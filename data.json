@@ -480,7 +480,8 @@
    "themes": [],
    "menu": [
     "Sardiner – kapers salat, aioli",
-    "Venø Østers Ceviche – fermenteret habanero, pico de gallo mignonette, tomater, rødløg"
+    "Venø Østers Ceviche – fermenteret habanero, pico de gallo mignonette, tomater, rødløg",
+    "Pighvar – salsa, escalivada (grillet grønt)"
    ],
    "photos": [
     "1a0f1d04ffa-0.jpg",
@@ -504,7 +505,9 @@
    "outOfPocket": null,
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0f2599ab4-menukort.jpg"
+   ],
    "id": "2021-anarki",
    "date": "2021-09-03",
    "restaurant": "Anarki",
@@ -515,7 +518,7 @@
    "address": "Vodroffsvej 47, 1900 Frederiksberg C",
    "lat": 55.679403,
    "lon": 12.554632,
-   "note": "Med Ida og hendes familie, 9 personer i alt."
+   "note": "Med Ida og hendes familie, 9 personer i alt. Menukortet er fra juli 2021, da septemberkortet ikke findes længere."
   },
   {
    "id": "2022-bistro-boheme",
@@ -539,7 +542,8 @@
     "1a0ee2c85d6-6.jpg",
     "1a0ee2c85d6-7.jpg",
     "1a0ee2c85d6-8.jpg",
-    "1a0ee2c85d6-9.jpg"
+    "1a0ee2c85d6-9.jpg",
+    "1a0f2599895-menukort.jpg"
    ],
    "image": "restaurants/2022-bistro-boheme.jpg",
    "address": "Esplanaden 8, 1263 København K",
@@ -599,7 +603,13 @@
    "outOfPocket": 1215,
    "note": "Rasmus' valg: ville gerne prøve wagyu. All-in menuen kostede 995 kr. Også på listen: Trio, Les Trois Cochons, Alto Palato og The Pescetarian.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Wagyu Sashimi & Feed Lollipops",
+    "Tartare & Caviar & Wagyu Arancini",
+    "Katsu Sando slider",
+    "Beef Wellington – All in?",
+    "Dessert – Choose between: Creme Brulée or Chocolate Fudge"
+   ],
    "photos": [],
    "image": "restaurants/2023-feed-bistro.jpg",
    "address": "Vesterbrogade 1P, 1620 København V",
@@ -652,7 +662,12 @@
    "outOfPocket": null,
    "themes": [],
    "menu": [],
-   "photos": [],
+   "photos": [
+    "1a0f25999b4-menukort.jpg",
+    "1a0f2599a1f-menukort.jpg",
+    "1a0f2599a4c-menukort.jpg",
+    "1a0f2599a7d-menukort.jpg"
+   ],
    "id": "2024-san-marco-junior",
    "date": "2024-01-24",
    "restaurant": "San Marco Junior",

@@ -818,18 +818,23 @@ function main() {
     });
     const L = await leaflet;
     if (!el.isConnected) return;
-    const map = L.map(el, { wheelPxPerZoomLevel: 120 });
+    const map = L.map(el, { wheelPxPerZoomLevel: 240, zoomSnap: .5, zoomDelta: .5 });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     const color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
     const placed = data.dinners.filter(d => d.lat != null && d.lon != null);
+    const touch = matchMedia('(hover: none)').matches;
     for (const d of placed) {
-      L.circleMarker([d.lat, d.lon], { radius: 7, color: getComputedStyle(document.body).backgroundColor, weight: 2, fillColor: color, fillOpacity: 1 })
-        .bindTooltip(`${esc(d.restaurant)}<br><span class="muted">${esc(d.date.slice(0, 4))}</span>`, { direction: 'top', offset: [0, -6] })
-        .on('click', () => { location.hash = `#/d/${d.id}`; })
-        .addTo(map);
+      const dot = L.circleMarker([d.lat, d.lon], { radius: touch ? 9 : 7, color: getComputedStyle(document.body).backgroundColor, weight: 2, fillColor: color, fillOpacity: 1 });
+      if (touch) {
+        dot.bindPopup(`<strong>${esc(d.restaurant)}</strong><span class="muted">${dato(d.date)}</span><a href="#/d/${esc(d.id)}">Se middag ${icon('next')}</a>`, { closeButton: false, offset: [0, -4], className: 'dot-popup' });
+      } else {
+        dot.bindTooltip(`${esc(d.restaurant)}<br><span class="muted">${esc(d.date.slice(0, 4))}</span>`, { direction: 'top', offset: [0, -6] })
+          .on('click', () => { location.hash = `#/d/${d.id}`; });
+      }
+      dot.addTo(map);
     }
     map.fitBounds(placed.map(d => [d.lat, d.lon]), { padding: [28, 28], maxZoom: 15 });
   }

@@ -28,6 +28,39 @@
  ],
  "dinners": [
   {
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [
+    "Water buffalo tartar, romaine lettuce, brown butter",
+    "Goose liver, sloe, loaf",
+    "Sturgeon caviar, asparagus, bone marrow",
+    "Rooster soup, stuffed pasta, vegetables",
+    "Young wild boar cheek stew, buttered noodles, pickled paprika",
+    "21st century Somló sponge cake"
+   ],
+   "photos": [
+    "1a0f1bb7793-0.jpg",
+    "1a0f1bb7867-1.jpg",
+    "1a0f1bb7903-2.jpg",
+    "1a0f1bb79a7-3.jpg",
+    "1a0f1bb7a35-4.jpg"
+   ],
+   "id": "2015-onyx",
+   "date": "2015-07-30",
+   "restaurant": "Onyx",
+   "group": "ida",
+   "people": 2,
+   "website": "https://onyxrestaurant.hu/",
+   "image": "restaurants/2015-onyx.jpg",
+   "address": "Vörösmarty tér 7-8, 1051 Budapest",
+   "lat": 47.4972556,
+   "lon": 19.0505627,
+   "note": "Med Ida i Budapest."
+  },
+  {
    "id": "2016-llama",
    "date": "2016-07-05",
    "restaurant": "Llama",
@@ -255,6 +288,26 @@
    "lon": 12.576943
   },
   {
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [],
+   "id": "2021-anarki",
+   "date": "2021-09-03",
+   "restaurant": "Anarki",
+   "group": "ida",
+   "people": 9,
+   "website": "https://restaurant-anarki.dk/",
+   "image": "restaurants/2021-anarki.jpg",
+   "address": "Vodroffsvej 47, 1900 Frederiksberg C",
+   "lat": 55.679403,
+   "lon": 12.554632,
+   "note": "Med Ida og hendes familie, 9 personer i alt."
+  },
+  {
    "id": "2022-bistro-boheme",
    "date": "2022-08-13",
    "restaurant": "Bistro Boheme",
@@ -300,6 +353,26 @@
    "address": "Gladsaxevej 130, 2860 Søborg",
    "lat": 55.730155,
    "lon": 12.507891
+  },
+  {
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [],
+   "id": "2023-anarki",
+   "date": "2023-02-01",
+   "restaurant": "Anarki",
+   "group": "andre",
+   "people": 3,
+   "website": "https://restaurant-anarki.dk/",
+   "image": "restaurants/2023-anarki.jpg",
+   "address": "Vodroffsvej 47, 1900 Frederiksberg C",
+   "lat": 55.679403,
+   "lon": 12.554632,
+   "note": "Med Jakob og Philip. Jakob bookede bordet."
   },
   {
    "id": "2023-feed-bistro",
@@ -357,6 +430,26 @@
    "address": "Frederiksberg Runddel 1, 2000 Frederiksberg",
    "lat": 55.674661,
    "lon": 12.53128
+  },
+  {
+   "closed": false,
+   "album": null,
+   "price": null,
+   "outOfPocket": null,
+   "themes": [],
+   "menu": [],
+   "photos": [],
+   "id": "2024-san-marco-junior",
+   "date": "2024-01-24",
+   "restaurant": "San Marco Junior",
+   "group": "andre",
+   "people": 3,
+   "website": "https://www.sanmarcojunior.dk/",
+   "image": "restaurants/2024-san-marco-junior.jpg",
+   "address": "Falkoner Allé 10, 2000 Frederiksberg",
+   "lat": 55.679283,
+   "lon": 12.533775,
+   "note": "Med Jakob og Philip. Jakob bookede bordet."
   },
   {
    "id": "2024-jatak",

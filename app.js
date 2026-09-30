@@ -204,6 +204,7 @@ function main() {
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
     if (dinner) billPreview(dinner);
+    if ($('#map')) drawMap($('#map'));
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
       if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del', preventOnFilter: false });
@@ -217,6 +218,7 @@ function main() {
     plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
     back: '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
     external: '<path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+    pin: '<path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
     album: '<path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.3-1.3a2.4 2.4 0 0 0-3.4 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/>',
     edit: '<path d="M21.2 6.8a1 1 0 0 0-4-4L3.8 16.2a2 2 0 0 0-.5.8L2 21.4a.5.5 0 0 0 .6.6l4.4-1.3a2 2 0 0 0 .8-.5z"/><path d="m15 5 4 4"/>',
     trash: '<path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>',
@@ -262,6 +264,7 @@ function main() {
           <p class="date">${dato(d.date)}</p>
           <h1>${esc(d.restaurant)}</h1>
           <p class="links">
+            ${d.address ? `<a href="https://www.openstreetmap.org/?mlat=${d.lat}&mlon=${d.lon}#map=17/${d.lat}/${d.lon}" target="_blank" rel="noopener">${icon('pin')}${esc(d.address)}</a>` : ''}
             ${safeUrl(d.website) ? `<a href="${safeUrl(d.website)}" target="_blank" rel="noopener">${icon('external')}${esc(host(d.website))}</a>` : ''}
             ${safeUrl(d.album) ? `<a href="${safeUrl(d.album)}" target="_blank" rel="noopener">${icon('album')}Google Photos</a>` : ''}
             ${d.closed ? '<span class="muted">Lukket</span>' : ''}
@@ -308,6 +311,11 @@ function main() {
           <div class="pair">
             <label>Dato <input name="date" type="date" required value="${esc(v.date)}"></label>
             <label>Hjemmeside <input name="website" type="url" value="${esc(v.website)}" placeholder="https://"></label>
+          </div>
+          <div class="address-field">
+            <label>Adresse <input name="addressQuery" value="${esc(v.address ?? '')}" placeholder="Søg efter adressen" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="address-list"></label>
+            <input type="hidden" name="address" value="${esc(v.address ?? '')}"><input type="hidden" name="lat" value="${esc(v.lat ?? '')}"><input type="hidden" name="lon" value="${esc(v.lon ?? '')}">
+            <ul class="suggest" id="address-list" role="listbox" hidden></ul>
           </div>
           <label>Temaer <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="fx nordisk, vinmenu"></label>
           <label>Note <input name="note" value="${esc(v.note)}"></label>
@@ -388,6 +396,7 @@ function main() {
         ${icon('next')}
       </a>
       ${timeline()}
+      ${data.dinners.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}
       <div class="section-head">
         <h1>Middage <span class="count">${data.dinners.length}</span></h1>
         ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}
@@ -579,6 +588,9 @@ function main() {
         outOfPocket: fd.get('outOfPocket') === '' ? null : Math.round(Number(fd.get('outOfPocket')) * data.members),
         website: orNull(fd.get('website')),
         closed: fd.get('closed') === 'on',
+        address: orNull(fd.get('address')),
+        lat: num(fd.get('lat')),
+        lon: num(fd.get('lon')),
         themes: fd.get('themes').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
         menu: fd.getAll('menu').map(c => c.trim()).filter(Boolean),
         note: orNull(fd.get('note')),
@@ -794,6 +806,95 @@ function main() {
     if (!$('#viewer').open) return;
     if (e.key === 'ArrowRight') showPhoto(1);
     if (e.key === 'ArrowLeft') showPhoto(-1);
+  });
+
+  // ---------- map and address search (OpenStreetMap) ----------
+
+  let leaflet;
+  async function drawMap(el) {
+    leaflet ??= import('https://cdn.jsdelivr.net/npm/leaflet@1.9.4/+esm').then(m => {
+      document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">');
+      return m;
+    });
+    const L = await leaflet;
+    if (!el.isConnected) return;
+    const map = L.map(el, { scrollWheelZoom: false });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+    const color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    const placed = data.dinners.filter(d => d.lat != null && d.lon != null);
+    for (const d of placed) {
+      L.circleMarker([d.lat, d.lon], { radius: 7, color: getComputedStyle(document.body).backgroundColor, weight: 2, fillColor: color, fillOpacity: 1 })
+        .bindTooltip(`${esc(d.restaurant)}<br><span class="muted">${esc(d.date.slice(0, 4))}</span>`, { direction: 'top', offset: [0, -6] })
+        .on('click', () => { location.hash = `#/d/${d.id}`; })
+        .addTo(map);
+    }
+    map.fitBounds(placed.map(d => [d.lat, d.lon]), { padding: [28, 28], maxZoom: 15 });
+  }
+
+  const addressLabel = p => {
+    const street = [p.street ?? p.name, p.housenumber].filter(Boolean).join(' ');
+    return [street, [p.postcode, p.city].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+  };
+  let addressTimer, addressReq = 0;
+  async function searchAddress(input) {
+    const form = input.form, list = form.querySelector('.suggest'), q = input.value.trim();
+    for (const n of ['address', 'lat', 'lon']) form[n].value = '';
+    input.setCustomValidity(q ? 'Vælg en adresse fra listen.' : '');
+    if (q.length < 3) { list.hidden = true; return; }
+    const req = ++addressReq;
+    try {
+      const r = await fetch(`https://photon.komoot.io/api/?${new URLSearchParams({ q, limit: 6, lat: 55.68, lon: 12.57 })}`);
+      const features = (await r.json()).features.filter(f => f.properties.street || f.properties.housenumber);
+      if (req !== addressReq) return;
+      list.innerHTML = features.map(f => {
+        const [lon, lat] = f.geometry.coordinates, label = addressLabel(f.properties);
+        const place = f.properties.name && f.properties.name !== f.properties.street ? `<span class="muted">${esc(f.properties.name)}</span>` : '';
+        return `<li role="option" tabindex="-1" data-label="${esc(label)}" data-lat="${lat}" data-lon="${lon}">${esc(label)}${place}</li>`;
+      }).join('') || '<li class="none">Ingen adresser fundet</li>';
+      list.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+    } catch {
+      list.innerHTML = '<li class="none">Adressesøgningen svarer ikke lige nu</li>';
+      list.hidden = false;
+    }
+  }
+  function pickAddress(li) {
+    const field = li.closest('.address-field'), form = li.closest('form');
+    form.addressQuery.value = form.address.value = li.dataset.label;
+    form.lat.value = (+li.dataset.lat).toFixed(6);
+    form.lon.value = (+li.dataset.lon).toFixed(6);
+    form.addressQuery.setCustomValidity('');
+    field.querySelector('.suggest').hidden = true;
+    form.addressQuery.setAttribute('aria-expanded', 'false');
+  }
+  document.addEventListener('input', e => {
+    if (e.target.name !== 'addressQuery') return;
+    clearTimeout(addressTimer);
+    addressTimer = setTimeout(() => searchAddress(e.target), 300);
+  });
+  document.addEventListener('click', e => {
+    const li = e.target.closest('.suggest li[data-label]');
+    if (li) return pickAddress(li);
+    if (!e.target.closest('.address-field')) document.querySelectorAll('.suggest').forEach(l => { l.hidden = true; });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.target.name !== 'addressQuery' && !e.target.closest?.('.suggest')) return;
+    const list = e.target.closest('.address-field')?.querySelector('.suggest');
+    if (!list || list.hidden) return;
+    const items = [...list.querySelectorAll('li[data-label]')], i = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      items[Math.max(0, Math.min(items.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)))]?.focus();
+    } else if (e.key === 'Enter' && items.length) {
+      e.preventDefault();
+      pickAddress(i >= 0 ? items[i] : items[0]);
+      e.target.closest('form').addressQuery.focus();
+    } else if (e.key === 'Escape') {
+      list.hidden = true;
+    }
   });
 
   // ---------- new version check ----------

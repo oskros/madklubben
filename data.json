@@ -40,7 +40,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2016-llama.jpg"
+   "image": "restaurants/2016-llama.jpg",
+   "address": "Lille Kongensgade 14, 1074 København K",
+   "lat": 55.679633,
+   "lon": 12.583828
   },
   {
    "id": "2017-bodil",
@@ -55,7 +58,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2017-bodil.jpg"
+   "image": "restaurants/2017-bodil.jpg",
+   "address": "Sønder Boulevard 105, 1720 København V",
+   "lat": 55.664071,
+   "lon": 12.545383
   },
   {
    "id": "2018-den-lille-fede",
@@ -70,7 +76,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2018-den-lille-fede.jpg"
+   "image": "restaurants/2018-den-lille-fede.jpg",
+   "address": "Store Kongensgade 17B, 1264 København K",
+   "lat": 55.682166,
+   "lon": 12.585706
   },
   {
    "id": "2018-relae",
@@ -90,7 +99,10 @@
     "1a0ee2c85d6-2.jpg",
     "1a0ee2c85d6-3.jpg"
    ],
-   "image": "restaurants/2018-relae.jpg"
+   "image": "restaurants/2018-relae.jpg",
+   "address": "Jægersborggade 41, 2200 København N",
+   "lat": 55.692998,
+   "lon": 12.543219
   },
   {
    "id": "2019-neighbourhood",
@@ -105,7 +117,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2019-neighbourhood.jpg"
+   "image": "restaurants/2019-neighbourhood.jpg",
+   "address": "Istedgade 27, 1650 København V",
+   "lat": 55.67063,
+   "lon": 12.558415
   },
   {
    "id": "2019-hoest",
@@ -122,7 +137,10 @@
    "photos": [
     "1a0ee3a302f-1.jpg"
    ],
-   "image": "restaurants/2019-hoest.jpg"
+   "image": "restaurants/2019-hoest.jpg",
+   "address": "Nørre Farimagsgade 41, 1364 København K",
+   "lat": 55.683361,
+   "lon": 12.566165
   },
   {
    "id": "2020-restaurant-108",
@@ -137,7 +155,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2020-restaurant-108.jpg"
+   "image": "restaurants/2020-restaurant-108.jpg",
+   "address": "Strandgade 108, 1401 København K",
+   "lat": 55.677609,
+   "lon": 12.597816
   },
   {
    "id": "2020-brasserie-barner",
@@ -152,7 +173,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2020-brasserie-barner.jpg"
+   "image": "restaurants/2020-brasserie-barner.jpg",
+   "address": "Århusgade 1, 2100 København Ø",
+   "lat": 55.706059,
+   "lon": 12.578201
   },
   {
    "id": "2021-marv-og-ben",
@@ -167,7 +191,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2021-marv-og-ben.jpg"
+   "image": "restaurants/2021-marv-og-ben.jpg",
+   "address": "Snaregade 4, 1205 København K",
+   "lat": 55.677304,
+   "lon": 12.576943
   },
   {
    "id": "2022-bistro-boheme",
@@ -193,7 +220,10 @@
     "1a0ee2c85d6-8.jpg",
     "1a0ee2c85d6-9.jpg"
    ],
-   "image": "restaurants/2022-bistro-boheme.jpg"
+   "image": "restaurants/2022-bistro-boheme.jpg",
+   "address": "Esplanaden 8, 1263 København K",
+   "lat": 55.687338,
+   "lon": 12.591448
   },
   {
    "id": "2023-op-la",
@@ -208,7 +238,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2023-op-la.jpg"
+   "image": "restaurants/2023-op-la.jpg",
+   "address": "Gladsaxevej 130, 2860 Søborg",
+   "lat": 55.730155,
+   "lon": 12.507891
   },
   {
    "id": "2023-feed-bistro",
@@ -223,7 +256,10 @@
    "themes": [],
    "menu": [],
    "photos": [],
-   "image": "restaurants/2023-feed-bistro.jpg"
+   "image": "restaurants/2023-feed-bistro.jpg",
+   "address": "Vesterbrogade 1P, 1620 København V",
+   "lat": 55.675001,
+   "lon": 12.566404
   },
   {
    "id": "2023-mielcke-og-hurtigkarl",
@@ -259,7 +295,10 @@
     "1a0ee2c85d6-0.jpg",
     "1a0ee3a302f-2.jpg"
    ],
-   "image": "restaurants/2023-mielcke-og-hurtigkarl.jpg"
+   "image": "restaurants/2023-mielcke-og-hurtigkarl.jpg",
+   "address": "Frederiksberg Runddel 1, 2000 Frederiksberg",
+   "lat": 55.674661,
+   "lon": 12.53128
   },
   {
    "id": "2024-jatak",
@@ -289,7 +328,10 @@
     "1a0ee3a302f-3.jpg",
     "1a0ee3a302f-4.jpg"
    ],
-   "image": "restaurants/2024-jatak.jpg"
+   "image": "restaurants/2024-jatak.jpg",
+   "address": "Rantzausgade 39, 2200 København N",
+   "lat": 55.687063,
+   "lon": 12.547842
   },
   {
    "id": "2025-donna",
@@ -312,7 +354,10 @@
     "1a0ee3a302f-5.jpg",
     "1a0ee3a302f-6.jpg"
    ],
-   "image": "restaurants/2025-donna.jpg"
+   "image": "restaurants/2025-donna.jpg",
+   "address": "Vester Voldgade 25, 1552 København V",
+   "lat": 55.677347,
+   "lon": 12.56779
   },
   {
    "id": "2025-akme",
@@ -356,7 +401,10 @@
     "1a0ee3a302f-26.jpg",
     "1a0ee3a302f-27.jpg"
    ],
-   "image": "restaurants/2025-akme.jpg"
+   "image": "restaurants/2025-akme.jpg",
+   "address": "Sandkaj 39, 2150 Nordhavn",
+   "lat": 55.706819,
+   "lon": 12.59854
   },
   {
    "id": "2026-aoc",
@@ -420,7 +468,10 @@
     "1a0ee2c85d6-28.jpg",
     "1a0ee2c85d6-2.jpg"
    ],
-   "image": "restaurants/2026-aoc.jpg"
+   "image": "restaurants/2026-aoc.jpg",
+   "address": "Dronningens Tværgade 2, 1302 København K",
+   "lat": 55.683209,
+   "lon": 12.589053
   }
  ],
  "ideas": [

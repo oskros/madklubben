@@ -649,7 +649,7 @@ function main() {
     });
     return `
       <div class="section-head"><h1>Retter${query ? `<span class="query">: ${esc(query)}</span>` : ''} <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1>${iconButton('search', 'Søg', 'data-action="open-search"')}</div>
-      <form class="dish-search-form" role="search"><input type="search" class="dish-search" value="${esc(query)}" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button></form>
+      <form class="dish-search-form" role="search"><input type="search" class="dish-search" value="${esc(query)}" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button><button type="button" class="search-cancel" data-action="close-search">Annuller</button></form><div class="search-backdrop" data-action="close-search"></div>
       <div class="dishes">${tiles.map(({ d, i, names, cats, per, colours, words, drink }) => `
         <figure data-n="${names.length}" data-colours="${esc(colours.join(' '))}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
@@ -871,13 +871,16 @@ function main() {
     },
   };
 
+  addEventListener('popstate', () => $('.dish-search-form.open')?.classList.remove('open'));
   document.addEventListener('submit', e => {
     if (!e.target.matches('.dish-search-form')) return;
     e.preventDefault();
     const q = e.target.querySelector('input').value.trim();
     e.target.querySelector('input').blur();
     const target = q ? `#/retter/${encodeURIComponent(q)}` : '#/retter';
-    if (location.hash === target) filterDishes(); else location.hash = target;
+    if (e.target.classList.contains('open')) { e.target.classList.remove('open'); location.replace(target); }
+    else if (location.hash === target) filterDishes();
+    else location.hash = target;
   });
   document.addEventListener('submit', async e => {
     const form = e.target.closest('[data-form]');
@@ -941,10 +944,11 @@ function main() {
       input.focus();
     }
     if (btn.dataset.action === 'open-search') {
-      const form = $('.dish-search-form');
-      form.classList.toggle('open');
-      if (form.classList.contains('open')) form.querySelector('input').focus();
+      $('.dish-search-form').classList.add('open');
+      history.pushState({ search: true }, '');
+      $('.dish-search').focus();
     }
+    if (btn.dataset.action === 'close-search' && $('.dish-search-form.open')) history.back();
     if (btn.dataset.action === 'pick-courses') pickCourses(btn);
     if (btn.dataset.action === 'photo-note') editPhotoNote(btn);
     if (btn.dataset.action === 'add-course') {

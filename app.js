@@ -479,7 +479,6 @@ function main() {
   function dinnersPage() {
     const list = shown(), priced = list.filter(d => d.price), clubPriced = priced.filter(isClub);
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
-    const est = priced.some(d => d.priceEstimate) ? '~' : '';
     const f = forecast(data, today());
     return `
       ${photoStrip()}
@@ -503,8 +502,8 @@ function main() {
             <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span>${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
           <td class="num"${d.priceEstimate ? ' title="Anslået"' : ''}>${estKr(d, d.price)}</td><td class="num wide">${isClub(d) && d.price ? estKr(d, fromFund(d)) : '–'}</td>
           <td class="num wide">${isClub(d) ? estKr(d, d.outOfPocket) : '–'}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
-        <tfoot><tr><th colspan="3">I alt</th><th class="num">${est}${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${clubPriced.length ? est + kr(total(clubPriced, fromFund)) : '–'}</th><th class="num wide">${clubPriced.length ? est + kr(total(clubPriced, d => d.outOfPocket ?? 0)) : '–'}</th><th class="num wide">${est}${kr(total(priced, d => d.price / heads(d)))}</th></tr></tfoot>
+        <tfoot><tr><th colspan="3">I alt</th><th class="num">${kr(total(priced, d => d.price))}</th>
+          <th class="num wide">${clubPriced.length ? kr(total(clubPriced, fromFund)) : '–'}</th><th class="num wide">${clubPriced.length ? kr(total(clubPriced, d => d.outOfPocket ?? 0)) : '–'}</th><th class="num wide">${kr(total(priced, d => d.price / heads(d)))}</th></tr></tfoot>
       </table></div>`;
   }
 

@@ -296,7 +296,7 @@ function main() {
         <section>
           <h2>Billeder <span class="count">${d.photos.length || ''}</span></h2>
           ${d.photos.length ? `<div class="grid">${d.photos.map((p, i) => `
-            <button data-photo="${i}" aria-label="Billede ${i + 1}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy"></button>`).join('')}</div>`
+            <button data-photo="${i}" aria-label="Billede ${i + 1}"${d.photoCredits?.[p] ? ` title="Foto: ${esc(d.photoCredits[p])}"` : ''}><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy">${d.photoCredits?.[p] ? `<span class="credit-badge" aria-label="Lånt billede">${icon('external')}</span>` : ''}</button>`).join('')}</div>`
             : `<p class="muted">Ingen billeder endnu.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj billeder</a>` : ''}</p>`}
         </section>
       </div>`;
@@ -321,6 +321,34 @@ function main() {
       btn.title = picked.map(r => `${r.i + 1}. ${r.text}`).join('\n');
       btn.classList.toggle('on', picked.length > 0);
     });
+  }
+
+  function editPhotoNote(btn) {
+    const tile = btn.parentElement;
+    const note = tile.querySelector('[name=photoNote]'), credit = tile.querySelector('[name=photoCredit]');
+    let dlg = $('#photo-note');
+    if (!dlg) {
+      document.body.insertAdjacentHTML('beforeend', `<dialog id="photo-note"><form method="dialog">
+        <h3>Billedet</h3>
+        <label>Note <input name="n" autocomplete="off" placeholder="Vises i billedfremviseren"></label>
+        <label>Kilde, hvis billedet ikke er vores <input name="c" autocomplete="off" placeholder="fx Jonathan Snook, fifty.snook.ca (nov. 2018)"></label>
+        <div class="row"><button class="btn" value="ok">Færdig</button> <button class="btn ghost" value="cancel" formnovalidate>Annullér</button></div>
+      </form></dialog>`);
+      dlg = $('#photo-note');
+    }
+    const f = dlg.querySelector('form');
+    f.n.value = note.value;
+    f.c.value = credit.value;
+    dlg.onclose = () => {
+      if (dlg.returnValue !== 'ok') return;
+      note.value = f.n.value.trim();
+      credit.value = f.c.value.trim();
+      btn.classList.toggle('on', !!(note.value || credit.value));
+      btn.title = [note.value, credit.value && `Foto: ${credit.value}`].filter(Boolean).join(' · ') || 'Note og kilde';
+    };
+    dlg.returnValue = '';
+    dlg.showModal();
+    f.n.focus();
   }
 
   function pickCourses(btn) {
@@ -399,7 +427,8 @@ function main() {
             <div class="tile"><input type="hidden" name="order" value="${esc(p)}"><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy" draggable="false">
               <label class="del" title="Slet billede"><input type="checkbox" name="delete" value="${esc(p)}" aria-label="Slet billede">${icon('trash')}</label>
               <input type="hidden" name="photoNote" value="${esc(v.photoNotes?.[p] ?? '')}">
-              <button type="button" class="note-btn${v.photoNotes?.[p] ? ' on' : ''}" data-action="photo-note" title="${esc(v.photoNotes?.[p] || 'Tilføj note')}" aria-label="Note til billedet">${icon('edit')}</button>
+              <input type="hidden" name="photoCredit" value="${esc(v.photoCredits?.[p] ?? '')}">
+              <button type="button" class="note-btn${v.photoNotes?.[p] || v.photoCredits?.[p] ? ' on' : ''}" data-action="photo-note" title="${esc([v.photoNotes?.[p], v.photoCredits?.[p] && `Foto: ${v.photoCredits[p]}`].filter(Boolean).join(' · ') || 'Note og kilde')}" aria-label="Note og kilde til billedet">${icon('edit')}</button>
               <input type="hidden" name="course" value="${coursesOf(v, p).map(n => `o${n}`).join(' ')}"><button type="button" class="course-btn" data-action="pick-courses" aria-label="Retter på billedet"></button></div>`).join('')}</div>` : ''}
         </section>
         <div class="actions">
@@ -680,6 +709,7 @@ function main() {
         .map((p, i) => [p, fd.getAll('course')[i].split(' ').map(k => keys.indexOf(k)).filter(n => n >= 0).sort((a, b) => a - b)])
         .filter(([, ns]) => ns.length));
       const notes = Object.fromEntries(fd.getAll('order').map((p, i) => [p, fd.getAll('photoNote')[i].trim()]).filter(([, n]) => n));
+      const credits = Object.fromEntries(fd.getAll('order').map((p, i) => [p, fd.getAll('photoCredit')[i].trim()]).filter(([, n]) => n));
       const id = oldId || `${fields.date.slice(0, 4)}-${slug(fields.restaurant)}-${Date.now().toString(36).slice(-3)}`;
       const del = fd.getAll('delete');
       const order = fd.getAll('order');
@@ -695,6 +725,8 @@ function main() {
         if (Object.keys(pc).length) d.photoCourses = pc; else delete d.photoCourses;
         const pn = Object.fromEntries(Object.entries(notes).filter(([p]) => d.photos.includes(p)));
         if (Object.keys(pn).length) d.photoNotes = pn; else delete d.photoNotes;
+        const cr = Object.fromEntries(Object.entries(credits).filter(([p]) => d.photos.includes(p)));
+        if (Object.keys(cr).length) d.photoCredits = cr; else delete d.photoCredits;
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
       location.replace(`#/d/${id}`);
@@ -773,15 +805,7 @@ function main() {
       input.focus();
     }
     if (btn.dataset.action === 'pick-courses') pickCourses(btn);
-    if (btn.dataset.action === 'photo-note') {
-      const input = btn.parentElement.querySelector('[name=photoNote]');
-      const note = prompt('Note til billedet (vises i billedfremviseren)', input.value);
-      if (note != null) {
-        input.value = note.trim();
-        btn.classList.toggle('on', !!input.value);
-        btn.title = input.value || 'Tilføj note';
-      }
-    }
+    if (btn.dataset.action === 'photo-note') editPhotoNote(btn);
     if (btn.dataset.action === 'add-course') {
       $('.menu-edit').insertAdjacentHTML('beforeend', courseRow());
       $('.menu-edit li:last-child [name=menu]').focus();
@@ -866,10 +890,12 @@ function main() {
           const photo = d.photos[p.currIndex];
           const ns = coursesOf(d, photo);
           const note = d.photoNotes?.[photo];
-          el.hidden = !ns.length && !note;
+          const credit = d.photoCredits?.[photo];
+          el.hidden = !ns.length && !note && !credit;
           el.classList.toggle('many', ns.length > 2);
           el.innerHTML = ns.map(n => `<div><span class="n">${n + 1}</span>${esc(d.menu[n])}</div>`).join('')
-            + (note ? `<small${ns.length ? '' : ' class="alone"'}>${esc(note)}</small>` : '');
+            + (note ? `<small${ns.length ? '' : ' class="alone"'}>${esc(note)}</small>` : '')
+            + (credit ? `<em class="credit">${icon('external')}Foto: ${esc(credit)}</em>` : '');
         }),
       });
     });

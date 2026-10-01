@@ -255,9 +255,9 @@ label input, label textarea { color: var(--ink); font-size: 1rem; }
 .pick .tile .course-btn span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .pick .tile .course-btn b { flex: none; padding: 0 .35rem; border-radius: 99px; background: rgb(0 0 0 / .25); font-size: .7rem; line-height: 1.2rem; }
 .pick .tile .course-btn.on { background: var(--accent); color: var(--accent-ink); }
-#course-picker { border: 0; border-radius: var(--radius); padding: 1.1rem 1.2rem; width: min(30rem, calc(100vw - 32px)); max-height: 80vh; background: var(--bg); color: var(--ink); box-shadow: 0 20px 50px -15px rgb(0 0 0 / .45); }
-#course-picker::backdrop { background: rgb(0 0 0 / .45); }
-#course-picker h3 { margin: 0 0 .75rem; font-family: var(--serif); font-size: 1.25rem; }
+#photo-note, #course-picker { border: 0; border-radius: var(--radius); padding: 1.1rem 1.2rem; width: min(30rem, calc(100vw - 32px)); max-height: 80vh; background: var(--bg); color: var(--ink); box-shadow: 0 20px 50px -15px rgb(0 0 0 / .45); }
+#photo-note::backdrop, #course-picker::backdrop { background: rgb(0 0 0 / .45); }
+#photo-note h3, #course-picker h3 { margin: 0 0 .75rem; font-family: var(--serif); font-size: 1.25rem; }
 #course-picker .opts { display: grid; gap: .1rem; max-height: 55vh; overflow-y: auto; margin-bottom: 1rem; }
 #course-picker .check { display: flex; gap: .6rem; align-items: flex-start; padding: .45rem .25rem; border-radius: 6px; cursor: pointer; line-height: 1.35; }
 #course-picker .check:hover { background: var(--surface); }
@@ -445,3 +445,13 @@ h2 { font-weight: 600; }
 .big-check { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
 .dinner-form select { font: inherit; color: inherit; background: var(--bg); border: 1.5px solid var(--line); border-radius: 8px; padding: .55rem .7rem; width: 100%; }
 .dinner-form [hidden] { display: none !important; }
+#photo-note form { display: grid; gap: .8rem; }
+#photo-note label { display: grid; gap: .3rem; font-size: .9rem; color: var(--muted); }
+#photo-note input { width: 100%; color: var(--ink); }
+#photo-note .row { display: flex; gap: .5rem; }
+.btn.ghost { background: var(--surface); color: var(--ink); }
+.grid .credit-badge { position: absolute; top: 5px; right: 5px; display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border-radius: 99px; background: rgb(0 0 0 / .55); color: #fff; pointer-events: none; }
+.grid .credit-badge .i { width: .8rem; height: .8rem; }
+.pswp__course .credit { display: flex; align-items: center; justify-content: flex-end; gap: .3rem; margin-top: .45rem; font-family: "Schibsted Grotesk", system-ui, sans-serif; font-style: normal; font-size: max(.72rem, .45em); color: rgb(255 255 255 / .62); }
+.pswp__course .credit .i { width: .85em; height: .85em; flex: none; }
+.pswp__course.many .credit { max-width: 48rem; margin-inline: auto; }

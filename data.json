@@ -65,8 +65,8 @@
      5
     ]
    },
-   "photoNotes": {
-    "ext1a0f473b803-2.jpg": "Foto: Onfan Food, Flickr (juli 2015)"
+   "photoCredits": {
+    "ext1a0f473b803-2.jpg": "Onfan Food, Flickr (juli 2015)"
    }
   },
   {
@@ -221,14 +221,14 @@
      9
     ]
    },
-   "photoNotes": {
-    "ext1a0f4600bbd-0.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
-    "ext1a0f4600c1b-1.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
-    "ext1a0f4600c5c-2.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
-    "ext1a0f4600ca1-3.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
-    "ext1a0f4600cf0-4.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
-    "ext1a0f4600d3e-5.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
-    "ext1a0f4600da3-6.jpg": "Foto: Jonathan Snook, fifty.snook.ca (24. nov. 2018)"
+   "photoCredits": {
+    "ext1a0f4600bbd-0.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600c1b-1.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600c5c-2.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600ca1-3.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600cf0-4.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600d3e-5.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)",
+    "ext1a0f4600da3-6.jpg": "Jonathan Snook, fifty.snook.ca (24. nov. 2018)"
    }
   },
   {
@@ -249,7 +249,10 @@
    "image": "restaurants/2019-neighbourhood-df1f0306.jpg",
    "address": "Istedgade 27, 1650 København V",
    "lat": 55.67063,
-   "lon": 12.558415
+   "lon": 12.558415,
+   "photoCredits": {
+    "1a0f24e6dd7-menukort.jpg": "Neighbourhood, neighbourhood.dk (juni 2019)"
+   }
   },
   {
    "group": "ida",
@@ -327,10 +330,10 @@
      4
     ]
    },
-   "photoNotes": {
-    "ext1a0f4600ded-7.jpg": "Foto: anden gæst på TripAdvisor (31. okt. 2019)",
-    "ext1a0f4600dfe-8.jpg": "Foto: anden gæst på TripAdvisor (31. okt. 2019)",
-    "ext1a0f4600e12-9.jpg": "Foto: anden gæst på TripAdvisor (31. okt. 2019)"
+   "photoCredits": {
+    "ext1a0f4600ded-7.jpg": "anden gæst på TripAdvisor (31. okt. 2019)",
+    "ext1a0f4600dfe-8.jpg": "anden gæst på TripAdvisor (31. okt. 2019)",
+    "ext1a0f4600e12-9.jpg": "anden gæst på TripAdvisor (31. okt. 2019)"
    }
   },
   {
@@ -443,9 +446,9 @@
      12
     ]
    },
-   "photoNotes": {
-    "ext1a0f473b7d2-0.jpg": "Foto: Restaurant 108, Facebook (26. juni 2020)",
-    "ext1a0f473b7ec-1.jpg": "Foto: Restaurant 108, Facebook (6. juli 2020)"
+   "photoCredits": {
+    "ext1a0f473b7d2-0.jpg": "Restaurant 108, Facebook (26. juni 2020)",
+    "ext1a0f473b7ec-1.jpg": "Restaurant 108, Facebook (6. juli 2020)"
    }
   },
   {
@@ -643,7 +646,10 @@
    "image": "restaurants/2020-brasserie-barner-2a5948e2.jpg",
    "address": "Århusgade 1, 2100 København Ø",
    "lat": 55.706059,
-   "lon": 12.578201
+   "lon": 12.578201,
+   "photoCredits": {
+    "1a0f24e6ecb-menukort.jpg": "Brasserie Barner, brasseriebarner.dk (okt. 2020)"
+   }
   },
   {
    "group": "ida",
@@ -720,7 +726,10 @@
    "lat": 55.677304,
    "lon": 12.576943,
    "photoNotes": {
-    "1a0f5e81e15-menukort.jpg": "Menukort fra april 2021, marvogben.dk"
+    "1a0f5e81e15-menukort.jpg": "Menukort fra april 2021"
+   },
+   "photoCredits": {
+    "1a0f5e81e15-menukort.jpg": "Marv & Ben, marvogben.dk (april 2021)"
    }
   },
   {
@@ -787,7 +796,10 @@
    "address": "Vodroffsvej 47, 1900 Frederiksberg C",
    "lat": 55.679403,
    "lon": 12.554632,
-   "note": "Med Ida og vores familier, 10 personer i alt. Menukortet er fra juli 2021, da septemberkortet ikke findes længere."
+   "note": "Med Ida og vores familier, 10 personer i alt. Menukortet er fra juli 2021, da septemberkortet ikke findes længere.",
+   "photoCredits": {
+    "1a0f2599ab4-menukort.jpg": "Anarki, restaurant-anarki.dk (juli 2021)"
+   }
   },
   {
    "id": "2022-bistro-boheme",
@@ -852,6 +864,9 @@
     "1a0ee2c85d6-7.jpg": [
      7
     ]
+   },
+   "photoCredits": {
+    "1a0f2599895-menukort-v2.jpg": "Bistro Boheme, bistroboheme.dk (aug. 2022)"
    }
   },
   {
@@ -907,13 +922,17 @@
     ]
    },
    "photoNotes": {
-    "ext1a0f63fbc5d-5.jpg": "Restauranten. Foto: gæst på TripAdvisor",
-    "ext1a0f63fbbaf-0.jpg": "Foto: gæst på TripAdvisor",
-    "ext1a0f63fbbd4-1.jpg": "Foto: Op La, oplarestaurant.dk",
-    "ext1a0f63fbbf1-2.jpg": "Foto: Op La, oplarestaurant.dk",
-    "ext1a0f63fbc0f-3.jpg": "Foto: gæst på TripAdvisor",
-    "ext1a0f63fbc3d-4.jpg": "Foto: gæst på TripAdvisor",
-    "ext1a0f64104e9-6.jpg": "Foto: Op La, oplarestaurant.dk"
+    "ext1a0f63fbc5d-5.jpg": "Restauranten"
+   },
+   "photoCredits": {
+    "1a0f2968e84-menukort.jpg": "Op La, oplarestaurant.dk (okt. 2022)",
+    "ext1a0f63fbc5d-5.jpg": "gæst på TripAdvisor",
+    "ext1a0f63fbbaf-0.jpg": "gæst på TripAdvisor",
+    "ext1a0f63fbbd4-1.jpg": "Op La, oplarestaurant.dk",
+    "ext1a0f63fbbf1-2.jpg": "Op La, oplarestaurant.dk",
+    "ext1a0f63fbc0f-3.jpg": "gæst på TripAdvisor",
+    "ext1a0f63fbc3d-4.jpg": "gæst på TripAdvisor",
+    "ext1a0f64104e9-6.jpg": "Op La, oplarestaurant.dk"
    }
   },
   {
@@ -938,7 +957,10 @@
    "address": "Vodroffsvej 47, 1900 Frederiksberg C",
    "lat": 55.679403,
    "lon": 12.554632,
-   "note": "Med Jakob og Philip. Jakob bookede bordet."
+   "note": "Med Jakob og Philip. Jakob bookede bordet.",
+   "photoCredits": {
+    "1a0f25042fb-menukort.jpg": "Anarki, restaurant-anarki.dk (jan. 2023)"
+   }
   },
   {
    "id": "2023-feed-bistro",
@@ -991,12 +1013,16 @@
     ]
    },
    "photoNotes": {
-    "ext1a0f46663a2-0.jpg": "Foto: Feed Bistro, Instagram (apr. 2023)",
-    "ext1a0f46663b8-1.jpg": "Foto: Kent W, TripAdvisor (maj 2023)",
-    "ext1a0f46664b6-2.jpg": "Foto: Feed Bistro, TripAdvisor",
-    "ext1a0f4666523-3.jpg": "Foto: Kent W, TripAdvisor (maj 2023)",
-    "ext1a0f46665c6-4.jpg": "Crème brûlée. Foto: Soerenkh, TripAdvisor (maj 2023)",
-    "ext1a0f4666699-5.jpg": "Chocolate fudge. Foto: Kent W, TripAdvisor (maj 2023)"
+    "ext1a0f46665c6-4.jpg": "Crème brûlée",
+    "ext1a0f4666699-5.jpg": "Chocolate fudge"
+   },
+   "photoCredits": {
+    "ext1a0f46663a2-0.jpg": "Feed Bistro, Instagram (apr. 2023)",
+    "ext1a0f46663b8-1.jpg": "Kent W, TripAdvisor (maj 2023)",
+    "ext1a0f46664b6-2.jpg": "Feed Bistro, TripAdvisor",
+    "ext1a0f4666523-3.jpg": "Kent W, TripAdvisor (maj 2023)",
+    "ext1a0f46665c6-4.jpg": "Soerenkh, TripAdvisor (maj 2023)",
+    "ext1a0f4666699-5.jpg": "Kent W, TripAdvisor (maj 2023)"
    }
   },
   {
@@ -1087,15 +1113,21 @@
     ]
    },
    "photoNotes": {
-    "ext1a0f49e4880-0.jpg": "Foto: Mielcke & Hurtigkarl, Instagram (okt. 2023)",
-    "ext1a0f49e489d-1.jpg": "Fra sommermenuen. Foto: Jürgen Meier, 3d-meier.de (juli 2023)",
-    "ext1a0f49e48f2-2.jpg": "Fra sommermenuen. Foto: Jürgen Meier, 3d-meier.de (juli 2023)",
-    "ext1a0f49e493e-3.jpg": "Foto: Mielcke & Hurtigkarl, Instagram (nov. 2023)",
-    "ext1a0f49e494e-4.jpg": "Foto: Mielcke & Hurtigkarl, Instagram (aug. 2023)",
-    "ext1a0f49e499e-5.jpg": "Foto: Mielcke & Hurtigkarl, Instagram (nov. 2023)",
-    "ext1a0f49e49b0-6.jpg": "Foto: Mielcke & Hurtigkarl, Instagram (nov. 2023)",
-    "ext1a0f49e49ba-7.jpg": "Fra sommermenuen. Foto: Jürgen Meier, 3d-meier.de (juli 2023)",
-    "ext1a0f49e49fb-8.jpg": "Fra sommermenuen. Foto: Jürgen Meier, 3d-meier.de (juli 2023)"
+    "ext1a0f49e489d-1.jpg": "Fra sommermenuen",
+    "ext1a0f49e48f2-2.jpg": "Fra sommermenuen",
+    "ext1a0f49e49ba-7.jpg": "Fra sommermenuen",
+    "ext1a0f49e49fb-8.jpg": "Fra sommermenuen"
+   },
+   "photoCredits": {
+    "ext1a0f49e4880-0.jpg": "Mielcke & Hurtigkarl, Instagram (okt. 2023)",
+    "ext1a0f49e489d-1.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
+    "ext1a0f49e48f2-2.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
+    "ext1a0f49e493e-3.jpg": "Mielcke & Hurtigkarl, Instagram (nov. 2023)",
+    "ext1a0f49e494e-4.jpg": "Mielcke & Hurtigkarl, Instagram (aug. 2023)",
+    "ext1a0f49e499e-5.jpg": "Mielcke & Hurtigkarl, Instagram (nov. 2023)",
+    "ext1a0f49e49b0-6.jpg": "Mielcke & Hurtigkarl, Instagram (nov. 2023)",
+    "ext1a0f49e49ba-7.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
+    "ext1a0f49e49fb-8.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)"
    }
   },
   {
@@ -1121,7 +1153,13 @@
    "address": "Falkoner Allé 10, 2000 Frederiksberg",
    "lat": 55.679283,
    "lon": 12.533775,
-   "note": "Med Jakob og Philip. Jakob bookede bordet."
+   "note": "Med Jakob og Philip. Jakob bookede bordet.",
+   "photoCredits": {
+    "1a0f25999b4-menukort.jpg": "San Marco Junior, sanmarcojunior.dk (jan. 2024)",
+    "1a0f2599a1f-menukort.jpg": "San Marco Junior, sanmarcojunior.dk (jan. 2024)",
+    "1a0f2599a4c-menukort.jpg": "San Marco Junior, sanmarcojunior.dk (jan. 2024)",
+    "1a0f2599a7d-menukort.jpg": "San Marco Junior, sanmarcojunior.dk (jan. 2024)"
+   }
   },
   {
    "id": "2024-jatak",
@@ -1181,8 +1219,8 @@
      7
     ]
    },
-   "photoNotes": {
-    "ext1a0f4666781-6.jpg": "Foto: Jatak, Instagram (nov. 2024)"
+   "photoCredits": {
+    "ext1a0f4666781-6.jpg": "Jatak, Instagram (nov. 2024)"
    }
   },
   {
@@ -1499,7 +1537,7 @@
     "1a0ee2c85d6-24.jpg",
     "1a0ee2c85d6-14.jpg",
     "1a0ee2c85d6-23.jpg",
-    "1a0ee2c85d6-30.jpg",
+    "1a0ee2c85d6-30-v2.jpg",
     "1a0ee2c85d6-31.jpg",
     "1a0ee2c85d6-19.jpg",
     "1a0ee2c85d6-15.jpg",
@@ -1547,7 +1585,7 @@
     "1a0ee2c85d6-23.jpg": [
      6
     ],
-    "1a0ee2c85d6-30.jpg": [
+    "1a0ee2c85d6-30-v2.jpg": [
      6
     ],
     "1a0ee2c85d6-15.jpg": [

@@ -597,7 +597,7 @@ function main() {
         </section>
         <section>
           <h2>Bankudtog</h2>
-          <table class="plain ledger">${[...data.checkpoints].sort(byDate).map(c => row(dato(c.date), kr(c.balance), c.note ? esc(c.note) : '')).join('')}</table>
+          <table class="plain ledger">${[...data.checkpoints].sort((a, b) => a.date.localeCompare(b.date)).map(c => row(dato(c.date), kr(c.balance), c.note ? esc(c.note) : '')).join('')}</table>
           ${editOnly(`<div class="bank-add"><details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
             <label>Dato <input name="date" type="date" required value="${now}"></label>
             <label>Saldo, kr. <input name="balance" type="number" step="any" inputmode="decimal" required></label>

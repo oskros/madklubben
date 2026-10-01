@@ -648,7 +648,7 @@ function main() {
       });
     });
     return `
-      <div class="section-head"><h1>Retter${query ? `<span class="query">: ${esc(query)}</span>` : ''} <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
+      <div class="section-head"><h1>Retter${query ? `<span class="query">: ${esc(query)}</span>` : ''} <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1>${iconButton('search', 'Søg', 'data-action="open-search"')}</div>
       <form class="dish-search-form" role="search"><input type="search" class="dish-search" value="${esc(query)}" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button></form>
       <div class="dishes">${tiles.map(({ d, i, names, cats, per, colours, words, drink }) => `
         <figure data-n="${names.length}" data-colours="${esc(colours.join(' '))}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
@@ -939,6 +939,11 @@ function main() {
       btn.setAttribute('aria-label', show ? 'Skjul kodeord' : 'Vis kodeord');
       btn.title = btn.getAttribute('aria-label');
       input.focus();
+    }
+    if (btn.dataset.action === 'open-search') {
+      const form = $('.dish-search-form');
+      form.classList.toggle('open');
+      if (form.classList.contains('open')) form.querySelector('input').focus();
     }
     if (btn.dataset.action === 'pick-courses') pickCourses(btn);
     if (btn.dataset.action === 'photo-note') editPhotoNote(btn);

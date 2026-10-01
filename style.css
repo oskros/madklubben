@@ -540,3 +540,9 @@ h2 { font-weight: 600; }
 @media (hover: hover) { .strip { cursor: grab; } .strip.dragging { cursor: grabbing; scroll-snap-type: none; } .strip.dragging a { pointer-events: none; } }
 
 main h1 .query { color: var(--muted); }
+[data-action=open-search] { display: none; }
+@media (max-width: 640px) {
+  [data-action=open-search] { display: grid; }
+  .dish-search-form:not(.open) { display: none; }
+  .dish-search-form .icon-btn { display: none; }
+}

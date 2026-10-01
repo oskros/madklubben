@@ -175,12 +175,6 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 /* menus */
 
 /* saldo */
-.big { font-size: clamp(2.8rem, 10vw, 5rem); letter-spacing: -.04em; color: var(--accent); }
-.lead { font-size: 1.25rem; font-weight: 700; margin: .25rem 0 .5rem; }
-.big + .lead { margin-bottom: 2rem; }
-.forecast { padding-top: 1.25rem; border-top: 1px solid var(--line); }
-.forecast h2 { font-size: .95rem; margin-bottom: .75rem; }
-.forecast .figures { margin: 0; padding: 0; border: 0; }
 .columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem 4rem; margin-top: 3rem; }
 .columns h2 { margin-bottom: 1rem; }
 .plain td { padding: .7rem 0; border-top: 1px solid var(--line); white-space: normal; vertical-align: top; }
@@ -328,7 +322,7 @@ summary { cursor: pointer; margin-bottom: .75rem; }
 }
 
 /* blog headings and details */
-h1, h2, legend, .brand, .big { font-family: var(--serif); font-weight: 500; letter-spacing: -.01em; }
+h1, h2, legend, .brand { font-family: var(--serif); font-weight: 500; letter-spacing: -.01em; }
 h1 { font-size: clamp(2rem, 5vw, 2.9rem); }
 h2 { font-weight: 600; }
 .brand { font-weight: 600; }
@@ -342,7 +336,7 @@ h2 { font-weight: 600; }
 .dinners tbody tr { border-top: 1px dotted var(--line); }
 .dinners tbody td:first-child, .dinners tbody td:last-child { border-radius: 0; }
 .dinners tfoot th { border-top: 3px double var(--ink); }
-.figures, .forecast, .plain td { border-top-style: dotted; }
+.figures, .plain td { border-top-style: dotted; }
 .strip a, .grid button, .grid .tile { border-radius: 2px; }
 .thumb { border-radius: 6px; }
 .dinner-img { border: 1px solid var(--line); padding: 4px; background: var(--bg); border-radius: 12px; }
@@ -463,15 +457,22 @@ h2 { font-weight: 600; }
 .dishes figcaption a:hover { color: var(--accent); }
 @media (max-width: 640px) { .dishes { grid-template-columns: 1fr 1fr; } }
 
-.saldo-head { display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 1.5rem 4rem; }
-.saldo-head .big + .lead { margin-bottom: 0; }
-.saldo-head .forecast { padding: 0 0 .35rem; border: 0; justify-self: end; }
-.saldo-head + .columns { margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px dotted var(--line); }
-.ledger td { padding: .45rem 0; }
+.keyfigs { display: grid; grid-template-columns: 1.3fr 1fr 1fr; margin: 1.25rem 0 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.keyfigs > div { display: flex; flex-direction: column; padding: .9rem 1.5rem 1rem; border-left: 1px solid var(--line); }
+.keyfigs > div:first-child { padding-left: 0; border-left: 0; }
+.keyfigs dt { font-size: .8rem; color: var(--muted); }
+.keyfigs dd { margin: auto 0 0; padding-top: .35rem; font-size: 1.45rem; font-weight: 700; letter-spacing: -.01em; line-height: 1; }
+.keyfigs .main dd { font-size: 2.3rem; color: var(--accent); }
+.keyfigs small { margin-top: .2rem; font-size: .8rem; color: var(--muted); }
+.keyfigs + .columns { margin-top: 2.5rem; }
+.ledger td, .plain.ledger td { padding: .45rem 0; border-top: 1px solid var(--line); }
 .ledger td .muted { font-size: .85rem; margin-left: .35rem; white-space: nowrap; }
-.ledger .sum td { font-weight: 700; }
-.ledger + .muted.small { margin: -.25rem 0 1rem; }
+.ledger .sum td { font-weight: 700; border-top-color: var(--ink); }
+.ledger tr:last-child.sum td { border-bottom: 3px double var(--ink); }
+.ledger + .muted.small { margin: .6rem 0 1rem; }
 @media (max-width: 760px) {
-  .saldo-head { grid-template-columns: 1fr; }
-  .saldo-head .forecast { justify-self: stretch; padding-top: 1rem; border-top: 1px dotted var(--line); }
+  .keyfigs { grid-template-columns: 1fr 1fr; }
+  .keyfigs > div { padding: .8rem 0 .9rem 1rem; border-top: 1px solid var(--line); }
+  .keyfigs > div:first-child { grid-column: 1 / -1; border-top: 0; }
+  .keyfigs > div:nth-child(2) { padding-left: 0; border-left: 0; }
 }

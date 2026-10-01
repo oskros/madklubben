@@ -531,18 +531,12 @@ function main() {
     const l = ledger(data, now);
     const row = (label, amount, detail = '', cls = '') => `<tr${cls ? ` class="${cls}"` : ''}><td>${label}${detail ? ` <span class="muted">${detail}</span>` : ''}</td><td class="num">${amount}</td></tr>`;
     return `
-      <div class="saldo-head">
-        <div>
-          <h1 class="big">${kr(l.actual)}</h1>
-          <p class="lead">på madkontoen i dag</p>
-        </div>
-        ${f ? `<section class="forecast"><h2>Forventet ved næste middag</h2><dl class="figures">
-          <div><dt>Dato</dt><dd>${dato(f.next)}</dd></div>
-          <div><dt>Gns. interval</dt><dd>${f.avgDays} dage</dd></div>
-          <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>
-          <div><dt>Pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
-        </dl></section>` : ''}
-      </div>
+      <h1>Regnskab</h1>
+      <dl class="keyfigs">
+        <div class="main"><dt>Saldo</dt><dd>${kr(l.actual)}</dd><small>${dato(now)}</small></div>
+        ${f ? `<div><dt>Næste middag</dt><dd>${dato(f.next)}</dd><small>Gns. hver ${f.avgDays}. dag</small></div>
+        <div><dt>Opsparet til næste middag</dt><dd>${kr(f.savings)}</dd><small>${kr(f.savings / data.members)} pr. person</small></div>` : ''}
+      </dl>
       <div class="columns">
         <section>
           <h2>Forventede kontobevægelser</h2>

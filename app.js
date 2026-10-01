@@ -280,6 +280,7 @@ function main() {
     if (dinner) { billPreview(dinner); refreshCourseSelects(dinner); }
     document.querySelectorAll('textarea.grow').forEach(grow);
     if ($('#map')) drawMap($('#map'));
+    if ($('.dish-search')?.value) filterDishes();
     const dates = document.querySelectorAll('main input[type=date], main input[type=month]');
     if (dates.length) datePickers(dates);
     const pick = $('.pick'), courses = $('.menu-edit');
@@ -627,7 +628,7 @@ function main() {
       </div>`;
   }
 
-  function dishesPage() {
+  function dishesPage(query = '') {
     const tiles = [...shown()].sort(byDate).flatMap(d => {
       const list = [], byPhoto = {};
       d.menu.forEach((c, n) => {
@@ -647,8 +648,8 @@ function main() {
       });
     });
     return `
-      <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
-      <form class="dish-search-form" role="search"><input type="search" class="dish-search" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button></form>
+      <div class="section-head"><h1>Retter${query ? `<span class="query">: ${esc(query)}</span>` : ''} <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
+      <form class="dish-search-form" role="search"><input type="search" class="dish-search" value="${esc(query)}" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button></form>
       <div class="dishes">${tiles.map(({ d, i, names, cats, per, colours, words, drink }) => `
         <figure data-n="${names.length}" data-colours="${esc(colours.join(' '))}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
@@ -873,8 +874,10 @@ function main() {
   document.addEventListener('submit', e => {
     if (!e.target.matches('.dish-search-form')) return;
     e.preventDefault();
-    filterDishes();
+    const q = e.target.querySelector('input').value.trim();
     e.target.querySelector('input').blur();
+    const target = q ? `#/retter/${encodeURIComponent(q)}` : '#/retter';
+    if (location.hash === target) filterDishes(); else location.hash = target;
   });
   document.addEventListener('submit', async e => {
     const form = e.target.closest('[data-form]');
@@ -1076,7 +1079,7 @@ function main() {
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
-    if (e.target.matches('.dish-search') && !e.target.value) filterDishes();
+    if (e.target.matches('.dish-search') && !e.target.value && location.hash.startsWith('#/retter/')) location.hash = '#/retter';
     if (e.target.name === 'menu') refreshCourseSelects(e.target.form);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);

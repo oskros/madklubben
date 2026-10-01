@@ -539,3 +539,4 @@ h2 { font-weight: 600; }
 .dinners + .map-section { margin-top: 2.5rem; }
 @media (hover: hover) { .strip { cursor: grab; } .strip.dragging { cursor: grabbing; scroll-snap-type: none; } .strip.dragging a { pointer-events: none; } }
 
+main h1 .query { color: var(--muted); }

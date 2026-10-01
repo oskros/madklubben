@@ -195,7 +195,8 @@ function main() {
     ret: id => dinnerForm(data.dinners.find(d => d.id === id)),
     budget: dinnersPage,
     saldo: balancePage,
-    menuer: menusPage,
+    retter: dishesPage,
+    menuer: dishesPage,
     forslag: ideasPage,
     ideer: ideasPage,
     login: loginPage,
@@ -259,7 +260,6 @@ function main() {
       : `<span class="initial">${esc(d.restaurant[0])}</span>`;
   }
 
-  const chips = themes => themes.length ? `<p class="chips">${themes.map(t => `<span>${esc(t)}</span>`).join('')}</p>` : '';
   const menuList = d => `<ol class="menu">${d.menu.map(c => `<li>${esc(c)}</li>`).join('')}</ol>`;
 
   function dinnerPage(id) {
@@ -282,7 +282,6 @@ function main() {
             ${safeUrl(d.album) ? `<li><a href="${safeUrl(d.album)}" target="_blank" rel="noopener">${icon('album')}<span>Google Photos</span></a></li>` : ''}
             ${d.closed ? `<li class="muted">Lukket</li>` : ''}
           </ul>
-          ${chips(d.themes)}
           ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
           <dl class="figures">
             <div><dt>Regning${d.priceEstimate ? ' (anslået)' : ''}</dt><dd>${estKr(d, d.price)}</dd></div>
@@ -385,7 +384,7 @@ function main() {
 
   function dinnerForm(d) {
     if (!token) return loginPage();
-    const v = d ?? { date: today(), restaurant: '', website: '', price: '', outOfPocket: 0, note: '', themes: [], menu: [], photos: [], closed: false, group: groupFilter() === 'alle' ? 'madklubben' : groupFilter() };
+    const v = d ?? { date: today(), restaurant: '', website: '', price: '', outOfPocket: 0, note: '', menu: [], photos: [], closed: false, group: groupFilter() === 'alle' ? 'madklubben' : groupFilter() };
     return `
       <div class="toolbar">${iconLink(d ? `#/d/${esc(d.id)}` : '#/', 'back', 'Tilbage')}</div>
       <h1>${d ? esc(d.restaurant) : 'Ny middag'}</h1>
@@ -402,7 +401,6 @@ function main() {
             <input type="hidden" name="address" value="${esc(v.address ?? '')}"><input type="hidden" name="lat" value="${esc(v.lat ?? '')}"><input type="hidden" name="lon" value="${esc(v.lon ?? '')}">
             <ul class="suggest" id="address-list" role="listbox" hidden></ul>
           </div>
-          <label>Temaer <input name="themes" value="${esc(v.themes.join(', '))}" placeholder="fx nordisk, vinmenu"></label>
           <label>Note <textarea name="note" rows="3" class="grow">${esc(v.note)}</textarea></label>
           ${d ? `<label class="check"><input name="closed" type="checkbox" ${v.closed ? 'checked' : ''}> Restauranten er lukket</label>` : ''}
         </section>
@@ -542,21 +540,19 @@ function main() {
       </div>`;
   }
 
-  function menusPage(theme) {
-    const all = [...new Set(shown().flatMap(d => d.themes))].sort();
-    const list = [...shown()].sort(byDate).filter(d => !theme || d.themes.includes(theme));
-    const withMenu = list.filter(d => d.menu.length), without = list.filter(d => !d.menu.length);
+  function dishesPage() {
+    const dishes = [...shown()].sort(byDate).flatMap(d => d.menu.map((c, n) => ({ d, c, i: d.photos.findIndex(p => coursesOf(d, p).includes(n)) })));
     return `
-      <h1>Menuer</h1>
-      ${all.length ? `<p class="chips filter"><a href="#/menuer" class="${theme ? '' : 'on'}">Alle</a>${all.map(t => `<a href="#/menuer/${encodeURIComponent(t)}" class="${t === theme ? 'on' : ''}">${esc(t)}</a>`).join('')}</p>` : ''}
-      <div class="compare">${withMenu.map(d => `
-        <section>
-          <h2><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></h2>
-          <p class="muted small">${esc(d.date.slice(0, 4))}, ${d.menu.length} retter${d.price ? `, ${perPerson(d)} pr. person` : ''}</p>
-          ${chips(d.themes)}
-          ${menuList(d)}
-        </section>`).join('')}</div>
-      ${without.length ? `<p class="muted without">Uden menu: ${without.map(d => `<a href="#/${token ? 'ret' : 'd'}/${esc(d.id)}">${esc(d.restaurant)}</a>`).join(', ')}</p>` : ''}`;
+      <div class="section-head"><h1>Retter <span class="count">${dishes.length}</span></h1></div>
+      <input type="search" class="dish-search" placeholder="Søg efter ret, råvare eller restaurant" aria-label="Søg i retter" autocomplete="off">
+      <div class="dishes">${dishes.map(({ d, c, i }) => `
+        <figure data-q="${esc(`${c} ${d.restaurant}`.toLowerCase())}">
+          ${i >= 0
+            ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(c)}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy"></button>`
+            : `<a class="no-photo" href="#/d/${esc(d.id)}" aria-label="${esc(d.restaurant)}">${icon('camera')}<span>Intet billede</span></a>`}
+          <figcaption><span>${esc(c)}</span><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}, ${esc(d.date.slice(0, 4))}</a></figcaption>
+        </figure>`).join('')}</div>
+      <p class="muted dish-empty" hidden>Ingen retter matcher søgningen.</p>`;
   }
 
   function ideasPage() {
@@ -703,7 +699,6 @@ function main() {
         address: orNull(fd.get('address')),
         lat: num(fd.get('lat')),
         lon: num(fd.get('lon')),
-        themes: fd.get('themes').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
         menu: fd.getAll('menu').map(c => c.trim()).filter(Boolean),
         note: orNull(fd.get('note')),
       };
@@ -789,7 +784,7 @@ function main() {
     const row = e.target.closest('tr[data-href]');
     if (row && !e.target.closest('a')) location.hash = row.dataset.href;
     const photo = e.target.closest('[data-photo]');
-    if (photo) return openViewer(+photo.dataset.photo);
+    if (photo) return openViewer(data.dinners.find(x => x.id === (photo.dataset.dinner ?? decodeURIComponent(location.hash).split('/')[2])), +photo.dataset.photo);
     const btn = e.target.closest('[data-action]');
     if (!btn) return;
     if (btn.dataset.action === 'toggle-mine') {
@@ -856,13 +851,11 @@ function main() {
     im.onerror = () => ok(4 / 3);
     im.src = src;
   });
-  async function openViewer(i) {
+  async function openViewer(d, i) {
     photoswipe ??= import('https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.esm.min.js').then(m => {
       document.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css">');
       return m.default;
     });
-    const id = decodeURIComponent(location.hash).split('/')[2];
-    const d = data.dinners.find(x => x.id === id);
     const [PhotoSwipe, ratios] = await Promise.all([photoswipe, Promise.all(d.photos.map(p => ratio(photoUrl(d, p, true))))]);
     const long = 1600;
     const pswp = new PhotoSwipe({
@@ -916,6 +909,13 @@ function main() {
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
+    if (e.target.matches('.dish-search')) {
+      const words = e.target.value.toLowerCase().split(/\s+/).filter(Boolean);
+      let n = 0;
+      document.querySelectorAll('.dishes figure').forEach(f => { f.hidden = !words.every(w => f.dataset.q.includes(w)); n += !f.hidden; });
+      $('main h1 .count').textContent = n;
+      $('.dish-empty').hidden = n > 0;
+    }
     if (e.target.name === 'menu') refreshCourseSelects(e.target.form);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);

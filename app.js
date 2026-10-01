@@ -539,34 +539,30 @@ function main() {
   }
 
   function dinnersPage() {
-    const list = shown(), priced = list.filter(d => d.price), clubPriced = priced.filter(isClub);
-    const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
+    const list = shown();
     return `
       ${photoStrip()}
       ${timeline()}
-      ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}
       <div class="section-head">
         <h1>${groupFilter() === 'madklubben' || groupFilter() === 'alle' ? 'Middage' : GROUPS[groupFilter()]} <span class="count">${list.length}</span></h1>
         ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}
       </div>
-      <div class="scroll"><table class="dinners">
-        <thead><tr><th></th><th>Dato</th><th>Restaurant</th><th class="num">Regning</th><th class="num wide">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num wide">Pr. person</th></tr></thead>
+      <table class="dinners">
         <tbody>${[...list].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}"${isClub(d) ? '' : ' class="own"'}>
           <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
-          <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
           <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
             <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span>${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
-          <td class="num"${d.priceEstimate ? ' title="Anslået"' : ''}>${estKr(d, d.price)}</td><td class="num wide">${isClub(d) && d.price ? estKr(d, fromFund(d)) : '–'}</td>
-          <td class="num wide">${isClub(d) ? estKr(d, d.outOfPocket) : '–'}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
-        <tfoot><tr><th colspan="3">I alt</th><th class="num">${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${clubPriced.length ? kr(total(clubPriced, fromFund)) : '–'}</th><th class="num wide">${clubPriced.length ? kr(total(clubPriced, d => d.outOfPocket ?? 0)) : '–'}</th><th class="num wide">${kr(total(priced, d => d.price / heads(d)))}</th></tr></tfoot>
-      </table></div>`;
+          <td class="num date-cell"><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td></tr>`).join('')}</tbody>
+      </table>
+      ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}`;
   }
 
   function balancePage() {
     const now = today();
     const f = forecast(data, now);
     const l = ledger(data, now);
+    const club = data.dinners.filter(isClub).sort(byDate);
+    const total = fn => club.reduce((sum, d) => sum + fn(d), 0);
     const row = (label, amount, detail = '', cls = '') => `<tr${cls ? ` class="${cls}"` : ''}><td>${label}${detail ? ` <span class="muted">${detail}</span>` : ''}</td><td class="num">${amount}</td></tr>`;
     return `
       <h1>Regnskab</h1>
@@ -577,23 +573,18 @@ function main() {
       </dl>
       <div class="columns">
         <section>
-          <h2>Forventede kontobevægelser</h2>
+          <h2>Indtægter</h2>
           <table class="plain ledger">
             ${l.periods.filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
-            ${row('Indbetalt i alt', kr(l.paidIn), '', 'sum')}
-            ${row('Brugt på middage', `−${kr(l.spent)}`)}
-            ${row('Forventet balance', kr(l.expected), '', 'sum')}
-            ${row('Balance', kr(l.actual))}
-            ${row('Difference', kr(l.difference).replace('-', '−'), '', 'sum')}
+            ${row('Indtægter i alt', kr(l.paidIn), '', 'sum')}
           </table>
-          ${data.ledgerNote ? `<p class="muted small">${esc(data.ledgerNote)}</p>` : ''}
           ${editOnly(`<details class="add"><summary>${icon('plus')}Ny sats</summary><form data-form="rate" class="add-form">
             <label>Fra måned <input name="from" type="month" required value="${now.slice(0, 7)}"></label>
             <label>Kr. pr. person <input name="perPerson" type="number" min="0" inputmode="numeric" required></label>
             <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>`)}
         </section>
         <section>
-          <h2>Bankudtog</h2>
+          <h2>Kontoudtog</h2>
           <table class="plain ledger">${[...data.checkpoints].sort((a, b) => a.date.localeCompare(b.date)).map(c => row(dato(c.date), kr(c.balance), c.note ? esc(c.note) : '')).join('')}</table>
           ${editOnly(`<div class="bank-add"><details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
             <label>Dato <input name="date" type="date" required value="${now}"></label>
@@ -603,7 +594,31 @@ function main() {
           <label class="csv-link">eller upload CSV fra banken<input name="bankcsv" type="file" accept=".csv,text/csv"></label></div>
           <p class="muted small bank-status"></p>`)}
         </section>
-      </div>`;
+      </div>
+      <section class="expenses">
+        <h2>Udgifter</h2>
+        <table class="plain ledger">
+          <thead><tr><th>Dato</th><th>Restaurant</th><th class="num">Regning</th><th class="num">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num wide">Pr. person</th></tr></thead>
+          <tbody>${club.map(d => `<tr data-href="#/d/${esc(d.id)}">
+            <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
+            <td><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></td>
+            <td class="num">${estKr(d, d.price)}</td><td class="num">${d.price ? estKr(d, fromFund(d)) : '–'}</td>
+            <td class="num wide">${estKr(d, d.outOfPocket)}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
+          <tfoot><tr class="sum"><td colspan="2">Udgifter i alt</td><td class="num">${kr(total(d => d.price))}</td><td class="num">${kr(total(fromFund))}</td>
+            <td class="num wide">${kr(total(d => d.outOfPocket ?? 0))}</td><td class="num wide">${kr(total(d => (d.price ?? 0) / heads(d)))}</td></tr></tfoot>
+        </table>
+      </section>
+      <section class="reconciliation">
+        <h2>Afstemning</h2>
+        <table class="plain ledger">
+          ${row('Indtægter i alt', kr(l.paidIn))}
+          ${row('Udgifter i alt', `−${kr(l.spent)}`, 'fra madkontoen')}
+          ${row('Forventet balance', kr(l.expected), '', 'sum')}
+          ${row('Balance', kr(l.actual))}
+          ${row('Difference', kr(l.difference).replace('-', '−'), '', 'sum')}
+        </table>
+        ${data.ledgerNote ? `<p class="muted small">${esc(data.ledgerNote)}</p>` : ''}
+      </section>`;
   }
 
   function dishesPage() {
@@ -1021,10 +1036,10 @@ function main() {
     try {
       const { date, balance: amount } = latestBalance(await e.target.files[0].text());
       status.textContent = 'Gemmer…';
-      await save(`Bankudtog ${date}`, fresh => {
+      await save(`Kontoudtog ${date}`, fresh => {
         const same = fresh.checkpoints.find(c => c.date === date);
         fresh.checkpoints = fresh.checkpoints.filter(c => c.date !== date);
-        fresh.checkpoints.push({ date, balance: amount, note: same?.note ?? 'Bankudtog' });
+        fresh.checkpoints.push({ date, balance: amount, note: same?.note ?? 'Kontoudtog' });
       });
       render();
     } catch (err) {

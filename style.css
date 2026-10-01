@@ -514,3 +514,16 @@ h2 { font-weight: 600; }
 .pswp-video { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 60px 0 var(--cap, 0px); }
 .pswp .pswp__course { pointer-events: none; }
 .pswp-video video { max-width: 100%; max-height: 100%; min-height: 0; object-fit: contain; }
+
+.dinners .date-cell { color: var(--muted); white-space: nowrap; }
+.dinners .place { width: 100%; }
+.expenses, .reconciliation { margin-top: 2.5rem; }
+.reconciliation { max-width: 34rem; }
+.expenses th { font-size: .8rem; font-weight: 500; color: var(--muted); padding: 0 0 .4rem; }
+.expenses th + th, .expenses td + td { padding-left: 1rem; }
+.expenses tbody tr { cursor: pointer; }
+.expenses tbody tr:hover td { background: var(--surface); }
+.expenses td a { color: var(--ink); text-decoration: none; }
+.expenses tfoot td { font-weight: 700; border-top-color: var(--ink); border-bottom: 3px double var(--ink); }
+@media (max-width: 640px) { .expenses th + th, .expenses td + td { padding-left: .5rem; } }
+.dinners + .map-section { margin-top: 2.5rem; }

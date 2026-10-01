@@ -18,6 +18,7 @@ Fisk, Skaldyr, Okse, Svin, Lam, Fjerkræ, Vildt, Kød, Grønt, Svampe, Frugt, N�
 - Caviar and roe count as Fisk. A cheese course is Ost. Petit four is for the small sweets served with coffee.
 - Vin and Drinks are only for photos where the drink is the subject: a bottle, a label, a wine list, a cocktail. A glass in the background of a dish or people photo does not count. Photos with no course but tagged Vin or Drinks still appear on Retter.
 - Photo keywords are 3–8 Danish lowercase words for what is clearly visible and might be searched for, e.g. "burrata", "østers", "rødbede", "menukort", "vinflaske", "selskab". Avoid generic words like "mad" or "tallerken", and don't guess at things you can't see.
+- Dish photos (photos with a course) also get 1–3 colour words, lowercase, for the colours of the food itself, most dominant first. Ignore the plate, the table and the background. Allowed: rød, orange, gul, grøn, blå, lilla, lyserød, brun, sort, hvid (also `COLOURS` in `app.js`). Pale or cream food is hvid, darker browns (crust, caramel, roasted meat) are brun.
 
 Tags are keyed by the exact course text. If a course is renamed in the edit form, its old tags are dropped on save, so tag it again.
 

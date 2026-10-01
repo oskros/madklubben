@@ -121,7 +121,9 @@
      "kage",
      "flødeskum",
      "chokoladesauce",
-     "glas"
+     "glas",
+     "brun",
+     "hvid"
     ],
     "1a0f1bb7a35-4.jpg": [
      "Petit four",
@@ -258,21 +260,29 @@
      "oksebryst",
      "rødløg",
      "mayonnaise",
-     "lime"
+     "lime",
+     "hvid",
+     "gul",
+     "lyserød"
     ],
     "ext1a0f6792135-1.jpg": [
      "Grønt",
      "padron",
      "peber",
      "grillspyd",
-     "dip"
+     "dip",
+     "grøn",
+     "brun"
     ],
     "ext1a0f6792142-2.jpg": [
      "Skaldyr",
      "tostada",
      "krabbe",
      "tortillachips",
-     "chili"
+     "chili",
+     "gul",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f679214e-3.jpg": [
      "Fisk",
@@ -280,14 +290,19 @@
      "havbars",
      "majs",
      "radise",
-     "karse"
+     "karse",
+     "gul",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f679215b-4.jpg": [
      "Fisk",
      "tiradito",
      "hamachi",
      "jordnødder",
-     "rå fisk"
+     "rå fisk",
+     "orange",
+     "hvid"
     ],
     "ext1a0f679216a-5.jpg": [
      "Fjerkræ",
@@ -296,7 +311,9 @@
      "hjertesalat",
      "græskarkerner",
      "mole",
-     "grillet"
+     "grillet",
+     "grøn",
+     "brun"
     ],
     "ext1a0f6792177-6.jpg": [
      "Grønt",
@@ -304,13 +321,19 @@
      "majs",
      "feta",
      "agurk",
-     "salat"
+     "salat",
+     "gul",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f6792182-7.jpg": [
      "Grønt",
      "courgette",
      "grillet",
-     "mojo"
+     "mojo",
+     "gul",
+     "grøn",
+     "orange"
     ],
     "ext1a0f679218d-8.jpg": [
      "Dessert",
@@ -319,7 +342,9 @@
      "is",
      "popcorn",
      "chokoladesauce",
-     "karamel"
+     "karamel",
+     "hvid",
+     "brun"
     ]
    }
   },
@@ -415,41 +440,57 @@
      "laks",
      "rødbede",
      "gedeost",
-     "crumble"
+     "crumble",
+     "rød",
+     "hvid"
     ],
     "ext1a0f67e5bfc-1.jpg": [
      "Okse",
      "tatar",
      "kalvetatar",
      "karse",
-     "rødvin"
+     "rødvin",
+     "brun",
+     "grøn",
+     "hvid"
     ],
     "ext1a0f67e5c11-2.jpg": [
      "Svin",
      "svinebryst",
      "græskarpuré",
      "græskarkerner",
-     "karse"
+     "karse",
+     "hvid",
+     "brun",
+     "grøn"
     ],
     "ext1a0f67e5c25-3.jpg": [
      "Grønt",
      "kartofler",
      "græskarpuré",
      "syltede rødløg",
-     "blomkarse"
+     "blomkarse",
+     "orange",
+     "hvid",
+     "rød"
     ],
     "ext1a0f6806142-0.jpg": [
      "Ost",
      "blåskimmelost",
      "æble",
-     "karse"
+     "karse",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f67e5c39-4.jpg": [
      "Dessert",
      "chokolade",
      "skyr",
      "blåbær",
-     "is"
+     "is",
+     "hvid",
+     "brun",
+     "lilla"
     ]
    }
   },
@@ -549,42 +590,58 @@
      "græskarsuppe",
      "suppe",
      "græskarkerner",
-     "drink"
+     "drink",
+     "orange",
+     "brun"
     ],
     "ext1a0f6cc42c8-1.jpg": [
      "Fisk",
      "laks",
      "gravad laks",
      "skalotteløg",
-     "karse"
+     "karse",
+     "lyserød",
+     "hvid",
+     "brun"
     ],
     "ext1a0f6cac6ba-0.jpg": [
      "Fisk",
      "torsk",
      "skorzonerrod",
      "sauce",
-     "blad"
+     "blad",
+     "brun",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f6cc42de-2.jpg": [
      "Okse",
      "Grønt",
      "onglet",
      "rødbede",
-     "sauce"
+     "sauce",
+     "rød",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f6cc4325-3.jpg": [
      "Ost",
      "Brød",
      "ost",
      "nøddebrød",
-     "karse"
+     "karse",
+     "hvid",
+     "grøn",
+     "brun"
     ],
     "ext1a0f6cac6d2-1.jpg": [
      "Dessert",
      "karamel",
      "sorbet",
      "krokant",
-     "chokolade"
+     "chokolade",
+     "brun",
+     "grøn"
     ]
    }
   },
@@ -720,26 +777,31 @@
      "Grønt",
      "blade",
      "oxalis",
-     "salat"
+     "salat",
+     "grøn"
     ],
     "ext1a0f4600c1b-1.jpg": [
      "Fisk",
      "sandart",
      "majroe",
-     "hvid fisk"
+     "hvid fisk",
+     "hvid"
     ],
     "ext1a0f4600c5c-2.jpg": [
      "Grønt",
      "gulerod",
      "bouillon",
-     "suppe"
+     "suppe",
+     "orange",
+     "hvid"
     ],
     "ext1a0f4600ca1-3.jpg": [
      "Skaldyr",
      "Brød",
      "blæksprutte",
      "brød",
-     "olivenolie"
+     "olivenolie",
+     "hvid"
     ],
     "1a0ee2c85d6-0.jpg": [
      "Grønt",
@@ -747,13 +809,17 @@
      "græskar",
      "sauce",
      "hvidvin",
-     "brød"
+     "brød",
+     "orange",
+     "brun"
     ],
     "1a0ee2c85d6-1.jpg": [
      "Svampe",
      "svampe",
      "shoyu",
-     "sauce"
+     "sauce",
+     "brun",
+     "orange"
     ],
     "1a0ee2c85d6-3.jpg": [
      "Fjerkræ",
@@ -761,28 +827,37 @@
      "and",
      "andebryst",
      "sauce",
-     "brød"
+     "brød",
+     "hvid",
+     "brun"
     ],
     "1a0ee2c85d6-2.jpg": [
      "Fjerkræ",
      "and",
      "andebryst",
      "sauce",
-     "rødvin"
+     "rødvin",
+     "lyserød",
+     "hvid",
+     "brun"
     ],
     "ext1a0f4600cf0-4.jpg": [
      "Dessert",
      "Frugt",
      "tyttebær",
      "syrnet mælk",
-     "is"
+     "is",
+     "hvid",
+     "rød"
     ],
     "ext1a0f4600d3e-5.jpg": [
      "Dessert",
      "Frugt",
      "aronia",
      "bær",
-     "crumble"
+     "crumble",
+     "lilla",
+     "brun"
     ],
     "ext1a0f4600da3-6.jpg": [
      "Dessert",
@@ -790,7 +865,9 @@
      "kvæde",
      "gelé",
      "hvidvin",
-     "rødvin"
+     "rødvin",
+     "hvid",
+     "orange"
     ]
    }
   },
@@ -866,7 +943,10 @@
      "salami",
      "spinat",
      "mozzarella",
-     "cocktail"
+     "cocktail",
+     "hvid",
+     "rød",
+     "grøn"
     ],
     "ext1a0f8f415b6-1.jpg": [
      "Fjerkræ",
@@ -876,7 +956,10 @@
      "rucola",
      "peber",
      "kylling",
-     "cocktail"
+     "cocktail",
+     "grøn",
+     "hvid",
+     "rød"
     ],
     "ext1a0f903d078-0.jpg": [
      "Ost",
@@ -885,7 +968,10 @@
      "rucola",
      "tomat",
      "cocktail",
-     "restaurant"
+     "restaurant",
+     "grøn",
+     "hvid",
+     "rød"
     ]
    }
   },
@@ -934,7 +1020,10 @@
      "Skaldyr",
      "hummer",
      "salat",
-     "citron"
+     "citron",
+     "rød",
+     "hvid",
+     "grøn"
     ],
     "1a0f1d04630-1.jpg": [
      "Okse",
@@ -943,7 +1032,9 @@
      "pommes frites",
      "mayonnaise",
      "vinflaske",
-     "selskab"
+     "selskab",
+     "gul",
+     "brun"
     ]
    }
   },
@@ -1031,14 +1122,19 @@
      "salat",
      "krabbe",
      "græskar",
-     "blade"
+     "blade",
+     "lilla",
+     "gul",
+     "hvid"
     ],
     "1a0ee3a302f-1.jpg": [
      "Skaldyr",
      "kammusling",
      "muslingeskal",
      "karse",
-     "hvidvin"
+     "hvidvin",
+     "hvid",
+     "grøn"
     ],
     "ext1a0f86c6ebb-1.jpg": [
      "Skaldyr",
@@ -1046,13 +1142,18 @@
      "tomat",
      "karse",
      "kapers",
-     "sauce"
+     "sauce",
+     "grøn",
+     "rød"
     ],
     "ext1a0f4600dfe-8.jpg": [
      "Fisk",
      "kulmule",
      "broccoli",
-     "karse"
+     "karse",
+     "grøn",
+     "hvid",
+     "gul"
     ],
     "ext1a0f4600e12-9.jpg": [
      "Dessert",
@@ -1060,7 +1161,10 @@
      "sorbet",
      "blåbær",
      "chokolade",
-     "karamel"
+     "karamel",
+     "lilla",
+     "sort",
+     "hvid"
     ]
    }
   },
@@ -1141,7 +1245,8 @@
      "Skaldyr",
      "østers",
      "friteret",
-     "hvidvin"
+     "hvidvin",
+     "brun"
     ],
     "1a0f1d04758-2.jpg": [
      "Fisk",
@@ -1149,33 +1254,47 @@
      "torsk",
      "mango",
      "rødløg",
-     "koriander"
+     "koriander",
+     "grøn",
+     "lyserød",
+     "gul"
     ],
     "1a0f1d04758-3.jpg": [
      "Skaldyr",
      "blåmuslinger",
      "muslinger",
-     "citron"
+     "citron",
+     "sort",
+     "gul",
+     "orange"
     ],
     "1a0f1d04758-0.jpg": [
      "Skaldyr",
      "rejer",
      "citron",
-     "dip"
+     "dip",
+     "orange",
+     "gul"
     ],
     "1a0f1d04758-4.jpg": [
      "Fisk",
      "havbars",
      "hel fisk",
      "salsa verde",
-     "grillet"
+     "grillet",
+     "grøn",
+     "brun",
+     "hvid"
     ],
     "1a0f1d04758-5.jpg": [
      "Okse",
      "steak",
      "bøf",
      "kryddersmør",
-     "pommes frites"
+     "pommes frites",
+     "brun",
+     "gul",
+     "rød"
     ]
    }
   },
@@ -1297,7 +1416,10 @@
      "brød",
      "agurk",
      "kartofler",
-     "hvidvin"
+     "hvidvin",
+     "grøn",
+     "gul",
+     "rød"
     ],
     "ext1a0f473b7d2-0.jpg": [
      "Svin",
@@ -1306,14 +1428,19 @@
      "sauce",
      "salat",
      "syltede grøntsager",
-     "bakke"
+     "bakke",
+     "lilla",
+     "grøn",
+     "rød"
     ],
     "ext1a0f473b7ec-1.jpg": [
      "Dessert",
      "hyldeblomst",
      "granité",
      "creme",
-     "blomster"
+     "blomster",
+     "hvid",
+     "gul"
     ]
    }
   },
@@ -1563,33 +1690,46 @@
      "nasturtium",
      "radise",
      "pesto",
-     "blade"
+     "blade",
+     "grøn",
+     "hvid",
+     "orange"
     ],
     "1a0f180a06a-30.jpg": [
      "Fisk",
      "tang",
      "rogn",
-     "pighvar"
+     "pighvar",
+     "grøn",
+     "orange",
+     "hvid"
     ],
     "1a0f180a06a-20.jpg": [
      "Grønt",
      "radise",
      "blomster",
      "tærte",
-     "trækasse"
+     "trækasse",
+     "orange",
+     "rød",
+     "lyserød"
     ],
     "1a0f180a06a-16.jpg": [
      "Grønt",
      "krydderurter",
      "urtepotte",
-     "sugerør"
+     "sugerør",
+     "grøn",
+     "brun"
     ],
     "1a0f180a06a-27.jpg": [
      "Grønt",
      "krydderurter",
      "urtepotte",
      "sugerør",
-     "vinglas"
+     "vinglas",
+     "grøn",
+     "brun"
     ],
     "1a0f180a06a-17.jpg": [
      "Grønt",
@@ -1607,7 +1747,10 @@
      "Skaldyr",
      "hummer",
      "blade",
-     "spyd"
+     "spyd",
+     "rød",
+     "hvid",
+     "sort"
     ],
     "1a0f180a06a-26-v2.jpg": [
      "Grønt",
@@ -1616,26 +1759,36 @@
      "bær",
      "jordbær",
      "kirsebær",
-     "blomster"
+     "blomster",
+     "grøn",
+     "rød",
+     "lilla"
     ],
     "1a0f180a06a-18.jpg": [
      "Grønt",
      "løg",
      "grillet",
-     "forkullet"
+     "forkullet",
+     "sort",
+     "brun"
     ],
     "1a0f180a06a-22.jpg": [
      "Grønt",
      "løg",
      "grillet",
      "forkullet",
-     "purløg"
+     "purløg",
+     "sort",
+     "hvid"
     ],
     "1a0f180a06a-25.jpg": [
      "Grønt",
      "hvidløg",
      "bouillon",
-     "krydderurter"
+     "krydderurter",
+     "hvid",
+     "grøn",
+     "brun"
     ],
     "1a0f180a06a-10.jpg": [
      "Skaldyr",
@@ -1643,7 +1796,10 @@
      "kaviar",
      "krabbe",
      "krabbeskal",
-     "sten"
+     "sten",
+     "sort",
+     "hvid",
+     "brun"
     ],
     "1a0f180a06a-6.jpg": [
      "Skaldyr",
@@ -1651,26 +1807,34 @@
      "salat",
      "radise",
      "kongekrabbe",
-     "blade"
+     "blade",
+     "grøn",
+     "lyserød",
+     "hvid"
     ],
     "1a0f180a06a-5.jpg": [
      "Skaldyr",
      "kongekrabbe",
      "krabbeben",
-     "grillet"
+     "grillet",
+     "rød"
     ],
     "1a0f180a06a-12.jpg": [
      "Skaldyr",
      "kongekrabbe",
      "krabbeben",
-     "grillet"
+     "grillet",
+     "hvid",
+     "rød"
     ],
     "1a0f180a06a-13.jpg": [
      "Skaldyr",
      "Svampe",
      "trøffel",
      "sauce",
-     "krabbe"
+     "krabbe",
+     "brun",
+     "sort"
     ],
     "1a0f180a06a-3.jpg": [
      "Skaldyr",
@@ -1679,32 +1843,39 @@
      "blomster",
      "hø",
      "æggesnaps",
-     "trøffel"
+     "trøffel",
+     "orange",
+     "brun"
     ],
     "1a0f180a06a-2.jpg": [
      "Æg",
      "æggesnaps",
      "æggelikør",
-     "sauce"
+     "sauce",
+     "orange"
     ],
     "1a0f180a06a-7.jpg": [
      "Dessert",
      "pandekage",
      "sten",
-     "korn"
+     "korn",
+     "hvid"
     ],
     "1a0f180a06a-11.jpg": [
      "Dessert",
      "chokolade",
      "urtepotte",
      "spirer",
-     "blomsterkage"
+     "blomsterkage",
+     "brun",
+     "grøn"
     ],
     "1a0f180a06a-8.jpg": [
      "Petit four",
      "chokolade",
      "blade",
-     "urter"
+     "urter",
+     "brun"
     ],
     "1a0f180a06a-4.jpg": [
      "Frugt",
@@ -1712,14 +1883,19 @@
      "kirsebær",
      "chokolade",
      "blade",
-     "te"
+     "te",
+     "sort",
+     "rød",
+     "brun"
     ],
     "1a0f180a06a-1.jpg": [
      "Frugt",
      "Petit four",
      "kirsebær",
      "te",
-     "bær"
+     "bær",
+     "rød",
+     "sort"
     ],
     "1a0f180a06a-9.jpg": [
      "Dessert",
@@ -1786,7 +1962,10 @@
      "citron",
      "mayonnaise",
      "pommes frites",
-     "hvidvin"
+     "hvidvin",
+     "rød",
+     "grøn",
+     "hvid"
     ],
     "1a0f1d04a2c-1.jpg": [
      "Skaldyr",
@@ -1794,7 +1973,10 @@
      "hummer",
      "pommes frites",
      "hvidvin",
-     "havn"
+     "havn",
+     "gul",
+     "rød",
+     "grøn"
     ]
    }
   },
@@ -1910,12 +2092,16 @@
      "pesto",
      "babaganoush",
      "aubergine",
-     "dip"
+     "dip",
+     "hvid",
+     "grøn"
     ],
     "1a0f1d04b3f-2.jpg": [
      "Grønt",
      "fennikel",
-     "gratin"
+     "gratin",
+     "gul",
+     "brun"
     ],
     "1a0f1d04b3f-0.jpg": [
      "Grønt",
@@ -1924,14 +2110,17 @@
      "broccolini",
      "gedeost",
      "boghvede",
-     "brød"
+     "brød",
+     "grøn",
+     "hvid"
     ],
     "1a0f1d04b3f-1.jpg": [
      "Pasta & ris",
      "arancini",
      "risottokugler",
      "dip",
-     "frituresteg"
+     "frituresteg",
+     "orange"
     ],
     "1a0f1d04b3f-4.jpg": [
      "selskab",
@@ -2034,33 +2223,46 @@
      "helleflynder",
      "stikkelsbær",
      "olie",
-     "rå fisk"
+     "rå fisk",
+     "gul",
+     "hvid",
+     "rød"
     ],
     "ext1a0f68006cc-1.jpg": [
      "Fisk",
      "slethvar",
      "kaviar",
      "hvide asparges",
-     "kærnemælk"
+     "kærnemælk",
+     "hvid",
+     "grøn",
+     "sort"
     ],
     "ext1a0f68006ee-2.jpg": [
      "Grønt",
      "kartofler",
      "løvstikke",
-     "sauce"
+     "sauce",
+     "grøn"
     ],
     "ext1a0f6800812-3.jpg": [
      "Okse",
      "tatar",
      "gulerod",
-     "chips"
+     "chips",
+     "rød",
+     "orange",
+     "brun"
     ],
     "ext1a0f68008f4-4.jpg": [
      "Dessert",
      "Frugt",
      "rabarber",
      "is",
-     "vanilje"
+     "vanilje",
+     "hvid",
+     "orange",
+     "lyserød"
     ]
    }
   },
@@ -2128,7 +2330,9 @@
      "sardiner",
      "dåse",
      "aioli",
-     "brød"
+     "brød",
+     "brun",
+     "orange"
     ],
     "1a0f1d04ffa-0.jpg": [
      "Skaldyr",
@@ -2136,7 +2340,10 @@
      "ceviche",
      "tomat",
      "rødløg",
-     "spiselige blomster"
+     "spiselige blomster",
+     "hvid",
+     "rød",
+     "grøn"
     ],
     "1a0f1d04ffa-2.jpg": [
      "Fisk",
@@ -2144,7 +2351,9 @@
      "kapers",
      "tomatsauce",
      "citron",
-     "grillet grønt"
+     "grillet grønt",
+     "rød",
+     "orange"
     ],
     "1a0f1d04ffa-3.jpg": [
      "Dessert",
@@ -2152,7 +2361,10 @@
      "chokolade",
      "pekannødder",
      "is",
-     "karamel"
+     "karamel",
+     "brun",
+     "hvid",
+     "gul"
     ]
    }
   },
@@ -2295,21 +2507,30 @@
     "1a0ee2c85d6-9.jpg": [
      "Skaldyr",
      "østers",
-     "gratineret"
+     "gratineret",
+     "brun",
+     "rød",
+     "hvid"
     ],
     "1a0ee2c85d6-0.jpg": [
      "Grønt",
      "suppe",
      "ærter",
      "bouillon",
-     "hvidvin"
+     "hvidvin",
+     "gul",
+     "rød",
+     "grøn"
     ],
     "1a0ee2c85d6-3.jpg": [
      "Fisk",
      "røget laks",
      "agurk",
      "syrnet fløde",
-     "hvidvin"
+     "hvidvin",
+     "hvid",
+     "orange",
+     "grøn"
     ],
     "1a0ee2c85d6-1.jpg": [
      "Fisk",
@@ -2317,25 +2538,36 @@
      "ærter",
      "squash",
      "sukkerærter",
-     "hvidvin"
+     "hvidvin",
+     "grøn",
+     "orange",
+     "hvid"
     ],
     "1a0ee2c85d6-6.jpg": [
      "Okse",
      "Svampe",
      "kalv",
      "kantareller",
-     "rødvin"
+     "rødvin",
+     "brun",
+     "gul",
+     "grøn"
     ],
     "1a0ee2c85d6-4.jpg": [
      "Ost",
      "ostebræt",
      "valnødder",
-     "tørret frugt"
+     "tørret frugt",
+     "gul",
+     "hvid",
+     "brun"
     ],
     "1a0ee2c85d6-8.jpg": [
      "Dessert",
      "sorbet",
-     "urteolie"
+     "urteolie",
+     "hvid",
+     "grøn"
     ],
     "1a0ee2c85d6-7.jpg": [
      "Dessert",
@@ -2343,7 +2575,10 @@
      "chokolade",
      "sorbet",
      "bær",
-     "glas"
+     "glas",
+     "lyserød",
+     "rød",
+     "hvid"
     ]
    }
   },
@@ -2454,7 +2689,10 @@
      "wantons",
      "frituresteg",
      "dip",
-     "koriander"
+     "koriander",
+     "brun",
+     "orange",
+     "grøn"
     ],
     "ext1a0f63fbbd4-1.jpg": [
      "Okse",
@@ -2464,7 +2702,10 @@
      "jordnødder",
      "salat",
      "chili",
-     "agurk"
+     "agurk",
+     "grøn",
+     "brun",
+     "hvid"
     ],
     "ext1a0f63fbbf1-2.jpg": [
      "Skaldyr",
@@ -2472,7 +2713,10 @@
      "rispandekager",
      "rejer",
      "koriander",
-     "dip"
+     "dip",
+     "grøn",
+     "gul",
+     "orange"
     ],
     "ext1a0f63fbc0f-3.jpg": [
      "Skaldyr",
@@ -2480,7 +2724,9 @@
      "rispandekager",
      "rejer",
      "salat",
-     "koriander"
+     "koriander",
+     "grøn",
+     "gul"
     ],
     "ext1a0f63fbc3d-4.jpg": [
      "Skaldyr",
@@ -2488,7 +2734,10 @@
      "rispandekage",
      "rejer",
      "bønnespirer",
-     "salat"
+     "salat",
+     "gul",
+     "grøn",
+     "hvid"
     ],
     "ext1a0f64104e9-6.jpg": [
      "Svin",
@@ -2498,7 +2747,10 @@
      "ris",
      "spejlæg",
      "agurk",
-     "tomat"
+     "tomat",
+     "hvid",
+     "brun",
+     "grøn"
     ]
    }
   },
@@ -2631,7 +2883,10 @@
      "wagyu",
      "sashimi",
      "trøffel",
-     "sauce"
+     "sauce",
+     "brun",
+     "hvid",
+     "orange"
     ],
     "ext1a0f46663b8-1.jpg": [
      "Okse",
@@ -2640,14 +2895,18 @@
      "tatar",
      "kaviar",
      "arancini",
-     "wagyu"
+     "wagyu",
+     "brun",
+     "rød"
     ],
     "ext1a0f46664b6-2.jpg": [
      "Brød",
      "slider",
      "sando",
      "sauce",
-     "burger"
+     "burger",
+     "orange",
+     "brun"
     ],
     "ext1a0f4666523-3.jpg": [
      "Okse",
@@ -2655,7 +2914,10 @@
      "beef wellington",
      "butterdej",
      "svampe",
-     "broccolini"
+     "broccolini",
+     "lyserød",
+     "brun",
+     "orange"
     ],
     "ext1a0f46665c6-4.jpg": [
      "Dessert",
@@ -2663,7 +2925,10 @@
      "creme brulée",
      "is",
      "hindbær",
-     "blåbær"
+     "blåbær",
+     "hvid",
+     "orange",
+     "rød"
     ],
     "ext1a0f4666699-5.jpg": [
      "Dessert",
@@ -2671,7 +2936,10 @@
      "chokolade",
      "fudge",
      "hindbær",
-     "logo"
+     "logo",
+     "brun",
+     "hvid",
+     "rød"
     ]
    }
   },
@@ -2876,50 +3144,65 @@
      "Fisk",
      "dumpling",
      "daikon",
-     "køkken"
+     "køkken",
+     "hvid",
+     "gul"
     ],
     "ext1a0f49e489d-1.jpg": [
      "Skaldyr",
      "tartelet",
      "rejer",
      "dild",
-     "boghvede"
+     "boghvede",
+     "brun",
+     "orange"
     ],
     "ext1a0f7979403-0.jpg": [
      "Skaldyr",
      "mousseline",
      "chips",
-     "skeer"
+     "skeer",
+     "gul"
     ],
     "ext1a0f797947c-1.jpg": [
      "Skaldyr",
      "Frugt",
      "granité",
-     "jomfruhummer"
+     "jomfruhummer",
+     "rød"
     ],
     "1a0ee3a302f-2.jpg": [
      "Fisk",
      "ørred",
      "grøn sauce",
-     "krydderurter"
+     "krydderurter",
+     "grøn",
+     "hvid",
+     "brun"
     ],
     "muo8kqvo-0.jpg": [
      "Fisk",
      "ørred",
      "grøn sauce",
-     "hvidvin"
+     "hvidvin",
+     "grøn",
+     "hvid",
+     "brun"
     ],
     "ext1a0f6b587dc-2.jpg": [
      "Skaldyr",
      "blæksprutte",
      "sesamcreme",
-     "hvidvin"
+     "hvidvin",
+     "hvid"
     ],
     "ext1a0f49e493e-3.jpg": [
      "Brød",
      "naan",
      "krydderurter",
-     "køkken"
+     "køkken",
+     "grøn",
+     "gul"
     ],
     "ext1a0f696cec4-0.jpg": [
      "Grønt",
@@ -2927,53 +3210,73 @@
      "jordskok",
      "kaviar",
      "sauce",
-     "spiselige blomster"
+     "spiselige blomster",
+     "hvid",
+     "grøn",
+     "orange"
     ],
     "ext1a0f49e494e-4.jpg": [
      "Fisk",
      "sandart",
      "brøndkarse",
-     "pistacie"
+     "pistacie",
+     "grøn",
+     "hvid",
+     "brun"
     ],
     "muo8kqvo-1.jpg": [
      "Fjerkræ",
      "Frugt",
      "vagtel",
      "figner",
-     "sauce"
+     "sauce",
+     "rød",
+     "gul",
+     "brun"
     ],
     "ext1a0f49e499e-5.jpg": [
      "Fjerkræ",
      "vagtellår",
      "gremolata",
-     "køkken"
+     "køkken",
+     "brun",
+     "grøn"
     ],
     "ext1a0f49e49b0-6.jpg": [
      "Dessert",
      "choux",
      "trøffel",
      "creme",
-     "spiselige blomster"
+     "spiselige blomster",
+     "brun",
+     "hvid",
+     "lilla"
     ],
     "ext1a0f7bfc86e-0.jpg": [
      "Petit four",
      "sesam",
      "kiks",
-     "vinprop"
+     "vinprop",
+     "grøn",
+     "gul"
     ],
     "ext1a0f7bfc8c8-1.jpg": [
      "Petit four",
      "Nødder",
      "pistacie",
      "wienerbrød",
-     "figner"
+     "figner",
+     "brun",
+     "grøn",
+     "hvid"
     ],
     "ext1a0f49e49fb-8.jpg": [
      "Petit four",
      "Frugt",
      "kvæde",
      "gelé",
-     "peber"
+     "peber",
+     "orange"
     ]
    }
   },
@@ -3138,50 +3441,63 @@
      "grøn tomat",
      "tempura",
      "frituresteg",
-     "dip"
+     "dip",
+     "hvid"
     ],
     "1a0f14db60f-0.jpg": [
      "Fisk",
      "havbars",
      "rå fisk",
      "krydderurter",
-     "olie"
+     "olie",
+     "hvid",
+     "gul"
     ],
     "ext1a0f4666781-6.jpg": [
      "Grønt",
      "græskar",
-     "peber"
+     "peber",
+     "orange"
     ],
     "1a0ee3a302f-1.jpg": [
      "Svampe",
      "Pasta & ris",
      "svampe",
-     "nudler"
+     "nudler",
+     "hvid",
+     "brun"
     ],
     "1a0f14db60f-1.jpg": [
      "Fisk",
      "havtaske",
      "porrer",
-     "bouillon"
+     "bouillon",
+     "hvid",
+     "brun"
     ],
     "ext1a0f8772b4b-0.jpg": [
      "Fjerkræ",
      "Grønt",
      "and",
      "andebryst",
-     "pak choi"
+     "pak choi",
+     "grøn",
+     "lyserød"
     ],
     "ext1a0f8772bff-1.jpg": [
      "Fjerkræ",
      "Pasta & ris",
      "and",
      "andebryst",
-     "ris"
+     "ris",
+     "lyserød",
+     "orange"
     ],
     "1a0ee3a302f-3.jpg": [
      "Dessert",
      "parfait",
-     "shisoblade"
+     "shisoblade",
+     "grøn"
     ],
     "1a0ee3a302f-4.jpg": [
      "Dessert",
@@ -3189,7 +3505,9 @@
      "roulade",
      "kage",
      "sesam",
-     "kaki"
+     "kaki",
+     "hvid",
+     "orange"
     ]
    }
   },
@@ -3283,14 +3601,18 @@
      "Ost",
      "arancini",
      "tomatsauce",
-     "parmesan"
+     "parmesan",
+     "rød",
+     "hvid"
     ],
     "1a0ee3a302f-1.jpg": [
      "Fisk",
      "Grønt",
      "baccala",
      "radicchio",
-     "salat"
+     "salat",
+     "lilla",
+     "hvid"
     ],
     "1a0ee3a302f-2.jpg": [
      "Fisk",
@@ -3298,7 +3620,10 @@
      "crudo",
      "tomat",
      "oliven",
-     "krydderurter"
+     "krydderurter",
+     "rød",
+     "orange",
+     "grøn"
     ],
     "1a0ee3a302f-3.jpg": [
      "Svin",
@@ -3306,7 +3631,10 @@
      "pizza",
      "prosciutto",
      "rucola",
-     "mozzarella"
+     "mozzarella",
+     "lyserød",
+     "brun",
+     "grøn"
     ],
     "1a0ee3a302f-4.jpg": [
      "Pasta & ris",
@@ -3314,7 +3642,10 @@
      "rigatoni",
      "stracciatella",
      "basilikum",
-     "tomatsauce"
+     "tomatsauce",
+     "orange",
+     "hvid",
+     "grøn"
     ],
     "1a0ee3a302f-5.jpg": [
      "Pasta & ris",
@@ -3322,7 +3653,9 @@
      "spaghetti",
      "muslinger",
      "rejer",
-     "krydderurter"
+     "krydderurter",
+     "hvid",
+     "grøn"
     ],
     "1a0ee3a302f-6.jpg": [
      "Dessert",
@@ -3331,7 +3664,10 @@
      "panna cotta",
      "hindbær",
      "hasselnødder",
-     "basilikum"
+     "basilikum",
+     "hvid",
+     "rød",
+     "brun"
     ]
    }
   },
@@ -3431,7 +3767,10 @@
      "snacks",
      "tartelet",
      "asparges",
-     "spiselige blomster"
+     "spiselige blomster",
+     "grøn",
+     "rød",
+     "gul"
     ],
     "1a0f1d053d4-2.jpg": [
      "Fisk",
@@ -3439,13 +3778,16 @@
      "tynde skiver",
      "dip",
      "bonitoflager",
-     "hvidvin"
+     "hvidvin",
+     "rød",
+     "brun"
     ],
     "1a0f1d053d4-4.jpg": [
      "Brød",
      "brød",
      "surdej",
-     "brødbolle"
+     "brødbolle",
+     "brun"
     ],
     "1a0f1d053d4-3.jpg": [
      "Fisk",
@@ -3461,7 +3803,9 @@
      "hvid fisk",
      "helleflynder",
      "sauce",
-     "hvidvin"
+     "hvidvin",
+     "gul",
+     "hvid"
     ],
     "1a0f1d053d4-6.jpg": [
      "Svin",
@@ -3485,7 +3829,10 @@
      "is",
      "yoghurt",
      "jordbær",
-     "sorbet"
+     "sorbet",
+     "hvid",
+     "lyserød",
+     "brun"
     ],
     "1a0f1d053d4-0.jpg": [
      "Dessert",
@@ -3493,7 +3840,10 @@
      "Fisk",
      "is",
      "pistacie",
-     "kaviar"
+     "kaviar",
+     "hvid",
+     "sort",
+     "grøn"
     ]
    }
   },
@@ -3553,7 +3903,10 @@
      "grillet",
      "dild",
      "citron",
-     "hvidvin"
+     "hvidvin",
+     "orange",
+     "grøn",
+     "gul"
     ],
     "1a0f1d05d20-1.jpg": [
      "Skaldyr",
@@ -3563,7 +3916,10 @@
      "pommes frites",
      "selskab",
      "havn",
-     "hvidvin"
+     "hvidvin",
+     "grøn",
+     "lyserød",
+     "brun"
     ],
     "1a0f1d05d20-2.jpg": [
      "Skaldyr",
@@ -3571,7 +3927,9 @@
      "citron",
      "pommes frites",
      "selskab",
-     "havn"
+     "havn",
+     "orange",
+     "gul"
     ]
    }
   },
@@ -3741,7 +4099,9 @@
      "Grønt",
      "majroe",
      "dashi",
-     "bouillon"
+     "bouillon",
+     "hvid",
+     "gul"
     ],
     "1a0ee3a302f-3.jpg": [
      "Vin",
@@ -3756,7 +4116,10 @@
      "krabbe",
      "nori",
      "blæksprutte",
-     "tartelet"
+     "tartelet",
+     "grøn",
+     "hvid",
+     "brun"
     ],
     "1a0ee3a302f-5.jpg": [
      "Skaldyr",
@@ -3765,7 +4128,10 @@
      "krabbe",
      "nori",
      "blæksprutte",
-     "hvidvin"
+     "hvidvin",
+     "grøn",
+     "hvid",
+     "brun"
     ],
     "1a0ee3a302f-6.jpg": [
      "Vin",
@@ -3779,19 +4145,27 @@
      "østers",
      "tomat",
      "gelé",
-     "blåmuslinger"
+     "blåmuslinger",
+     "rød",
+     "hvid"
     ],
     "1a0ee3a302f-8.jpg": [
      "Fisk",
      "tun",
      "sojabønner",
-     "forårsløg"
+     "forårsløg",
+     "rød",
+     "grøn",
+     "hvid"
     ],
     "1a0ee3a302f-9.jpg": [
      "Fisk",
      "tun",
      "sojabønner",
-     "forårsløg"
+     "forårsløg",
+     "rød",
+     "grøn",
+     "hvid"
     ],
     "1a0ee3a302f-10.jpg": [
      "Vin",
@@ -3809,20 +4183,27 @@
      "Fisk",
      "rå fisk",
      "myoga",
-     "grøn chili"
+     "grøn chili",
+     "lyserød",
+     "grøn"
     ],
     "1a0ee3a302f-13.jpg": [
      "Fisk",
      "Frugt",
      "havtaskelever",
      "figen",
-     "sesam"
+     "sesam",
+     "brun",
+     "rød"
     ],
     "1a0ee3a302f-14.jpg": [
      "Fisk",
      "makrel",
      "butterdej",
-     "sauce"
+     "sauce",
+     "sort",
+     "brun",
+     "lyserød"
     ],
     "1a0ee3a302f-15.jpg": [
      "Vin",
@@ -3834,40 +4215,47 @@
      "Pasta & ris",
      "ris",
      "urter",
-     "hvidvin"
+     "hvidvin",
+     "hvid",
+     "grøn"
     ],
     "1a0ee3a302f-17.jpg": [
      "Fjerkræ",
      "hel and",
      "pithivier",
      "butterdej",
-     "restaurant"
+     "restaurant",
+     "brun"
     ],
     "1a0ee3a302f-18.jpg": [
      "Fjerkræ",
      "hel and",
      "pithivier",
      "tjener",
-     "restaurant"
+     "restaurant",
+     "brun"
     ],
     "1a0ee3a302f-19.jpg": [
      "Fjerkræ",
      "hel and",
      "pithivier",
      "tjener",
-     "restaurant"
+     "restaurant",
+     "brun"
     ],
     "1a0ee3a302f-20.jpg": [
      "Fjerkræ",
      "hel and",
      "pithivier",
-     "butterdej"
+     "butterdej",
+     "brun"
     ],
     "1a0ee3a302f-21.jpg": [
      "Fisk",
      "hvid fisk",
      "skum",
-     "sauce"
+     "sauce",
+     "hvid"
     ],
     "1a0ee3a302f-22.jpg": [
      "Vin",
@@ -3879,14 +4267,18 @@
      "Fjerkræ",
      "andebryst",
      "pithivier",
-     "sauce"
+     "sauce",
+     "brun",
+     "rød"
     ],
     "1a0ee3a302f-24.jpg": [
      "Fjerkræ",
      "andebryst",
      "pithivier",
      "sauce",
-     "rødvin"
+     "rødvin",
+     "brun",
+     "rød"
     ],
     "1a0ee3a302f-25.jpg": [
      "Dessert",
@@ -3894,7 +4286,10 @@
      "figen",
      "is",
      "karamel",
-     "financier"
+     "financier",
+     "brun",
+     "orange",
+     "hvid"
     ],
     "1a0ee3a302f-26.jpg": [
      "Drinks",
@@ -4138,52 +4533,69 @@
      "Frugt",
      "østers",
      "pære",
-     "snack"
+     "snack",
+     "hvid",
+     "brun",
+     "grøn"
     ],
     "1a0ee2c85d6-6.jpg": [
      "Fisk",
      "løjrom",
      "tartelet",
      "kartoffel",
-     "kartoffelchips"
+     "kartoffelchips",
+     "orange",
+     "gul"
     ],
     "1a0ee2c85d6-22.jpg": [
      "Fisk",
      "sild",
      "fiskehoved",
-     "wasabi"
+     "wasabi",
+     "lyserød"
     ],
     "1a0ee2c85d6-17.jpg": [
      "Skaldyr",
      "kammusling",
      "vichyssoise",
-     "urter"
+     "urter",
+     "grøn"
     ],
     "1a0ee2c85d6-24.jpg": [
      "Fisk",
      "kaviar",
      "knust is",
-     "snack"
+     "snack",
+     "sort",
+     "hvid"
     ],
     "1a0ee2c85d6-14.jpg": [
      "Brød",
      "brød",
      "surdej",
      "smør",
-     "hvidvin"
+     "hvidvin",
+     "brun",
+     "gul"
     ],
     "1a0ee2c85d6-23.jpg": [
      "kok",
      "rullebord",
      "porre",
      "sauce",
-     "restaurant"
+     "restaurant",
+     "gul",
+     "hvid",
+     "grøn"
     ],
     "1a0ee2c85d6-30-v2.jpg": [
      "Fisk",
      "pighvar",
      "porre",
-     "sauce"
+     "sauce",
+     "orange",
+     "gul",
+     "grøn"
     ],
     "1a0ee2c85d6-31.jpg": [
      "køkken",
@@ -4200,21 +4612,27 @@
      "Brød",
      "rejer",
      "ristet brød",
-     "toast"
+     "toast",
+     "orange",
+     "brun"
     ],
     "1a0ee2c85d6-27.jpg": [
      "Skaldyr",
      "jomfruhummer",
      "kirsebær",
      "sauce",
-     "klo"
+     "klo",
+     "orange",
+     "rød"
     ],
     "1a0ee2c85d6-11.jpg": [
      "Grønt",
      "rosenkål",
      "blade",
      "skum",
-     "rødvin"
+     "rødvin",
+     "grøn",
+     "hvid"
     ],
     "1a0ee2c85d6-0.jpg": [
      "Okse",
@@ -4228,7 +4646,10 @@
      "gulerod",
      "tatar",
      "tartelet",
-     "spiselige blomster"
+     "spiselige blomster",
+     "lilla",
+     "orange",
+     "grøn"
     ],
     "1a0ee2c85d6-5.jpg": [
      "selskab",
@@ -4239,56 +4660,71 @@
      "Fjerkræ",
      "vagtel",
      "enebær",
-     "grangrene"
+     "grangrene",
+     "brun",
+     "lyserød"
     ],
     "1a0ee2c85d6-29.jpg": [
      "Ost",
      "Svampe",
      "ost",
      "trøffel",
-     "sprød"
+     "sprød",
+     "orange",
+     "brun"
     ],
     "1a0ee2c85d6-13.jpg": [
      "Ost",
      "Svampe",
      "ost",
      "trøffel",
-     "sprød"
+     "sprød",
+     "orange"
     ],
     "1a0ee2c85d6-20.jpg": [
      "Frugt",
      "Dessert",
      "stikkelsbær",
      "granité",
-     "geranium"
+     "geranium",
+     "lyserød"
     ],
     "1a0ee2c85d6-7.jpg": [
      "Frugt",
      "Dessert",
      "blåbær",
      "creme",
-     "spiselige blomster"
+     "spiselige blomster",
+     "blå",
+     "hvid"
     ],
     "1a0ee2c85d6-21.jpg": [
      "Frugt",
      "Dessert",
      "blåbær",
      "creme",
-     "spiselige blomster"
+     "spiselige blomster",
+     "hvid",
+     "blå",
+     "lyserød"
     ],
     "1a0ee2c85d6-8.jpg": [
      "Frugt",
      "Dessert",
      "blomme",
      "creme",
-     "tartelet"
+     "tartelet",
+     "lilla",
+     "hvid"
     ],
     "1a0ee2c85d6-9.jpg": [
      "Grønt",
      "Petit four",
      "jordskok",
      "karamel",
-     "tærte"
+     "tærte",
+     "brun",
+     "orange"
     ],
     "rasmus-video-1.mp4": [
      "Grønt",
@@ -4296,27 +4732,33 @@
      "jordskok",
      "karamel",
      "tærte",
-     "video"
+     "video",
+     "brun",
+     "orange"
     ],
     "1a0ee2c85d6-16.jpg": [
      "Grønt",
      "Petit four",
      "rose",
      "rødbede",
-     "blomst"
+     "blomst",
+     "rød",
+     "grøn"
     ],
     "1a0ee2c85d6-3.jpg": [
      "Grønt",
      "Petit four",
      "rose",
      "rødbede",
-     "stilk"
+     "stilk",
+     "grøn"
     ],
     "1a0ee2c85d6-28.jpg": [
      "Petit four",
      "chokolade",
      "grankogle",
-     "bark"
+     "bark",
+     "brun"
     ],
     "1a0ee2c85d6-2.jpg": [
      "Vin",

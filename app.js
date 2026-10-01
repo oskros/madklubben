@@ -185,6 +185,7 @@ function main() {
   const isVideo = name => name.endsWith('.mp4');
   const MEAT = ['Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt'];
   const withMeat = tags => tags.some(t => MEAT.includes(t)) ? [...tags, 'Kød'] : tags;
+  const COLOURS = ['rød', 'orange', 'gul', 'grøn', 'blå', 'lilla', 'lyserød', 'brun', 'sort', 'hvid'];
   const CATEGORIES = ['Fisk', 'Skaldyr', 'Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt', 'Kød', 'Grønt', 'Svampe', 'Frugt', 'Nødder', 'Ost', 'Æg', 'Brød', 'Pasta & ris', 'Dessert', 'Petit four', 'Vin', 'Drinks'];
   const photoPath = (d, name, thumb) => `photos/${d.id}/${thumb ? 't/' : ''}${thumb && isVideo(name) ? name.replace(/\.mp4$/, '.jpg') : name}`;
   const photoUrl = (d, name, thumb) => localUrls[photoPath(d, name, thumb)] ?? photoPath(d, name, thumb);
@@ -641,14 +642,14 @@ function main() {
         const dishTags = name => withMeat(d.dishTags?.[name] ?? []);
         const cats = CATEGORIES.filter(c => photoTags.includes(c) || t.names.some(name => dishTags(name).includes(c)));
         const per = Object.fromEntries(cats.map(c => [c, t.names.filter(name => dishTags(name).includes(c)).length || 1]));
-        return { ...t, cats, per, words: photoTags.filter(w => !CATEGORIES.includes(w)) };
+        return { ...t, cats, per, colours: photoTags.filter(w => COLOURS.includes(w)), words: photoTags.filter(w => !CATEGORIES.includes(w) && !COLOURS.includes(w)) };
       });
     });
     return `
       <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
       <input type="search" class="dish-search" placeholder="Søg, fx fisk, ost, dessert eller en restaurant" aria-label="Søg i retter" autocomplete="off">
-      <div class="dishes">${tiles.map(({ d, i, names, cats, per, words, drink }) => `
-        <figure data-n="${Math.max(names.length, 1)}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
+      <div class="dishes">${tiles.map(({ d, i, names, cats, per, colours, words, drink }) => `
+        <figure data-n="${Math.max(names.length, 1)}" data-colours="${esc(colours.join(' '))}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
             ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(names.join(', '))}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy">${isVideo(d.photos[i]) ? `<span class="play-badge" aria-label="Video">${icon('play')}</span>` : ''}</button>`
             : `<a class="no-photo" href="#/d/${esc(d.id)}" aria-label="${esc(d.restaurant)}">${icon('camera')}<span>Intet billede</span></a>`}
@@ -1057,7 +1058,8 @@ function main() {
     let n = 0;
     document.querySelectorAll('.dishes figure').forEach(f => {
       const per = Object.fromEntries(f.dataset.cats.split('|').filter(Boolean).map(x => [x.slice(0, x.lastIndexOf(':')), +x.slice(x.lastIndexOf(':') + 1)]));
-      f.hidden = !words.every((w, k) => cats[k] ? per[cats[k]] : starts[k].test(f.dataset.q));
+      const colours = f.dataset.colours.split(' ');
+      f.hidden = !words.every((w, k) => cats[k] ? per[cats[k]] : COLOURS.includes(w) ? colours.includes(w) : starts[k].test(f.dataset.q));
       const cat = cats.find(Boolean);
       if (!f.hidden) n += cat ? per[cat] : +f.dataset.n;
     });

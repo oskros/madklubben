@@ -250,7 +250,7 @@ function main() {
         ...(month ? { view: 'months', minView: 'months' } : {}),
         navTitles: { days: 'MMMM <i>yyyy</i>', months: '<i>yyyy</i>', years: 'yyyy1 – yyyy2' },
         prevHtml: icon('prev'), nextHtml: icon('next'),
-        buttons: [{ content: 'I dag', className: 'adp-today', onClick: dp => { dp.setViewDate(new Date()); dp.setCurrentView(month ? 'months' : 'days'); } }],
+        buttons: [{ content: icon('today'), tagName: 'button', attrs: { type: 'button', title: 'Gå til i dag', 'aria-label': 'Gå til i dag' }, className: 'adp-today', onClick: dp => { dp.setViewDate(new Date()); dp.setCurrentView(month ? 'months' : 'days'); } }],
       });
       dp.$datepicker.addEventListener('click', e => {
         if (dp.currentView === 'days' && e.target.closest('.air-datepicker-nav--title i')) { e.stopPropagation(); dp.setCurrentView('years'); }
@@ -302,6 +302,7 @@ function main() {
     grip: '<circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/>',
     next: '<path d="m9 18 6-6-6-6"/>',
     prev: '<path d="m15 18-6-6 6-6"/>',
+    today: '<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><circle cx="12" cy="15.5" r="1.7" fill="currentColor" stroke="none"/>',
     login: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>',
     logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>',
   };

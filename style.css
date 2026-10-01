@@ -498,5 +498,7 @@ h2 { font-weight: 600; }
 .date-shown { cursor: pointer; }
 .air-datepicker--pointer { display: none; }
 .air-datepicker-body--day-name { text-transform: none; }
-.air-datepicker--buttons { padding: 2px 4px; }
-.air-datepicker-button.adp-today { height: 1.9rem; font-size: .85rem; font-weight: 600; }
+.air-datepicker--buttons { padding: 0 4px 4px; border-top: 0; }
+.air-datepicker--buttons .air-datepicker-buttons { display: flex; justify-content: flex-end; }
+.air-datepicker-button.adp-today { flex: none; width: 2rem; height: 2rem; padding: 0; }
+.air-datepicker-button.adp-today svg.i { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; }

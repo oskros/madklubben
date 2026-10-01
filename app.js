@@ -1062,15 +1062,29 @@ function main() {
     });
     const L = await leaflet;
     if (!el.isConnected) return;
-    const map = L.map(el, { wheelPxPerZoomLevel: 240, zoomSnap: .5, zoomDelta: .5 });
+    const touch = matchMedia('(hover: none)').matches;
+    const map = L.map(el, { wheelPxPerZoomLevel: 240, zoomSnap: .5, zoomDelta: .5, dragging: !touch });
     map.attributionControl.setPrefix(false);
+    if (touch) {
+      el.insertAdjacentHTML('beforeend', '<div class="map-hint">Tryk på kortet for at flytte det</div>');
+      let hide;
+      const activate = on => { el.classList.toggle('active', on); on ? map.dragging.enable() : map.dragging.disable(); };
+      el.addEventListener('touchmove', e => {
+        if (el.classList.contains('active') || e.touches.length !== 1) return;
+        el.classList.add('hinting');
+        clearTimeout(hide);
+        hide = setTimeout(() => el.classList.remove('hinting'), 1200);
+      }, { passive: true });
+      map.on('click', () => activate(true));
+      document.addEventListener('touchstart', e => { if (!el.contains(e.target)) activate(false); }, { passive: true });
+      new IntersectionObserver(([e]) => { if (!e.isIntersecting) activate(false); }).observe(el);
+    }
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     const color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
     const placed = shown().filter(d => d.lat != null && d.lon != null);
-    const touch = matchMedia('(hover: none)').matches;
     for (const d of placed) {
       const dot = L.circleMarker([d.lat, d.lon], { radius: touch ? 6 : 5.5, color: getComputedStyle(document.body).backgroundColor, weight: 1.5, fillColor: color, fillOpacity: 1 });
       if (touch) {

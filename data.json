@@ -1032,7 +1032,7 @@
    "photos": [
     "1a0f2968e84-menukort.jpg",
     "ext1a0f63fbc5d-5.jpg",
-    "ext1a0f63fbbaf-0.jpg",
+    "ext1a0f82964c9-0.jpg",
     "ext1a0f63fbbd4-1.jpg",
     "ext1a0f63fbbf1-2.jpg",
     "ext1a0f63fbc0f-3.jpg",
@@ -1044,7 +1044,7 @@
    "lat": 55.730155,
    "lon": 12.507891,
    "photoCourses": {
-    "ext1a0f63fbbaf-0.jpg": [
+    "ext1a0f82964c9-0.jpg": [
      0
     ],
     "ext1a0f63fbbd4-1.jpg": [
@@ -1064,17 +1064,18 @@
     ]
    },
    "photoNotes": {
-    "ext1a0f63fbc5d-5.jpg": "Restauranten"
+    "ext1a0f63fbc5d-5.jpg": "Restauranten",
+    "ext1a0f82964c9-0.jpg": "Fra oktober 2023. Restaurantens eget billede af nr. 17, Op La Mix, med forårsruller, wantons og rejer i ris-net; på kortet fra oktober 2022 var der også dybstegt kylling."
    },
    "photoCredits": {
     "1a0f2968e84-menukort.jpg": "Op La, oplarestaurant.dk (okt. 2022)",
     "ext1a0f63fbc5d-5.jpg": "gæst på TripAdvisor",
-    "ext1a0f63fbbaf-0.jpg": "gæst på TripAdvisor",
     "ext1a0f63fbbd4-1.jpg": "Op La, oplarestaurant.dk",
     "ext1a0f63fbbf1-2.jpg": "Op La, oplarestaurant.dk",
     "ext1a0f63fbc0f-3.jpg": "gæst på TripAdvisor",
     "ext1a0f63fbc3d-4.jpg": "gæst på TripAdvisor",
-    "ext1a0f64104e9-6.jpg": "Op La, oplarestaurant.dk"
+    "ext1a0f64104e9-6.jpg": "Op La, oplarestaurant.dk",
+    "ext1a0f82964c9-0.jpg": "Op La, oplarestaurant.dk (okt. 2023)"
    }
   },
   {

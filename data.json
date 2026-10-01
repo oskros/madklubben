@@ -702,14 +702,26 @@
    "album": null,
    "price": 4000,
    "outOfPocket": 400,
-   "note": "Coronaregler: alt lukkede kl. 23, så bord kl. 17 og test inden. Bookingrod gav et gratis glas champagne. Rasmus tabte sit dankort, og en fremmed kom med det til Gammel Strand. Bistro Boheme og Maison var fuldt booket.",
+   "note": "Coronaregler: alt lukkede kl. 23, så bord kl. 17 og test inden. Bookingrod gav et gratis glas champagne. Rasmus tabte sit dankort, og en fremmed kom med det til Gammel Strand. Bistro Boheme og Maison var fuldt booket. Seks favoritter med vinmenu fra restaurantens menukort fra april 2021, som stadig var gældende.",
    "themes": [],
-   "menu": [],
-   "photos": [],
+   "menu": [
+    "Helleflynder, røde stikkelsbær & marehalm",
+    "Slethvar, hvide asparges & kærnemælk",
+    "Nye kartofler, bakskuld & løvstikke",
+    "Rå okse, fermenteret gulerod & røget blåmusling",
+    "Vagtel, grønne asparges & syltede kantareller",
+    "Rabarber, vanilje & skovmærke"
+   ],
+   "photos": [
+    "1a0f5e81e15-menukort.jpg"
+   ],
    "image": "restaurants/2021-marv-og-ben-632834ce.jpg",
    "address": "Snaregade 4, 1205 København K",
    "lat": 55.677304,
-   "lon": 12.576943
+   "lon": 12.576943,
+   "photoNotes": {
+    "1a0f5e81e15-menukort.jpg": "Menukort fra april 2021, marvogben.dk"
+   }
   },
   {
    "group": "ida",

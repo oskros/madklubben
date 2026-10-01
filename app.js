@@ -182,7 +182,8 @@ function main() {
     return new Promise(ok => c.toBlob(ok, 'image/jpeg', quality));
   }
 
-  const photoPath = (d, name, thumb) => `photos/${d.id}/${thumb ? 't/' : ''}${name}`;
+  const isVideo = name => name.endsWith('.mp4');
+  const photoPath = (d, name, thumb) => `photos/${d.id}/${thumb ? 't/' : ''}${thumb && isVideo(name) ? name.replace(/\.mp4$/, '.jpg') : name}`;
   const photoUrl = (d, name, thumb) => localUrls[photoPath(d, name, thumb)] ?? photoPath(d, name, thumb);
 
   async function preparePhotos(d, fileList, progress) {
@@ -302,6 +303,7 @@ function main() {
     eyeOff: '<path d="M10.7 5.1A10.7 10.7 0 0 1 21.9 11.7a1 1 0 0 1 0 .7 10.8 10.8 0 0 1-1.4 2.4"/><path d="M14.1 14.2a3 3 0 0 1-4.2-4.2"/><path d="M17.5 17.5a10.8 10.8 0 0 1-15.4-5.1 1 1 0 0 1 0-.7 10.8 10.8 0 0 1 4.4-5.2"/><path d="m2 2 20 20"/>',
     grip: '<circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/>',
     next: '<path d="m9 18 6-6-6-6"/>',
+    play: '<path d="M7 4.5v15l12.5-7.5z" fill="currentColor" stroke="none"/>',
     prev: '<path d="m15 18-6-6 6-6"/>',
     today: '<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><circle cx="12" cy="15.5" r="1.7" fill="currentColor" stroke="none"/>',
     login: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/>',
@@ -327,7 +329,7 @@ function main() {
   function dinnerPage(id) {
     const d = data.dinners.find(x => x.id === id);
     if (!d) return null;
-    const hero = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], false));
+    const hero = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], isVideo(d.photos[0])));
     return `
       <div class="toolbar">
         ${iconLink('#/', 'back', 'Til forsiden')}
@@ -358,7 +360,7 @@ function main() {
         <section>
           <h2>Billeder <span class="count">${d.photos.length || ''}</span></h2>
           ${d.photos.length ? `<div class="grid">${d.photos.map((p, i) => `
-            <button data-photo="${i}" aria-label="Billede ${i + 1}"${d.photoCredits?.[p] ? ` title="Foto: ${esc(d.photoCredits[p])}"` : ''}><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy">${d.photoCredits?.[p] ? `<span class="credit-badge" aria-label="Lånt billede">${icon('external')}</span>` : ''}</button>`).join('')}</div>`
+            <button data-photo="${i}" aria-label="Billede ${i + 1}"${d.photoCredits?.[p] ? ` title="Foto: ${esc(d.photoCredits[p])}"` : ''}><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy">${isVideo(p) ? `<span class="play-badge" aria-label="Video">${icon('play')}</span>` : ''}${d.photoCredits?.[p] ? `<span class="credit-badge" aria-label="Lånt billede">${icon('external')}</span>` : ''}</button>`).join('')}</div>`
             : `<p class="muted">Ingen billeder endnu.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj billeder</a>` : ''}</p>`}
         </section>
       </div>`;
@@ -620,7 +622,7 @@ function main() {
       <div class="dishes">${tiles.map(({ d, i, names }) => `
         <figure data-n="${names.length}" data-q="${esc(`${names.join(' ')} ${d.restaurant}`.toLowerCase())}">
           ${i >= 0
-            ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(names.join(', '))}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy"></button>`
+            ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(names.join(', '))}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy">${isVideo(d.photos[i]) ? `<span class="play-badge" aria-label="Video">${icon('play')}</span>` : ''}</button>`
             : `<a class="no-photo" href="#/d/${esc(d.id)}" aria-label="${esc(d.restaurant)}">${icon('camera')}<span>Intet billede</span></a>`}
           <figcaption><span>${names.map(esc).join('<br>')}</span>${names.length > 1 ? `<small>${names.length} retter på billedet</small>` : ''}<a href="#/d/${esc(d.id)}">${esc(d.restaurant)}, ${esc(d.date.slice(0, 4))}</a></figcaption>
         </figure>`).join('')}</div>
@@ -931,12 +933,14 @@ function main() {
     const [PhotoSwipe, ratios] = await Promise.all([photoswipe, Promise.all(d.photos.map(p => ratio(photoUrl(d, p, true))))]);
     const long = 1600;
     const pswp = new PhotoSwipe({
-      dataSource: d.photos.map((p, k) => ({
-        src: photoUrl(d, p, false),
-        msrc: photoUrl(d, p, true),
-        width: ratios[k] >= 1 ? long : Math.round(long * ratios[k]),
-        height: ratios[k] >= 1 ? Math.round(long / ratios[k]) : long,
-      })),
+      dataSource: d.photos.map((p, k) => isVideo(p)
+        ? { html: `<div class="pswp-video"><video src="${esc(photoUrl(d, p, false))}" poster="${esc(photoUrl(d, p, true))}" muted controls playsinline preload="metadata"></video></div>` }
+        : {
+          src: photoUrl(d, p, false),
+          msrc: photoUrl(d, p, true),
+          width: ratios[k] >= 1 ? long : Math.round(long * ratios[k]),
+          height: ratios[k] >= 1 ? Math.round(long / ratios[k]) : long,
+        }),
       index: i,
       bgOpacity: 1,
       showHideAnimationType: 'fade',
@@ -947,6 +951,18 @@ function main() {
       arrowPrevTitle: 'Forrige',
       arrowNextTitle: 'Næste',
       errorMsg: 'Billedet kunne ikke hentes',
+    });
+    const videos = () => [...(pswp.element?.querySelectorAll('.pswp-video video') ?? [])];
+    const syncVideos = () => videos().forEach(v => {
+      const current = v.closest('.pswp__item')?.getAttribute('aria-hidden') === 'false';
+      if (!current) { v.pause(); v.dataset.started = ''; } else if (!v.dataset.started) { v.dataset.started = '1'; v.currentTime = 0; v.play().catch(() => {}); }
+    });
+    pswp.on('change', () => setTimeout(syncVideos));
+    pswp.on('contentAppend', () => setTimeout(syncVideos));
+    pswp.on('close', () => videos().forEach(v => v.pause()));
+    pswp.on('pointerDown', e => {
+      const v = e.originalEvent.target.closest?.('.pswp-video video');
+      if (v && e.originalEvent.clientY > v.getBoundingClientRect().bottom - 56) e.preventDefault();
     });
     pswp.on('uiRegister', () => {
       pswp.ui.registerElement({
@@ -967,6 +983,7 @@ function main() {
           el.innerHTML = ns.map(n => `<div><span class="n">${n + 1}</span>${esc(d.menu[n])}</div>`).join('')
             + (note ? `<small${ns.length ? '' : ' class="alone"'}>${esc(note)}</small>` : '')
             + (credit ? `<em class="credit"><span class="tag">${icon('external')}Lånt billede</span>Foto: ${esc(credit)}</em>` : '');
+          p.element.style.setProperty('--cap', `${el.hidden ? 0 : el.offsetHeight}px`);
         }),
       });
     });
@@ -1069,7 +1086,11 @@ function main() {
     if (touch) {
       el.insertAdjacentHTML('beforeend', '<div class="map-hint">Tryk på kortet for at flytte det</div>');
       let hide;
-      const activate = on => { el.classList.toggle('active', on); on ? map.dragging.enable() : map.dragging.disable(); };
+      const activate = on => {
+        el.classList.toggle('active', on);
+        if (on) { clearTimeout(pending); clearTimeout(hide); el.classList.remove('hinting'); }
+        on ? map.dragging.enable() : map.dragging.disable();
+      };
       let startY, multi, pending;
       const show = () => {
         pending = null;

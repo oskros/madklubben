@@ -507,3 +507,10 @@ h2 { font-weight: 600; }
   .pswp__course .credit .tag { font-size: 0; gap: 0; padding: .3rem; }
   .pswp__course .credit .tag .i { width: .8rem; height: .8rem; }
 }
+
+.play-badge { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 99px; background: rgb(0 0 0 / .5); color: #fff; pointer-events: none; }
+.play-badge .i { width: 1.15rem; height: 1.15rem; margin-left: .15rem; }
+.dishes button { position: relative; }
+.pswp-video { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; padding: 60px 0 var(--cap, 0px); }
+.pswp .pswp__course { pointer-events: none; }
+.pswp-video video { max-width: 100%; max-height: 100%; min-height: 0; object-fit: contain; }

@@ -538,14 +538,8 @@ function main() {
   function dinnersPage() {
     const list = shown(), priced = list.filter(d => d.price), clubPriced = priced.filter(isClub);
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
-    const f = forecast(data, today());
     return `
       ${photoStrip()}
-      <a class="account" href="#/regnskab">
-        <span><span class="amount">${kr(balance(data, today()))}</span> på madkontoen</span>
-        ${f ? `<span class="muted">Næste middag omkring ${dato(f.next)}</span>` : ''}
-        ${icon('next')}
-      </a>
       ${timeline()}
       ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}
       <div class="section-head">
@@ -961,6 +955,8 @@ function main() {
       pswp.ui.registerElement({
         name: 'course', order: 9, isButton: false, appendTo: 'root',
         onInit: (el, p) => p.on('change', () => {
+          el.classList.remove('open');
+          el.onclick = e => { if (e.target.closest('small')) el.classList.toggle('open'); };
           const photo = d.photos[p.currIndex];
           const ns = coursesOf(d, photo);
           const note = d.photoNotes?.[photo];

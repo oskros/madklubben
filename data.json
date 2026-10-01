@@ -869,7 +869,8 @@
     "Op La Mix – 2 stk. dybstegte forårsruller, 2 stk. dybstegt kylling, 2 stk. dybstegte rejer, 2 stk. dybstegte wantons",
     "Gỏi Bò – Oksekødssalat med friske grøntsager serveres med rejrechips",
     "Bánh Khọt – Sprød mini rispandekage med rejer og svinekød",
-    "Bánh Xèo – Sprød rispandekage med svinekød, rejer og bønnespirer"
+    "Bánh Xèo – Sprød rispandekage med svinekød, rejer og bønnespirer",
+    "Cơm Xương Sườn – Braiseret spareribs serveres med ris, spejlæg og krydderurter"
    ],
    "photos": [
     "ext1a0f63fbc5d-5.jpg",
@@ -878,6 +879,7 @@
     "ext1a0f63fbbf1-2.jpg",
     "ext1a0f63fbc0f-3.jpg",
     "ext1a0f63fbc3d-4.jpg",
+    "ext1a0f64104e9-6.jpg",
     "1a0f2968e84-menukort.jpg"
    ],
    "image": "restaurants/2023-op-la-9314487b.jpg",
@@ -899,6 +901,9 @@
     ],
     "ext1a0f63fbc3d-4.jpg": [
      3
+    ],
+    "ext1a0f64104e9-6.jpg": [
+     4
     ]
    },
    "photoNotes": {
@@ -907,7 +912,8 @@
     "ext1a0f63fbbf1-2.jpg": "Foto: Op La, oplarestaurant.dk",
     "ext1a0f63fbc0f-3.jpg": "Foto: gæst på TripAdvisor",
     "ext1a0f63fbc3d-4.jpg": "Foto: gæst på TripAdvisor",
-    "ext1a0f63fbc5d-5.jpg": "Restauranten. Foto: gæst på TripAdvisor"
+    "ext1a0f63fbc5d-5.jpg": "Restauranten. Foto: gæst på TripAdvisor",
+    "ext1a0f64104e9-6.jpg": "Foto: Op La, oplarestaurant.dk"
    }
   },
   {

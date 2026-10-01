@@ -439,7 +439,9 @@ h2 { font-weight: 600; }
 .pswp__course .credit .i { width: .95em; height: .95em; flex: none; }
 .pswp__course.many .credit { max-width: 48rem; margin-inline: auto; }
 
-.dish-search { width: 100%; margin-bottom: 1rem; }
+.dish-search-form { display: flex; gap: .4rem; margin-bottom: 1rem; }
+.dish-search { flex: 1; min-width: 0; }
+.dish-search-form .icon-btn { flex: none; width: 2.75rem; border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
 .dishes { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1.1rem .75rem; }
 .dishes figure { margin: 0; min-width: 0; }
 .dishes button, .dishes .no-photo { display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 2px; overflow: hidden; background: var(--surface); cursor: zoom-in; }

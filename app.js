@@ -307,6 +307,7 @@ function main() {
     eyeOff: '<path d="M10.7 5.1A10.7 10.7 0 0 1 21.9 11.7a1 1 0 0 1 0 .7 10.8 10.8 0 0 1-1.4 2.4"/><path d="M14.1 14.2a3 3 0 0 1-4.2-4.2"/><path d="M17.5 17.5a10.8 10.8 0 0 1-15.4-5.1 1 1 0 0 1 0-.7 10.8 10.8 0 0 1 4.4-5.2"/><path d="m2 2 20 20"/>',
     grip: '<circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/>',
     next: '<path d="m9 18 6-6-6-6"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/>',
     play: '<path d="M7 4.5v15l12.5-7.5z" fill="currentColor" stroke="none"/>',
     prev: '<path d="m15 18-6-6 6-6"/>',
     today: '<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><circle cx="12" cy="15.5" r="1.7" fill="currentColor" stroke="none"/>',
@@ -647,7 +648,7 @@ function main() {
     });
     return `
       <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
-      <input type="search" class="dish-search" placeholder="Søg, fx fisk, ost, dessert eller en restaurant" aria-label="Søg i retter" autocomplete="off">
+      <form class="dish-search-form" role="search"><input type="search" class="dish-search" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button></form>
       <div class="dishes">${tiles.map(({ d, i, names, cats, per, colours, words, drink }) => `
         <figure data-n="${names.length}" data-colours="${esc(colours.join(' '))}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
@@ -869,6 +870,12 @@ function main() {
     },
   };
 
+  document.addEventListener('submit', e => {
+    if (!e.target.matches('.dish-search-form')) return;
+    e.preventDefault();
+    filterDishes();
+    e.target.querySelector('input').blur();
+  });
   document.addEventListener('submit', async e => {
     const form = e.target.closest('[data-form]');
     if (!form) return;
@@ -1069,7 +1076,7 @@ function main() {
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
-    if (e.target.matches('.dish-search')) filterDishes();
+    if (e.target.matches('.dish-search') && !e.target.value) filterDishes();
     if (e.target.name === 'menu') refreshCourseSelects(e.target.form);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);

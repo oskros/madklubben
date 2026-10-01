@@ -552,7 +552,7 @@ function main() {
           <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
           <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
             <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span>${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
-          <td class="num date-cell"><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td></tr>`).join('')}</tbody>
+          <td class="num date-cell"><span class="wide">${dato(d.date)}</span><span class="narrow">${d.date.slice(8)}.${d.date.slice(5, 7)}.${d.date.slice(0, 4)}</span></td></tr>`).join('')}</tbody>
       </table>
       ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}`;
   }

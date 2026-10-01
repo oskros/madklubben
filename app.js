@@ -224,7 +224,28 @@ function main() {
     config: configPage,
   };
 
+  const FP = 'https://cdn.jsdelivr.net/npm/flatpickr@4.6.13';
+  let flatpickrLib, pickers = [];
+  async function datePickers(inputs) {
+    flatpickrLib ??= Promise.all([import(`${FP}/+esm`), import(`${FP}/dist/l10n/da.js/+esm`), import(`${FP}/dist/plugins/monthSelect/index.js/+esm`)]).then(([fp, da, ms]) => {
+      $('link[href="style.css"]').insertAdjacentHTML('beforebegin', `<link rel="stylesheet" href="${FP}/dist/flatpickr.min.css"><link rel="stylesheet" href="${FP}/dist/plugins/monthSelect/style.css">`);
+      return { flatpickr: fp.default, Danish: da.Danish, monthSelect: ms.default };
+    });
+    const { flatpickr, Danish, monthSelect } = await flatpickrLib;
+    for (const input of inputs) {
+      if (!input.isConnected) continue;
+      const month = input.type === 'month';
+      pickers.push(flatpickr(input, {
+        locale: Danish, disableMobile: true, altInput: true,
+        dateFormat: month ? 'Y-m' : 'Y-m-d', altFormat: month ? 'F Y' : 'j. F Y',
+        plugins: month ? [monthSelect({ shorthand: true, dateFormat: 'Y-m', altFormat: 'F Y' })] : [],
+      }));
+    }
+  }
+
   function render() {
+    pickers.forEach(p => p.destroy());
+    pickers = [];
     const [, view = '', arg] = decodeURIComponent(location.hash).split('/');
     const html = (views[view] ?? dinnersPage)(arg);
     $('main').innerHTML = html ?? '<p>Ikke fundet.</p>';
@@ -237,6 +258,8 @@ function main() {
     if (dinner) { billPreview(dinner); refreshCourseSelects(dinner); }
     document.querySelectorAll('textarea.grow').forEach(grow);
     if ($('#map')) drawMap($('#map'));
+    const dates = document.querySelectorAll('main input[type=date], main input[type=month]');
+    if (dates.length) datePickers(dates);
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
       if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, .course-btn, .note-btn', preventOnFilter: false });

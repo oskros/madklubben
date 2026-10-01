@@ -2,7 +2,7 @@
  "members": 3,
  "rates": [
   {
-   "from": "2016-06",
+   "from": "2016-07",
    "perPerson": 100
   },
   {
@@ -16,7 +16,7 @@
  ],
  "checkpoints": [
   {
-   "date": "2016-05-31",
+   "date": "2016-07-06",
    "balance": 0,
    "note": "Madklubben oprettes"
   },

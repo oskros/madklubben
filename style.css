@@ -545,10 +545,4 @@ main h1 .query { color: var(--muted); }
   [data-action=open-search] { display: grid; }
   .dish-search-form:not(.open) { display: none; }
   .dish-search-form .icon-btn { display: none; }
-  .dish-search-form.open { position: fixed; top: 0; left: 0; right: 0; z-index: 40; margin: 0; padding: calc(10px + env(safe-area-inset-top)) 16px 10px; align-items: center; background: var(--bg); box-shadow: 0 8px 24px -10px rgb(0 0 0 / .4); animation: search-in .18s ease-out; }
-  .dish-search-form.open + .search-backdrop { display: block; position: fixed; inset: 0; z-index: 39; background: rgb(0 0 0 / .35); }
-  .dish-search-form .search-cancel { display: block; flex: none; padding: .5rem .25rem .5rem .5rem; border: 0; background: none; font: inherit; font-weight: 600; color: var(--accent); }
 }
-@keyframes search-in { from { transform: translateY(-100%); } }
-@media (prefers-reduced-motion: reduce) { .dish-search-form.open { animation: none; } }
-.search-cancel, .search-backdrop { display: none; }

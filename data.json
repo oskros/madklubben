@@ -91,11 +91,61 @@
     "Grillet courget med mojo rojo",
     "Banan syltet i ahornsirup med curd, mascarponeis, karameliserede popcorn & chokoladesauce med mezcal"
    ],
-   "photos": [],
+   "photos": [
+    "ext1a0f6792119-0.jpg",
+    "ext1a0f6792135-1.jpg",
+    "ext1a0f6792142-2.jpg",
+    "ext1a0f679214e-3.jpg",
+    "ext1a0f679215b-4.jpg",
+    "ext1a0f679216a-5.jpg",
+    "ext1a0f6792177-6.jpg",
+    "ext1a0f6792182-7.jpg",
+    "ext1a0f679218d-8.jpg"
+   ],
    "image": "restaurants/2016-llama-f0803861.jpg",
    "address": "Lille Kongensgade 14, 1074 København K",
    "lat": 55.679633,
-   "lon": 12.583828
+   "lon": 12.583828,
+   "photoCourses": {
+    "ext1a0f6792119-0.jpg": [
+     0
+    ],
+    "ext1a0f6792135-1.jpg": [
+     1
+    ],
+    "ext1a0f6792142-2.jpg": [
+     2
+    ],
+    "ext1a0f679214e-3.jpg": [
+     3
+    ],
+    "ext1a0f679215b-4.jpg": [
+     4
+    ],
+    "ext1a0f679216a-5.jpg": [
+     5
+    ],
+    "ext1a0f6792177-6.jpg": [
+     6
+    ],
+    "ext1a0f6792182-7.jpg": [
+     7
+    ],
+    "ext1a0f679218d-8.jpg": [
+     8
+    ]
+   },
+   "photoCredits": {
+    "ext1a0f6792119-0.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f6792135-1.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f6792142-2.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f679214e-3.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f679215b-4.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f679216a-5.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f6792177-6.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f6792182-7.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
+    "ext1a0f679218d-8.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)"
+   }
   },
   {
    "id": "2017-bodil",

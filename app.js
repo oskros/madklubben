@@ -183,7 +183,9 @@ function main() {
   }
 
   const isVideo = name => name.endsWith('.mp4');
-  const CATEGORIES = ['Fisk', 'Skaldyr', 'Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt', 'Grønt', 'Svampe', 'Frugt', 'Nødder', 'Ost', 'Æg', 'Brød', 'Pasta & ris', 'Dessert', 'Petit four', 'Vin', 'Drinks'];
+  const MEAT = ['Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt'];
+  const withMeat = tags => tags.some(t => MEAT.includes(t)) ? [...tags, 'Kød'] : tags;
+  const CATEGORIES = ['Fisk', 'Skaldyr', 'Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt', 'Kød', 'Grønt', 'Svampe', 'Frugt', 'Nødder', 'Ost', 'Æg', 'Brød', 'Pasta & ris', 'Dessert', 'Petit four', 'Vin', 'Drinks'];
   const photoPath = (d, name, thumb) => `photos/${d.id}/${thumb ? 't/' : ''}${thumb && isVideo(name) ? name.replace(/\.mp4$/, '.jpg') : name}`;
   const photoUrl = (d, name, thumb) => localUrls[photoPath(d, name, thumb)] ?? photoPath(d, name, thumb);
 
@@ -635,9 +637,10 @@ function main() {
         if (!coursesOf(d, p).length && d.photoTags?.[p]?.some(t => t === 'Vin' || t === 'Drinks')) list.push({ d, i, names: [], drink: true });
       });
       return list.map(t => {
-        const photoTags = t.i >= 0 ? d.photoTags?.[d.photos[t.i]] ?? [] : [];
-        const cats = CATEGORIES.filter(c => photoTags.includes(c) || t.names.some(name => d.dishTags?.[name]?.includes(c)));
-        const per = Object.fromEntries(cats.map(c => [c, t.names.filter(name => d.dishTags?.[name]?.includes(c)).length || 1]));
+        const photoTags = withMeat(t.i >= 0 ? d.photoTags?.[d.photos[t.i]] ?? [] : []);
+        const dishTags = name => withMeat(d.dishTags?.[name] ?? []);
+        const cats = CATEGORIES.filter(c => photoTags.includes(c) || t.names.some(name => dishTags(name).includes(c)));
+        const per = Object.fromEntries(cats.map(c => [c, t.names.filter(name => dishTags(name).includes(c)).length || 1]));
         return { ...t, cats, per, words: photoTags.filter(w => !CATEGORIES.includes(w)) };
       });
     });

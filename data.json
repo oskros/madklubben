@@ -863,16 +863,52 @@
    "album": null,
    "price": 1400,
    "outOfPocket": 0,
-   "note": "Billig madklub på Op La ved Oskar i Søborg. Rasmus troede vi skulle mødes på deres Vesterbro afdeling, og måtte rushe i en taxa for ikke at komme alt for sent.",
+   "note": "Billig madklub på Op La ved Oskar i Søborg. Rasmus troede vi skulle mødes på deres Vesterbro afdeling, og måtte rushe i en taxa for ikke at komme alt for sent. Retterne er fundet ud fra billeder på Op La's hjemmeside og TripAdvisor; navnene er fra kortet fra oktober 2022.",
    "themes": [],
-   "menu": [],
+   "menu": [
+    "Op La Mix – 2 stk. dybstegte forårsruller, 2 stk. dybstegt kylling, 2 stk. dybstegte rejer, 2 stk. dybstegte wantons",
+    "Gỏi Bò – Oksekødssalat med friske grøntsager serveres med rejrechips",
+    "Bánh Khọt – Sprød mini rispandekage med rejer og svinekød",
+    "Bánh Xèo – Sprød rispandekage med svinekød, rejer og bønnespirer"
+   ],
    "photos": [
+    "ext1a0f63fbc5d-5.jpg",
+    "ext1a0f63fbbaf-0.jpg",
+    "ext1a0f63fbbd4-1.jpg",
+    "ext1a0f63fbbf1-2.jpg",
+    "ext1a0f63fbc0f-3.jpg",
+    "ext1a0f63fbc3d-4.jpg",
     "1a0f2968e84-menukort.jpg"
    ],
    "image": "restaurants/2023-op-la-9314487b.jpg",
    "address": "Gladsaxevej 130, 2860 Søborg",
    "lat": 55.730155,
-   "lon": 12.507891
+   "lon": 12.507891,
+   "photoCourses": {
+    "ext1a0f63fbbaf-0.jpg": [
+     0
+    ],
+    "ext1a0f63fbbd4-1.jpg": [
+     1
+    ],
+    "ext1a0f63fbbf1-2.jpg": [
+     2
+    ],
+    "ext1a0f63fbc0f-3.jpg": [
+     2
+    ],
+    "ext1a0f63fbc3d-4.jpg": [
+     3
+    ]
+   },
+   "photoNotes": {
+    "ext1a0f63fbbaf-0.jpg": "Foto: gæst på TripAdvisor",
+    "ext1a0f63fbbd4-1.jpg": "Foto: Op La, oplarestaurant.dk",
+    "ext1a0f63fbbf1-2.jpg": "Foto: Op La, oplarestaurant.dk",
+    "ext1a0f63fbc0f-3.jpg": "Foto: gæst på TripAdvisor",
+    "ext1a0f63fbc3d-4.jpg": "Foto: gæst på TripAdvisor",
+    "ext1a0f63fbc5d-5.jpg": "Restauranten. Foto: gæst på TripAdvisor"
+   }
   },
   {
    "closed": false,

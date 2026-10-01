@@ -72,7 +72,7 @@ export function ledger(data, date) {
   const paidIn = periods.reduce((s, p) => s + p.amount, 0);
   const spent = data.dinners.filter(d => isClub(d) && d.date > start.date && d.date <= date).reduce((s, d) => s + fromFund(d), 0);
   const expected = start.balance + paidIn - spent, actual = balance(data, date);
-  return { start, periods, paidIn, spent, expected, actual, difference: expected - actual };
+  return { start, periods, paidIn, spent, expected, actual, difference: actual - expected };
 }
 
 export function forecast(data, today) {
@@ -552,7 +552,7 @@ function main() {
             ${row('Brugt på middage', `−${kr(l.spent)}`)}
             ${row('Forventet balance', kr(l.expected), '', 'sum')}
             ${row('Balance', kr(l.actual))}
-            ${row('Difference', kr(l.difference), '', 'sum')}
+            ${row('Difference', kr(l.difference).replace('-', '−'), '', 'sum')}
           </table>
           ${data.ledgerNote ? `<p class="muted small">${esc(data.ledgerNote)}</p>` : ''}
           ${editOnly(`<details class="add"><summary>${icon('plus')}Ny sats</summary><form data-form="rate" class="add-form">

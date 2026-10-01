@@ -517,7 +517,10 @@ h2 { font-weight: 600; }
 
 .dinners .date-cell { color: var(--muted); white-space: nowrap; }
 .dinners .place { width: 100%; }
-.expenses, .reconciliation { margin-top: 2.5rem; }
+.books { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "in st" "out out" "rec rec"; gap: 2.5rem 4rem; margin-top: 2.5rem; }
+.books h2 { margin-bottom: 1rem; }
+.b-in { grid-area: in; } .b-st { grid-area: st; } .expenses { grid-area: out; } .reconciliation { grid-area: rec; }
+@media (max-width: 760px) { .books { grid-template-columns: 1fr; grid-template-areas: "in" "out" "rec" "st"; } }
 .reconciliation { max-width: 34rem; }
 .expenses th { font-size: .8rem; font-weight: 500; color: var(--muted); padding: 0 0 .4rem; }
 .expenses th + th, .expenses td + td { padding-left: 1rem; }
@@ -525,5 +528,10 @@ h2 { font-weight: 600; }
 .expenses tbody tr:hover td { background: var(--surface); }
 .expenses td a { color: var(--ink); text-decoration: none; }
 .expenses tfoot td { font-weight: 700; border-top-color: var(--ink); border-bottom: 3px double var(--ink); }
-@media (max-width: 640px) { .expenses th + th, .expenses td + td { padding-left: .5rem; } }
+@media (max-width: 640px) {
+  .expenses th + th, .expenses td + td { padding-left: .75rem; }
+  .expenses td { white-space: normal; }
+  .expenses .num { white-space: nowrap; }
+  .expenses .sub { display: block; margin-top: .1rem; font-size: .8rem; font-weight: 400; color: var(--muted); }
+}
 .dinners + .map-section { margin-top: 2.5rem; }

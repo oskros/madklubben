@@ -571,8 +571,8 @@ function main() {
         ${f ? `<div><dt>Næste middag</dt><dd>${dato(f.next)}</dd><small>Gns. hver ${f.avgDays}. dag</small></div>
         <div><dt>Opsparet til næste middag</dt><dd>${kr(f.savings)}</dd><small>${kr(f.savings / data.members)} pr. person</small></div>` : ''}
       </dl>
-      <div class="columns">
-        <section>
+      <div class="books">
+        <section class="b-in">
           <h2>Indtægter</h2>
           <table class="plain ledger">
             ${l.periods.filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
@@ -583,7 +583,7 @@ function main() {
             <label>Kr. pr. person <input name="perPerson" type="number" min="0" inputmode="numeric" required></label>
             <div class="add-actions"><button class="btn">${icon('check')}Gem</button> <span class="status"></span></div></form></details>`)}
         </section>
-        <section>
+        <section class="b-st">
           <h2>Kontoudtog</h2>
           <table class="plain ledger">${[...data.checkpoints].sort((a, b) => a.date.localeCompare(b.date)).map(c => row(dato(c.date), kr(c.balance), c.note ? esc(c.note) : '')).join('')}</table>
           ${editOnly(`<div class="bank-add"><details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
@@ -594,17 +594,17 @@ function main() {
           <label class="csv-link">eller upload CSV fra banken<input name="bankcsv" type="file" accept=".csv,text/csv"></label></div>
           <p class="muted small bank-status"></p>`)}
         </section>
-      </div>
       <section class="expenses">
         <h2>Udgifter</h2>
         <table class="plain ledger">
-          <thead><tr><th>Dato</th><th>Restaurant</th><th class="num">Regning</th><th class="num">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num wide">Pr. person</th></tr></thead>
+          <thead><tr><th class="wide">Dato</th><th>Restaurant</th><th class="num wide">Regning</th><th class="num">Fra madkonto</th><th class="num wide">Eget indskud</th><th class="num wide">Pr. person</th></tr></thead>
           <tbody>${club.map(d => `<tr data-href="#/d/${esc(d.id)}">
-            <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
-            <td><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a></td>
-            <td class="num">${estKr(d, d.price)}</td><td class="num">${d.price ? estKr(d, fromFund(d)) : '–'}</td>
+            <td class="wide">${dato(d.date)}</td>
+            <td><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a><span class="narrow sub">${dato(d.date)}</span></td>
+            <td class="num wide">${estKr(d, d.price)}</td>
+            <td class="num">${d.price ? estKr(d, fromFund(d)) : '–'}<span class="narrow sub">af ${estKr(d, d.price)}</span></td>
             <td class="num wide">${estKr(d, d.outOfPocket)}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
-          <tfoot><tr class="sum"><td colspan="2">Udgifter i alt</td><td class="num">${kr(total(d => d.price))}</td><td class="num">${kr(total(fromFund))}</td>
+          <tfoot><tr class="sum"><td class="wide">Udgifter i alt</td><td><span class="narrow">Udgifter i alt</span></td><td class="num wide">${kr(total(d => d.price))}</td><td class="num">${kr(total(fromFund))}<span class="narrow sub">af ${kr(total(d => d.price))}</span></td>
             <td class="num wide">${kr(total(d => d.outOfPocket ?? 0))}</td><td class="num wide">${kr(total(d => (d.price ?? 0) / heads(d)))}</td></tr></tfoot>
         </table>
       </section>
@@ -618,7 +618,8 @@ function main() {
           ${row('Difference', kr(l.difference).replace('-', '−'), '', 'sum')}
         </table>
         ${data.ledgerNote ? `<p class="muted small">${esc(data.ledgerNote)}</p>` : ''}
-      </section>`;
+      </section>
+      </div>`;
   }
 
   function dishesPage() {

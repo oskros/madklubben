@@ -279,8 +279,9 @@ function main() {
     if (dates.length) datePickers(dates);
     const pick = $('.pick'), courses = $('.menu-edit');
     if (pick || courses) import('https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/+esm').then(({ default: Sortable }) => {
-      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, delay: 150, delayOnTouchOnly: true, filter: '.del, .course-btn, .note-btn', preventOnFilter: false });
-      if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, handle: '.grip', onEnd: () => refreshCourseSelects(dinner) });
+      const hold = { delay: 300, delayOnTouchOnly: true, touchStartThreshold: 6 };
+      if (pick) Sortable.create(pick, { animation: 150, forceFallback: true, ...hold, filter: '.del, .course-btn, .note-btn', preventOnFilter: false });
+      if (courses) Sortable.create(courses, { animation: 150, forceFallback: true, ...hold, handle: '.grip', onEnd: () => refreshCourseSelects(dinner) });
     });
   }
 

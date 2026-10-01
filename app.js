@@ -545,14 +545,14 @@ function main() {
       </div>
       <div class="columns">
         <section>
-          <h2>Ind og ud siden ${maaned(l.start.date.slice(0, 7))}</h2>
+          <h2>Forventede kontobevægelser</h2>
           <table class="plain ledger">
             ${[...l.periods].reverse().filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
             ${row('Indbetalt i alt', kr(l.paidIn), '', 'sum')}
             ${row('Brugt på middage', `−${kr(l.spent)}`)}
-            ${row('Burde stå på kontoen', kr(l.expected), '', 'sum')}
-            ${row('Står på kontoen', kr(l.actual))}
-            ${row('Forskel', kr(l.difference), '', 'sum')}
+            ${row('Forventet balance', kr(l.expected), '', 'sum')}
+            ${row('Balance', kr(l.actual))}
+            ${row('Difference', kr(l.difference), '', 'sum')}
           </table>
           ${data.ledgerNote ? `<p class="muted small">${esc(data.ledgerNote)}</p>` : ''}
           ${editOnly(`<details class="add"><summary>${icon('plus')}Ny sats</summary><form data-form="rate" class="add-form">

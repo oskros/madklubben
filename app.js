@@ -213,6 +213,7 @@ function main() {
     ny: () => dinnerForm(null),
     ret: id => dinnerForm(data.dinners.find(d => d.id === id)),
     budget: dinnersPage,
+    regnskab: balancePage,
     saldo: balancePage,
     retter: dishesPage,
     menuer: dishesPage,
@@ -230,7 +231,7 @@ function main() {
     $('#auth').innerHTML = `${icon(token ? 'logout' : 'login')}<span>${token ? 'Log ud' : 'Log ind'}</span>`;
     $('#auth').href = token ? '#/logud' : '#/login';
     renderFilter();
-    const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view;
+    const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view === 'saldo' ? 'regnskab' : view;
     document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
     if (dinner) { billPreview(dinner); refreshCourseSelects(dinner); }
@@ -499,7 +500,7 @@ function main() {
     const f = forecast(data, today());
     return `
       ${photoStrip()}
-      <a class="account" href="#/saldo">
+      <a class="account" href="#/regnskab">
         <span><span class="amount">${kr(balance(data, today()))}</span> på madkontoen</span>
         ${f ? `<span class="muted">Næste middag omkring ${dato(f.next)}</span>` : ''}
         ${icon('next')}
@@ -544,7 +545,7 @@ function main() {
       </div>
       <div class="columns">
         <section>
-          <h2>Regnskab siden ${maaned(l.start.date.slice(0, 7))}</h2>
+          <h2>Ind og ud siden ${maaned(l.start.date.slice(0, 7))}</h2>
           <table class="plain ledger">
             ${[...l.periods].reverse().filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
             ${row('Indbetalt i alt', kr(l.paidIn), '', 'sum')}

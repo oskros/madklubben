@@ -162,6 +162,7 @@
     "Laks – rødbede – gedeost – lakrids",
     "Kalvetatar – bøgehatte – hasselnød – æggeblomme",
     "Svinebryst – græskar – tranebær – selleri",
+    "Blåskimmelost – baconmarmelade – æbler",
     "Chokolade – skyr – blåbær"
    ],
    "photos": [
@@ -169,6 +170,7 @@
     "ext1a0f67e5bfc-1.jpg",
     "ext1a0f67e5c11-2.jpg",
     "ext1a0f67e5c25-3.jpg",
+    "ext1a0f6806142-0.jpg",
     "ext1a0f67e5c39-4.jpg"
    ],
    "image": "restaurants/2017-bodil-e8eab813.jpg",
@@ -188,8 +190,11 @@
     "ext1a0f67e5c25-3.jpg": [
      2
     ],
-    "ext1a0f67e5c39-4.jpg": [
+    "ext1a0f6806142-0.jpg": [
      3
+    ],
+    "ext1a0f67e5c39-4.jpg": [
+     4
     ]
    },
    "photoCredits": {
@@ -197,7 +202,8 @@
     "ext1a0f67e5bfc-1.jpg": "Bodil, Facebook (30. marts 2017)",
     "ext1a0f67e5c11-2.jpg": "Bodil, Facebook (22. marts 2017)",
     "ext1a0f67e5c25-3.jpg": "Bodil, Facebook (27. marts 2017)",
-    "ext1a0f67e5c39-4.jpg": "Bodil, Facebook (8. marts 2017)"
+    "ext1a0f67e5c39-4.jpg": "Bodil, Facebook (8. marts 2017)",
+    "ext1a0f6806142-0.jpg": "Bodil, Facebook (26. marts 2017)"
    },
    "photoNotes": {
     "ext1a0f67e5c25-3.jpg": "Tilbehør til hovedretten: kartofler i vinaigrette, græskarpuré, syltet selleri og skalotteløg"
@@ -802,17 +808,47 @@
     "Rabarber, vanilje & skovmærke"
    ],
    "photos": [
-    "1a0f5e81e15-menukort.jpg"
+    "1a0f5e81e15-menukort.jpg",
+    "ext1a0f68006ba-0.jpg",
+    "ext1a0f68006cc-1.jpg",
+    "ext1a0f68006ee-2.jpg",
+    "ext1a0f6800812-3.jpg",
+    "ext1a0f68008f4-4.jpg"
    ],
    "image": "restaurants/2021-marv-og-ben-632834ce.jpg",
    "address": "Snaregade 4, 1205 København K",
    "lat": 55.677304,
    "lon": 12.576943,
    "photoNotes": {
-    "1a0f5e81e15-menukort.jpg": "Menukort fra april 2021"
+    "1a0f5e81e15-menukort.jpg": "Menukort fra april 2021",
+    "ext1a0f68006cc-1.jpg": "Her med kaviar fra Rogn ovenpå",
+    "ext1a0f68006ee-2.jpg": "Fra september 2021",
+    "ext1a0f6800812-3.jpg": "Fra september 2021"
    },
    "photoCredits": {
-    "1a0f5e81e15-menukort.jpg": "Marv & Ben, marvogben.dk (april 2021)"
+    "1a0f5e81e15-menukort.jpg": "Marv & Ben, marvogben.dk (april 2021)",
+    "ext1a0f68006ba-0.jpg": "Nordic Chefs, Facebook (juni 2021)",
+    "ext1a0f68006cc-1.jpg": "Nordic Chefs / Simplistic Food, Facebook (juli 2021)",
+    "ext1a0f68006ee-2.jpg": "TravelGuys, Flickr (21. sep. 2021)",
+    "ext1a0f6800812-3.jpg": "TravelGuys, Flickr (21. sep. 2021)",
+    "ext1a0f68008f4-4.jpg": "Nordic Chefs / Simplistic Food, Facebook (19. maj 2021)"
+   },
+   "photoCourses": {
+    "ext1a0f68006ba-0.jpg": [
+     0
+    ],
+    "ext1a0f68006cc-1.jpg": [
+     1
+    ],
+    "ext1a0f68006ee-2.jpg": [
+     2
+    ],
+    "ext1a0f6800812-3.jpg": [
+     3
+    ],
+    "ext1a0f68008f4-4.jpg": [
+     5
+    ]
    }
   },
   {

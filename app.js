@@ -934,7 +934,7 @@ function main() {
     const long = 1600;
     const pswp = new PhotoSwipe({
       dataSource: d.photos.map((p, k) => isVideo(p)
-        ? { html: `<div class="pswp-video"><video src="${esc(photoUrl(d, p, false))}" poster="${esc(photoUrl(d, p, true))}" muted controls playsinline preload="metadata"></video></div>` }
+        ? { html: `<div class="pswp-video"><video src="${esc(photoUrl(d, p, false))}" poster="${esc(photoUrl(d, p, true))}" controls playsinline preload="metadata"></video></div>` }
         : {
           src: photoUrl(d, p, false),
           msrc: photoUrl(d, p, true),
@@ -955,7 +955,7 @@ function main() {
     const videos = () => [...(pswp.element?.querySelectorAll('.pswp-video video') ?? [])];
     const syncVideos = () => videos().forEach(v => {
       const current = v.closest('.pswp__item')?.getAttribute('aria-hidden') === 'false';
-      if (!current) { v.pause(); v.dataset.started = ''; } else if (!v.dataset.started) { v.dataset.started = '1'; v.currentTime = 0; v.play().catch(() => {}); }
+      if (!current && !v.paused) { v.pause(); v.currentTime = 0; }
     });
     pswp.on('change', () => setTimeout(syncVideos));
     pswp.on('contentAppend', () => setTimeout(syncVideos));

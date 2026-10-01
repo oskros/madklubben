@@ -873,6 +873,7 @@ function main() {
       bgOpacity: 1,
       showHideAnimationType: 'fade',
       wheelToZoom: true,
+      loop: false,
       closeTitle: 'Luk',
       zoomTitle: 'Zoom',
       arrowPrevTitle: 'Forrige',

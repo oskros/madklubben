@@ -895,7 +895,7 @@ function main() {
           el.classList.toggle('many', ns.length > 2);
           el.innerHTML = ns.map(n => `<div><span class="n">${n + 1}</span>${esc(d.menu[n])}</div>`).join('')
             + (note ? `<small${ns.length ? '' : ' class="alone"'}>${esc(note)}</small>` : '')
-            + (credit ? `<em class="credit">${icon('external')}Foto: ${esc(credit)}</em>` : '');
+            + (credit ? `<em class="credit"><span class="tag">${icon('external')}Lånt billede</span>Foto: ${esc(credit)}</em>` : '');
         }),
       });
     });

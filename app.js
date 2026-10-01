@@ -637,16 +637,17 @@ function main() {
       return list.map(t => {
         const photoTags = t.i >= 0 ? d.photoTags?.[d.photos[t.i]] ?? [] : [];
         const cats = CATEGORIES.filter(c => photoTags.includes(c) || t.names.some(name => d.dishTags?.[name]?.includes(c)));
-        return { ...t, cats, words: photoTags.filter(w => !CATEGORIES.includes(w)) };
+        const per = Object.fromEntries(cats.map(c => [c, t.names.filter(name => d.dishTags?.[name]?.includes(c)).length || 1]));
+        return { ...t, cats, per, words: photoTags.filter(w => !CATEGORIES.includes(w)) };
       });
     });
-    const count = c => tiles.filter(t => t.cats.includes(c)).length;
+    const count = c => tiles.reduce((n, t) => n + (t.per[c] ?? 0), 0);
     return `
       <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
       <input type="search" class="dish-search" placeholder="Søg efter ret, råvare eller restaurant" aria-label="Søg i retter" autocomplete="off">
       <p class="cat-chips">${CATEGORIES.filter(count).map(c => `<button type="button" data-cat="${esc(c)}" aria-pressed="false">${esc(c)} <span>${count(c)}</span></button>`).join('')}</p>
-      <div class="dishes">${tiles.map(({ d, i, names, cats, words, drink }) => `
-        <figure data-n="${Math.max(names.length, 1)}" data-cats="${esc(cats.join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
+      <div class="dishes">${tiles.map(({ d, i, names, cats, per, words, drink }) => `
+        <figure data-n="${Math.max(names.length, 1)}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
             ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(names.join(', '))}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy">${isVideo(d.photos[i]) ? `<span class="play-badge" aria-label="Video">${icon('play')}</span>` : ''}</button>`
             : `<a class="no-photo" href="#/d/${esc(d.id)}" aria-label="${esc(d.restaurant)}">${icon('camera')}<span>Intet billede</span></a>`}
@@ -1053,8 +1054,9 @@ function main() {
     const cat = $('.cat-chips [aria-pressed=true]')?.dataset.cat;
     let n = 0;
     document.querySelectorAll('.dishes figure').forEach(f => {
-      f.hidden = !words.every(w => f.dataset.q.includes(w)) || (cat && !f.dataset.cats.split('|').includes(cat));
-      if (!f.hidden) n += +f.dataset.n;
+      const per = Object.fromEntries(f.dataset.cats.split('|').filter(Boolean).map(x => [x.slice(0, x.lastIndexOf(':')), +x.slice(x.lastIndexOf(':') + 1)]));
+      f.hidden = !words.every(w => f.dataset.q.includes(w)) || (cat && !per[cat]);
+      if (!f.hidden) n += cat ? per[cat] : +f.dataset.n;
     });
     $('main h1 .count').textContent = n;
     $('.dish-empty').hidden = n > 0;

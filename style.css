@@ -57,24 +57,24 @@ img { max-width: 100%; display: block; }
 }
 .brand { display: flex; align-items: center; gap: .5rem; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
 .mark { width: 1.6rem; height: 1.6rem; fill: none; stroke: var(--accent); stroke-width: 2.6; }
-nav { display: flex; gap: .25rem; }
-nav a { display: flex; align-items: center; gap: .4rem; padding: .4rem .7rem; border-radius: 99px; color: var(--muted); text-decoration: none; font-weight: 500; }
-nav a:hover { color: var(--ink); background: var(--surface); }
-nav a.on { color: var(--accent); background: var(--accent-soft); }
+.top nav { display: flex; gap: .25rem; }
+.top nav a { display: flex; align-items: center; gap: .4rem; padding: .4rem .7rem; border-radius: 99px; color: var(--muted); text-decoration: none; font-weight: 500; }
+.top nav a:hover { color: var(--ink); background: var(--surface); }
+.top nav a.on { color: var(--accent); background: var(--accent-soft); }
 main { max-width: 1120px; margin: 0 auto; padding: 1.25rem 16px 3rem; }
 
 @media (max-width: 700px) {
   .top { justify-content: center; backdrop-filter: none; background: var(--bg); }
-  nav {
+  .top nav {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
     justify-content: space-around; gap: 0;
     padding: .35rem .25rem calc(.35rem + env(safe-area-inset-bottom));
     background: var(--bg); border-top: 1px solid var(--line);
   }
-  nav a { flex-direction: column; gap: .15rem; padding: .3rem .5rem; font-size: .7rem; border-radius: 8px; }
-  nav a .i { width: 1.35rem; height: 1.35rem; }
-  nav a:hover { background: none; }
-  nav a.on { background: none; }
+  .top nav a { flex-direction: column; gap: .15rem; padding: .3rem .5rem; font-size: .7rem; border-radius: 8px; }
+  .top nav a .i { width: 1.35rem; height: 1.35rem; }
+  .top nav a:hover { background: none; }
+  .top nav a.on { background: none; }
   main { padding-bottom: 6rem; }
   #update { bottom: calc(4.5rem + env(safe-area-inset-bottom)) !important; }
 }
@@ -477,14 +477,24 @@ h2 { font-weight: 600; }
   .keyfigs > div:nth-child(2) { padding-left: 0; border-left: 0; }
 }
 
-.flatpickr-calendar { background: var(--bg); color: var(--ink); border: 1px solid var(--line); box-shadow: 0 8px 28px rgb(0 0 0 / .16); border-radius: 6px; font-family: inherit; }
-.flatpickr-calendar:before, .flatpickr-calendar:after { display: none; }
-.flatpickr-months .flatpickr-month, .flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month,
-.flatpickr-current-month input.cur-year, .flatpickr-current-month .flatpickr-monthDropdown-months, span.flatpickr-weekday { color: var(--ink); fill: var(--ink); background: transparent; }
-.flatpickr-current-month .flatpickr-monthDropdown-months option { background: var(--bg); color: var(--ink); }
-.flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg { fill: var(--accent); }
-.flatpickr-day, .flatpickr-monthSelect-month { color: var(--ink); }
-.flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay, .flatpickr-day.flatpickr-disabled { color: var(--muted); }
-.flatpickr-day:hover, .flatpickr-day:focus, .flatpickr-monthSelect-month:hover, .flatpickr-monthSelect-month:focus { background: var(--surface); border-color: var(--surface); }
-.flatpickr-day.today, .flatpickr-monthSelect-month.today { border-color: var(--accent); }
-.flatpickr-day.selected, .flatpickr-day.selected:hover, .flatpickr-monthSelect-month.selected, .flatpickr-monthSelect-month.selected:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.air-datepicker {
+  --adp-font-family: inherit; --adp-font-size: .95rem; --adp-width: 18.5rem; --adp-padding: 6px; --adp-border-radius: 6px; --adp-cell-border-radius: 4px;
+  --adp-background-color: var(--bg); --adp-border-color: var(--line); --adp-border-color-inner: var(--line); --adp-border-color-inline: var(--line);
+  --adp-color: var(--ink); --adp-color-secondary: var(--muted); --adp-accent-color: var(--accent); --adp-color-current-date: var(--accent);
+  --adp-day-name-color: var(--muted); --adp-day-name-color-hover: var(--ink); --adp-nav-arrow-color: var(--ink); --adp-nav-color-secondary: var(--muted);
+  --adp-background-color-hover: var(--surface); --adp-background-color-active: var(--surface); --adp-cell-background-color-hover: var(--surface);
+  --adp-cell-background-color-selected: var(--accent); --adp-cell-background-color-selected-hover: var(--accent);
+  --adp-color-other-month: color-mix(in srgb, var(--muted) 45%, transparent); --adp-color-other-month-hover: var(--muted);
+  --adp-btn-color: var(--accent); --adp-btn-background-color-hover: var(--surface);
+  box-shadow: 0 8px 28px rgb(0 0 0 / .16);
+}
+.air-datepicker-nav--title { font-weight: 700; color: var(--ink); }
+.air-datepicker-nav--title i { font-style: normal; font-weight: 500; color: var(--muted); margin-left: .3em; padding: .1em .3em; border-radius: 4px; }
+.air-datepicker-nav--title i:hover { color: var(--ink); background: var(--surface); }
+.air-datepicker-nav--action svg.i { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; }
+.air-datepicker-cell.-selected-, .air-datepicker-cell.-selected-.-current- { color: var(--accent-ink); }
+.air-datepicker-cell.-day-.-other-month-, .air-datepicker-cell.-year-.-other-decade- { font-size: .85em; }
+.air-datepicker-cell.-current- { font-weight: 700; }
+.date-shown { cursor: pointer; }
+.air-datepicker--pointer { display: none; }
+.air-datepicker-body--day-name { text-transform: none; }

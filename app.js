@@ -224,22 +224,37 @@ function main() {
     config: configPage,
   };
 
-  const FP = 'https://cdn.jsdelivr.net/npm/flatpickr@4.6.13';
-  let flatpickrLib, pickers = [];
+  const ADP = 'https://cdn.jsdelivr.net/npm/air-datepicker@3.6.0';
+  let datepickerLib, pickers = [];
   async function datePickers(inputs) {
-    flatpickrLib ??= Promise.all([import(`${FP}/+esm`), import(`${FP}/dist/l10n/da.js/+esm`), import(`${FP}/dist/plugins/monthSelect/index.js/+esm`)]).then(([fp, da, ms]) => {
-      $('link[href="style.css"]').insertAdjacentHTML('beforebegin', `<link rel="stylesheet" href="${FP}/dist/flatpickr.min.css"><link rel="stylesheet" href="${FP}/dist/plugins/monthSelect/style.css">`);
-      return { flatpickr: fp.default, Danish: da.Danish, monthSelect: ms.default };
+    datepickerLib ??= Promise.all([import(`${ADP}/+esm`), import(`${ADP}/locale/da.js/+esm`)]).then(([dp, da]) => {
+      $('link[href="style.css"]').insertAdjacentHTML('beforebegin', `<link rel="stylesheet" href="${ADP}/air-datepicker.css">`);
+      const l = da.default.default ?? da.default;
+      const lower = a => a.map(x => x.toLowerCase());
+      return { AirDatepicker: dp.default, locale: { ...l, days: lower(l.days), daysShort: lower(l.daysShort), daysMin: lower(l.daysMin), months: lower(l.months), monthsShort: lower(l.monthsShort) } };
     });
-    const { flatpickr, Danish, monthSelect } = await flatpickrLib;
+    const { AirDatepicker, locale } = await datepickerLib;
     for (const input of inputs) {
       if (!input.isConnected) continue;
       const month = input.type === 'month';
-      pickers.push(flatpickr(input, {
-        locale: Danish, disableMobile: true, altInput: true,
-        dateFormat: month ? 'Y-m' : 'Y-m-d', altFormat: month ? 'F Y' : 'j. F Y',
-        plugins: month ? [monthSelect({ shorthand: true, dateFormat: 'Y-m', altFormat: 'F Y' })] : [],
-      }));
+      const shown = document.createElement('input');
+      shown.readOnly = true;
+      shown.className = 'date-shown';
+      input.before(shown);
+      input.type = 'hidden';
+      const dp = new AirDatepicker(shown, {
+        locale, autoClose: true, altField: input,
+        selectedDates: input.value ? [new Date(`${month ? `${input.value}-01` : input.value}T12:00`)] : [],
+        dateFormat: month ? 'MMMM yyyy' : 'd. MMMM yyyy',
+        altFieldDateFormat: month ? 'yyyy-MM' : 'yyyy-MM-dd',
+        ...(month ? { view: 'months', minView: 'months' } : {}),
+        navTitles: { days: 'MMMM <i>yyyy</i>', months: '<i>yyyy</i>', years: 'yyyy1 – yyyy2' },
+        prevHtml: icon('prev'), nextHtml: icon('next'),
+      });
+      dp.$datepicker.addEventListener('click', e => {
+        if (dp.currentView === 'days' && e.target.closest('.air-datepicker-nav--title i')) { e.stopPropagation(); dp.setCurrentView('years'); }
+      }, true);
+      pickers.push(dp);
     }
   }
 
@@ -253,7 +268,7 @@ function main() {
     $('#auth').href = token ? '#/logud' : '#/login';
     renderFilter();
     const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view === 'saldo' ? 'regnskab' : view;
-    document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
+    document.querySelectorAll('.top nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
     if (dinner) { billPreview(dinner); refreshCourseSelects(dinner); }
     document.querySelectorAll('textarea.grow').forEach(grow);

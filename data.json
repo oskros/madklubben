@@ -400,7 +400,11 @@
    "price": 1920,
    "outOfPocket": 1920,
    "note": "Spontant: drinks i Kødbyen blev til aftensmad. Rasmus og Oskar gav (bonustid).",
-   "menu": [],
+   "menu": [
+    "CHILI SALAMI – Spicy salami, pickled beetroot, Røde Kristian cheese, tomato sauce, topped with fresh mozzarella, spinach, pickled chilies",
+    "BUFFALO CHICKEN – Buffalo marinated chicken, blå kornblomst cheese and spicy buffalo hot-sauce, topped with celery crudité",
+    "BURRATA LOVER (Veggie) – 125g creamy burrata from Danish La Treccia, Tomato sauce, basil pesto, rucola, fresh tomatoes, lemon ready for a squeeze"
+   ],
    "photos": [
     "1a0f24e6dd7-menukort.jpg"
    ],

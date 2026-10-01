@@ -465,6 +465,7 @@
    "photos": [
     "ext1a0f4600ded-7.jpg",
     "1a0ee3a302f-1.jpg",
+    "ext1a0f86c6ebb-1.jpg",
     "ext1a0f4600dfe-8.jpg",
     "ext1a0f4600e12-9.jpg"
    ],
@@ -479,6 +480,9 @@
     "1a0ee3a302f-1.jpg": [
      1
     ],
+    "ext1a0f86c6ebb-1.jpg": [
+     2
+    ],
     "ext1a0f4600dfe-8.jpg": [
      3
     ],
@@ -489,12 +493,14 @@
    "photoCredits": {
     "ext1a0f4600ded-7.jpg": "anden gæst på TripAdvisor (31. okt. 2019)",
     "ext1a0f4600dfe-8.jpg": "anden gæst på TripAdvisor (31. okt. 2019)",
-    "ext1a0f4600e12-9.jpg": "anden gæst på TripAdvisor (31. okt. 2019)"
+    "ext1a0f4600e12-9.jpg": "anden gæst på TripAdvisor (31. okt. 2019)",
+    "ext1a0f86c6ebb-1.jpg": "@estrellayang8, Instagram (24. sep. 2019)"
    },
    "photoNotes": {
     "ext1a0f4600ded-7.jpg": "En anden gæsts billede fra 31. oktober 2019, knap to uger efter os. Gæsten fotograferede menukortet med samme retter, og salaten med krabbe og græskarstrimler er første ret.",
     "ext1a0f4600dfe-8.jpg": "En anden gæsts billede fra 31. oktober 2019, knap to uger efter os. Gæsten fotograferede menukortet med samme retter. Hovedretten her er kulmulen; man kunne også vælge oksemørbrad.",
-    "ext1a0f4600e12-9.jpg": "En anden gæsts billede fra 31. oktober 2019, knap to uger efter os. Gæsten fotograferede menukortet med samme retter. Desserten: blåbærsorbet med blåbær, karamelcreme og en tynd chokoladeflade."
+    "ext1a0f4600e12-9.jpg": "En anden gæsts billede fra 31. oktober 2019, knap to uger efter os. Gæsten fotograferede menukortet med samme retter. Desserten: blåbærsorbet med blåbær, karamelcreme og en tynd chokoladeflade.",
+    "ext1a0f86c6ebb-1.jpg": "Fra september 2019. En gæsts billede, der kommer lige efter kammuslingen ligesom på vores menu; tomaterne og de små grønne kapers ses, mens jomfruhummeren er skjult under karsen. En anden gæst på TripAdvisor fotograferede samme ret samme måned."
    }
   },
   {
@@ -1404,6 +1410,7 @@
    ],
    "photos": [
     "1a0ee3a302f-0.jpg",
+    "ext1a0f86c6e30-0.jpg",
     "1a0f14db60f-0.jpg",
     "ext1a0f4666781-6.jpg",
     "1a0ee3a302f-1.jpg",
@@ -1417,6 +1424,9 @@
    "lat": 55.687063,
    "lon": 12.547842,
    "photoCourses": {
+    "ext1a0f86c6e30-0.jpg": [
+     0
+    ],
     "1a0f14db60f-0.jpg": [
      1
     ],
@@ -1433,17 +1443,19 @@
      4
     ],
     "1a0ee3a302f-3.jpg": [
-     5
+     6
     ],
     "1a0ee3a302f-4.jpg": [
      7
     ]
    },
    "photoCredits": {
-    "ext1a0f4666781-6.jpg": "Jatak, Instagram (nov. 2024)"
+    "ext1a0f4666781-6.jpg": "Jatak, Instagram (nov. 2024)",
+    "ext1a0f86c6e30-0.jpg": "@andreas_food_and_wine, Instagram (19. okt. 2024)"
    },
    "photoNotes": {
-    "ext1a0f4666781-6.jpg": "Fra november 2024. Restaurantens eget opslag hedder \"Pumpkin, Habanada and Coriander\"; da var græskarsorten Carat i stedet for Candy Roaster."
+    "ext1a0f4666781-6.jpg": "Fra november 2024. Restaurantens eget opslag hedder \"Pumpkin, Habanada and Coriander\"; da var græskarsorten Carat i stedet for Candy Roaster.",
+    "ext1a0f86c6e30-0.jpg": "En gæsts billede fra en uge før vores besøg. Opslaget beskriver \"en lille fritteret grøn tomat med skal af kartoffel og tempura og lidt chili til at dyppe i\"."
    }
   },
   {

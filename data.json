@@ -229,11 +229,36 @@
     "Dronning Victoria ost – Blommer rehydreret i rom, nøddebrød & honning med trøffel",
     "Karamelmousse – Sprød æble-krokant & sorbet på havesyre"
    ],
-   "photos": [],
+   "photos": [
+    "ext1a0f6b4fa75-0.jpg",
+    "ext1a0f6b4fabd-1.jpg",
+    "ext1a0f6b4fadc-2.jpg",
+    "ext1a0f6b4fb01-3.jpg"
+   ],
    "image": "restaurants/2018-den-lille-fede-1d05829a.jpg",
    "address": "Store Kongensgade 17B, 1264 København K",
    "lat": 55.682166,
-   "lon": 12.585706
+   "lon": 12.585706,
+   "photoCourses": {
+    "ext1a0f6b4fa75-0.jpg": [
+     0
+    ],
+    "ext1a0f6b4fabd-1.jpg": [
+     1
+    ],
+    "ext1a0f6b4fadc-2.jpg": [
+     4
+    ],
+    "ext1a0f6b4fb01-3.jpg": [
+     5
+    ]
+   },
+   "photoCredits": {
+    "ext1a0f6b4fa75-0.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
+    "ext1a0f6b4fabd-1.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
+    "ext1a0f6b4fadc-2.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
+    "ext1a0f6b4fb01-3.jpg": "TripAdvisor-anmeldelse (6. marts 2018)"
+   }
   },
   {
    "id": "2018-relae",
@@ -1179,8 +1204,11 @@
     "ext1a0f49e4880-0.jpg",
     "ext1a0f49e489d-1.jpg",
     "ext1a0f49e48f2-2.jpg",
+    "ext1a0f6b58705-0.jpg",
+    "ext1a0f6b58797-1.jpg",
     "1a0ee3a302f-2.jpg",
     "muo8kqvo-0.jpg",
+    "ext1a0f6b587dc-2.jpg",
     "ext1a0f49e493e-3.jpg",
     "ext1a0f696cec4-0.jpg",
     "ext1a0f49e494e-4.jpg",
@@ -1204,11 +1232,20 @@
     "ext1a0f49e48f2-2.jpg": [
      2
     ],
+    "ext1a0f6b58705-0.jpg": [
+     3
+    ],
+    "ext1a0f6b58797-1.jpg": [
+     3
+    ],
     "1a0ee3a302f-2.jpg": [
      4
     ],
     "muo8kqvo-0.jpg": [
      4
+    ],
+    "ext1a0f6b587dc-2.jpg": [
+     5
     ],
     "ext1a0f49e493e-3.jpg": [
      6
@@ -1240,7 +1277,9 @@
     "ext1a0f49e48f2-2.jpg": "Fra sommermenuen",
     "ext1a0f49e49ba-7.jpg": "Fra sommermenuen",
     "ext1a0f49e49fb-8.jpg": "Fra sommermenuen",
-    "ext1a0f696cec4-0.jpg": "Fra juni 2024"
+    "ext1a0f696cec4-0.jpg": "Fra juni 2024",
+    "ext1a0f6b58797-1.jpg": "Jomfruhummer under et rispapir, formentlig serveret sammen med æblegranitéen",
+    "ext1a0f6b587dc-2.jpg": "Fra marts 2024"
    },
    "photoCredits": {
     "ext1a0f49e4880-0.jpg": "Mielcke & Hurtigkarl, Instagram (okt. 2023)",
@@ -1252,7 +1291,10 @@
     "ext1a0f49e49b0-6.jpg": "Mielcke & Hurtigkarl, Instagram (nov. 2023)",
     "ext1a0f49e49ba-7.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
     "ext1a0f49e49fb-8.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
-    "ext1a0f696cec4-0.jpg": "Andreas Raun Rosendahl for Mielcke & Hurtigkarl, Instagram (juni 2024)"
+    "ext1a0f696cec4-0.jpg": "Andreas Raun Rosendahl for Mielcke & Hurtigkarl, Instagram (juni 2024)",
+    "ext1a0f6b58705-0.jpg": "@saladini_denmark, Instagram (29. nov. 2023)",
+    "ext1a0f6b58797-1.jpg": "@saladini_denmark, Instagram (29. nov. 2023)",
+    "ext1a0f6b587dc-2.jpg": "@supernillen, Instagram (5. marts 2024)"
    }
   },
   {

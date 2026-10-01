@@ -243,16 +243,18 @@ function main() {
       input.before(shown);
       input.type = 'hidden';
       const dp = new AirDatepicker(shown, {
-        locale, autoClose: true, altField: input,
+        locale, autoClose: true, toggleSelected: false, altField: input,
         selectedDates: input.value ? [new Date(`${month ? `${input.value}-01` : input.value}T12:00`)] : [],
         dateFormat: month ? 'MMMM yyyy' : 'd. MMMM yyyy',
         altFieldDateFormat: month ? 'yyyy-MM' : 'yyyy-MM-dd',
         ...(month ? { view: 'months', minView: 'months' } : {}),
         navTitles: { days: 'MMMM <i>yyyy</i>', months: '<i>yyyy</i>', years: 'yyyy1 – yyyy2' },
         prevHtml: icon('prev'), nextHtml: icon('next'),
+        buttons: [{ content: 'I dag', className: 'adp-today', onClick: dp => { dp.setViewDate(new Date()); dp.setCurrentView(month ? 'months' : 'days'); } }],
       });
       dp.$datepicker.addEventListener('click', e => {
         if (dp.currentView === 'days' && e.target.closest('.air-datepicker-nav--title i')) { e.stopPropagation(); dp.setCurrentView('years'); }
+        if (e.target.closest(`.air-datepicker-cell.-selected-.-${month ? 'month' : 'day'}-`)) { e.stopPropagation(); dp.hide(); }
       }, true);
       pickers.push(dp);
     }

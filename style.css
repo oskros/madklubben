@@ -498,3 +498,5 @@ h2 { font-weight: 600; }
 .date-shown { cursor: pointer; }
 .air-datepicker--pointer { display: none; }
 .air-datepicker-body--day-name { text-transform: none; }
+.air-datepicker--buttons { padding: 2px 4px; }
+.air-datepicker-button.adp-today { height: 1.9rem; font-size: .85rem; font-weight: 600; }

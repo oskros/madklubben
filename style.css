@@ -114,6 +114,8 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 .place a { color: var(--ink); font-weight: 700; text-decoration: none; }
 .photos { display: inline-flex; align-items: center; gap: .25rem; margin-left: .5rem; font-size: .8rem; color: var(--muted); vertical-align: .05em; }
 .photos .i { width: .95em; height: .95em; }
+.photos > span { display: inline-flex; align-items: center; gap: .25rem; }
+.photos > span + span { margin-left: .5rem; }
 .photos.none { opacity: .45; }
 .thumb-cell { width: 1%; padding-right: .25rem; }
 .thumb { width: 72px; height: 54px; border-radius: 8px; overflow: hidden; background: var(--surface); display: grid; place-items: center; }

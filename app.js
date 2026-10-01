@@ -308,6 +308,7 @@ function main() {
     eyeOff: '<path d="M10.7 5.1A10.7 10.7 0 0 1 21.9 11.7a1 1 0 0 1 0 .7 10.8 10.8 0 0 1-1.4 2.4"/><path d="M14.1 14.2a3 3 0 0 1-4.2-4.2"/><path d="M17.5 17.5a10.8 10.8 0 0 1-15.4-5.1 1 1 0 0 1 0-.7 10.8 10.8 0 0 1 4.4-5.2"/><path d="m2 2 20 20"/>',
     grip: '<circle cx="9" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="19" r="1"/>',
     next: '<path d="m9 18 6-6-6-6"/>',
+    video: '<rect width="14" height="12" x="2" y="6" rx="2"/><path d="m22 8-6 4 6 4z"/>',
     search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/>',
     play: '<path d="M7 4.5v15l12.5-7.5z" fill="currentColor" stroke="none"/>',
     prev: '<path d="m15 18-6-6 6-6"/>',
@@ -322,6 +323,11 @@ function main() {
   const heads = d => isClub(d) ? data.members : d.people || 2;
   const estKr = (d, v) => (v && d.priceEstimate ? '~' : '') + kr(v);
   const perPerson = d => d.price ? estKr(d, d.price / heads(d)) : '–';
+
+  function mediaCount(d) {
+    const videos = d.photos.filter(isVideo).length, pics = d.photos.length - videos;
+    return `<span class="photos${d.photos.length ? '' : ' none'}"><span title="${pics} billeder">${icon('camera')}${pics}</span>${videos ? `<span title="${videos} ${videos === 1 ? 'video' : 'videoer'}">${icon('video')}${videos}</span>` : ''}</span>`;
+  }
 
   function cover(d) {
     const src = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], true));
@@ -557,7 +563,7 @@ function main() {
         <tbody>${[...list].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}"${isClub(d) ? '' : ' class="own"'}>
           <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
           <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
-            <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span>${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
+            ${mediaCount(d)}${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
           <td class="num date-cell"><span class="wide">${dato(d.date)}</span><span class="narrow">${d.date.slice(8)}.${d.date.slice(5, 7)}.${d.date.slice(0, 4)}</span></td></tr>`).join('')}</tbody>
       </table>
       ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}`;

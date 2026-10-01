@@ -1416,6 +1416,8 @@
     "1a0ee3a302f-1.jpg",
     "1a0ee3a302f-2.jpg",
     "1a0f14db60f-1.jpg",
+    "ext1a0f8772b4b-0.jpg",
+    "ext1a0f8772bff-1.jpg",
     "1a0ee3a302f-3.jpg",
     "1a0ee3a302f-4.jpg"
    ],
@@ -1442,6 +1444,12 @@
     "1a0f14db60f-1.jpg": [
      4
     ],
+    "ext1a0f8772b4b-0.jpg": [
+     5
+    ],
+    "ext1a0f8772bff-1.jpg": [
+     5
+    ],
     "1a0ee3a302f-3.jpg": [
      6
     ],
@@ -1451,12 +1459,16 @@
    },
    "photoCredits": {
     "ext1a0f4666781-6.jpg": "Jatak, Instagram (nov. 2024)",
-    "ext1a0f86c6e30-0.jpg": "@andreas_food_and_wine, Instagram (19. okt. 2024)"
+    "ext1a0f86c6e30-0.jpg": "@andreas_food_and_wine, Instagram (19. okt. 2024)",
+    "ext1a0f8772b4b-0.jpg": "@andreas_food_and_wine, Instagram (19. okt. 2024)",
+    "ext1a0f8772bff-1.jpg": "@andreas_food_and_wine, Instagram (19. okt. 2024)"
    },
    "photoNotes": {
     "ext1a0f4666781-6.jpg": "Fra november 2024. Restaurantens eget opslag hedder \"Pumpkin, Habanada and Coriander\"; da var græskarsorten Carat i stedet for Candy Roaster.",
     "ext1a0f86c6e30-0.jpg": "En gæsts billede fra en uge før vores besøg. Opslaget beskriver \"en lille fritteret grøn tomat med skal af kartoffel og tempura og lidt chili til at dyppe i\".",
-    "1a0ee3a302f-3.jpg": "En æbleparfait pakket i shisoblade. En gæst en uge før os beskrev den som \"en æbleparfait i shiso-blade\" (@andreas_food_and_wine på Instagram)."
+    "1a0ee3a302f-3.jpg": "En æbleparfait pakket i shisoblade. En gæst en uge før os beskrev den som \"en æbleparfait i shiso-blade\" (@andreas_food_and_wine på Instagram).",
+    "ext1a0f8772b4b-0.jpg": "En gæsts billede fra en uge før vores besøg. Opslaget beskriver \"skiver af andebryst (meget) rosa stegt og med tyk og smagfuld fedtkant serveret med en 'salat' af pak choi\".",
+    "ext1a0f8772bff-1.jpg": "Samme gæst. Til anden fulgte \"en lille skål med ris tilberedt i lerpotte med soja og stykker skåret af andens lår\"."
    }
   },
   {

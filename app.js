@@ -547,7 +547,7 @@ function main() {
         <section>
           <h2>Forventede kontobevægelser</h2>
           <table class="plain ledger">
-            ${[...l.periods].reverse().filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
+            ${l.periods.filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
             ${row('Indbetalt i alt', kr(l.paidIn), '', 'sum')}
             ${row('Brugt på middage', `−${kr(l.spent)}`)}
             ${row('Forventet balance', kr(l.expected), '', 'sum')}

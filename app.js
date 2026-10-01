@@ -249,7 +249,8 @@ function main() {
   const iconButton = (name, label, attrs = '') => `<button type="button" class="icon-btn" aria-label="${label}" title="${label}" ${attrs}>${icon(name)}</button>`;
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
   const heads = d => isClub(d) ? data.members : d.people || 2;
-  const perPerson = d => d.price ? kr(d.price / heads(d)) : '–';
+  const estKr = (d, v) => (v && d.priceEstimate ? '~' : '') + kr(v);
+  const perPerson = d => d.price ? estKr(d, d.price / heads(d)) : '–';
 
   function cover(d) {
     const src = d.image ?? (d.photos[0] && photoUrl(d, d.photos[0], true));
@@ -284,10 +285,10 @@ function main() {
           ${chips(d.themes)}
           ${d.note ? `<p class="note">${esc(d.note)}</p>` : ''}
           <dl class="figures">
-            <div><dt>Regning</dt><dd>${kr(d.price)}</dd></div>
+            <div><dt>Regning${d.priceEstimate ? ' (anslået)' : ''}</dt><dd>${estKr(d, d.price)}</dd></div>
             <div><dt>Pr. person</dt><dd>${perPerson(d)}</dd></div>
-            ${isClub(d) ? `<div><dt>Fra madkonto</dt><dd>${d.price ? kr(fromFund(d)) : '–'}</dd></div>
-            <div><dt>Eget indskud pr. person</dt><dd>${d.outOfPocket == null ? '–' : kr(d.outOfPocket / data.members)}</dd></div>` : `<div><dt>Med</dt><dd>${GROUPS[d.group] ?? 'Andre'}</dd></div>`}
+            ${isClub(d) ? `<div><dt>Fra madkonto</dt><dd>${d.price ? estKr(d, fromFund(d)) : '–'}</dd></div>
+            <div><dt>Eget indskud pr. person</dt><dd>${d.outOfPocket == null ? '–' : estKr(d, d.outOfPocket / data.members)}</dd></div>` : `<div><dt>Med</dt><dd>${GROUPS[d.group] ?? 'Andre'}</dd></div>`}
           </dl>
         </div>
       </header>
@@ -412,6 +413,7 @@ function main() {
             <label class="own-only">Antal personer <input name="people" type="number" min="1" inputmode="numeric" value="${esc(v.people ?? 2)}"></label>
             <label class="club-only">Eget indskud pr. person, kr. <input name="outOfPocket" type="number" min="0" step="any" inputmode="decimal" value="${v.outOfPocket == null ? '' : Math.round(v.outOfPocket / data.members * 100) / 100}"></label>
           </div>
+          <label class="check"><input name="priceEstimate" type="checkbox" ${v.priceEstimate ? 'checked' : ''}> Beløbet er anslået</label>
           <p class="bill muted"></p>
         </section>
         <section>
@@ -477,6 +479,7 @@ function main() {
   function dinnersPage() {
     const list = shown(), priced = list.filter(d => d.price), clubPriced = priced.filter(isClub);
     const total = (list, fn) => list.reduce((s, d) => s + fn(d), 0);
+    const est = priced.some(d => d.priceEstimate) ? '~' : '';
     const f = forecast(data, today());
     return `
       ${photoStrip()}
@@ -498,10 +501,10 @@ function main() {
           <td><span class="wide">${dato(d.date)}</span><span class="narrow">${+d.date.slice(8)}.${+d.date.slice(5, 7)}.${d.date.slice(2, 4)}</span></td>
           <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
             <span class="photos${d.photos.length ? '' : ' none'}" title="${d.photos.length} billeder">${icon('camera')}${d.photos.length}</span>${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
-          <td class="num">${kr(d.price)}</td><td class="num wide">${isClub(d) && d.price ? kr(fromFund(d)) : '–'}</td>
-          <td class="num wide">${isClub(d) ? kr(d.outOfPocket) : '–'}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
-        <tfoot><tr><th colspan="3">I alt</th><th class="num">${kr(total(priced, d => d.price))}</th>
-          <th class="num wide">${clubPriced.length ? kr(total(clubPriced, fromFund)) : '–'}</th><th class="num wide">${clubPriced.length ? kr(total(clubPriced, d => d.outOfPocket ?? 0)) : '–'}</th><th class="num wide">${kr(total(priced, d => d.price / heads(d)))}</th></tr></tfoot>
+          <td class="num"${d.priceEstimate ? ' title="Anslået"' : ''}>${estKr(d, d.price)}</td><td class="num wide">${isClub(d) && d.price ? estKr(d, fromFund(d)) : '–'}</td>
+          <td class="num wide">${isClub(d) ? estKr(d, d.outOfPocket) : '–'}</td><td class="num wide">${perPerson(d)}</td></tr>`).join('')}</tbody>
+        <tfoot><tr><th colspan="3">I alt</th><th class="num">${est}${kr(total(priced, d => d.price))}</th>
+          <th class="num wide">${clubPriced.length ? est + kr(total(clubPriced, fromFund)) : '–'}</th><th class="num wide">${clubPriced.length ? est + kr(total(clubPriced, d => d.outOfPocket ?? 0)) : '–'}</th><th class="num wide">${est}${kr(total(priced, d => d.price / heads(d)))}</th></tr></tfoot>
       </table></div>`;
   }
 
@@ -691,6 +694,7 @@ function main() {
         restaurant: fd.get('restaurant').trim(),
         date: fd.get('date'),
         price: num(fd.get('price')),
+        priceEstimate: fd.get('priceEstimate') === 'on' || undefined,
         outOfPocket: fd.get('outOfPocket') === '' ? null : Math.round(Number(fd.get('outOfPocket')) * data.members),
         ...(fd.get('group') && fd.get('group') !== 'madklubben'
           ? { group: fd.get('group'), people: num(fd.get('people')), outOfPocket: null }

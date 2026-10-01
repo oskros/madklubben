@@ -76,9 +76,9 @@
    "website": "https://cofoco.dk/en/llama/",
    "closed": false,
    "album": null,
-   "price": null,
-   "outOfPocket": null,
-   "note": "Farvelmiddag for Rasmus. Vi overvejede også Condesa (havde lukket), samt Barburrito og El Viejo México var også i spil. Dagen efter blev madkontoen oprettet med 100 kr/md.",
+   "price": 1800,
+   "outOfPocket": 1800,
+   "note": "Farvelmiddag for Rasmus. Vi overvejede også Condesa (havde lukket), samt Barburrito og El Viejo México var også i spil. Dagen efter blev madkontoen oprettet med 100 kr/md. Prisen er anslået: menuen med 9 retter kostede 395 kr. pr. person, plus drikkevarer. Betalt af egen lomme, da madkontoen ikke fandtes endnu.",
    "themes": [],
    "menu": [
     "Taco med oksebryst, salsa crilolla & chuchum mayonnaise",
@@ -145,7 +145,8 @@
     "ext1a0f6792177-6.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
     "ext1a0f6792182-7.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)",
     "ext1a0f679218d-8.jpg": "Piskeriset på Eventyr, piskeriset.dk (7. juli 2016)"
-   }
+   },
+   "priceEstimate": true
   },
   {
    "id": "2017-bodil",
@@ -154,9 +155,9 @@
    "website": null,
    "closed": true,
    "album": null,
-   "price": null,
-   "outOfPocket": null,
-   "note": "Oskars forslag efter anbefalinger fra to venner. Bord kl. 19.45. Menuen er fra restaurantens hjemmeside 24. marts 2017, så den kan have været en anden den aften.",
+   "price": 2200,
+   "outOfPocket": 0,
+   "note": "Oskars forslag efter anbefalinger fra to venner. Bord kl. 19.45. Menuen er fra restaurantens hjemmeside 24. marts 2017, så den kan have været en anden den aften. Prisen er anslået: 5 retter med ost kostede 335 kr. og vinmenuen 350 kr. pr. person, plus snacks.",
    "themes": [],
    "menu": [
     "Laks – rødbede – gedeost – lakrids",
@@ -207,7 +208,8 @@
    },
    "photoNotes": {
     "ext1a0f67e5c25-3.jpg": "Tilbehør til hovedretten: kartofler i vinaigrette, græskarpuré, syltet selleri og skalotteløg"
-   }
+   },
+   "priceEstimate": true
   },
   {
    "id": "2018-den-lille-fede",

@@ -232,11 +232,11 @@
     "Karamelmousse – Sprød æble-krokant & sorbet på havesyre"
    ],
    "photos": [
-    "ext1a0f6b4fa75-0.jpg",
-    "ext1a0f6b4fabd-1.jpg",
+    "ext1a0f6cc4269-0.jpg",
+    "ext1a0f6cc42c8-1.jpg",
     "ext1a0f6cac6ba-0.jpg",
-    "ext1a0f6b4fadc-2.jpg",
-    "ext1a0f6b4fb01-3.jpg",
+    "ext1a0f6cc42de-2.jpg",
+    "ext1a0f6cc4325-3.jpg",
     "ext1a0f6cac6d2-1.jpg"
    ],
    "image": "restaurants/2018-den-lille-fede-1d05829a.jpg",
@@ -244,19 +244,19 @@
    "lat": 55.682166,
    "lon": 12.585706,
    "photoCourses": {
-    "ext1a0f6b4fa75-0.jpg": [
+    "ext1a0f6cc4269-0.jpg": [
      0
     ],
-    "ext1a0f6b4fabd-1.jpg": [
+    "ext1a0f6cc42c8-1.jpg": [
      1
     ],
     "ext1a0f6cac6ba-0.jpg": [
      2
     ],
-    "ext1a0f6b4fadc-2.jpg": [
+    "ext1a0f6cc42de-2.jpg": [
      4
     ],
-    "ext1a0f6b4fb01-3.jpg": [
+    "ext1a0f6cc4325-3.jpg": [
      5
     ],
     "ext1a0f6cac6d2-1.jpg": [
@@ -264,12 +264,12 @@
     ]
    },
    "photoCredits": {
-    "ext1a0f6b4fa75-0.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
-    "ext1a0f6b4fabd-1.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
-    "ext1a0f6b4fadc-2.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
-    "ext1a0f6b4fb01-3.jpg": "TripAdvisor-anmeldelse (6. marts 2018)",
     "ext1a0f6cac6ba-0.jpg": "Den Lille Fede, Instagram (10. feb. 2018)",
-    "ext1a0f6cac6d2-1.jpg": "Den Lille Fede, Instagram (28. feb. 2018)"
+    "ext1a0f6cac6d2-1.jpg": "Den Lille Fede, Instagram (28. feb. 2018)",
+    "ext1a0f6cc4269-0.jpg": "@ditte_darling, Instagram (25. feb. 2018)",
+    "ext1a0f6cc42c8-1.jpg": "Den Lille Fede, Instagram (7. feb. 2018)",
+    "ext1a0f6cc42de-2.jpg": "@ditte_darling, Instagram (25. feb. 2018)",
+    "ext1a0f6cc4325-3.jpg": "@ditte_darling, Instagram (25. feb. 2018)"
    }
   },
   {

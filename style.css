@@ -462,3 +462,7 @@ h2 { font-weight: 600; }
 .dishes figcaption a { display: block; margin-top: .15rem; color: var(--muted); font-family: var(--serif); font-style: italic; text-decoration: none; }
 .dishes figcaption a:hover { color: var(--accent); }
 @media (max-width: 640px) { .dishes { grid-template-columns: 1fr 1fr; } }
+
+.ledger { margin-top: 2.5rem; max-width: 34rem; }
+.ledger .sum td { font-weight: 700; }
+.ledger .sum .small { font-weight: 400; }

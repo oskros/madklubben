@@ -56,6 +56,25 @@ export function balance(data, date) {
   return cp.balance + depositsBetween(data, cp.date, date) - spent;
 }
 
+// Everything paid in since the account opened, against everything the dinners took out of it.
+export function ledger(data, date) {
+  const start = [...data.checkpoints].sort((a, b) => a.date.localeCompare(b.date))[0] ?? { date: '0000-00-00', balance: 0 };
+  const periods = [];
+  let y = +start.date.slice(0, 4), m = +start.date.slice(5, 7);
+  for (;;) {
+    if (++m > 12) { m = 1; y++; }
+    const month = `${y}-${String(m).padStart(2, '0')}`;
+    if (`${month}-01` > date) break;
+    const perPerson = rateFor(data.rates, month), last = periods.at(-1);
+    if (last?.perPerson === perPerson) { last.months++; last.amount += perPerson * data.members; }
+    else periods.push({ from: month, perPerson, months: 1, amount: perPerson * data.members });
+  }
+  const paidIn = periods.reduce((s, p) => s + p.amount, 0);
+  const spent = data.dinners.filter(d => isClub(d) && d.date > start.date && d.date <= date).reduce((s, d) => s + fromFund(d), 0);
+  const expected = start.balance + paidIn - spent, actual = balance(data, date);
+  return { start, periods, paidIn, spent, expected, actual, difference: expected - actual };
+}
+
 export function forecast(data, today) {
   const dates = data.dinners.filter(isClub).map(d => d.date).sort();
   if (dates.length < 2) return null;
@@ -517,6 +536,7 @@ function main() {
         <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>
         <div><dt>Pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
       </dl></section>` : ''}
+      ${ledgerSection(ledger(data, now))}
       <div class="columns">
         <section>
           <h2>Indbetaling pr. person</h2>
@@ -538,6 +558,21 @@ function main() {
           <p class="muted small bank-status"></p>`)}
         </section>
       </div>`;
+  }
+
+  function ledgerSection(l) {
+    return `
+      <section class="ledger">
+        <h2>Regnskab siden ${maaned(l.start.date.slice(0, 7))}</h2>
+        <table class="plain">
+          ${l.periods.filter(p => p.amount).map(p => `<tr><td>Indbetalt fra ${maaned(p.from)}<br><span class="muted small">${p.months} mdr. à ${kr(p.perPerson)} × ${data.members}</span></td><td class="num">${kr(p.amount)}</td></tr>`).join('')}
+          <tr class="sum"><td>Indbetalt i alt</td><td class="num">${kr(l.paidIn)}</td></tr>
+          <tr><td>Brugt på middage</td><td class="num">−${kr(l.spent)}</td></tr>
+          <tr class="sum"><td>Burde stå på kontoen</td><td class="num">${kr(l.expected)}</td></tr>
+          <tr><td>Står på kontoen</td><td class="num">${kr(l.actual)}</td></tr>
+          <tr class="sum"><td>Forskel${data.ledgerNote ? `<br><span class="muted small">${esc(data.ledgerNote)}</span>` : ''}</td><td class="num">${kr(l.difference)}</td></tr>
+        </table>
+      </section>`;
   }
 
   function dishesPage() {

@@ -21,6 +21,11 @@
    "note": "Madklubben oprettes"
   },
   {
+   "date": "2025-10-07",
+   "balance": 2487.39,
+   "note": "Overført fra den gamle bank"
+  },
+  {
    "date": "2026-09-25",
    "balance": 0,
    "note": "Efter AOC"
@@ -1833,5 +1838,6 @@
    "url": "https://palaegade.dk/",
    "note": "Laurence: Smørrebrød om dagen, klassisk køkken om aftenen."
   }
- ]
+ ],
+ "ledgerNote": "Hele forskellen opstod på den gamle konto før oktober 2025. Formentlig drinks før og efter middagene, som ikke er skrevet ind."
 }

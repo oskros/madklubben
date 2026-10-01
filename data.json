@@ -1209,7 +1209,6 @@
     "muo8kqvo-1.jpg",
     "ext1a0f49e499e-5.jpg",
     "ext1a0f49e49b0-6.jpg",
-    "ext1a0f7bb2909-0.jpg",
     "ext1a0f7bfc86e-0.jpg",
     "ext1a0f7bfc8c8-1.jpg",
     "ext1a0f49e49fb-8.jpg"
@@ -1258,11 +1257,6 @@
     "ext1a0f49e49b0-6.jpg": [
      11
     ],
-    "ext1a0f7bb2909-0.jpg": [
-     12,
-     13,
-     14
-    ],
     "ext1a0f7bfc86e-0.jpg": [
      12
     ],
@@ -1285,9 +1279,8 @@
     "ext1a0f49e494e-4.jpg": "Fra august 2023. Restaurantens eget opslag hedder netop \"Sandart, pistacie & hindbær\".",
     "ext1a0f49e499e-5.jpg": "Restaurantens eget opslag fra november 2023: confiteret vagtellår med figenglace og gremolata.",
     "ext1a0f49e49b0-6.jpg": "Restaurantens eget opslag fra november 2023: choux au craquelin med valnøddeis, kaffecreme, sherrykaramel og trøffel.",
-    "ext1a0f7bb2909-0.jpg": "Fra oktober 2023, to måneder før vores besøg. Billedet viser menuens tre petit fours: til venstre den grønne skive med sesam (jordbær, ret 13), i midten kringlen med pistacie (figner, ret 14) og til højre kvædegeléen med timutpeber (ret 15). Restaurantens egne opslag fra oktober viser, at efterårsmenuen allerede havde flere af vores retter, fx hamachi-dumplingen og vagtel med figner.",
-    "ext1a0f7bfc86e-0.jpg": "Fra sommermenuen, hvor retten hed det samme. Bloggen satte billedet under figner, men skorpen er fuld af sesamfrø, og fyldet er lyserødt, så det passer på jordbær med sesam og yuzu. Samme petit four ses på billedet fra oktober 2023.",
-    "ext1a0f7bfc8c8-1.jpg": "Fra sommermenuen, hvor retten hed \"figner, marcipan & pistacie\". Bloggen satte billedet under jordbær, men kunne hverken se jordbær, sesam eller yuzu; toppen af pistacie passer på fignerne. Samme petit four ses på billedet fra oktober 2023."
+    "ext1a0f7bfc86e-0.jpg": "Fra sommermenuen, hvor retten hed det samme. Bloggen satte billedet under figner, men skorpen er fuld af sesamfrø, og fyldet er lyserødt, så det passer på jordbær med sesam og yuzu. Et gæstebillede på TripAdvisor fra oktober 2023 viser samme petit four, så den var stadig på menuen op til vores besøg.",
+    "ext1a0f7bfc8c8-1.jpg": "Fra sommermenuen, hvor retten hed \"figner, marcipan & pistacie\". Bloggen satte billedet under jordbær, men kunne hverken se jordbær, sesam eller yuzu; toppen af pistacie passer på fignerne. Et gæstebillede på TripAdvisor fra oktober 2023 viser samme petit four, så den var stadig på menuen op til vores besøg."
    },
    "photoCredits": {
     "ext1a0f49e4880-0.jpg": "Mielcke & Hurtigkarl, Instagram (okt. 2023)",
@@ -1301,7 +1294,6 @@
     "ext1a0f6b587dc-2.jpg": "@supernillen, Instagram (5. marts 2024)",
     "ext1a0f7979403-0.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
     "ext1a0f797947c-1.jpg": "@saladini_denmark, Instagram (29. nov. 2023)",
-    "ext1a0f7bb2909-0.jpg": "TripAdvisor-anmeldelse (oktober 2023)",
     "ext1a0f7bfc86e-0.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)",
     "ext1a0f7bfc8c8-1.jpg": "Jürgen Meier, 3d-meier.de (juli 2023)"
    }

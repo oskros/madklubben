@@ -408,7 +408,8 @@
    "photos": [
     "1a0f24e6dd7-menukort.jpg",
     "ext1a0f8f41582-0.jpg",
-    "ext1a0f8f415b6-1.jpg"
+    "ext1a0f8f415b6-1.jpg",
+    "ext1a0f903d078-0.jpg"
    ],
    "image": "restaurants/2019-neighbourhood-df1f0306.jpg",
    "address": "Istedgade 27, 1650 København V",
@@ -417,7 +418,8 @@
    "photoCredits": {
     "1a0f24e6dd7-menukort.jpg": "Neighbourhood, neighbourhood.dk (juni 2019)",
     "ext1a0f8f41582-0.jpg": "@simonedanielastaal, Instagram (16. nov. 2017)",
-    "ext1a0f8f415b6-1.jpg": "@lisevejnoe, Instagram (2. juni 2019)"
+    "ext1a0f8f415b6-1.jpg": "@lisevejnoe, Instagram (2. juni 2019)",
+    "ext1a0f903d078-0.jpg": "@migogkbh, Instagram (5. jan. 2022)"
    },
    "photoCourses": {
     "ext1a0f8f41582-0.jpg": [
@@ -426,11 +428,15 @@
     "ext1a0f8f415b6-1.jpg": [
      1,
      2
+    ],
+    "ext1a0f903d078-0.jpg": [
+     2
     ]
    },
    "photoNotes": {
     "ext1a0f8f41582-0.jpg": "Fra november 2017. En gæsts opslag hos Neighbourhood med #spicysalami; pizzaerne har salami, rødbede, spinat, chili og mozzarella som på kortet.",
-    "ext1a0f8f415b6-1.jpg": "En gæsts billede fra en uge før vores besøg. Forrest Buffalo Chicken med kylling og selleristrimler (her også med grillet peber, som ikke står på kortet), bagved Burrata Lover med en hel burrata."
+    "ext1a0f8f415b6-1.jpg": "En gæsts billede fra en uge før vores besøg. Forrest Buffalo Chicken med kylling og selleristrimler (her også med grillet peber, som ikke står på kortet), bagved Burrata Lover med en hel burrata.",
+    "ext1a0f903d078-0.jpg": "Fra januar 2022, i Neighbourhoods afdeling på Nørrebro. Opslaget hedder \"Burrata + pizza = ❤️\" og viser en hel burrata på rucola."
    }
   },
   {

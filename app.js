@@ -183,6 +183,7 @@ function main() {
   }
 
   const isVideo = name => name.endsWith('.mp4');
+  const CATEGORIES = ['Fisk', 'Skaldyr', 'Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt', 'Grønt', 'Svampe', 'Frugt', 'Nødder', 'Ost', 'Æg', 'Brød', 'Pasta & ris', 'Dessert', 'Petit four', 'Vin', 'Drinks'];
   const photoPath = (d, name, thumb) => `photos/${d.id}/${thumb ? 't/' : ''}${thumb && isVideo(name) ? name.replace(/\.mp4$/, '.jpg') : name}`;
   const photoUrl = (d, name, thumb) => localUrls[photoPath(d, name, thumb)] ?? photoPath(d, name, thumb);
 
@@ -630,17 +631,26 @@ function main() {
         if (i >= 0 && byPhoto[i]) return byPhoto[i].names.push(c);
         list.push(byPhoto[i] = { d, i, names: [c] });
       });
-      return list;
+      d.photos.forEach((p, i) => {
+        if (!coursesOf(d, p).length && d.photoTags?.[p]?.some(t => t === 'Vin' || t === 'Drinks')) list.push({ d, i, names: [], drink: true });
+      });
+      return list.map(t => {
+        const photoTags = t.i >= 0 ? d.photoTags?.[d.photos[t.i]] ?? [] : [];
+        const cats = CATEGORIES.filter(c => photoTags.includes(c) || t.names.some(name => d.dishTags?.[name]?.includes(c)));
+        return { ...t, cats, words: photoTags.filter(w => !CATEGORIES.includes(w)) };
+      });
     });
+    const count = c => tiles.filter(t => t.cats.includes(c)).length;
     return `
       <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
       <input type="search" class="dish-search" placeholder="Søg efter ret, råvare eller restaurant" aria-label="Søg i retter" autocomplete="off">
-      <div class="dishes">${tiles.map(({ d, i, names }) => `
-        <figure data-n="${names.length}" data-q="${esc(`${names.join(' ')} ${d.restaurant}`.toLowerCase())}">
+      <p class="cat-chips">${CATEGORIES.filter(count).map(c => `<button type="button" data-cat="${esc(c)}" aria-pressed="false">${esc(c)} <span>${count(c)}</span></button>`).join('')}</p>
+      <div class="dishes">${tiles.map(({ d, i, names, cats, words, drink }) => `
+        <figure data-n="${Math.max(names.length, 1)}" data-cats="${esc(cats.join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
             ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(names.join(', '))}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy">${isVideo(d.photos[i]) ? `<span class="play-badge" aria-label="Video">${icon('play')}</span>` : ''}</button>`
             : `<a class="no-photo" href="#/d/${esc(d.id)}" aria-label="${esc(d.restaurant)}">${icon('camera')}<span>Intet billede</span></a>`}
-          <figcaption><span>${names.map(esc).join('<br>')}</span>${names.length > 1 ? `<small>${names.length} retter på billedet</small>` : ''}<a href="#/d/${esc(d.id)}">${esc(d.restaurant)}, ${esc(d.date.slice(0, 4))}</a></figcaption>
+          <figcaption><span>${drink ? esc(cats.filter(c => c === 'Vin' || c === 'Drinks').join(', ')) : names.map(esc).join('<br>')}</span>${names.length > 1 ? `<small>${names.length} retter på billedet</small>` : ''}<a href="#/d/${esc(d.id)}">${esc(d.restaurant)}, ${esc(d.date.slice(0, 4))}</a></figcaption>
         </figure>`).join('')}</div>
       <p class="muted dish-empty" hidden>Ingen retter matcher søgningen.</p>`;
   }
@@ -815,6 +825,10 @@ function main() {
         if (Object.keys(pn).length) d.photoNotes = pn; else delete d.photoNotes;
         const cr = Object.fromEntries(Object.entries(credits).filter(([p]) => d.photos.includes(p)));
         if (Object.keys(cr).length) d.photoCredits = cr; else delete d.photoCredits;
+        const pt = Object.fromEntries(Object.entries(d.photoTags ?? {}).filter(([p]) => d.photos.includes(p)));
+        if (Object.keys(pt).length) d.photoTags = pt; else delete d.photoTags;
+        const dt = Object.fromEntries(Object.entries(d.dishTags ?? {}).filter(([c]) => d.menu.includes(c)));
+        if (Object.keys(dt).length) d.dishTags = dt; else delete d.dishTags;
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
       location.replace(`#/d/${id}`);
@@ -1034,16 +1048,29 @@ function main() {
     });
     pswp.init();
   }
+  function filterDishes() {
+    const words = ($('.dish-search')?.value ?? '').toLowerCase().split(/\s+/).filter(Boolean);
+    const cat = $('.cat-chips [aria-pressed=true]')?.dataset.cat;
+    let n = 0;
+    document.querySelectorAll('.dishes figure').forEach(f => {
+      f.hidden = !words.every(w => f.dataset.q.includes(w)) || (cat && !f.dataset.cats.split('|').includes(cat));
+      if (!f.hidden) n += +f.dataset.n;
+    });
+    $('main h1 .count').textContent = n;
+    $('.dish-empty').hidden = n > 0;
+  }
+  document.addEventListener('click', e => {
+    const chip = e.target.closest('.cat-chips [data-cat]');
+    if (!chip) return;
+    const on = chip.getAttribute('aria-pressed') !== 'true';
+    document.querySelectorAll('.cat-chips [data-cat]').forEach(b => b.setAttribute('aria-pressed', 'false'));
+    chip.setAttribute('aria-pressed', String(on));
+    filterDishes();
+  });
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
-    if (e.target.matches('.dish-search')) {
-      const words = e.target.value.toLowerCase().split(/\s+/).filter(Boolean);
-      let n = 0;
-      document.querySelectorAll('.dishes figure').forEach(f => { f.hidden = !words.every(w => f.dataset.q.includes(w)); if (!f.hidden) n += +f.dataset.n; });
-      $('main h1 .count').textContent = n;
-      $('.dish-empty').hidden = n > 0;
-    }
+    if (e.target.matches('.dish-search')) filterDishes();
     if (e.target.name === 'menu') refreshCourseSelects(e.target.form);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);

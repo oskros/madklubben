@@ -164,11 +164,44 @@
     "Svinebryst – græskar – tranebær – selleri",
     "Chokolade – skyr – blåbær"
    ],
-   "photos": [],
+   "photos": [
+    "ext1a0f67e5bdd-0.jpg",
+    "ext1a0f67e5bfc-1.jpg",
+    "ext1a0f67e5c11-2.jpg",
+    "ext1a0f67e5c25-3.jpg",
+    "ext1a0f67e5c39-4.jpg"
+   ],
    "image": "restaurants/2017-bodil-e8eab813.jpg",
    "address": "Sønder Boulevard 105, 1720 København V",
    "lat": 55.664071,
-   "lon": 12.545383
+   "lon": 12.545383,
+   "photoCourses": {
+    "ext1a0f67e5bdd-0.jpg": [
+     0
+    ],
+    "ext1a0f67e5bfc-1.jpg": [
+     1
+    ],
+    "ext1a0f67e5c11-2.jpg": [
+     2
+    ],
+    "ext1a0f67e5c25-3.jpg": [
+     2
+    ],
+    "ext1a0f67e5c39-4.jpg": [
+     3
+    ]
+   },
+   "photoCredits": {
+    "ext1a0f67e5bdd-0.jpg": "Bodil, Facebook (3. april 2017)",
+    "ext1a0f67e5bfc-1.jpg": "Bodil, Facebook (30. marts 2017)",
+    "ext1a0f67e5c11-2.jpg": "Bodil, Facebook (22. marts 2017)",
+    "ext1a0f67e5c25-3.jpg": "Bodil, Facebook (27. marts 2017)",
+    "ext1a0f67e5c39-4.jpg": "Bodil, Facebook (8. marts 2017)"
+   },
+   "photoNotes": {
+    "ext1a0f67e5c25-3.jpg": "Tilbehør til hovedretten: kartofler i vinaigrette, græskarpuré, syltet selleri og skalotteløg"
+   }
   },
   {
    "id": "2018-den-lille-fede",

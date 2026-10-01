@@ -291,7 +291,7 @@ function main() {
   const icon = name => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
   const iconLink = (href, name, label, extra = '') => `<a class="icon-btn" href="${href}" aria-label="${label}" title="${label}" ${extra}>${icon(name)}</a>`;
   const iconButton = (name, label, attrs = '') => `<button type="button" class="icon-btn" aria-label="${label}" title="${label}" ${attrs}>${icon(name)}</button>`;
-  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return u; } };
+  const host = u => { try { const x = new URL(u); return `${x.hostname.replace(/^www\./, '')}${x.pathname.replace(/\/$/, '')}`; } catch { return u; } };
   const heads = d => isClub(d) ? data.members : d.people || 2;
   const estKr = (d, v) => (v && d.priceEstimate ? '~' : '') + kr(v);
   const perPerson = d => d.price ? estKr(d, d.price / heads(d)) : '–';

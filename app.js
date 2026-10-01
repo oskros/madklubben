@@ -527,20 +527,33 @@ function main() {
   function balancePage() {
     const now = today();
     const f = forecast(data, now);
+    const l = ledger(data, now);
+    const row = (label, amount, detail = '', cls = '') => `<tr${cls ? ` class="${cls}"` : ''}><td>${label}${detail ? ` <span class="muted">${detail}</span>` : ''}</td><td class="num">${amount}</td></tr>`;
     return `
-      <h1 class="big">${kr(balance(data, now))}</h1>
-      <p class="lead">på madkontoen i dag</p>
-      ${f ? `<section class="forecast"><h2>Forventet ved næste middag</h2><dl class="figures">
-        <div><dt>Dato</dt><dd>${dato(f.next)}</dd></div>
-        <div><dt>Gns. interval</dt><dd>${f.avgDays} dage</dd></div>
-        <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>
-        <div><dt>Pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
-      </dl></section>` : ''}
-      ${ledgerSection(ledger(data, now))}
+      <div class="saldo-head">
+        <div>
+          <h1 class="big">${kr(l.actual)}</h1>
+          <p class="lead">på madkontoen i dag</p>
+        </div>
+        ${f ? `<section class="forecast"><h2>Forventet ved næste middag</h2><dl class="figures">
+          <div><dt>Dato</dt><dd>${dato(f.next)}</dd></div>
+          <div><dt>Gns. interval</dt><dd>${f.avgDays} dage</dd></div>
+          <div><dt>Beløb</dt><dd>${kr(f.savings)}</dd></div>
+          <div><dt>Pr. person</dt><dd>${kr(f.savings / data.members)}</dd></div>
+        </dl></section>` : ''}
+      </div>
       <div class="columns">
         <section>
-          <h2>Indbetaling pr. person</h2>
-          <table class="plain">${[...data.rates].sort((a, b) => b.from.localeCompare(a.from)).map(r => `<tr><td>Fra ${maaned(r.from)}</td><td class="num">${kr(r.perPerson)} / md.</td></tr>`).join('')}</table>
+          <h2>Regnskab siden ${maaned(l.start.date.slice(0, 7))}</h2>
+          <table class="plain ledger">
+            ${[...l.periods].reverse().filter(p => p.amount).map(p => row(`${kr(p.perPerson)}/md. fra ${maaned(p.from)}`, kr(p.amount), `${p.months} mdr. × ${data.members}`)).join('')}
+            ${row('Indbetalt i alt', kr(l.paidIn), '', 'sum')}
+            ${row('Brugt på middage', `−${kr(l.spent)}`)}
+            ${row('Burde stå på kontoen', kr(l.expected), '', 'sum')}
+            ${row('Står på kontoen', kr(l.actual))}
+            ${row('Forskel', kr(l.difference), '', 'sum')}
+          </table>
+          ${data.ledgerNote ? `<p class="muted small">${esc(data.ledgerNote)}</p>` : ''}
           ${editOnly(`<details class="add"><summary>${icon('plus')}Ny sats</summary><form data-form="rate" class="add-form">
             <label>Fra måned <input name="from" type="month" required value="${now.slice(0, 7)}"></label>
             <label>Kr. pr. person <input name="perPerson" type="number" min="0" inputmode="numeric" required></label>
@@ -548,7 +561,7 @@ function main() {
         </section>
         <section>
           <h2>Bankudtog</h2>
-          <table class="plain">${[...data.checkpoints].sort(byDate).map(c => `<tr><td>${dato(c.date)}${c.note ? `<br><span class="muted small">${esc(c.note)}</span>` : ''}</td><td class="num">${kr(c.balance)}</td></tr>`).join('')}</table>
+          <table class="plain ledger">${[...data.checkpoints].sort(byDate).map(c => row(dato(c.date), kr(c.balance), c.note ? esc(c.note) : '')).join('')}</table>
           ${editOnly(`<div class="bank-add"><details class="add"><summary>${icon('plus')}Ny saldo</summary><form data-form="checkpoint" class="add-form">
             <label>Dato <input name="date" type="date" required value="${now}"></label>
             <label>Saldo, kr. <input name="balance" type="number" step="any" inputmode="decimal" required></label>
@@ -558,21 +571,6 @@ function main() {
           <p class="muted small bank-status"></p>`)}
         </section>
       </div>`;
-  }
-
-  function ledgerSection(l) {
-    return `
-      <section class="ledger">
-        <h2>Regnskab siden ${maaned(l.start.date.slice(0, 7))}</h2>
-        <table class="plain">
-          ${l.periods.filter(p => p.amount).map(p => `<tr><td>Indbetalt fra ${maaned(p.from)}<br><span class="muted small">${p.months} mdr. à ${kr(p.perPerson)} × ${data.members}</span></td><td class="num">${kr(p.amount)}</td></tr>`).join('')}
-          <tr class="sum"><td>Indbetalt i alt</td><td class="num">${kr(l.paidIn)}</td></tr>
-          <tr><td>Brugt på middage</td><td class="num">−${kr(l.spent)}</td></tr>
-          <tr class="sum"><td>Burde stå på kontoen</td><td class="num">${kr(l.expected)}</td></tr>
-          <tr><td>Står på kontoen</td><td class="num">${kr(l.actual)}</td></tr>
-          <tr class="sum"><td>Forskel${data.ledgerNote ? `<br><span class="muted small">${esc(data.ledgerNote)}</span>` : ''}</td><td class="num">${kr(l.difference)}</td></tr>
-        </table>
-      </section>`;
   }
 
   function dishesPage() {

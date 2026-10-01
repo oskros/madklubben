@@ -463,6 +463,15 @@ h2 { font-weight: 600; }
 .dishes figcaption a:hover { color: var(--accent); }
 @media (max-width: 640px) { .dishes { grid-template-columns: 1fr 1fr; } }
 
-.ledger { margin-top: 2.5rem; max-width: 34rem; }
+.saldo-head { display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 1.5rem 4rem; }
+.saldo-head .big + .lead { margin-bottom: 0; }
+.saldo-head .forecast { padding: 0 0 .35rem; border: 0; justify-self: end; }
+.saldo-head + .columns { margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px dotted var(--line); }
+.ledger td { padding: .45rem 0; }
+.ledger td .muted { font-size: .85rem; margin-left: .35rem; white-space: nowrap; }
 .ledger .sum td { font-weight: 700; }
-.ledger .sum .small { font-weight: 400; }
+.ledger + .muted.small { margin: -.25rem 0 1rem; }
+@media (max-width: 760px) {
+  .saldo-head { grid-template-columns: 1fr; }
+  .saldo-head .forecast { justify-self: stretch; padding-top: 1rem; border-top: 1px dotted var(--line); }
+}

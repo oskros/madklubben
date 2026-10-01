@@ -458,6 +458,7 @@ h2 { font-weight: 600; }
 .dishes .no-photo { display: grid; place-content: center; justify-items: center; gap: .3rem; color: var(--muted); font-size: .8rem; text-decoration: none; cursor: pointer; }
 .dishes figcaption { margin-top: .4rem; font-size: .9rem; line-height: 1.3; }
 .dishes figcaption span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.dishes figcaption small { display: block; margin-top: .1rem; color: var(--muted); font-size: .8rem; }
 .dishes figcaption a { display: block; margin-top: .15rem; color: var(--muted); font-family: var(--serif); font-style: italic; text-decoration: none; }
 .dishes figcaption a:hover { color: var(--accent); }
 @media (max-width: 640px) { .dishes { grid-template-columns: 1fr 1fr; } }

@@ -541,16 +541,24 @@ function main() {
   }
 
   function dishesPage() {
-    const dishes = [...shown()].sort(byDate).flatMap(d => d.menu.map((c, n) => ({ d, c, i: d.photos.findIndex(p => coursesOf(d, p).includes(n)) })));
+    const tiles = [...shown()].sort(byDate).flatMap(d => {
+      const list = [], byPhoto = {};
+      d.menu.forEach((c, n) => {
+        const i = d.photos.findIndex(p => coursesOf(d, p).includes(n));
+        if (i >= 0 && byPhoto[i]) return byPhoto[i].names.push(c);
+        list.push(byPhoto[i] = { d, i, names: [c] });
+      });
+      return list;
+    });
     return `
-      <div class="section-head"><h1>Retter <span class="count">${dishes.length}</span></h1></div>
+      <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
       <input type="search" class="dish-search" placeholder="Søg efter ret, råvare eller restaurant" aria-label="Søg i retter" autocomplete="off">
-      <div class="dishes">${dishes.map(({ d, c, i }) => `
-        <figure data-q="${esc(`${c} ${d.restaurant}`.toLowerCase())}">
+      <div class="dishes">${tiles.map(({ d, i, names }) => `
+        <figure data-n="${names.length}" data-q="${esc(`${names.join(' ')} ${d.restaurant}`.toLowerCase())}">
           ${i >= 0
-            ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(c)}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy"></button>`
+            ? `<button data-photo="${i}" data-dinner="${esc(d.id)}" aria-label="Se billedet af ${esc(names.join(', '))}"><img src="${esc(photoUrl(d, d.photos[i], true))}" alt="" loading="lazy"></button>`
             : `<a class="no-photo" href="#/d/${esc(d.id)}" aria-label="${esc(d.restaurant)}">${icon('camera')}<span>Intet billede</span></a>`}
-          <figcaption><span>${esc(c)}</span><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}, ${esc(d.date.slice(0, 4))}</a></figcaption>
+          <figcaption><span>${names.map(esc).join('<br>')}</span>${names.length > 1 ? `<small>${names.length} retter på billedet</small>` : ''}<a href="#/d/${esc(d.id)}">${esc(d.restaurant)}, ${esc(d.date.slice(0, 4))}</a></figcaption>
         </figure>`).join('')}</div>
       <p class="muted dish-empty" hidden>Ingen retter matcher søgningen.</p>`;
   }
@@ -912,7 +920,7 @@ function main() {
     if (e.target.matches('.dish-search')) {
       const words = e.target.value.toLowerCase().split(/\s+/).filter(Boolean);
       let n = 0;
-      document.querySelectorAll('.dishes figure').forEach(f => { f.hidden = !words.every(w => f.dataset.q.includes(w)); n += !f.hidden; });
+      document.querySelectorAll('.dishes figure').forEach(f => { f.hidden = !words.every(w => f.dataset.q.includes(w)); if (!f.hidden) n += +f.dataset.n; });
       $('main h1 .count').textContent = n;
       $('.dish-empty').hidden = n > 0;
     }

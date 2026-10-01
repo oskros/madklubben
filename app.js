@@ -1084,7 +1084,6 @@ function main() {
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);
-    if (e.target.matches('.dish-search') && !e.target.value && location.hash.startsWith('#/retter/')) location.hash = '#/retter';
     if (e.target.name === 'menu') refreshCourseSelects(e.target.form);
     const form = e.target.closest('form[data-form=dinner]');
     if (form && ['price', 'outOfPocket'].includes(e.target.name)) billPreview(form);

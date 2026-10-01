@@ -1069,11 +1069,21 @@ function main() {
       el.insertAdjacentHTML('beforeend', '<div class="map-hint">Tryk på kortet for at flytte det</div>');
       let hide;
       const activate = on => { el.classList.toggle('active', on); on ? map.dragging.enable() : map.dragging.disable(); };
-      el.addEventListener('touchmove', e => {
-        if (el.classList.contains('active') || e.touches.length !== 1) return;
+      let startY, multi, pending;
+      const show = () => {
+        pending = null;
+        if (multi) return;
         el.classList.add('hinting');
         clearTimeout(hide);
         hide = setTimeout(() => el.classList.remove('hinting'), 1200);
+      };
+      el.addEventListener('touchstart', e => {
+        if (e.touches.length === 1) { startY = e.touches[0].clientY; multi = false; } else { multi = true; clearTimeout(pending); pending = null; }
+      }, { passive: true });
+      el.addEventListener('touchmove', e => {
+        if (e.touches.length > 1) multi = true;
+        if (el.classList.contains('active') || multi || pending || Math.abs(e.touches[0].clientY - startY) < 12) return;
+        pending = setTimeout(show, 150);
       }, { passive: true });
       map.on('click', () => activate(true));
       document.addEventListener('touchstart', e => { if (!el.contains(e.target)) activate(false); }, { passive: true });

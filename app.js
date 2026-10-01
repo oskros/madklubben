@@ -641,11 +641,9 @@ function main() {
         return { ...t, cats, per, words: photoTags.filter(w => !CATEGORIES.includes(w)) };
       });
     });
-    const count = c => tiles.reduce((n, t) => n + (t.per[c] ?? 0), 0);
     return `
       <div class="section-head"><h1>Retter <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1></div>
-      <input type="search" class="dish-search" placeholder="Søg efter ret, råvare eller restaurant" aria-label="Søg i retter" autocomplete="off">
-      <p class="cat-chips">${CATEGORIES.filter(count).map(c => `<button type="button" data-cat="${esc(c)}" aria-pressed="false">${esc(c)} <span>${count(c)}</span></button>`).join('')}</p>
+      <input type="search" class="dish-search" placeholder="Søg, fx fisk, ost, dessert eller en restaurant" aria-label="Søg i retter" autocomplete="off">
       <div class="dishes">${tiles.map(({ d, i, names, cats, per, words, drink }) => `
         <figure data-n="${Math.max(names.length, 1)}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0
@@ -1051,24 +1049,18 @@ function main() {
   }
   function filterDishes() {
     const words = ($('.dish-search')?.value ?? '').toLowerCase().split(/\s+/).filter(Boolean);
-    const cat = $('.cat-chips [aria-pressed=true]')?.dataset.cat;
+    const cats = words.map(w => CATEGORIES.find(c => c.toLowerCase() === w));
+    const starts = words.map(w => new RegExp(`(?:^|[^\\p{L}\\p{N}])${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u'));
     let n = 0;
     document.querySelectorAll('.dishes figure').forEach(f => {
       const per = Object.fromEntries(f.dataset.cats.split('|').filter(Boolean).map(x => [x.slice(0, x.lastIndexOf(':')), +x.slice(x.lastIndexOf(':') + 1)]));
-      f.hidden = !words.every(w => f.dataset.q.includes(w)) || (cat && !per[cat]);
+      f.hidden = !words.every((w, k) => cats[k] ? per[cats[k]] : starts[k].test(f.dataset.q));
+      const cat = cats.find(Boolean);
       if (!f.hidden) n += cat ? per[cat] : +f.dataset.n;
     });
     $('main h1 .count').textContent = n;
     $('.dish-empty').hidden = n > 0;
   }
-  document.addEventListener('click', e => {
-    const chip = e.target.closest('.cat-chips [data-cat]');
-    if (!chip) return;
-    const on = chip.getAttribute('aria-pressed') !== 'true';
-    document.querySelectorAll('.cat-chips [data-cat]').forEach(b => b.setAttribute('aria-pressed', 'false'));
-    chip.setAttribute('aria-pressed', String(on));
-    filterDishes();
-  });
   const grow = el => { el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   document.addEventListener('input', e => {
     if (e.target.matches('textarea.grow')) grow(e.target);

@@ -535,3 +535,4 @@ h2 { font-weight: 600; }
   .expenses .sub { display: block; margin-top: .1rem; font-size: .8rem; font-weight: 400; color: var(--muted); }
 }
 .dinners + .map-section { margin-top: 2.5rem; }
+@media (hover: hover) { .strip { cursor: grab; } .strip.dragging { cursor: grabbing; scroll-snap-type: none; } .strip.dragging a { pointer-events: none; } }

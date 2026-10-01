@@ -870,6 +870,27 @@ function main() {
     }
   });
 
+  let stripDrag = null;
+  document.addEventListener('pointerdown', e => {
+    const strip = e.target.closest('.strip');
+    if (!strip || e.pointerType !== 'mouse' || e.button !== 0) return;
+    stripDrag = { strip, x: e.clientX, left: strip.scrollLeft, moved: false };
+  });
+  document.addEventListener('pointermove', e => {
+    if (!stripDrag) return;
+    const dx = e.clientX - stripDrag.x;
+    if (!stripDrag.moved && Math.abs(dx) < 5) return;
+    if (!stripDrag.moved) { stripDrag.moved = true; stripDrag.strip.classList.add('dragging'); }
+    stripDrag.strip.scrollLeft = stripDrag.left - dx;
+  });
+  document.addEventListener('pointerup', () => {
+    if (!stripDrag) return;
+    const { strip, moved } = stripDrag;
+    stripDrag = null;
+    strip.classList.remove('dragging');
+    if (moved) strip.addEventListener('click', ev => { ev.preventDefault(); ev.stopPropagation(); }, { capture: true, once: true });
+  });
+  document.addEventListener('dragstart', e => { if (e.target.closest('.strip')) e.preventDefault(); });
   document.addEventListener('click', async e => {
     const row = e.target.closest('tr[data-href]');
     if (row && !e.target.closest('a')) location.hash = row.dataset.href;

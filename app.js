@@ -368,7 +368,7 @@ function main() {
         </div>
       </header>
       <div class="dinner-body${d.menu.length ? '' : ' no-menu'}">
-        ${d.menu.length ? `<section><h2>Menu</h2>${menuList(d)}</section>` : ''}
+        ${d.menu.length ? `<section class="menu-card"><h2>Menu</h2>${menuList(d)}</section>` : ''}
         <section>
           <h2>Billeder <span class="count">${d.photos.length || ''}</span></h2>
           ${d.photos.length ? `<div class="grid">${d.photos.map((p, i) => `

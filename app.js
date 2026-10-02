@@ -1,11 +1,11 @@
-const REPO = { owner: 'oskros', name: 'madklubben', branch: 'main' };
+const REPO = { owner: 'oskros', name: 'madklubben' };
 
 // ---------- budget math ----------
 
 const DAY = 86400000;
 const toMs = iso => Date.UTC(+iso.slice(0, 4), +iso.slice(5, 7) - 1, +iso.slice(8, 10));
 const toIso = ms => new Date(ms).toISOString().slice(0, 10);
-export const daysBetween = (a, b) => Math.round((toMs(b) - toMs(a)) / DAY);
+const daysBetween = (a, b) => Math.round((toMs(b) - toMs(a)) / DAY);
 
 export function rateFor(rates, month) {
   let rate = 0;
@@ -14,15 +14,20 @@ export function rateFor(rates, month) {
 }
 
 // Each member pays into the account on the 1st of every month.
-export function depositsBetween(data, after, until) {
-  let sum = 0;
+function* months(after, until) {
   let y = +after.slice(0, 4), m = +after.slice(5, 7);
   for (;;) {
     if (++m > 12) { m = 1; y++; }
     const month = `${y}-${String(m).padStart(2, '0')}`;
-    if (`${month}-01` > until) return sum;
-    sum += rateFor(data.rates, month) * data.members;
+    if (`${month}-01` > until) return;
+    yield month;
   }
+}
+
+export function depositsBetween(data, after, until) {
+  let sum = 0;
+  for (const month of months(after, until)) sum += rateFor(data.rates, month) * data.members;
+  return sum;
 }
 
 // Bank CSV export (Danish): semicolon separated, header row with "Dato" and "Saldo", dates dd.mm.yyyy,
@@ -47,30 +52,26 @@ export function latestBalance(csv) {
 // Dinners outside the club (Oskar's own visits) never touch the madkonto.
 export const isClub = d => (d.group ?? 'madklubben') === 'madklubben';
 export const fromFund = d => (d.price ?? 0) - (d.outOfPocket ?? 0);
+const spentBetween = (data, after, until) => data.dinners.filter(d => isClub(d) && d.date > after && d.date <= until).reduce((s, d) => s + fromFund(d), 0);
 
 // A checkpoint is the bank balance at the end of its date, so dinners that day are already paid.
 export function balance(data, date) {
   const cp = data.checkpoints.filter(c => c.date <= date).sort((a, b) => a.date.localeCompare(b.date)).at(-1)
     ?? { date: '0000-00-00', balance: 0 };
-  const spent = data.dinners.filter(d => isClub(d) && d.date > cp.date && d.date <= date).reduce((s, d) => s + fromFund(d), 0);
-  return cp.balance + depositsBetween(data, cp.date, date) - spent;
+  return cp.balance + depositsBetween(data, cp.date, date) - spentBetween(data, cp.date, date);
 }
 
 // Everything paid in since the account opened, against everything the dinners took out of it.
 export function ledger(data, date) {
   const start = [...data.checkpoints].sort((a, b) => a.date.localeCompare(b.date))[0] ?? { date: '0000-00-00', balance: 0 };
   const periods = [];
-  let y = +start.date.slice(0, 4), m = +start.date.slice(5, 7);
-  for (;;) {
-    if (++m > 12) { m = 1; y++; }
-    const month = `${y}-${String(m).padStart(2, '0')}`;
-    if (`${month}-01` > date) break;
+  for (const month of months(start.date, date)) {
     const perPerson = rateFor(data.rates, month), last = periods.at(-1);
     if (last?.perPerson === perPerson) { last.months++; last.amount += perPerson * data.members; }
     else periods.push({ from: month, perPerson, months: 1, amount: perPerson * data.members });
   }
   const paidIn = periods.reduce((s, p) => s + p.amount, 0);
-  const spent = data.dinners.filter(d => isClub(d) && d.date > start.date && d.date <= date).reduce((s, d) => s + fromFund(d), 0);
+  const spent = spentBetween(data, start.date, date);
   const expected = start.balance + paidIn - spent, actual = balance(data, date);
   return { start, periods, paidIn, spent, expected, actual, difference: actual - expected };
 }
@@ -144,7 +145,7 @@ function main() {
     }
     progress('Gemmer');
     for (let attempt = 1; ; attempt++) {
-      const ref = await gh(`${base}/git/ref/heads/${REPO.branch}`);
+      const ref = await gh(`${base}/git/ref/heads/main`);
       const head = await gh(`${base}/git/commits/${ref.object.sha}`);
       const fresh = JSON.parse(await gh(`${base}/contents/data.json?ref=${ref.object.sha}`, { accept: 'application/vnd.github.raw+json' }));
       mutate(fresh);
@@ -152,7 +153,7 @@ function main() {
       const t = await post(`${base}/git/trees`, { base_tree: head.tree.sha, tree });
       const c = await post(`${base}/git/commits`, { message, tree: t.sha, parents: [ref.object.sha] });
       try {
-        await post(`${base}/git/refs/heads/${REPO.branch}`, { sha: c.sha }, 'PATCH');
+        await post(`${base}/git/refs/heads/main`, { sha: c.sha }, 'PATCH');
         data = fresh;
         return;
       } catch (e) {
@@ -166,7 +167,7 @@ function main() {
       data = await (await fetch('data.json', { cache: 'no-cache' })).json();
       return;
     }
-    const ref = await gh(`${base}/git/ref/heads/${REPO.branch}`);
+    const ref = await gh(`${base}/git/ref/heads/main`);
     data = JSON.parse(await gh(`${base}/contents/data.json?ref=${ref.object.sha}`, { accept: 'application/vnd.github.raw+json' }));
   }
 

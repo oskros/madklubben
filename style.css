@@ -101,7 +101,6 @@ main { max-width: 1120px; margin: 0 auto; padding: 1.25rem 16px 3rem; }
 /* page heads and tables */
 .section-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
 
-.scroll { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; }
 th, td { text-align: left; padding: .5rem .6rem; white-space: nowrap; }
 th { font-size: .8rem; font-weight: 500; color: var(--muted); }
@@ -141,7 +140,7 @@ th { font-size: .8rem; font-weight: 500; color: var(--muted); }
 .menu li { display: flex; gap: .6rem; padding: .5rem 0; line-height: 1.45; counter-increment: course; font-family: var(--serif); font-size: 1rem; }
 .menu li::before { content: counter(course); flex: none; width: 1.4em; padding-top: .1rem; text-align: right; color: var(--muted); font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: .82rem; }
 @media (max-width: 760px) {
-  .dinner { display: flex; flex-direction: column; }
+  .dinner { display: flex; flex-direction: column; align-items: stretch; }
   .dinner-side, .dinner-main { display: contents; }
   .dinner-img { order: 1; }
   .dinner-head { order: 2; }
@@ -243,7 +242,6 @@ label input, label textarea { color: var(--ink); font-size: 1rem; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding-top: 1rem; border-top: 1px solid var(--line); }
 .actions .danger { margin-left: auto; }
 .status { color: var(--muted); }
-details { margin-top: 2rem; }
 summary { cursor: pointer; margin-bottom: .75rem; }
 
 /* photo viewer (PhotoSwipe) */
@@ -274,7 +272,6 @@ summary { cursor: pointer; margin-bottom: .75rem; }
 #update[hidden] { display: none; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
-.add { margin-top: 0; }
 
 .secret { position: relative; display: block; }
 .secret input { width: 100%; padding-right: 2.75rem; }

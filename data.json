@@ -74,20 +74,25 @@
    },
    "dishTags": {
     "Water buffalo tartar, romaine lettuce, brown butter": [
+     "Forret",
      "Okse"
     ],
     "Goose liver, sloe, loaf": [
+     "Forret",
      "Fjerkræ"
     ],
     "Sturgeon caviar, asparagus, bone marrow": [
+     "Forret",
      "Fisk",
      "Grønt"
     ],
     "Rooster soup, stuffed pasta, vegetables": [
+     "Forret",
      "Fjerkræ",
      "Pasta & ris"
     ],
     "Young wild boar cheek stew, buttered noodles, pickled paprika": [
+     "Hovedret",
      "Vildt"
     ],
     "21st century Somló sponge cake": [
@@ -224,28 +229,36 @@
    },
    "dishTags": {
     "Taco med oksebryst, salsa crilolla & chuchum mayonnaise": [
+     "Snack",
      "Okse"
     ],
     "Grillet padron peber med miso yoghurt": [
+     "Snack",
      "Grønt"
     ],
     "Tostada med krabbe & avocado": [
+     "Snack",
      "Skaldyr"
     ],
     "Ceviche af havbars med søde kartofler, mango, radise & leche de tigre": [
+     "Forret",
      "Fisk"
     ],
     "Tiradito af hamachi med ají amarillo, ristede jordnødder & nashi pære": [
+     "Forret",
      "Fisk"
     ],
     "Stegt perlehøne med græskarkernemole & grillet hjertesalat": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "Majssalat med agurk & fårefeta": [
+     "Hovedret",
      "Grønt",
      "Ost"
     ],
     "Grillet courget med mojo rojo": [
+     "Hovedret",
      "Grønt"
     ],
     "Banan syltet i ahornsirup med curd, mascarponeis, karameliserede popcorn & chokoladesauce med mezcal": [
@@ -416,17 +429,21 @@
    "priceEstimate": true,
    "dishTags": {
     "Laks – rødbede – gedeost – lakrids": [
+     "Forret",
      "Fisk",
      "Grønt"
     ],
     "Kalvetatar – bøgehatte – hasselnød – æggeblomme": [
+     "Forret",
      "Okse",
      "Svampe"
     ],
     "Svinebryst – græskar – tranebær – selleri": [
+     "Hovedret",
      "Svin"
     ],
     "Blåskimmelost – baconmarmelade – æbler": [
+     "Dessert",
      "Ost"
     ],
     "Chokolade – skyr – blåbær": [
@@ -563,21 +580,27 @@
    },
    "dishTags": {
     "Græskarsuppe – Gurkemeje & lardo": [
+     "Forret",
      "Grønt"
     ],
     "Gravad laks – Æggeblomme & selleri": [
+     "Forret",
      "Fisk"
     ],
     "Stegt torsk – Variation af skozonerrødder & sauce på gran": [
+     "Forret",
      "Fisk"
     ],
     "Braiseret lam – Savoykål, tørret andehjerte & hasselnød": [
+     "Hovedret",
      "Lam"
     ],
     "Onglet – Glaseret rødbede & blanquette sauce med persille": [
+     "Hovedret",
      "Okse"
     ],
     "Dronning Victoria ost – Blommer rehydreret i rom, nøddebrød & honning med trøffel": [
+     "Dessert",
      "Ost"
     ],
     "Karamelmousse – Sprød æble-krokant & sorbet på havesyre": [
@@ -739,24 +762,31 @@
    },
    "dishTags": {
     "Oxalis root & Farm of Ideas greens.": [
+     "Forret",
      "Grønt"
     ],
     "Pike perch & turnip.": [
+     "Forret",
      "Fisk"
     ],
     "Carrot & meadowsweet.": [
+     "Forret",
      "Grønt"
     ],
     "Squid.": [
+     "Forret",
      "Skaldyr"
     ],
     "Crown prince pumpkin.": [
+     "Forret",
      "Grønt"
     ],
     "Mushroom & almond shoyu.": [
+     "Forret",
      "Svampe"
     ],
     "Farm of Ideas duck & apple.": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "Viili & lingonberry.": [
@@ -921,12 +951,15 @@
    },
    "dishTags": {
     "CHILI SALAMI – Spicy salami, pickled beetroot, Røde Kristian cheese, tomato sauce, topped with fresh mozzarella, spinach, pickled chilies": [
+     "Hovedret",
      "Svin"
     ],
     "BUFFALO CHICKEN – Buffalo marinated chicken, blå kornblomst cheese and spicy buffalo hot-sauce, topped with celery crudité": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "BURRATA LOVER (Veggie) – 125g creamy burrata from Danish La Treccia, Tomato sauce, basil pesto, rucola, fresh tomatoes, lemon ready for a squeeze": [
+     "Hovedret",
      "Ost"
     ]
    },
@@ -1009,9 +1042,11 @@
    },
    "dishTags": {
     "Canadisk hummer, råstegt i hvidløg og urter. Serveret med grillet citron estragonmayonnaise og frilicesalat": [
+     "Hovedret",
      "Skaldyr"
     ],
     "300 gr. dansk krogmodnet Ribeye med fritter, estragonmayonnaise og vendt salat": [
+     "Hovedret",
      "Okse"
     ]
    },
@@ -1097,16 +1132,20 @@
    },
    "dishTags": {
     "Salat på taskekrabbe med græskar og hyldeblomst": [
+     "Forret",
      "Skaldyr",
      "Grønt"
     ],
     "Røget kammusling med syltede pærer og peberrod": [
+     "Forret",
      "Skaldyr"
     ],
     "Grillet jomfruhummer med tomater og ramsløgskapers": [
+     "Forret",
      "Skaldyr"
     ],
     "Letbagt kulmule med broccoli og kyllingeskind eller Oksemørbrad med broccoli og kyllingeskind": [
+     "Hovedret",
      "Fisk",
      "Okse"
     ],
@@ -1222,21 +1261,27 @@
    },
    "dishTags": {
     "Fried oysters with sauce tatar": [
+     "Forret",
      "Skaldyr"
     ],
     "Cod ceviche - raw marinated cod, mango and coriander": [
+     "Forret",
      "Fisk"
     ],
     "Blue mussels": [
+     "Forret",
      "Skaldyr"
     ],
     "Peel-and-eat shrimps": [
+     "Forret",
      "Skaldyr"
     ],
     "Whole grilled sea bass with salsa verde": [
+     "Hovedret",
      "Fisk"
     ],
     "Grilled flat iron steak, 200 g.": [
+     "Hovedret",
      "Okse"
     ]
    },
@@ -1363,41 +1408,53 @@
    },
    "dishTags": {
     "SYLTET MAKREL med stikkelsbær og lærketræs olie": [
+     "Forret",
      "Fisk"
     ],
     "BLÅMUSLINGER med sommerens krydderurter": [
+     "Forret",
      "Skaldyr"
     ],
     "DANSK HUMMER med hvide ribs": [
+     "Forret",
      "Skaldyr"
     ],
     "GRILLET COURGETTE marineret i miso og maitake svampe": [
+     "Forret",
      "Grønt",
      "Svampe"
     ],
     "NYE DANSKE KARTOFLER med en sauce af Karl Johan svampe og hasselnødde olie": [
+     "Forret",
      "Grønt",
      "Svampe"
     ],
     "DANSKE JORDBÆR med basilikum og gran salt": [
+     "Forret",
      "Frugt"
     ],
     "LAMME LEVER med ristet byg og bog": [
+     "Forret",
      "Lam"
     ],
     "AGURKER FRA KROGERUP med fennikel og hvide ribs": [
+     "Forret",
      "Grønt"
     ],
     "TARTAR AF LAM med peberrod og hybenkerneolie": [
+     "Forret",
      "Lam"
     ],
     "GLASERET GRIS med en sauce på mørke bær og varme krydderier": [
+     "Hovedret",
      "Svin"
     ],
     "SÆSONENS URTER marineret i stikkelsbær saft": [
+     "Hovedret",
      "Grønt"
     ],
     "SYLTEDE SAGER aromatiske smage fra gemmerne": [
+     "Hovedret",
      "Grønt"
     ],
     "HYLDEBLOMST DESSERT med søde æggeblommer og saké": [
@@ -1584,46 +1641,59 @@
    },
    "dishTags": {
     "sæsonens grønt med solbærblade": [
+     "Snack",
      "Grønt"
     ],
     "pebersteak af pighvar": [
+     "Snack",
      "Fisk"
     ],
     "radise- og blomstertærte": [
+     "Snack",
      "Grønt"
     ],
     "kartoffelsuppe med solbær": [
+     "Snack",
      "Grønt"
     ],
     "grillet hummer og rosenblade": [
+     "Snack",
      "Skaldyr"
     ],
     "sommersquash og friske bær": [
+     "Forret",
      "Grønt",
      "Frugt"
     ],
     "ristede løg": [
+     "Forret",
      "Grønt"
     ],
     "nye hvidløg og bøgenødder": [
+     "Forret",
      "Grønt",
      "Nødder"
     ],
     "krabbegelé med kaviar": [
+     "Forret",
      "Skaldyr",
      "Fisk"
     ],
     "kongekrabbesalat": [
+     "Forret",
      "Skaldyr"
     ],
     "grillet ben": [
+     "Hovedret",
      "Skaldyr"
     ],
     "\"krave\" og trøffel": [
+     "Hovedret",
      "Skaldyr",
      "Svampe"
     ],
     "morgenfrue med fermenteret krabbe og whisky-æggesnaps": [
+     "Hovedret",
      "Skaldyr",
      "Æg"
     ],
@@ -1947,9 +2017,11 @@
    },
    "dishTags": {
     "Råstegt sort dansk hummer – 1/1 dansk sort hummer, ca. 500 gram pr. stk. råstegt i smør med hvidløg og urter. Serveret med salat, citron og mayonnaise": [
+     "Hovedret",
      "Skaldyr"
     ],
     "Frittet kartofler med estragon mayonnaise": [
+     "Hovedret",
      "Grønt"
     ]
    },
@@ -2005,7 +2077,9 @@
     "1a0f24e6ecb-menukort.jpg": "Brasserie Barner, brasseriebarner.dk (okt. 2020)"
    },
    "dishTags": {
-    "6 retters delemenu": []
+    "6 retters delemenu": [
+     "Hovedret"
+    ]
    },
    "photoTags": {
     "1a0f24e6ecb-menukort.jpg": [
@@ -2065,22 +2139,28 @@
    },
    "dishTags": {
     "Mozzarella – Bøffelmozzarella med ramsløgspesto": [
+     "Forret",
      "Ost"
     ],
     "Finocchi Gratinati – Gratineret fennikel": [
+     "Forret",
      "Grønt"
     ],
     "Broccolini – Aspargesbroccoli med gedeost og boghvedekerner": [
+     "Forret",
      "Grønt",
      "Ost"
     ],
     "Babaganoush – Auberginedip": [
+     "Forret",
      "Grønt"
     ],
     "Arancini – Risottokugler med chili og mynte": [
+     "Forret",
      "Pasta & ris"
     ],
     "To slags pasta (Chef’s choise)": [
+     "Hovedret",
      "Pasta & ris"
     ]
    },
@@ -2194,19 +2274,24 @@
    },
    "dishTags": {
     "Helleflynder, røde stikkelsbær & marehalm": [
+     "Forret",
      "Fisk"
     ],
     "Slethvar, hvide asparges & kærnemælk": [
+     "Forret",
      "Fisk"
     ],
     "Nye kartofler, bakskuld & løvstikke": [
+     "Forret",
      "Grønt",
      "Fisk"
     ],
     "Rå okse, fermenteret gulerod & røget blåmusling": [
+     "Forret",
      "Okse"
     ],
     "Vagtel, grønne asparges & syltede kantareller": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "Rabarber, vanilje & skovmærke": [
@@ -2310,12 +2395,15 @@
    },
    "dishTags": {
     "Sardiner – kapers salat, aioli": [
+     "Forret",
      "Fisk"
     ],
     "Venø Østers Ceviche – fermenteret habanero, pico de gallo mignonette, tomater, rødløg": [
+     "Forret",
      "Skaldyr"
     ],
     "Pighvar – salsa, escalivada (grillet grønt)": [
+     "Hovedret",
      "Fisk"
     ],
     "Chokoladecreme med karamelliserede pekannødder, vaniljeis og karamel": [
@@ -2465,21 +2553,27 @@
    },
    "dishTags": {
     "Variation af Perle Blanche østers": [
+     "Snack",
      "Skaldyr"
     ],
     "Årstidens suppe à la Bistro Boheme": [
+     "Forret",
      "Grønt"
     ],
     "Dansk røget laks fra Royal Nyborg Smokehouse serveret med syrnet fløde, rå agurk, syltet citron & wasabiolie": [
+     "Forret",
      "Fisk"
     ],
     "Skindstegt sandart serveret med sommergrønt & tomatsauce på 3 slags tomater": [
+     "Hovedret",
      "Fisk"
     ],
     "Kalveculotte serveret med årstidens grønt, estragon blanquette & kartofler": [
+     "Hovedret",
      "Okse"
     ],
     "Ostebræt – 4 europæiske oste serveret med behørig garniture": [
+     "Dessert",
      "Ost"
     ],
     "Sorbet i urteolie": [
@@ -2654,22 +2748,27 @@
    },
    "dishTags": {
     "Op La Mix – 2 stk. dybstegte forårsruller, 2 stk. dybstegt kylling, 2 stk. dybstegte rejer, 2 stk. dybstegte wantons": [
+     "Forret",
      "Fjerkræ",
      "Skaldyr"
     ],
     "Gỏi Bò – Oksekødssalat med friske grøntsager serveres med rejrechips": [
+     "Forret",
      "Okse",
      "Grønt"
     ],
     "Bánh Khọt – Sprød mini rispandekage med rejer og svinekød": [
+     "Forret",
      "Skaldyr",
      "Svin"
     ],
     "Bánh Xèo – Sprød rispandekage med svinekød, rejer og bønnespirer": [
+     "Hovedret",
      "Svin",
      "Skaldyr"
     ],
     "Cơm Xương Sườn – Braiseret spareribs serveres med ris, spejlæg og krydderurter": [
+     "Hovedret",
      "Svin",
      "Pasta & ris",
      "Æg"
@@ -2781,6 +2880,7 @@
    },
    "dishTags": {
     "FAMILY STYLE MENU – 7 servings": [
+     "Hovedret",
      "Fisk",
      "Grønt",
      "Dessert",
@@ -2860,17 +2960,21 @@
    },
    "dishTags": {
     "Wagyu Sashimi & Feed Lollipops": [
+     "Forret",
      "Okse"
     ],
     "Tartare & Caviar & Wagyu Arancini": [
+     "Forret",
      "Okse",
      "Fisk"
     ],
     "Katsu Sando slider": [
+     "Forret",
      "Okse",
      "Brød"
     ],
     "Beef Wellington – All in": [
+     "Hovedret",
      "Okse"
     ],
     "Dessert – Choose between: Creme Brulée or Chocolate Fudge": [
@@ -3077,39 +3181,50 @@
    },
    "dishTags": {
     "daikon & yuzu kosho – HAMACHI": [
+     "Snack",
      "Fisk"
     ],
     "fjordrejer & peberrod – TÆRTE": [
+     "Snack",
      "Skaldyr"
     ],
     "glaskål & tomat – HUMMER": [
+     "Snack",
      "Skaldyr"
     ],
     "hybenrose & jomfruhummer – ÆBLE": [
+     "Snack",
      "Skaldyr",
      "Frugt"
     ],
     "løvstikke & havesyre – ØRRED": [
+     "Forret",
      "Fisk"
     ],
     "sesam & shiso – BLÆKSPRUTTE": [
+     "Forret",
      "Skaldyr"
     ],
     "koriander & skinke – NAAN": [
+     "Forret",
      "Brød",
      "Svin"
     ],
     "caviar & miso – JORDSKOK": [
+     "Forret",
      "Grønt",
      "Fisk"
     ],
     "hindbær & pistacie – SANDART": [
+     "Forret",
      "Fisk"
     ],
     "andelever & figner – VAGTEL": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "gremolata – VAGTELLÅR": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "choux & kaffe – VALNØDDER": [
@@ -3405,22 +3520,28 @@
    },
    "dishTags": {
     "Green Tomato – Potato and Mustard": [
+     "Snack",
      "Grønt"
     ],
     "Sea bass – Green Citrus and Serrano": [
+     "Forret",
      "Fisk"
     ],
     "Candy Roaster Pumpkin – Habanada and Coriander Seed": [
+     "Forret",
      "Grønt"
     ],
     "Funga Farm Mushrooms – Mashi Noodles and Szechuan": [
+     "Forret",
      "Svampe",
      "Pasta & ris"
     ],
     "Monkfish – Rose and Leeks": [
+     "Forret",
      "Fisk"
     ],
     "Varde Ådal Duck – Pak Choi and Lemongrass": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "Filippa Apple – Sorrel and Apple Glaze": [
@@ -3568,25 +3689,31 @@
    },
    "dishTags": {
     "Arancini – Arancini med Tomat, Mozzarella og Parmesan": [
+     "Forret",
      "Pasta & ris",
      "Ost"
     ],
     "Baccala – Rørt og Saltet Torsk med Grillede Artiskokker og Bitre Salater": [
+     "Forret",
      "Fisk",
      "Grønt"
     ],
     "Crudo di Tonno – Crudo af Tun med Chili, Taggiasca Oliven, Tomater og Merian": [
+     "Forret",
      "Fisk"
     ],
     "Prosciutto – Tomatsauce, Fior di Latte, Bøffelmozzarella og Prosciutto": [
+     "Hovedret",
      "Svin",
      "Ost"
     ],
     "Rigatoni alla Vodka – Rigatoni med Tomat, Chili, Stracciatella og Vodka Sauce": [
+     "Hovedret",
      "Pasta & ris",
      "Ost"
     ],
     "Spaghetti ai Frutti di Mare – Spaghetti med Rejer, Muslinger og Jomfruhummer": [
+     "Hovedret",
      "Pasta & ris",
      "Skaldyr"
     ],
@@ -3732,23 +3859,29 @@
    },
    "dishTags": {
     "Kartoffel med rygeost og ørredrogn": [
+     "Snack",
      "Grønt",
      "Ost",
      "Fisk"
     ],
     "Taskekrabbe med yuzu og hibiscus": [
+     "Snack",
      "Skaldyr"
     ],
     "Tomater med hvidløg, oliven, anis og peber": [
+     "Snack",
      "Grønt"
     ],
     "Ultratynde skiver af tun med sesamsauce, ingefærsauce, hoisinsauce og bonitoflager": [
+     "Forret",
      "Fisk"
     ],
     "Surdejsbrød på ølandshvede og manitoba med økologisk smør og pisket smør med knust stegt kyllingeskind": [
+     "Forret",
      "Brød"
     ],
     "Helleflynder og fennikel i sauce med yuzu-kosho og shio-koji": [
+     "Hovedret",
      "Fisk"
     ],
     "Tonkabønne-is med miso, fåremælks-yoghurt og jordbær": [
@@ -3887,12 +4020,15 @@
    },
    "dishTags": {
     "Hel- råstegt Hummer": [
+     "Hovedret",
      "Skaldyr"
     ],
     "Fransk Tatar": [
+     "Forret",
      "Okse"
     ],
     "Rejecocktail": [
+     "Forret",
      "Skaldyr"
     ]
    },
@@ -4048,35 +4184,45 @@
    },
    "dishTags": {
     "majroe i klar dashi": [
+     "Snack",
      "Grønt"
     ],
     "små bidder: reje med wasabi, krabbe på nori, bladindpakket bid, blæksprutte på tartelet": [
+     "Snack",
      "Skaldyr"
     ],
     "østers og tomat med gelé af tomatvand og blåmuslinger": [
+     "Forret",
      "Skaldyr",
      "Grønt"
     ],
     "akami-tun med sojabønner og grønt": [
+     "Forret",
      "Fisk"
     ],
     "rå fisk med myoga og grøn chili": [
+     "Forret",
      "Fisk"
     ],
     "havtaskelever med tofu, sesam, toppe fra tokyo turnips og en figen fra Provence": [
+     "Forret",
      "Fisk",
      "Frugt"
     ],
     "makrel en croûte med ristet nori-sauce": [
+     "Forret",
      "Fisk"
     ],
     "koji-ris med urter": [
+     "Forret",
      "Pasta & ris"
     ],
     "hvid fisk under skum": [
+     "Forret",
      "Fisk"
     ],
     "canette – farseret hals med lever og hjerte, bryst med kantareller og pebersauce, pithivier": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "”Fig”nanciere med kastanie, honning, miso og figner syltet i gul chartreuse, grillet vaniljeis og brændt karamel": [
@@ -4453,47 +4599,60 @@
    },
    "dishTags": {
     "Østers & pære": [
+     "Snack",
      "Skaldyr",
      "Frugt"
     ],
     "Løjrom & kartoffel": [
+     "Snack",
      "Fisk"
     ],
     "Høstsild med æble, dild & wasabi": [
+     "Snack",
      "Fisk"
     ],
     "Kammusling med vichyssoise": [
+     "Snack",
      "Skaldyr"
     ],
     "Hvide ribs & caviar": [
+     "Snack",
      "Fisk",
      "Frugt"
     ],
     "Surdej med smørbold": [
+     "Forret",
      "Brød"
     ],
     "Pighvar i kombu & porre": [
+     "Forret",
      "Fisk"
     ],
     "Rå rejer & ristet brød": [
+     "Forret",
      "Skaldyr",
      "Brød"
     ],
     "Jomfruhummer med kirsebær": [
+     "Forret",
      "Skaldyr"
     ],
     "Rosenkål med vilde svampe & vin jaune": [
+     "Forret",
      "Grønt",
      "Svampe"
     ],
     "Gulerod med peberrod & okse": [
+     "Forret",
      "Grønt",
      "Okse"
     ],
     "Vagtel i enebær": [
+     "Hovedret",
      "Fjerkræ"
     ],
     "Granbarksost & trøffel": [
+     "Dessert",
      "Ost",
      "Svampe"
     ],

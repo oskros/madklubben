@@ -186,7 +186,7 @@ function main() {
   const MEAT = ['Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt'];
   const withMeat = tags => tags.some(t => MEAT.includes(t)) ? [...tags, 'Kød'] : tags;
   const COLOURS = ['rød', 'orange', 'gul', 'grøn', 'blå', 'lilla', 'lyserød', 'brun', 'sort', 'hvid'];
-  const CATEGORIES = ['Fisk', 'Skaldyr', 'Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt', 'Kød', 'Grønt', 'Svampe', 'Frugt', 'Nødder', 'Ost', 'Æg', 'Brød', 'Pasta & ris', 'Dessert', 'Petit four', 'Vin', 'Drinks'];
+  const CATEGORIES = ['Fisk', 'Skaldyr', 'Okse', 'Svin', 'Lam', 'Fjerkræ', 'Vildt', 'Kød', 'Grønt', 'Svampe', 'Frugt', 'Nødder', 'Ost', 'Æg', 'Brød', 'Pasta & ris', 'Snack', 'Forret', 'Hovedret', 'Dessert', 'Petit four', 'Vin', 'Drinks'];
   const photoPath = (d, name, thumb) => `photos/${d.id}/${thumb ? 't/' : ''}${thumb && isVideo(name) ? name.replace(/\.mp4$/, '.jpg') : name}`;
   const photoUrl = (d, name, thumb) => localUrls[photoPath(d, name, thumb)] ?? photoPath(d, name, thumb);
 

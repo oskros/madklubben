@@ -11,8 +11,9 @@ The "Retter" page is searched and filtered by tags, not only by the menu text. T
 
 Categories are a fixed list, spelled exactly like this (it is also `CATEGORIES` in `app.js`):
 
-Fisk, Skaldyr, Okse, Svin, Lam, Fjerkræ, Vildt, Kød, Grønt, Svampe, Frugt, Nødder, Ost, Æg, Brød, Pasta & ris, Dessert, Petit four, Vin, Drinks
+Fisk, Skaldyr, Okse, Svin, Lam, Fjerkræ, Vildt, Kød, Grønt, Svampe, Frugt, Nødder, Ost, Æg, Brød, Pasta & ris, Snack, Forret, Hovedret, Dessert, Petit four, Vin, Drinks
 
+- Every course also gets exactly one course type: Snack (one-bite starters), Forret, Hovedret, Dessert or Petit four. A cheese course after the main counts as Dessert. Sides served with the main are Hovedret.
 - Only the main ingredients count. A fish dish with a cress garnish is Fisk, not Grønt. Butter and cream never count.
 - Kød is added automatically to anything tagged Okse, Svin, Lam, Fjerkræ or Vildt, so don't add it yourself. Use Kød on its own only when the kind of meat is unknown.
 - Caviar and roe count as Fisk. A cheese course is Ost. Petit four is for the small sweets served with coffee.

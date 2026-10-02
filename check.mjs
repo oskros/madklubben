@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { balance, depositsBetween, forecast, latestBalance, rateFor } from './app.js';
+import { balance, depositsBetween, forecast, latestBalance, ledger, rateFor } from './app.js';
 
 const data = {
   members: 3,
@@ -20,7 +20,14 @@ assert.equal(depositsBetween(data, '2023-12-31', '2024-04-30'), 300 + 300 + 900 
 assert.equal(balance(data, '2024-02-15'), 600 - 500);
 assert.equal(balance(data, '2024-04-30'), 2400 - 500 - 2000);
 
+const l = ledger(data, '2024-04-30');
+assert.deepEqual(l.periods.map(p => [p.from, p.months, p.amount]), [['2024-01', 2, 600], ['2024-03', 2, 1800]]);
+assert.equal(l.paidIn, 2400);
+assert.equal(l.spent, 2500);
+assert.equal(l.difference, 0, 'with no bank statement since the start, expected and actual agree');
+
 data.checkpoints.push({ date: '2024-04-10', balance: 50 });
+assert.equal(ledger(data, '2024-05-01').difference, 950 - (0 + 3300 - 2500), 'a bank statement shows up as the difference');
 assert.equal(balance(data, '2024-04-10'), 50, 'dinner on checkpoint day is already in the bank balance');
 assert.equal(balance(data, '2024-05-01'), 950);
 

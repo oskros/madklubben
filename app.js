@@ -217,13 +217,9 @@ function main() {
     d: dinnerPage,
     ny: () => dinnerForm(null),
     ret: id => dinnerForm(data.dinners.find(d => d.id === id)),
-    budget: dinnersPage,
     regnskab: balancePage,
-    saldo: balancePage,
     retter: dishesPage,
-    menuer: dishesPage,
     forslag: ideasPage,
-    ideer: ideasPage,
     login: loginPage,
     opsaetning: setupPage,
     config: configPage,
@@ -274,7 +270,7 @@ function main() {
     $('#auth').innerHTML = `${icon(token ? 'logout' : 'login')}<span>${token ? 'Log ud' : 'Log ind'}</span>`;
     $('#auth').href = token ? '#/logud' : '#/login';
     renderFilter();
-    const section = ['d', 'ny', 'ret', 'budget'].includes(view) ? '' : view === 'ideer' ? 'forslag' : view === 'saldo' ? 'regnskab' : view;
+    const section = ['d', 'ny', 'ret'].includes(view) ? '' : view;
     document.querySelectorAll('.top nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === `#/${section}`));
     const dinner = $('form[data-form=dinner]');
     if (dinner) { billPreview(dinner); refreshCourseSelects(dinner); }
@@ -516,11 +512,10 @@ function main() {
       </form>`;
   }
 
-  // ponytail: without course links, menu cards are guessed to be the first photos of dinners with a menu; skip up to 3 of them.
   function dishPhoto(d) {
     const linked = d.photos.filter(p => coursesOf(d, p).length);
-    const skip = d.menu.length ? Math.min(3, d.photos.length - 1) : 0;
-    const pool = linked.length ? linked : d.photos.slice(skip);
+    const notMenu = d.photos.filter(p => !d.photoTags?.[p]?.includes('menukort'));
+    const pool = linked.length ? linked : notMenu.length ? notMenu : d.photos;
     return pool[Math.floor(Math.random() * pool.length)];
   }
 
@@ -696,7 +691,7 @@ function main() {
   function configPage() {
     return `
       <h1>Indstillinger</h1>
-      <p class="lead">Gælder kun i denne browser.</p>
+      <p>Gælder kun i denne browser.</p>
       <label class="check big-check"><input type="checkbox" data-action="toggle-mine" ${personal() ? 'checked' : ''}> Vis mine egne besøg</label>
       <p class="muted small">Tilføjer et filter i toppen (Alle, Madklubben, Ida, Andre) og et Hvem-felt, når du opretter en middag. Madkontoen tæller altid kun Madklubben.</p>`;
   }
@@ -712,7 +707,7 @@ function main() {
   function loginPage() {
     return `
       <h1>Log ind</h1>
-      <p class="lead">Alle kan se siden. For at redigere skal du bruge madklubbens kodeord.</p>
+      <p>Alle kan se siden. For at redigere skal du bruge madklubbens kodeord.</p>
       <form data-form="login" class="inline">
         <label>Kodeord ${secret('password', 'current-password')}</label>
         <button class="btn">${icon('login')}Log ind</button> <span class="status"></span>
@@ -722,8 +717,8 @@ function main() {
   function setupPage() {
     return `
       <h1>Ny nøgle</h1>
-      <p class="lead">Kun hvis login holder op med at virke.</p>
-      <p class="muted explain">Lav en ny GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes.</p>
+      <p>Kun hvis login holder op med at virke.</p>
+      <p class="muted">Lav en ny GitHub-token med skriveadgang til madklubben og vælg kodeordet, den skal låses med. Kun den krypterede nøgle gemmes.</p>
       <form data-form="setup" class="inline">
         <label>GitHub-token ${secret('token', 'off')}</label>
         <label>Kodeord ${secret('password', 'new-password')}</label>
@@ -830,16 +825,15 @@ function main() {
         Object.assign(d, fields);
         const kept = order.filter(p => d.photos.includes(p)).concat(d.photos.filter(p => !order.includes(p)));
         d.photos = kept.filter(p => !del.includes(p)).concat(names);
-        const pc = Object.fromEntries(Object.entries(linked).filter(([p]) => d.photos.includes(p)));
-        if (Object.keys(pc).length) d.photoCourses = pc; else delete d.photoCourses;
-        const pn = Object.fromEntries(Object.entries(notes).filter(([p]) => d.photos.includes(p)));
-        if (Object.keys(pn).length) d.photoNotes = pn; else delete d.photoNotes;
-        const cr = Object.fromEntries(Object.entries(credits).filter(([p]) => d.photos.includes(p)));
-        if (Object.keys(cr).length) d.photoCredits = cr; else delete d.photoCredits;
-        const pt = Object.fromEntries(Object.entries(d.photoTags ?? {}).filter(([p]) => d.photos.includes(p)));
-        if (Object.keys(pt).length) d.photoTags = pt; else delete d.photoTags;
-        const dt = Object.fromEntries(Object.entries(d.dishTags ?? {}).filter(([c]) => d.menu.includes(c)));
-        if (Object.keys(dt).length) d.dishTags = dt; else delete d.dishTags;
+        const keep = (field, from, still) => {
+          const kept = Object.fromEntries(Object.entries(from ?? {}).filter(([k]) => still.includes(k)));
+          if (Object.keys(kept).length) d[field] = kept; else delete d[field];
+        };
+        keep('photoCourses', linked, d.photos);
+        keep('photoNotes', notes, d.photos);
+        keep('photoCredits', credits, d.photos);
+        keep('photoTags', d.photoTags, d.photos);
+        keep('dishTags', d.dishTags, d.menu);
       }, files, progress);
       if (failed.length) alert(`Kunne ikke læse: ${failed.join(', ')}. (HEIC-billeder virker kun i Safari - eksportér som JPEG.)`);
       location.replace(`#/d/${id}`);
@@ -851,7 +845,6 @@ function main() {
         fresh.rates.push({ from: fd.get('from'), perPerson: Number(fd.get('perPerson')) });
       });
     },
-
 
     async checkpoint(fd) {
       await save('Ny saldo', fresh => {
@@ -1307,7 +1300,7 @@ function main() {
 
   // ---------- boot ----------
 
-  const isFront = h => ['', '#', '#/', '#/budget'].includes(h);
+  const isFront = h => ['', '#', '#/'].includes(h);
   let frontScroll = 0, onFront = isFront(location.hash);
   window.addEventListener('scroll', () => { if (onFront) frontScroll = window.scrollY; }, { passive: true });
   window.addEventListener('hashchange', () => {

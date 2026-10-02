@@ -1,8 +1,10 @@
 # Madklubben
 
-Our dinner club's site: every dinner with photos, menus and themes, the shared account's budget, and ideas for next time.
+Our dinner club's site: every dinner with its menu and photos, a searchable page of every dish we've had, the club account's books, and ideas for next time.
 
-Plain static files served by GitHub Pages. Everything the site knows lives in `data.json` and `photos/`. Edits made on the site are committed straight to this repo through the GitHub API, and Pages republishes about a minute later. Nobody needs to touch git.
+Plain static files served by GitHub Pages. Everything the site knows lives in `data.json`, `photos/` and `restaurants/` (logos). Edits made on the site are committed straight to this repo through the GitHub API, and Pages republishes about a minute later. Nobody needs to touch git.
+
+Agents editing data by hand: read `AGENTS.md` first (tagging, photo and logo conventions).
 
 ## Setup (once)
 
@@ -18,19 +20,15 @@ To change the password or replace a token GitHub has removed (after a year witho
 
 ## Using it
 
-- **New dinner:** Middage → "+ Ny middag". Enter the bill and "eget indskud" (paid on top of the account); the site works out the rest.
-- **Photos:** in the dinner's edit form, choose the photos or drag them onto the Billeder section, then drag them into order. They're shrunk to 1600 px before upload. HEIC only works in Safari; in other browsers export as JPEG first.
-- **Budget:** the balance is calculated as the latest bank balance plus monthly deposits (the rate × 3, on the 1st of each month) minus what dinners since then took from the account. Add the actual bank balance under Budget now and then to keep it honest.
+- **Middage:** the front page. Logged in, "Ny middag" adds one. Enter the bill and "eget indskud" (paid on top of the account); the site works out the rest.
+- **Photos:** in the dinner's edit form, choose the photos or drag them onto the Billeder section, drag them into order, and link each to the courses it shows. They're shrunk to 1600 px before upload. HEIC only works in Safari; in other browsers export as JPEG first.
+- **Retter:** every course with a photo, searchable by name, ingredient category (fisk, ost, dessert…), course type and colour.
+- **Regnskab:** income from the monthly rates, expenses per dinner, and a reconciliation against the bank. Add the bank balance now and then (or upload the bank's CSV) to keep it honest.
+- **Forslag:** restaurants to try next.
+- `#/config` (not linked) turns on Oskar's own visits in this browser only. They never touch the club account.
 
-## Checking the budget math
+## Checking the account math
 
 ```
 node check.mjs
 ```
-
-## Later
-
-- A map of the restaurants
-- Who came, when not all three of us did
-- Ratings and favourite dishes per dinner
-- Photo captions and dates from EXIF

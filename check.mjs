@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { balance, depositsBetween, forecast, latestBalance, ledger, rateFor } from './app.js';
+import { balance, depositsBetween, forecast, latestBalance, ledger, rateFor } from './ledger.js';
 
 const data = {
   members: 3,

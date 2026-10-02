@@ -29,6 +29,8 @@ To change the password or replace a token GitHub has removed (after a year witho
 
 ## Checking the account math
 
+The account math (rates, deposits, balance, books, forecast, bank CSV) is in `ledger.js`, with no browser code, so it can be tested on its own:
+
 ```
 node check.mjs
 ```

@@ -655,7 +655,7 @@ function main() {
     });
     return `
       <div class="section-head"><h1>Retter${query ? `<span class="query">: ${esc(query)}</span>` : ''} <span class="count">${tiles.reduce((n, t) => n + t.names.length, 0)}</span></h1>${iconButton('search', 'Søg', 'data-action="open-search"')}</div>
-      <form class="dish-search-form" role="search"><input type="search" class="dish-search" value="${esc(query)}" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="icon-btn" aria-label="Søg" title="Søg">${icon('search')}</button></form>
+      <form class="dish-search-form" role="search">${icon('search')}<input type="search" class="dish-search" value="${esc(query)}" enterkeyhint="search" placeholder="Søg, fx fisk, ost eller dessert" aria-label="Søg i retter" autocomplete="off"><button class="search-go">Søg</button></form>
       <div class="dishes">${tiles.map(({ d, i, names, cats, per, colours, words, drink }) => `
         <figure data-n="${names.length}" data-colours="${esc(colours.join(' '))}" data-cats="${esc(cats.map(c => `${c}:${per[c]}`).join('|'))}" data-q="${esc(`${names.join(' ')} ${d.restaurant} ${cats.join(' ')} ${words.join(' ')}`.toLowerCase())}">
           ${i >= 0

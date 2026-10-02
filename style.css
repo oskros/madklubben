@@ -488,13 +488,14 @@ summary { cursor: pointer; margin-bottom: .75rem; }
 @media (max-width: 760px) { .books { grid-template-columns: 1fr; grid-template-areas: "in" "out" "rec" "st"; } }
 .reconciliation { max-width: 34rem; }
 .expenses th { font-size: .8rem; font-weight: 500; color: var(--muted); padding: 0 0 .4rem; }
-.expenses th + th, .expenses td + td { padding-left: 1rem; }
+.expenses th + th, .expenses .ledger td + td { padding-left: 1rem; }
 .expenses tbody tr { cursor: pointer; }
 .expenses tbody tr:hover td { background: var(--surface); }
 .expenses td a { color: var(--ink); text-decoration: none; }
 .expenses tfoot td { font-weight: 700; border-top-color: var(--ink); border-bottom: 3px double var(--ink); }
 @media (max-width: 640px) {
-  .expenses th + th, .expenses td + td { padding-left: .75rem; }
+  .expenses th + th, .expenses .ledger td + td { padding-left: .75rem; }
+  .expenses .ledger tr > :nth-child(2) { padding-left: 0; }
   .expenses td { white-space: normal; }
   .expenses .num { white-space: nowrap; }
   .expenses .sub { display: block; margin-top: .1rem; font-size: .8rem; font-weight: 400; color: var(--muted); }

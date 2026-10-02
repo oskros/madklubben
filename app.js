@@ -347,9 +347,13 @@ function main() {
         ${iconLink('#/', 'back', 'Til forsiden')}
         ${editOnly(iconLink(`#/ret/${esc(d.id)}`, 'edit', 'Redigér middag og billeder'))}
       </div>
-      <header class="dinner-head">
+      <div class="dinner${hero || d.menu.length ? '' : ' single'}">
+      ${hero || d.menu.length ? `<div class="dinner-side">
         ${hero ? `<img class="dinner-img" src="${esc(hero)}" alt="">` : ''}
-        <div>
+        ${d.menu.length ? `<section class="menu-card"><h2>Menu</h2>${menuList(d)}</section>` : ''}
+      </div>` : ''}
+      <div class="dinner-main">
+        <header class="dinner-head">
           <p class="date">${dato(d.date)}</p>
           <h1>${esc(d.restaurant)}</h1>
           <ul class="links">
@@ -365,16 +369,14 @@ function main() {
             ${isClub(d) ? `<div><dt>Fra madkonto</dt><dd>${d.price ? estKr(d, fromFund(d)) : '–'}</dd></div>
             <div><dt>Eget indskud pr. person</dt><dd>${d.outOfPocket == null ? '–' : estKr(d, d.outOfPocket / data.members)}</dd></div>` : `<div><dt>Med</dt><dd>${GROUPS[d.group] ?? 'Andre'}</dd></div>`}
           </dl>
-        </div>
-      </header>
-      <div class="dinner-body${d.menu.length ? '' : ' no-menu'}">
-        ${d.menu.length ? `<section class="menu-card"><h2>Menu</h2>${menuList(d)}</section>` : ''}
-        <section>
+        </header>
+        <section class="dinner-photos">
           <h2>Billeder <span class="count">${d.photos.length || ''}</span></h2>
           ${d.photos.length ? `<div class="grid">${d.photos.map((p, i) => `
             <button data-photo="${i}" aria-label="Billede ${i + 1}"${d.photoCredits?.[p] ? ` title="Foto: ${esc(d.photoCredits[p])}"` : ''}><img src="${esc(photoUrl(d, p, true))}" alt="" loading="lazy">${isVideo(p) ? `<span class="play-badge" aria-label="Video">${icon('play')}</span>` : ''}${d.photoCredits?.[p] ? `<span class="credit-badge" aria-label="Lånt billede">${icon('external')}</span>` : ''}</button>`).join('')}</div>`
             : `<p class="muted">Ingen billeder endnu.${token ? ` <a href="#/ret/${esc(d.id)}">Tilføj billeder</a>` : ''}</p>`}
         </section>
+      </div>
       </div>`;
   }
 

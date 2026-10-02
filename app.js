@@ -559,13 +559,11 @@ function main() {
         <h1>${groupFilter() === 'madklubben' || groupFilter() === 'alle' ? 'Middage' : GROUPS[groupFilter()]} <span class="count">${list.length}</span></h1>
         ${editOnly(`<a class="btn" href="#/ny">${icon('plus')}Ny middag</a>`)}
       </div>
-      <table class="dinners">
-        <tbody>${[...list].sort(byDate).map(d => `<tr data-href="#/d/${esc(d.id)}"${isClub(d) ? '' : ' class="own"'}>
-          <td class="thumb-cell"><span class="thumb">${cover(d)}</span></td>
-          <td class="place"><a href="#/d/${esc(d.id)}">${esc(d.restaurant)}</a>
-            ${mediaCount(d)}${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</td>
-          <td class="num date-cell"><span class="wide">${dato(d.date)}</span><span class="narrow">${d.date.slice(8)}.${d.date.slice(5, 7)}.${d.date.slice(0, 4)}</span></td></tr>`).join('')}</tbody>
-      </table>
+      <div class="cards">${[...list].sort(byDate).map(d => `<a class="card${isClub(d) ? '' : ' own'}" href="#/d/${esc(d.id)}">
+        <span class="card-logo">${cover(d)}</span>
+        <span class="card-text"><strong>${esc(d.restaurant)}</strong>
+          <span class="card-meta"><span>${dato(d.date)}</span>${mediaCount(d)}${isClub(d) || groupFilter() !== 'alle' ? '' : `<span class="tag">${GROUPS[d.group] ?? 'Andre'}</span>`}</span></span>
+      </a>`).join('')}</div>
       ${list.some(d => d.lat) ? '<section class="map-section"><h2>Kort</h2><div id="map" role="region" aria-label="Kort over restauranterne"></div></section>' : ''}`;
   }
 

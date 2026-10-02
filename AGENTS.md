@@ -25,6 +25,8 @@ Tags are keyed by the exact course text. If a course is renamed in the edit form
 
 ## Other conventions
 
+- Restaurant logos (`image`, in `restaurants/`) fill their card edge to edge. A logo on a plain background is trimmed to its content and padded with that same background colour to a 1.7:1 image, the logo taking up at most 80 % of the width and 78 % of the height, so cropping on narrow and wide cards never cuts into it. Photo-style logos are used as they are.
+
 - **Never overwrite an image under the same file name.** Phones and browsers cache images hard. A rotated or replaced photo gets a new name, e.g. `x.jpg` becomes `xr.jpg`.
 - **Menus are copied verbatim** from the card or source, in whatever language they are in. Improve readability through layout only.
 - **Borrowed photos** (from Instagram, TripAdvisor, blogs and so on) need a `photoCredits` entry and evidence that they show that dish: a caption naming it, a review or blog describing it, or clearly the same key ingredients. The `photoNotes` entry explains that evidence in Danish, e.g. "Restaurantens eget opslag fra november 2023: …". Start with "Fra <måned år>." when the photo is more than a few weeks from the visit. If you can't back it up, leave it out.
